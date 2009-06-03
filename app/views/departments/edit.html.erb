@@ -1,16 +1,14 @@
-<h1>Editing department</h1>
+<h1>编辑系部</h1>
 
 <% form_for(@department) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :name %><br />
+    <%= f.label :name, "名称" %><br />
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.submit 'Update' %>
+    <%= f.submit '更新' %>
+    <input type="button" onclick="$page.showListView()" value="取消" />
   </p>
 <% end %>
-
-<%= link_to 'Show', @department %> |
-<%= link_to 'Back', departments_path %>

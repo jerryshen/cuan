@@ -1,8 +1,6 @@
+<h1>查看系部</h1>
 <p>
-  <b>Name:</b>
+  <b>名称:</b>
   <%=h @department.name %>
 </p>
-
-
-<%= link_to 'Edit', edit_department_path(@department) %> |
-<%= link_to 'Back', departments_path %>
+<input type="button" onclick="$page.showListView()" value="返回列表" />

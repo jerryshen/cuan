@@ -1,6 +1,6 @@
 class DepartmentsController < ApplicationController
-	protect_from_forgery :except => :index
-  skip_before_filter :verify_authenticity_token
+	#protect_from_forgery :except => :index
+  #skip_before_filter :verify_authenticity_token
   # GET /departments
   # GET /departments.xml
   def index
@@ -50,11 +50,11 @@ class DepartmentsController < ApplicationController
         flash[:notice] = 'Department was successfully created.'
         format.html { redirect_to(@department) }
         format.xml  { render :xml => @department, :status => :created, :location => @department }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功创建部门！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @department.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@department.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@department.errors.to_json}}"}
       end
     end
   end
@@ -69,11 +69,11 @@ class DepartmentsController < ApplicationController
         flash[:notice] = 'Department was successfully updated.'
         format.html { redirect_to(@department) }
         format.xml  { head :ok }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success",message: "成功更新部门！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @department.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@department.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@department.errors.to_json}}"}
       end
     end
   end

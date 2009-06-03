@@ -13,7 +13,6 @@ var ExtListPage = function(options){
     var $SEARCH_BUTTON = options.btnSearch || "btnSearch";
     //新建按钮id
     var $NEW_ITEM_LINK = options.newItem || "newItem";
-    var $NEW_VIEW = options.newView || "new-view";
     
     //要显示的字段
     var $COLUMNS = options.columns;
@@ -256,11 +255,11 @@ var ExtListPage = function(options){
         }
         
         if (!$DISABLE_SHOW) {
-            var show = '<img url="' + $BASE_URL + '/show/{0}" action="show" title="查看" style="margin-left:10px;" class="gridButton" src="/images/icons/show.png" />'
+            var show = '<img url="' + $BASE_URL + '/show/{0}?layout=none" action="show" title="查看" style="margin-left:10px;" class="gridButton" src="/images/icons/show.png" />'
         }
         
         if (!$DISABLE_EDIT) {
-            var edit = '<img url="' + $BASE_URL + '/edit/{0}" action="edit" title="编辑" style="margin-left:10px;" class="gridButton" src="/images/icons/edit.png" />'
+            var edit = '<img url="' + $BASE_URL + '/edit/{0}?layout=none" action="edit" title="编辑" style="margin-left:10px;" class="gridButton" src="/images/icons/edit.png" />'
         }
         return String.format(show + edit + destroy, value);
     }
@@ -489,6 +488,7 @@ var ExtListPage = function(options){
     //创建视图
     var $SHOW_VIEW = "show-view" + genRandom();
     var $EDIT_VIEW = "edit-view" + genRandom();
+    var $NEW_VIEW = "new-view" + genRandom();
     var createView = function(id){
         var div = document.createElement("div");
         div.id = id;
@@ -496,14 +496,16 @@ var ExtListPage = function(options){
     }
     createView($SHOW_VIEW);
     createView($EDIT_VIEW);
+    createView($NEW_VIEW);
     
     //显示某个视图
     var currViewId = $LIST_VIEW;
+    this.getCurrViewId = function(){return currViewId};
     var showView = function(showViewId, url, callback){
         var _fun = function(data){
             var currView = document.getElementById(currViewId);
             currView.style.display = "none";
-            if (currViewId != $LIST_VIEW && currViewId != $NEW_VIEW) 
+            if (currViewId != $LIST_VIEW) 
                 currView.innerHTML = '';
             
             var toView = document.getElementById(showViewId);
@@ -520,6 +522,7 @@ var ExtListPage = function(options){
                 method: "GET",
                 success: function(rq, rqopt){
                     _fun(rq.responseText);
+                    initAjaxForm();
                     if (callback) 
                         callback();
                 }
@@ -534,7 +537,7 @@ var ExtListPage = function(options){
     var switchViewMode = function(mode, url){
         switch (mode) {
             case "new":
-                showView($NEW_VIEW);
+                showView($NEW_VIEW, url);
                 break;
             case "edit":
                 showView($EDIT_VIEW, url);
@@ -555,7 +558,7 @@ var ExtListPage = function(options){
     }
 
     this.showNewView = function(){
-      showView($NEW_VIEW);
+      showView($NEW_VIEW,$BASE_URL + '/new?layout=none');
     }
 }
 

@@ -138,10 +138,40 @@
               })
               */
             }
-            
+
+            var url = "admin/get_session_past_due_minutes"
+            function check_session ()
+            { 
+              Ext.Ajax.request({
+                url: url,
+                success: function(rq,params)
+                { 
+                  var past_due_minutes = parseInt(rq.responseText);
+                  if(!isNaN(past_due_minutes))
+                  {
+                    if(past_due_minutes > 0)
+                    {
+                      window.setTimeout(check_session,past_due_minutes * 60 * 1000);
+                    }
+                    else
+                    {
+                      Ext.MessageBox.show({
+                        title: "警告",
+                        msg: "会话已经过期，请重新登陆！",
+                        buttons: Ext.MessageBox.OK,
+                        fn: function(){window.location.replace("login")},
+                        icon: Ext.MessageBox.WARNING
+                      });
+                    }
+                  }
+                },
+                asynchronous: true
+              });
+            };
+
             Ext.onReady(function(){
               var $nav_menu_icon_path = "/images/nav-menu-icons/";
-              var $modules = [{
+			  var $modules = [{
                 name: "基础资料",
                 icon: "abcinfo",
                 pages: [{
@@ -233,6 +263,7 @@
               init_gui(navmenu);
               handle_nav_menu_click();
               init_clock();
+              check_session();           
             })
         </script>
     </head>
