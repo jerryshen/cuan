@@ -1,0 +1,13 @@
+<p>
+  <b>Page:</b>
+  <%=h @page_role.page.name %>
+</p>
+
+<p>
+  <b>Role:</b>
+  <%=h @page_role.role.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_page_role_path(@page_role) %> |
+<%= link_to 'Back', page_roles_path %>

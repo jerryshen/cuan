@@ -1,0 +1,60 @@
+<h1>添加用户</h1>
+
+<% form_for(@user) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label "姓名" %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label "系部"%><br />
+   <%= select("user","department_id", Department.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择系部" }) %>
+  </p>
+  <p>
+    <%= f.label "教学所属系部" %><br />
+   <%= select("user","td_belongs_id", Department.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择教学所属系部" }) %>
+  </p>
+  <p>
+    <%= f.label "性别" %><br />
+   <%= select('user', 'gender', [[ '选择性别', ''], [ '男', 'm' ], [ '女', 'f' ]])%>
+  </p>
+  <p>
+    <%= f.label "职称" %><br />
+   <%= select("user","title_id", Title.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择职称" }) %>
+  </p>
+  <p>
+    <%= f.label "职务" %><br />
+   <%= select("user","position_id", Position.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择职务" }) %>
+  </p>
+  <p>
+    <%= f.label "生日" %><br />
+    <%= date_select("user", "birthday", :start_year => 1950, :end_year => 2000, :order => [:year, :month, :day])%>
+  </p>
+  <p>
+    <%= f.label "身份证" %><br />
+    <%= f.text_field :id_card %>
+  </p>
+  <p>
+    <%= f.label "用户名" %><br />
+    <%= f.text_field :login_id %>
+  </p>
+  <p>
+    <%= f.label "密码" %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label "是否入编" %><br />
+    <%= f.check_box :is_nature %>
+  </p>
+  <p>
+    <%= f.label "是否离退休" %><br />
+    <%= f.check_box :is_retired %>
+  </p>
+    <p>
+ <%= submit_to_remote 'create_btn', 'Create', :url => { :action => 'create' },
+   :update => { :success => "succeed", :failure => "fail" } %>
+    <%= f.submit '保存', :class => "button" %>
+    <input type="button" class="button" onclick="$page.showListView(false)" value="取消" />
+  </p>
+<% end %>

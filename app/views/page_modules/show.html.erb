@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @page_module.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @page_module.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_page_module_path(@page_module) %> |
+<%= link_to 'Back', page_modules_path %>

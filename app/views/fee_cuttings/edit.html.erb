@@ -1,0 +1,44 @@
+<h1>Editing fee_cutting</h1>
+
+<% form_for(@fee_cutting) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </p>
+  <p>
+    <%= f.label :room_fee %><br />
+    <%= f.text_field :room_fee %>
+  </p>
+  <p>
+    <%= f.label :med_fee %><br />
+    <%= f.text_field :med_fee %>
+  </p>
+  <p>
+    <%= f.label :job_fee %><br />
+    <%= f.text_field :job_fee %>
+  </p>
+  <p>
+    <%= f.label :selfedu_fee %><br />
+    <%= f.text_field :selfedu_fee %>
+  </p>
+  <p>
+    <%= f.label :other_fee1 %><br />
+    <%= f.text_field :other_fee1 %>
+  </p>
+  <p>
+    <%= f.label :other_fee2 %><br />
+    <%= f.text_field :other_fee2 %>
+  </p>
+  <p>
+    <%= f.label :other_fee3 %><br />
+    <%= f.text_field :other_fee3 %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @fee_cutting %> |
+<input type="button" class="button" onclick="$page.showListView(false)" value="取消" />

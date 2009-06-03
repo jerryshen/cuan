@@ -1,0 +1,23 @@
+<p>
+  <b>User:</b>
+  <%=h @bank_card.user.name %>
+</p>
+
+<p>
+  <b>Bank:</b>
+  <%=h @bank_card.bank.name if @bank_card.bank%>
+</p>
+
+<p>
+  <b>Card number:</b>
+  <%=h @bank_card.card_number %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @bank_card.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_bank_card_path(@bank_card) %> |
+<%= link_to 'Back', bank_cards_path %>

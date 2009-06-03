@@ -1,0 +1,110 @@
+class BasicSalariesController < ApplicationController
+  protect_from_forgery :except => :index
+  skip_before_filter :verify_authenticity_token
+  # GET /basic_salaries
+  # GET /basic_salaries.xml
+  def index
+    @basic_salaries = BasicSalary.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @basic_salaries }
+      format.json { render :text => get_json }
+    end
+  end
+
+  # GET /basic_salaries/1
+  # GET /basic_salaries/1.xml
+  def show
+    @basic_salary = BasicSalary.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @basic_salary }
+    end
+  end
+
+  # GET /basic_salaries/new
+  # GET /basic_salaries/new.xml
+  def new
+    @basic_salary = BasicSalary.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @basic_salary }
+    end
+  end
+
+  # GET /basic_salaries/1/edit
+  def edit
+    @basic_salary = BasicSalary.find(params[:id])
+  end
+
+  # POST /basic_salaries
+  # POST /basic_salaries.xml
+  def create
+    @basic_salary = BasicSalary.new(params[:basic_salary])
+
+    respond_to do |format|
+      if @basic_salary.save
+        flash[:notice] = 'BasicSalary was successfully created.'
+        format.html { redirect_to(@basic_salary) }
+        format.xml  { render :xml => @basic_salary, :status => :created, :location => @basic_salary }
+        format.json { render :text => '{status: "success"}'}
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @basic_salary.errors, :status => :unprocessable_entity }
+        format.json { render :text => "{status: 'failed', error:'#{@basic_salary.errors}'}"}
+      end
+    end
+  end
+
+  # PUT /basic_salaries/1
+  # PUT /basic_salaries/1.xml
+  def update
+    @basic_salary = BasicSalary.find(params[:id])
+
+    respond_to do |format|
+      if @basic_salary.update_attributes(params[:basic_salary])
+        flash[:notice] = 'BasicSalary was successfully updated.'
+        format.html { redirect_to(@basic_salary) }
+        format.xml  { head :ok }
+        format.json { render :text => '{status: "success"}'}
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @basic_salary.errors, :status => :unprocessable_entity }
+        format.json { render :text => "{status: 'failed', error:'#{@basic_salary.errors}'}"}
+      end
+    end
+  end
+
+  # DELETE /basic_salaries/1
+  # DELETE /basic_salaries/1.xml
+  def destroy
+    @basic_salary = BasicSalary.find(params[:id])
+    @basic_salary.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(basic_salaries_url) }
+      format.xml  { head :ok }
+      format.json { render :text => '{status: "success"}'}
+    end
+  end
+
+  private
+  def get_json
+    pagesize = 10
+    if(params[:page_size])
+      param_pagesize = params[:page_size].to_i
+      if param_pagesize > 0 then pagesize = param_pagesize end
+    end
+    if(params[:search_name] && params[:search_name].to_s!='')
+      @basic_salaries = BasicSalary.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
+      count = BasicSalary.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
+    else
+      @basic_salaries = BasicSalary.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      count = BasicSalary.count
+    end
+    return render_json @basic_salaries,count
+  end
+end

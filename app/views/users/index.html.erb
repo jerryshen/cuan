@@ -1,0 +1,121 @@
+<link href="/javascripts/ext-2.2.1/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/grid.css" media="screen" rel="stylesheet" type="text/css" />
+<div id="list-view">
+  <form style="margin: 10px 0px;" id="search_form">
+    <label for="search_name">
+      姓名：
+    </label>
+    <input type="text" value="" name="search_name" id="search_name"/>
+    <input class="button" type="button" id="btnSearch" value="搜索"/>
+  </form>
+  <div>
+    <div class="nav">
+      <span class="button" id="newItem" onclick="$page.showNewView()"><img  src="/images/icons/new.png"/>新建</span>
+    </div>
+    <div id="grid-wrap">
+    </div>
+  </div>
+</div>
+<div id="new-view" style="display:none">
+  <% @user = User.new %>
+  <%= render "new", :object => @user %>
+</div>
+<%= javascript_include_tag "ExtListPage.js" %>
+<%= javascript_include_tag 'ext-2.2.1/ext-base.js','ext-2.2.1/ext-all.js' %>
+<script>
+  var departments = <%= Department.to_json%>
+  var getDepartmentName = function(value, p, record){
+    return departments[value]
+  }
+
+  var titles = <%= Title.to_json%>
+  var getTitleName = function(value, p, record){
+    return titles[value]
+  }
+
+  var positions = <%= Position.to_json%>
+  var getPositionName = function(value, p, record){
+    return positions[value]
+  }
+  //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
+  // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]}
+  //框[]中的为默认值
+  Ext.onReady(function(){
+    var columns = [{
+        header: "ID",
+        dataIndex: 'id',
+        width: 30,
+        sortable: true,
+        type: "int",
+        resizable: false
+      }, {
+        header: "姓名",
+        dataIndex: 'name',
+        width: 100,
+        sortable: true
+      }, {
+        header: "系部",
+        dataIndex: 'department_id',
+        sortable: true,
+        renderer: getDepartmentName
+      }, {
+        header: "教学所属系部",
+        dataIndex: 'td_belongs_id',
+        sortable: true,
+        renderer: getDepartmentName
+      }, {
+        header: "性别",
+        dataIndex: 'gender',
+        type: "bool",
+        width: 50,
+        sortable: true,
+        renderer: function(value, p, record){
+          return value.toString()=="m" ? "男" : "女"
+        }
+      }, {
+        header: "职称",
+        dataIndex: 'title_id',
+        sortable: true,
+        renderer: getTitleName
+      }, {
+        header: "职务",
+        dataIndex: 'position_id',
+        sortable: true,
+        renderer: getPositionName
+      }, {
+        header: "生日",
+        dataIndex: 'birthday',
+        sortable: true
+      }, {
+        header: "身份证号",
+        dataIndex: 'id_card',
+        sortable: true
+      }, {
+        header: "用户名",
+        dataIndex: 'login_id',
+        sortable: true
+      }, {
+        header: "密码",
+        dataIndex: 'password',
+        sortable: true
+      }, {
+        header: "入编／非入编",
+        dataIndex: 'is_nature',
+        type : 'bool',
+        sortable: true
+      }, {
+        header: "是否离退休",
+        dataIndex: 'is_retired',
+        type : 'bool',
+        sortable: true
+      }]
+    var controllerName = "users";
+    options = {
+      baseUrl: "http://" + window.location.host + "/" + controllerName,
+      gridTitle: "基本员工信息列表",
+      newItemLink: "newItem",
+      columns: columns
+    }
+    $page = new ExtListPage(options);
+  })
+</script>

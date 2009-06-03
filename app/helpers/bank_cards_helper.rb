@@ -1,0 +1,2 @@
+module BankCardsHelper
+end

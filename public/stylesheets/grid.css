@@ -1,0 +1,38 @@
+.textItemTitle 
+{
+    color: #343434;
+	font-weight: normal;
+	font-size: 8px;
+    margin-left: 10px;
+} 
+
+.textItemValue 
+{
+    color: #FF8818;
+} 
+
+.pageLinks span 
+{
+    margin-Left: 10px;
+    text-decoration: underline;
+}
+
+span.button
+{
+  cursor: pointer;
+}
+
+input.button
+{
+  width: 80px;
+}
+
+.icon-grid 
+{
+  background-image:url(/images/icons/grid.png) !important;
+}
+
+.icon-refresh 
+{
+  background-image:url(/images/icons/refresh.gif) !important;
+}

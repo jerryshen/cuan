@@ -1,0 +1,104 @@
+<link href="/javascripts/ext-2.2.1/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/grid.css" media="screen" rel="stylesheet" type="text/css" />
+<div id="list-view">
+  <form style="margin: 10px 0px;" id="search_form">
+    <label for="search_name">
+      姓名：
+    </label>
+    <input type="text" value="" name="search_name" id="search_name"/>
+    <input class="button" type="button" id="btnSearch" value="搜索"/>
+  </form>
+  <div>
+    <div class="nav">
+      <span class="button" id="newItem" onclick="$page.showNewView()"><img  src="/images/icons/new.png"/>新建</span>
+    </div>
+    <div id="grid-wrap">
+    </div>
+  </div>
+</div>
+<div id="new-view" style="display:none">
+  <% @page = Page.new %>
+  <%= render "new", :object => @page %>
+</div>
+<%= javascript_include_tag "ExtListPage.js" %>
+<%= javascript_include_tag 'ext-2.2.1/ext-base.js','ext-2.2.1/ext-all.js' %>
+<script>
+  var page_modules = <%= PageModule.to_json%>
+  var getPageModuleName = function(value, p, record){
+    return page_modules[value]
+  }
+
+  var makeAsHideLink = function(value, p, record){
+    var text = value.toString()=="true" ? "已隐藏" : "已显示";
+    return String.format("<a href='#' action ='hidden' title='Hidden' class='gridButton' url='/pages/hide/{0}'>{1}</a>",record.data.id,text);
+  }
+
+  var bind_hidden_link_click = function(alink,reloadPageData){
+    var url = alink.getAttribute("url");
+    Ext.get(alink).on("click",function(){
+      Ext.Ajax.request({
+        url: url,
+        success: function(rq,params){ //rq:请求的响应，params请求时的参数（此处为｛url,success,failure｝)
+          if(rq.responseText=="true"){
+            reloadPageData();
+          }else{
+            Ext.MessageBox.alert(MsgDic[1],MsgDic[10000]);
+          }
+        },
+        failure: function(){alert(MsgDic[2000])}
+      });
+    })
+  }
+  //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
+  // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]}
+  //框[]中的为默认值
+  Ext.onReady(function(){
+    var columns = [{
+        header: "ID",
+        dataIndex: 'id',
+        width: 30,
+        sortable: true,
+        type: "int",
+        resizable: false
+      }, {
+        header: "名称",
+        dataIndex: 'name',
+        width: 100,
+        sortable: true
+      }, {
+        header: "页面功能",
+        dataIndex: 'function',
+        width: 100,
+        sortable: true
+      }, {
+        header: "链接",
+        dataIndex: 'url',
+        width: 100,
+        sortable: true
+      }, {
+        header: "页面模块",
+        dataIndex: 'page_module_id',
+        width: 100,
+        sortable: true,
+        renderer : getPageModuleName
+      }, {
+        header: "是否隐藏",
+        dataIndex: 'hidden',
+        type : 'bool',
+        width: 100,
+        sortable: true,
+        renderer : makeAsHideLink
+      }]
+    var controllerName = "pages";
+    options = {
+      baseUrl: "http://" + window.location.host + "/" + controllerName,
+      gridTitle: "角色管理列表",
+      newItemLink: "newItem",
+      columns: columns,
+      bindlinks: {
+        "hidden" : bind_hidden_link_click
+      }
+    }
+    $page = new ExtListPage(options);
+  })
+</script>

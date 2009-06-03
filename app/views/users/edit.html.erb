@@ -1,0 +1,58 @@
+<h1>Editing user</h1>
+
+<% form_for(@user) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :department %><br />
+    <%= f.text_field :department %>
+  </p>
+  <p>
+    <%= f.label :td_belongs %><br />
+    <%= f.text_field :td_belongs %>
+  </p>
+  <p>
+    <%= f.label :gender %><br />
+    <%= f.text_field :gender %>
+  </p>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :position %><br />
+    <%= f.text_field :position %>
+  </p>
+  <p>
+    <%= f.label :birthday %><br />
+    <%= f.text_field :birthday %>
+  </p>
+  <p>
+    <%= f.label :id_card %><br />
+    <%= f.text_field :id_card %>
+  </p>
+  <p>
+    <%= f.label :login_id %><br />
+    <%= f.text_field :login_id %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.text_field :password %>
+  </p>
+  <p>
+    <%= f.label :is_nature %><br />
+    <%= f.check_box :is_nature %>
+  </p>
+  <p>
+    <%= f.label :is_retired %><br />
+    <%= f.check_box :is_retired %>
+  </p>
+  <p>
+  <%= f.submit '更新',:class => "button" %>
+    <input type="button" class="button" onclick="$page.showListView(false)" value="取消" />
+  </p>
+<% end %>

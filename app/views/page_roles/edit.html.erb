@@ -1,0 +1,20 @@
+<h1>Editing page_role</h1>
+
+<% form_for(@page_role) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :page_id %><br />
+   <%= select("page_role","page_id", Page.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "Please select a page" }) %>
+  </p>
+  <p>
+    <%= f.label :role_id %><br />
+   <%= select("page_role","role_id", Role.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "Please select a role" }) %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @page_role %> |
+<%= link_to 'Back', page_roles_path %>

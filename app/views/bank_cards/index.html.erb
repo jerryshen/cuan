@@ -1,0 +1,78 @@
+<link href="/javascripts/ext-2.2.1/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/grid.css" media="screen" rel="stylesheet" type="text/css" />
+<div id="list-view">
+  <form style="margin: 10px 0px;" id="search_form">
+    <label for="search_name">
+      名称：
+    </label>
+    <input type="text" value="" name="search_name" id="search_name"/>
+    <input class="button" type="button" id="btnSearch" value="搜索"/>
+  </form>
+  <div>
+    <div class="nav">
+      <span class="button" id="newItem" onclick="$page.showNewView()"><img  src="/images/icons/new.png"/>新建</span>
+    </div>
+    <div id="grid-wrap">
+    </div>
+  </div>
+</div>
+<div id="new-view" style="display:none">
+  <% @bank_card = BankCard.new %>
+  <%= render "new", :object => @bank_card %>
+</div>
+<%= javascript_include_tag "ExtListPage.js" %>
+<%= javascript_include_tag 'ext-2.2.1/ext-base.js','ext-2.2.1/ext-all.js' %>
+<script>
+  var users = <%= User.to_json%>
+  var getUserName = function(value, p, record){
+    return users[value]
+  }
+
+  var banks = <%= Bank.to_json%>
+  var getBankName = function(value, p, record){
+    return banks[value]
+  }
+  //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
+  // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]}
+  //框[]中的为默认值
+  Ext.onReady(function(){
+    var columns = [{
+        header: "ID",
+        dataIndex: 'id',
+        width: 30,
+        sortable: true,
+        type: "int",
+        resizable: false
+      },{
+        header: "用户",
+        dataIndex: 'user_id',
+        width: 100,
+        sortable: true,
+        renderer: getUserName
+      },{
+        header: "银行",
+        dataIndex: 'bank_id',
+        width: 100,
+        sortable: true,
+        renderer: getBankName
+      },{
+        header: "卡号",
+        dataIndex: 'card_number',
+        width: 100,
+        sortable: true
+      },{
+        header: "备注",
+        dataIndex: 'description',
+        width: 100,
+        sortable: true
+      }]
+    var controllerName = "bank_cards";
+    options = {
+      baseUrl: "http://" + window.location.host + "/" + controllerName,
+      gridTitle: "银行卡管理列表",
+      newItemLink: "newItem",
+      columns: columns
+    }
+    $page = new ExtListPage(options);
+  })
+</script>

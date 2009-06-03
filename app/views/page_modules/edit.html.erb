@@ -1,0 +1,20 @@
+<h1>Editing page_module</h1>
+
+<% form_for(@page_module) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @page_module %> |
+<%= link_to 'Back', page_modules_path %>

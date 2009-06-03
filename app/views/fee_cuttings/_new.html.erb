@@ -1,0 +1,42 @@
+<h1>扣款</h1>
+
+<% form_for(@fee_cutting) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :field, "教职工姓名" %>
+    <%= select("basic_salary","user_id", User.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择教职工" }) %>
+  </p>
+  <p>
+    <%= f.label :field, "住房公积金" %><br />
+    <%= f.text_field :room_fee %>
+  </p>
+  <p>
+    <%= f.label :field, "医疗保险" %><br />
+    <%= f.text_field :med_fee %>
+  </p>
+  <p>
+    <%= f.label :field, "失业保险" %><br />
+    <%= f.text_field :job_fee %>
+  </p>
+  <p>
+    <%= f.label :field, "职工个人教育费" %><br />
+    <%= f.text_field :selfedu_fee %>
+  </p>
+  <p>
+    <%= f.label :field, "其他扣款一" %><br />
+    <%= f.text_field :other_fee1 %>
+  </p>
+  <p>
+    <%= f.label :field, "其他扣款二" %><br />
+    <%= f.text_field :other_fee2 %>
+  </p>
+  <p>
+    <%= f.label :field, "其他扣款三" %><br />
+    <%= f.text_field :other_fee3 %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+    <input type="button" class="button" onclick="$page.showListView(false)" value="取消" />
+  </p>
+<% end %>

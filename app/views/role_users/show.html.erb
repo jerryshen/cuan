@@ -1,0 +1,13 @@
+<p>
+  <b>User:</b>
+  <%=h @role_user.user %>
+</p>
+
+<p>
+  <b>Role:</b>
+  <%=h @role_user.role %>
+</p>
+
+
+<%= link_to 'Edit', edit_role_user_path(@role_user) %> |
+<%= link_to 'Back', role_users_path %>

@@ -1,0 +1,77 @@
+<link href="/javascripts/ext-2.2.1/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/grid.css" media="screen" rel="stylesheet" type="text/css" />
+<div id="list-view">
+  <form style="margin: 10px 0px;" id="search_form">
+    <label for="search_name">
+      姓名：
+    </label>
+    <input type="text" value="" name="search_name" id="search_name"/>
+    <input class="button" type="button" id="btnSearch" value="搜索"/>
+  </form>
+  <div>
+    <div id="grid-wrap">
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag "ExtListPage.js" %>
+<%= javascript_include_tag 'ext-2.2.1/ext-base.js','ext-2.2.1/ext-all.js' %>
+<script>
+  //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
+  // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]}
+  //框[]中的为默认值
+  Ext.onReady(function(){
+    var columns = [{
+        header: "ID",
+        dataIndex: 'id',
+        width: 30,
+        sortable: true,
+        type: "int",
+        resizable: false
+      }, {
+        header: "教职工",
+        dataIndex: 'user',
+        width: 100,
+        sortable: true
+      }, {
+        header: "年份",
+        dataIndex: 'year',
+        sortable: true
+      }, {
+        header: "月份",
+        dataIndex: 'month',
+        sortable: true
+      }, {
+        header: "生活补贴",
+        dataIndex: 'life_be',
+        sortable: true
+      }, {
+        header: "补贴补差",
+        dataIndex: 'diff_be',
+        sortable: true
+      }, {
+        header: "活工资补贴",
+        dataIndex: 'livesa_be',
+        sortable: true
+      }, {
+        header: "电视补贴",
+        dataIndex: 'tv_be',
+        sortable: true
+      }, {
+        header: "驻蓉补贴",
+        dataIndex: 'beaulty_be',
+        sortable: true
+      }, {
+        header: "其他",
+        dataIndex: 'other_be',
+        sortable: true
+      }]
+    var controllerName = "college_be_records";
+    options = {
+      baseUrl: "http://" + window.location.host + "/" + controllerName,
+      gridTitle: "学院补贴记录信息列表",
+      newItemLink: "newItem",
+      columns: columns
+    }
+    $page = new ExtListPage(options);
+  })
+</script>

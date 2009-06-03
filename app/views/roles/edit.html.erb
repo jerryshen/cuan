@@ -1,0 +1,17 @@
+<h1>Editing role</h1>
+
+<% form_for(@role) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+    <p>
+  <%= f.submit '更新',:class => "button" %>
+    <input type="button" class="button" onclick="$page.showListView(false)" value="取消" />
+  </p>
+<% end %>

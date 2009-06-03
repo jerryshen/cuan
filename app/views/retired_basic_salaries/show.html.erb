@@ -1,0 +1,28 @@
+<p>
+  <b>离退休人员姓名:</b>
+  <%=h @retired_basic_salary.user.name %>
+</p>
+
+<p>
+  <b>月基本退休费:</b>
+  <%=h @retired_basic_salary.basic_fee %>
+</p>
+
+<p>
+  <b>工改保留补贴_93年:</b>
+  <%=h @retired_basic_salary.stay_be %>
+</p>
+
+<p>
+  <b>其他国家出台津补贴:</b>
+  <%=h @retired_basic_salary.foreign_be %>
+</p>
+
+<p>
+  <b>地方出台津补贴:</b>
+  <%=h @retired_basic_salary.region_be %>
+</p>
+
+
+<%= link_to 'Edit', edit_retired_basic_salary_path(@retired_basic_salary) %> |
+<input type="button" class="button" onclick="$page.showListView(false)" value="取消" />

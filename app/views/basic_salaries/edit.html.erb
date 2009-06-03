@@ -1,0 +1,20 @@
+<h1>Editing basic_salary</h1>
+
+<% form_for(@basic_salary) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </p>
+  <p>
+    <%= f.label :station_sa %><br />
+    <%= f.text_field :station_sa %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @basic_salary %> |
+<%= link_to 'Back', basic_salaries_path %>

@@ -1,0 +1,2 @@
+module CollegeBenefitsHelper
+end

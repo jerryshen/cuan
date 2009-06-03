@@ -1,0 +1,40 @@
+<h1>Editing college_benefit</h1>
+
+<% form_for(@college_benefit) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </p>
+  <p>
+    <%= f.label :life_be %><br />
+    <%= f.text_field :life_be %>
+  </p>
+  <p>
+    <%= f.label :diff_be %><br />
+    <%= f.text_field :diff_be %>
+  </p>
+  <p>
+    <%= f.label :livesa_be %><br />
+    <%= f.text_field :livesa_be %>
+  </p>
+  <p>
+    <%= f.label :tv_be %><br />
+    <%= f.text_field :tv_be %>
+  </p>
+  <p>
+    <%= f.label :beaulty_be %><br />
+    <%= f.text_field :beaulty_be %>
+  </p>
+  <p>
+    <%= f.label :other_be %><br />
+    <%= f.text_field :other_be %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @college_benefit %> |
+<%= link_to 'Back', college_benefits_path %>

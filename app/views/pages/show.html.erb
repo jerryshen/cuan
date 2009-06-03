@@ -1,0 +1,28 @@
+<p>
+  <b>名称:</b>
+  <%=h @page.name %>
+</p>
+
+<p>
+  <b>功能:</b>
+  <%=h @page.function %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @page.url %>
+</p>
+
+<p>
+  <b>页面模块:</b>
+  <%=h @page.page_module.name %>
+</p>
+
+<p>
+  <b>是否隐藏:</b>
+  <%=h @page.hidden ? "是":"否" %>
+</p>
+
+
+<%= link_to 'Edit', edit_page_path(@page) %> |
+<input type="button" class="button" onclick="$page.showListView(false)" value="返回列表" />

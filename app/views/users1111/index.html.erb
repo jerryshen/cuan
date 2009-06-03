@@ -1,0 +1,71 @@
+<link href="/javascripts/ext-2.2.1/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/grid.css" media="screen" rel="stylesheet" type="text/css" />
+<div id="list-view">
+    <form style="margin: 10px 0px;" id="search_form">
+        <label for="search_name">
+          姓名：
+        </label>
+        <input type="text" value="" name="search_name" id="search_name"/>
+        <input class="button" type="button" id="btnSearch" value="搜索"/>
+    </form>
+    <div>
+        <div class="nav">
+          <span class="button" id="newItem" onclick="$page.showNewView()"><img  src="/images/icons/new.png"/>新建</span>
+        </div>
+        <div id="grid-wrap">
+        </div>
+    </div>
+</div>
+<div id="new-view" style="display:none">
+  <% @user = User.new %>
+  <%= render "new", :object => @user %>
+</div>
+<%= javascript_include_tag "ExtListPage.js" %>
+<%= javascript_include_tag 'ext-2.2.1/ext-base.js','ext-2.2.1/ext-all.js' %>
+<script>
+    //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
+    // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]} 
+    //框[]中的为默认值
+    Ext.onReady(function(){
+        var columns = [{
+            header: "ID",
+            dataIndex: 'id',
+            width: 30,
+            sortable: true,
+            type: "int",
+            resizable: false
+        }, {
+            header: "姓名",
+            dataIndex: 'name',
+            width: 100,
+            sortable: true
+        }, {
+            header: "帐号",
+            dataIndex: 'account',
+            sortable: true
+        }, {
+            header: "年龄",
+            dataIndex: 'age',
+            type: "int",
+            width: 60,
+            sortable: true
+        }, {
+            header: "性别",
+            dataIndex: 'sexy',
+            type: "bool",
+            width: 50,
+            sortable: true,
+            renderer: function(value, p, record){
+                return value ? "男" : "女"
+            }
+        }]
+        var controllerName = "users";
+        options = {
+            baseUrl: "http://" + window.location.host + "/" + controllerName,
+            gridTitle: "基本员工信息列表",
+            newItemLink: "newItem",
+            columns: columns
+        }
+        $page = new ExtListPage(options);
+    })
+</script>
