@@ -1,6 +1,6 @@
 class BasicSalaryRecordsController < ApplicationController
-  protect_from_forgery :except => :index
-  skip_before_filter :verify_authenticity_token
+#  protect_from_forgery :except => :index
+#  skip_before_filter :verify_authenticity_token
   # GET /basic_salary_records
   # GET /basic_salary_records.xml
   def index

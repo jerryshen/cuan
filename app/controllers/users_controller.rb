@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        flash[:notice] = 'User was successfully created.'
+#        flash[:notice] = 'User was successfully created.'
         format.html { redirect_to(@user) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
         format.json { render :text => '{status: "success", message: "成功创建教职工！"}'}
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        flash[:notice] = 'User was successfully updated.'
+#        flash[:notice] = 'User was successfully updated.'
         format.html { redirect_to(@user) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新教职工！"}'}

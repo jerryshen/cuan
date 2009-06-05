@@ -47,7 +47,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.save
-        flash[:notice] = 'Page was successfully created.'
+#        flash[:notice] = 'Page was successfully created.'
         format.html { redirect_to(@page) }
         format.xml  { render :xml => @page, :status => :created, :location => @page }
         format.json { render :text => '{status: "success", message: "成功创建页面！"}'}
@@ -66,7 +66,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.update_attributes(params[:page])
-        flash[:notice] = 'Page was successfully updated.'
+#        flash[:notice] = 'Page was successfully updated.'
         format.html { redirect_to(@page) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新页面！"}'}

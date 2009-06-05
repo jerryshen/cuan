@@ -47,7 +47,7 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       if @role.save
-        flash[:notice] = 'Role was successfully created.'
+#        flash[:notice] = 'Role was successfully created.'
         format.html { redirect_to(@role) }
         format.xml  { render :xml => @role, :status => :created, :location => @role }
         format.json { render :text => '{status: "success", message: "成功创建角色！"}'}
@@ -66,7 +66,7 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       if @role.update_attributes(params[:role])
-        flash[:notice] = 'Role was successfully updated.'
+#        flash[:notice] = 'Role was successfully updated.'
         format.html { redirect_to(@role) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新角色！"}'}

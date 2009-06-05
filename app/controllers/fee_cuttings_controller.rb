@@ -1,6 +1,6 @@
 class FeeCuttingsController < ApplicationController
-  protect_from_forgery :except => :index
-  skip_before_filter :verify_authenticity_token
+#  protect_from_forgery :except => :index
+#  skip_before_filter :verify_authenticity_token
   # GET /fee_cuttings
   # GET /fee_cuttings.xml
   def index
@@ -47,14 +47,14 @@ class FeeCuttingsController < ApplicationController
 
     respond_to do |format|
       if @fee_cutting.save
-        flash[:notice] = 'FeeCutting was successfully created.'
+#        flash[:notice] = 'FeeCutting was successfully created.'
         format.html { redirect_to(@fee_cutting) }
         format.xml  { render :xml => @fee_cutting, :status => :created, :location => @fee_cutting }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功创建扣款！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @fee_cutting.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@fee_cutting.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@department.errors.to_json}}"}
       end
     end
   end
@@ -66,14 +66,14 @@ class FeeCuttingsController < ApplicationController
 
     respond_to do |format|
       if @fee_cutting.update_attributes(params[:fee_cutting])
-        flash[:notice] = 'FeeCutting was successfully updated.'
+#        flash[:notice] = 'FeeCutting was successfully updated.'
         format.html { redirect_to(@fee_cutting) }
         format.xml  { head :ok }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功更新扣款！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @fee_cutting.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@fee_cutting.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@department.errors.to_json}}"}
       end
     end
   end

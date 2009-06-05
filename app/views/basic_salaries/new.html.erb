@@ -1,9 +1,9 @@
 <% form_for(@basic_salary) do |f| %>
   <fieldset>
-    <legend>修改教职工基本工资</legend>
+    <legend>添加教职工基本工资</legend>
     <%= render :partial => 'form', :locals => {:f => f } %>
     <p class="bbar">
-      <%= f.submit '更新' %>
+      <%= f.submit '保存' %>
       <input type="button" onclick="$page.showListView()" value="取消" />
     </p>
   </fieldset>

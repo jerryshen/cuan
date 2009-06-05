@@ -3,6 +3,10 @@ class RoleUser < ActiveRecord::Base
   belongs_to :user, :class_name => 'User', :foreign_key => 'user_id'
   belongs_to :role, :class_name => 'Role', :foreign_key => 'role_id'
 
+  #validations
+  validates_presence_of :role_id, :meassage => "角色不能为空！"
+  validates_presence_of :user_id, :meassage => "用户不能为空！"
+
   #find all users in one role by id
   def self.find_all_users_in_role(role_id)
     Role.find_by_id(role_id).users

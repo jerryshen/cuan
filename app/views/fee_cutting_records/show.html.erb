@@ -1,63 +1,66 @@
-<p>
-  <b>User:</b>
-  <%=h @fee_cutting_record.user %>
-</p>
+<fieldset>
+  <legend>查看[<%= @fee_cutting_record.user %>]的扣款记录</legend>
+  <p>
+    <b>教职工:</b>
+    <%=h @fee_cutting_record.user %>
+  </p>
 
-<p>
-  <b>Year:</b>
-  <%=h @fee_cutting_record.year %>
-</p>
+  <p>
+    <b>年份:</b>
+    <%=h @fee_cutting_record.year %>
+  </p>
 
-<p>
-  <b>Month:</b>
-  <%=h @fee_cutting_record.month %>
-</p>
+  <p>
+    <b>月份:</b>
+    <%=h @fee_cutting_record.month %>
+  </p>
 
-<p>
-  <b>Room fee:</b>
-  <%=h @fee_cutting_record.room_fee %>
-</p>
+  <p>
+    <b>住房公积金:</b>
+    <%=h @fee_cutting_record.room_fee %>
+  </p>
 
-<p>
-  <b>Med fee:</b>
-  <%=h @fee_cutting_record.med_fee %>
-</p>
+  <p>
+    <b>医疗保险:</b>
+    <%=h @fee_cutting_record.med_fee %>
+  </p>
 
-<p>
-  <b>Elc fee:</b>
-  <%=h @fee_cutting_record.elc_fee %>
-</p>
+  <p>
+    <b>水电气费:</b>
+    <%=h @fee_cutting_record.elc_fee %>
+  </p>
 
-<p>
-  <b>Job fee:</b>
-  <%=h @fee_cutting_record.job_fee %>
-</p>
+  <p>
+    <b>失业保险:</b>
+    <%=h @fee_cutting_record.job_fee %>
+  </p>
 
-<p>
-  <b>Selfedu fee:</b>
-  <%=h @fee_cutting_record.selfedu_fee %>
-</p>
+  <p>
+    <b>职工个人教育费:</b>
+    <%=h @fee_cutting_record.selfedu_fee %>
+  </p>
 
-<p>
-  <b>Other fee1:</b>
-  <%=h @fee_cutting_record.other_fee1 %>
-</p>
+  <p>
+    <b>其他扣款一:</b>
+    <%=h @fee_cutting_record.other_fee1 %>
+  </p>
 
-<p>
-  <b>Other fee2:</b>
-  <%=h @fee_cutting_record.other_fee2 %>
-</p>
+  <p>
+    <b>其他扣款二:</b>
+    <%=h @fee_cutting_record.other_fee2 %>
+  </p>
 
-<p>
-  <b>Other fee3:</b>
-  <%=h @fee_cutting_record.other_fee3 %>
-</p>
+  <p>
+    <b>其他扣款三:</b>
+    <%=h @fee_cutting_record.other_fee3 %>
+  </p>
 
-<p>
-  <b>Self tax:</b>
-  <%=h @fee_cutting_record.self_tax %>
-</p>
+  <p>
+    <b>个人所得税:</b>
+    <%=h @fee_cutting_record.self_tax %>
+  </p>
 
-
-<%= link_to 'Edit', edit_fee_cutting_record_path(@fee_cutting_record) %> |
-<%= link_to 'Back', fee_cutting_records_path %>
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>

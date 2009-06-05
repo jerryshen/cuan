@@ -1,10 +1,10 @@
 <% form_for(@retired_basic_salary) do |f| %>
   <fieldset>
-    <legend>修改离退休人员基本工资</legend>
+    <legend>添加离退休人员基本工资</legend>
     <%= f.error_messages %>
     <%= render :partial => 'form', :locals => { :f => f } %>
     <p class="bbar">
-      <%= f.submit '更新' %>
+      <%= f.submit '保存' %>
       <input type="button" onclick="$page.showListView()" value="取消" />
     </p>
   </fieldset>

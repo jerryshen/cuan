@@ -1,58 +1,47 @@
-<p>
-  <b>User:</b>
-  <%=h @basic_salary_record.user %>
-</p>
+<fieldset>
+  <legend>查看[<%=h @basic_salary_record.user %>]的基本工资记录</legend>
+  <p>
+    <b>姓名:</b>
+    <%=h @basic_salary_record.user%>
+  </p>
+  <p>
+    <b>年份:</b>
+    <%=h @basic_salary_record.year%>
+  </p>
+  <p>
+    <b>月份:</b>
+    <%=h @basic_salary_record.month%>
+  </p>
+  <p>
+    <b>岗位工资:</b>
+    <%=h @basic_salary_record.station_sa %>
+  </p>
+  <p>
+    <b>职务工资:</b>
+    <%=h @basic_salary_record.position_sa %>
+  </p>
+  <p>
+    <b>岗位津贴:</b>
+    <%=h @basic_salary_record.station_be %>
+  </p>
+  <p>
+    <b>其他国家出台津补贴:</b>
+    <%=h @basic_salary_record.foreign_be %>
+  </p>
+  <p>
+    <b>地方出台津补贴:</b>
+    <%=h @basic_salary_record.region_be %>
+  </p>
+  <p>
+    <b>艰苦边远:</b>
+    <%=h @basic_salary_record.hard_be %>
+  </p>
+  <p>
+    <b>公改保留补贴:</b>
+    <%=h @basic_salary_record.stay_be %>
+  </p>
 
-<p>
-  <b>Year:</b>
-  <%=h @basic_salary_record.year %>
-</p>
-
-<p>
-  <b>Month:</b>
-  <%=h @basic_salary_record.month %>
-</p>
-
-<p>
-  <b>Station sa:</b>
-  <%=h @basic_salary_record.station_sa %>
-</p>
-
-<p>
-  <b>Position sa:</b>
-  <%=h @basic_salary_record.position_sa %>
-</p>
-
-<p>
-  <b>Station be:</b>
-  <%=h @basic_salary_record.station_be %>
-</p>
-
-<p>
-  <b>Foreign be:</b>
-  <%=h @basic_salary_record.foreign_be %>
-</p>
-
-<p>
-  <b>Region be:</b>
-  <%=h @basic_salary_record.region_be %>
-</p>
-
-<p>
-  <b>Add sa:</b>
-  <%=h @basic_salary_record.add_sa %>
-</p>
-
-<p>
-  <b>Hard be:</b>
-  <%=h @basic_salary_record.hard_be %>
-</p>
-
-<p>
-  <b>Stay be:</b>
-  <%=h @basic_salary_record.stay_be %>
-</p>
-
-
-<%= link_to 'Edit', edit_basic_salary_record_path(@basic_salary_record) %> |
-<%= link_to 'Back', basic_salary_records_path %>
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>

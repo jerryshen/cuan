@@ -4,7 +4,7 @@ class Page < ActiveRecord::Base
   has_many :page_roles
   has_many :roles, :through => :page_roles, :class_name => 'Role', :foreign_key => 'role_id'
 
-  #find roles who can view ths page by page name.
+  #find roles who can view the page by page name.
   def self.find_roles_by_name(name)
     self.find(:all, :conditions => ["name like ?","%#{name}%"]).roles
   end

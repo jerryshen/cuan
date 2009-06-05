@@ -1,6 +1,6 @@
 class FeeCuttingRecordsController < ApplicationController
-  protect_from_forgery :except => :index
-  skip_before_filter :verify_authenticity_token
+#  protect_from_forgery :except => :index
+#  skip_before_filter :verify_authenticity_token
   # GET /fee_cutting_records
   # GET /fee_cutting_records.xml
   def index

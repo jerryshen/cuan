@@ -48,7 +48,7 @@ class BanksController < ApplicationController
 
     respond_to do |format|
       if @bank.save
-        flash[:notice] = 'Bank was successfully created.'
+#        flash[:notice] = 'Bank was successfully created.'
         format.html { redirect_to(@bank) }
         format.xml  { render :xml => @bank, :status => :created, :location => @bank }
         format.json { render :text => '{status: "success", message: "成功创建银行！"}'}
@@ -67,7 +67,7 @@ class BanksController < ApplicationController
 
     respond_to do |format|
       if @bank.update_attributes(params[:bank])
-        flash[:notice] = 'Bank was successfully updated.'
+#        flash[:notice] = 'Bank was successfully updated.'
         format.html { redirect_to(@bank) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新银行！"}'}

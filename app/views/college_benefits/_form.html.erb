@@ -1,0 +1,29 @@
+<%= f.error_messages %>
+<p>
+  <%= f.label :field, "教职工姓名" %>
+  <%= f.select :user_id, users_for_select, {:include_blank => "请选择教职工..." }, :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "生活补贴"%>
+  <%= f.text_field :life_be, :size => 10, :class => "required"  %>
+</p>
+<p>
+  <%= f.label :field, "补贴补差"%>
+  <%= f.text_field :diff_be, :size => 10, :class => "required"  %>
+</p>
+<p>
+  <%= f.label :field, "活工资补贴"%>
+  <%= f.text_field :livesa_be, :size => 10, :class => "required"  %>
+</p>
+<p>
+  <%= f.label :field, "电视补贴"%>
+  <%= f.text_field :tv_be, :size => 10, :class => "required"  %>
+</p>
+<p>
+  <%= f.label :field, "驻蓉补贴"%>
+  <%= f.text_field :beaulty_be, :size => 10, :class => "required"  %>
+</p>
+<p>
+  <%= f.label :field, "其他"%>
+  <%= f.text_field :other_be, :size => 10 %>
+</p>

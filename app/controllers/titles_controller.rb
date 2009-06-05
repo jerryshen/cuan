@@ -47,7 +47,7 @@ class TitlesController < ApplicationController
 
     respond_to do |format|
       if @title.save
-        flash[:notice] = 'Title was successfully created.'
+#        flash[:notice] = 'Title was successfully created.'
         format.html { redirect_to(@title) }
         format.xml  { render :xml => @title, :status => :created, :location => @title }
         format.json { render :text => '{status: "success",message: "成功创建职称！"}'}
@@ -66,7 +66,7 @@ class TitlesController < ApplicationController
 
     respond_to do |format|
       if @title.update_attributes(params[:title])
-        flash[:notice] = 'Title was successfully updated.'
+#        flash[:notice] = 'Title was successfully updated.'
         format.html { redirect_to(@title) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success",message: "成功更新职称！"}'}
