@@ -105,6 +105,6 @@ class CollegeBeRecordsController < ApplicationController
       @college_be_records = CollegeBeRecord.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = CollegeBeRecord.count
     end
-    return render_json @college_be_records,count
+    return render_json(@college_be_records,count)
   end
 end

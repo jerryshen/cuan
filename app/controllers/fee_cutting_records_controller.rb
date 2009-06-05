@@ -52,6 +52,6 @@ class FeeCuttingRecordsController < ApplicationController
       @fee_cutting_records = FeeCuttingRecord.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = FeeCuttingRecord.count
     end
-    return render_json @fee_cutting_records,count
+    return render_json(@fee_cutting_records,count)
   end
 end

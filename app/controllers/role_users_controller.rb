@@ -105,7 +105,7 @@ class RoleUsersController < ApplicationController
       @role_users = RoleUser.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = RoleUser.count
     end
-    return render_json @role_users,count
+    return render_json(@role_users,count)
   end
   
 end

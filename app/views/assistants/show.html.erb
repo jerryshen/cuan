@@ -1,0 +1,20 @@
+<fieldset>
+  <legend>查看辅导员[<%=h @assistant.user.name if @assistant.user %>]的信息</legend>
+  <p>
+    <b>教职工姓名:</b>
+    <%=h @assistant.user.name if @assistant.user %>
+  </p>
+
+  <p>
+    <b>辅导员津贴:</b>
+    <%=h @assistant.benefit %>
+  </p>
+
+  <p>
+    <b>辅导员其他:</b>
+    <%=h @assistant.other %>
+  </p>
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>

@@ -9,7 +9,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 18) do
+ActiveRecord::Schema.define(:version => 20) do
+
+  create_table "assistants", :force => true do |t|
+    t.integer  "user_id"
+    t.float    "benefit"
+    t.float    "other"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assistants", ["user_id"], :name => "index_assistants_on_user_id"
 
   create_table "bank_cards", :force => true do |t|
     t.integer  "user_id"
@@ -131,6 +141,7 @@ ActiveRecord::Schema.define(:version => 18) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "icon"
   end
 
   create_table "page_roles", :force => true do |t|
@@ -151,6 +162,7 @@ ActiveRecord::Schema.define(:version => 18) do
     t.boolean  "hidden"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "icon"
   end
 
   add_index "pages", ["page_module_id"], :name => "index_pages_on_page_module_id"

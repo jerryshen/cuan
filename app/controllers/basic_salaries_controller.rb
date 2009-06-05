@@ -105,6 +105,6 @@ class BasicSalariesController < ApplicationController
       @basic_salaries = BasicSalary.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = BasicSalary.count
     end
-    return render_json @basic_salaries,count
+    return render_json(@basic_salaries,count)
   end
 end

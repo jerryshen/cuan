@@ -106,7 +106,7 @@ class BanksController < ApplicationController
       @banks = Bank.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = Bank.count
     end
-    return render_json @banks,count
+    return render_json(@banks,count)
   end
 
 end

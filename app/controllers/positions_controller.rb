@@ -105,6 +105,6 @@ class PositionsController < ApplicationController
       @positions = Position.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = Position.count
     end
-    return render_json @positions,count
+    return render_json(@positions,count)
   end
 end

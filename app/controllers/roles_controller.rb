@@ -105,6 +105,6 @@ class RolesController < ApplicationController
       @roles = Role.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = Role.count
     end
-    return render_json @roles,count
+    return render_json(@roles,count)
   end
 end

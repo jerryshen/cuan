@@ -114,6 +114,6 @@ class PagesController < ApplicationController
       @pages = Page.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = Page.count
     end
-    return render_json @pages,count
+    return render_json(@pages,count)
   end
 end

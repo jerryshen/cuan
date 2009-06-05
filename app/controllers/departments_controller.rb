@@ -109,6 +109,6 @@ class DepartmentsController < ApplicationController
       @departments = Department.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = Department.count
     end
-    return render_json @departments,count
+    return render_json(@departments,count)
   end
 end

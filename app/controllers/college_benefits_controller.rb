@@ -105,6 +105,6 @@ class CollegeBenefitsController < ApplicationController
       @college_benefits = CollegeBenefit.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = CollegeBenefit.count
     end
-    return render_json @users,count
+    return render_json(@users,count)
   end
 end

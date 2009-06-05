@@ -105,7 +105,7 @@ class UsersController < ApplicationController
       @users = User.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = User.count
     end
-    return render_json @users,count
+    return render_json(@users,count)
   end
 
 end

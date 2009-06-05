@@ -105,7 +105,7 @@ class RetiredBasicSalariesController < ApplicationController
       @retired_basic_salaries = RetiredBasicSalary.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = RetiredBasicSalary.count
     end
-    return render_json @retired_basic_salaries,count
+    return render_json(@retired_basic_salaries,count)
   end
 
 end

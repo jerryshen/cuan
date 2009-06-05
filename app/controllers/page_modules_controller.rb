@@ -105,6 +105,6 @@ class PageModulesController < ApplicationController
       @page_modules = PageModule.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = PageModule.count
     end
-    return render_json @page_modules,count
+    return render_json(@page_modules,count)
   end
 end

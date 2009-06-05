@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :assistants
+
   map.resources :retired_basic_salaries
 
   map.resources :college_be_records
