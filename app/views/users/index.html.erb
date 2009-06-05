@@ -54,7 +54,8 @@
       }, {
         header: "姓名",
         dataIndex: 'name',
-        sortable: true
+        width: 70,
+        sortable: true,
       }, {
         header: "系部",
         dataIndex: 'department_id',
@@ -76,6 +77,7 @@
       }, {
         header: "职称",
         dataIndex: 'title_id',
+        width: 80,
         sortable: true,
         renderer: getTitleName
       }, {
@@ -86,29 +88,34 @@
       }, {
         header: "生日",
         dataIndex: 'birthday',
-        sortable: true
+        sortable: true,
+        hidden: true,
+        renderer: function(value, p, record){return value.substr(0,10)}
       }, {
         header: "身份证号",
         dataIndex: 'id_card',
-        sortable: true
+        sortable: true,
+        width: 130,
+        hidden: true
       }, {
         header: "用户名",
         dataIndex: 'login_id',
         sortable: true
       }, {
-        header: "密码",
-        dataIndex: 'password',
-        sortable: true
-      }, {
-        header: "入编／非入编",
+        header: "是否入编",
         dataIndex: 'is_nature',
         type : 'bool',
-        sortable: true
+        width: 80,
+        sortable: true,
+        renderer: function(value, p, record){return value ? "入编" : "非入编"}
       }, {
         header: "是否离退休",
         dataIndex: 'is_retired',
+        width: 80,
         type : 'bool',
-        sortable: true
+        sortable: true,
+        renderer: function(value, p, record){return value ? "离退休" : "在职"}
+
       }]
     var controllerName = "users";
     options = {
