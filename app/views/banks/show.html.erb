@@ -1,8 +1,10 @@
-<p>
-  <b>Name:</b>
-  <%=h @bank.name %>
-</p>
-
-
-<%= link_to 'Edit', edit_bank_path(@bank) %> |
-<%= link_to 'Back', banks_path %>
+<fieldset>
+  <legend>查看发卡银行</legend>
+  <p>
+    <b>名称:</b>
+    <%=h @bank.name %>
+  </p>
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>

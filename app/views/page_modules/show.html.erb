@@ -1,13 +1,14 @@
-<p>
-  <b>Name:</b>
-  <%=h @page_module.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%=h @page_module.description %>
-</p>
-
-
-<%= link_to 'Edit', edit_page_module_path(@page_module) %> |
-<%= link_to 'Back', page_modules_path %>
+<fieldset>
+  <legend>查看页面模块</legend>
+  <p>
+    <b>名称:</b>
+    <%=h @page_module.name %>
+  </p>
+  <p>
+    <b>描述:</b>
+    <%=h @page_module.description %>
+  </p>
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>

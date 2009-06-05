@@ -1,5 +1,6 @@
 <link href="/javascripts/ext-2.2.1/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
 <link href="/stylesheets/grid.css" media="screen" rel="stylesheet" type="text/css" />
+<%= stylesheet_link_tag "form.css" %>
 <div id="list-view">
   <form style="margin: 10px 0px;" id="search_form">
     <label for="search_name">
@@ -16,12 +17,14 @@
     </div>
   </div>
 </div>
-<div id="new-view" style="display:none">
-  <% @user = User.new %>
-  <%= render "new", :object => @user %>
-</div>
-<%= javascript_include_tag "ExtListPage.js" %>
-<%= javascript_include_tag 'ext-2.2.1/ext-base.js','ext-2.2.1/ext-all.js' %>
+<%= javascript_include_tag 'ext-2.2.1/adapter/jquery/jquery.js'%>
+<%= javascript_include_tag 'ext-2.2.1/adapter/jquery/ext-jquery-adapter.js'%>
+<%= javascript_include_tag 'ext-2.2.1/ext-all.js'%>
+<%= javascript_include_tag 'ExtListPage.js' %>
+<%= javascript_include_tag 'jquery-validate/lib/jquery.form.js' %>
+<%= javascript_include_tag 'jquery-validate/jquery.validate.js' %>
+<%= javascript_include_tag 'jquery-validate/localization/messages_cn.js' %>
+<%= javascript_include_tag 'AjaxForm.js' %>
 <script>
   var departments = <%= Department.to_json%>
   var getDepartmentName = function(value, p, record){
@@ -51,8 +54,8 @@
       }, {
         header: "姓名",
         dataIndex: 'name',
-        width: 100,
-        sortable: true
+        width: 70,
+        sortable: true,
       }, {
         header: "系部",
         dataIndex: 'department_id',
@@ -66,7 +69,6 @@
       }, {
         header: "性别",
         dataIndex: 'gender',
-        type: "bool",
         width: 50,
         sortable: true,
         renderer: function(value, p, record){
@@ -75,6 +77,7 @@
       }, {
         header: "职称",
         dataIndex: 'title_id',
+        width: 80,
         sortable: true,
         renderer: getTitleName
       }, {
@@ -85,34 +88,39 @@
       }, {
         header: "生日",
         dataIndex: 'birthday',
-        sortable: true
+        sortable: true,
+        hidden: true,
+        renderer: function(value, p, record){return value.substr(0,10)}
       }, {
         header: "身份证号",
         dataIndex: 'id_card',
-        sortable: true
+        sortable: true,
+        width: 130,
+        hidden: true
       }, {
         header: "用户名",
         dataIndex: 'login_id',
         sortable: true
       }, {
-        header: "密码",
-        dataIndex: 'password',
-        sortable: true
-      }, {
-        header: "入编／非入编",
+        header: "是否入编",
         dataIndex: 'is_nature',
         type : 'bool',
-        sortable: true
+        width: 80,
+        sortable: true,
+        renderer: function(value, p, record){return value ? "入编" : "非入编"}
       }, {
         header: "是否离退休",
         dataIndex: 'is_retired',
+        width: 80,
         type : 'bool',
-        sortable: true
+        sortable: true,
+        renderer: function(value, p, record){return value ? "离退休" : "在职"}
+
       }]
     var controllerName = "users";
     options = {
       baseUrl: "http://" + window.location.host + "/" + controllerName,
-      gridTitle: "基本员工信息列表",
+      gridTitle: "教职工信息列表",
       newItemLink: "newItem",
       columns: columns
     }

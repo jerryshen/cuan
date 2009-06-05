@@ -1,8 +1,10 @@
-<p>
-  <b>Name:</b>
-  <%=h @position.name %>
-</p>
-
-
-<%= link_to 'Edit', edit_position_path(@position) %> |
-<%= link_to 'Back', positions_path %>
+<fieldset>
+  <legend>查看职务</legend>
+  <p>
+    <b>名称:</b>
+    <%=h @position.name %>
+  </p>
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>

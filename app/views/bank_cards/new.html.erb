@@ -1,9 +1,9 @@
-<% form_for(@user) do |f| %>
+<% form_for(@bank_card) do |f| %>
   <fieldset>
-    <legend>修改教职工</legend>
+    <legend>新建银行卡</legend>
     <%= render :partial => 'form', :locals => {:f =>f}  %>
     <p class="bbar">
-      <%= f.submit '更新' %>
+      <%= f.submit '保存' %>
       <input type="button" onclick="$page.showListView()" value="取消" />
     </p>
   </fieldset>

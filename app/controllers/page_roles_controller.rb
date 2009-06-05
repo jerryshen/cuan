@@ -1,6 +1,6 @@
 class PageRolesController < ApplicationController
-	protect_from_forgery :except => :index
-  skip_before_filter :verify_authenticity_token 
+#	protect_from_forgery :except => :index
+#  skip_before_filter :verify_authenticity_token
   # GET /page_roles
   # GET /page_roles.xml
   def index
@@ -50,11 +50,11 @@ class PageRolesController < ApplicationController
         flash[:notice] = 'PageRole was successfully created.'
         format.html { redirect_to(@page_role) }
         format.xml  { render :xml => @page_role, :status => :created, :location => @page_role }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功创建页面－角色关系！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @page_role.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@page_role.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@page_role.errors.to_json}}"}
       end
     end
   end
@@ -69,11 +69,11 @@ class PageRolesController < ApplicationController
         flash[:notice] = 'PageRole was successfully updated.'
         format.html { redirect_to(@page_role) }
         format.xml  { head :ok }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功修改页面－角色关系！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @page_role.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@page_role.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@page_role.errors.to_json}}"}
       end
     end
   end
@@ -91,7 +91,7 @@ class PageRolesController < ApplicationController
     end
   end
   
-    private
+  private
   def get_json
     pagesize = 10
     if(params[:page_size])

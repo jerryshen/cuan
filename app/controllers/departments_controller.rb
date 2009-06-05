@@ -90,6 +90,10 @@ class DepartmentsController < ApplicationController
       format.json { render :text => '{status: "success"}'}
     end
   end
+
+  def test
+    
+  end
   
   private
   def get_json

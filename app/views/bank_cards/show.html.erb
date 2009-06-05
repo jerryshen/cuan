@@ -1,23 +1,25 @@
-<p>
-  <b>User:</b>
-  <%=h @bank_card.user.name %>
-</p>
+<fieldset>
+  <legend>查看发卡银行</legend>
+  <p>
+    <b>教职工:</b>
+    <%=h @bank_card.user.name if @bank_card.user %>
+  </p>
 
-<p>
-  <b>Bank:</b>
-  <%=h @bank_card.bank.name if @bank_card.bank%>
-</p>
+  <p>
+    <b>发卡银行:</b>
+    <%=h @bank_card.bank.name if @bank_card.bank%>
+  </p>
 
-<p>
-  <b>Card number:</b>
-  <%=h @bank_card.card_number %>
-</p>
+  <p>
+    <b>银行卡号:</b>
+    <%=h @bank_card.card_number %>
+  </p>
 
-<p>
-  <b>Description:</b>
-  <%=h @bank_card.description %>
-</p>
-
-
-<%= link_to 'Edit', edit_bank_card_path(@bank_card) %> |
-<%= link_to 'Back', bank_cards_path %>
+  <p>
+    <b>备注:</b>
+    <%=h @bank_card.description %>
+  </p>
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>

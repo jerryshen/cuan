@@ -1,28 +1,10 @@
-<h1>Editing bank_card</h1>
-
 <% form_for(@bank_card) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :user %><br />
-    <%= f.text_field :user %>
-  </p>
-  <p>
-    <%= f.label :bank %><br />
-    <%= f.text_field :bank %>
-  </p>
-  <p>
-    <%= f.label :card_number %><br />
-    <%= f.text_field :card_number %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
+  <fieldset>
+    <legend>修改银行卡</legend>
+    <%= render :partial => 'form', :locals => {:f =>f}  %>
+    <p class="bbar">
+      <%= f.submit '更新' %>
+      <input type="button" onclick="$page.showListView()" value="取消" />
+    </p>
+  </fieldset>
 <% end %>
-
-<%= link_to 'Show', @bank_card %> |
-<%= link_to 'Back', bank_cards_path %>

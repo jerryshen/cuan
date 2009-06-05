@@ -1,6 +1,10 @@
-<h1>查看系部</h1>
-<p>
-  <b>名称:</b>
-  <%=h @department.name %>
-</p>
-<input type="button" onclick="$page.showListView()" value="返回列表" />
+<fieldset>
+  <legend>查看系部</legend>
+  <p>
+    <b>名称:</b>
+    <%=h @department.name %>
+  </p>
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>

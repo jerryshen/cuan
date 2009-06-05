@@ -1,6 +1,6 @@
 class PositionsController < ApplicationController
-	  protect_from_forgery :except => :index
-  skip_before_filter :verify_authenticity_token  
+#  protect_from_forgery :except => :index
+#  skip_before_filter :verify_authenticity_token
   # GET /positions
   # GET /positions.xml
   def index
@@ -9,7 +9,7 @@ class PositionsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @positions }
-       format.json { render :text => get_json }
+      format.json { render :text => get_json }
     end
   end
 
@@ -50,11 +50,11 @@ class PositionsController < ApplicationController
         flash[:notice] = 'Position was successfully created.'
         format.html { redirect_to(@position) }
         format.xml  { render :xml => @position, :status => :created, :location => @position }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功创建职务！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @position.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@position.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@position.errors.to_json}}"}
       end
     end
   end
@@ -69,11 +69,11 @@ class PositionsController < ApplicationController
         flash[:notice] = 'Position was successfully updated.'
         format.html { redirect_to(@position) }
         format.xml  { head :ok }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功更新职务！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @position.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@position.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@position.errors.to_json}}"}
       end
     end
   end
@@ -91,7 +91,7 @@ class PositionsController < ApplicationController
     end
   end
   
-    private
+  private
   def get_json
     pagesize = 10
     if(params[:page_size])

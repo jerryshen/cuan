@@ -1,6 +1,6 @@
 <% form_for(@page_module) do |f| %>
   <fieldset>
-    <legend>修改页面模块</legend>
+    <legend>新建页面模块</legend>
     <%= f.error_messages %>
     <p>
       <%= f.label :field, "名称" %>
@@ -11,7 +11,7 @@
       <%= f.text_area :description %>
     </p>
     <p class="bbar">
-      <%= f.submit '更新' %>
+      <%= f.submit '保存' %>
       <input type="button" onclick="$page.showListView()" value="取消" />
     </p>
   </fieldset>
