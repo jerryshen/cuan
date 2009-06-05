@@ -13,6 +13,12 @@ class Page < ActiveRecord::Base
     #to do auto_link
   end
 
+  def accessable_users
+    users = []
+    self.roles.each{ |r| users += r.users }
+    return users
+  end
+
   #列表中实现ID和name的切换显示
   def self.to_json
     hash = {}
@@ -21,5 +27,10 @@ class Page < ActiveRecord::Base
       hash[attrs["id"]] = attrs["name"]
     end
     return hash.to_json
+  end
+
+  #用户是否有访问本页面的权限
+  def accessable? user
+   self.accessable_users.include? user 
   end
 end

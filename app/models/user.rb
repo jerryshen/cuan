@@ -19,4 +19,46 @@ class User < ActiveRecord::Base
     end
     return hash.to_json
   end
+
+  class MenuModule
+    attr_accessor :id, :name, :icon, :pages
+
+    class MenuPage
+      attr_accessor :id, :name, :url, :icon
+      def initialize page
+        @id = page.id
+        @name = page.name
+        @url = page.url
+        @icon = page.icon
+      end
+    end
+
+    def initialize page_module,pages 
+      @id = page_module.id
+      @name = page_module.name
+      @icon = page_module.icon
+      @pages = []
+      pages.each{ |p| @pages << MenuPage.new(p) }
+    end
+  end
+
+  #用户可以访问的页面
+  def accessable_pages
+    pages = []
+    self.roles.each{ |r| pages += r.pages }
+    return pages 
+  end
+
+  #用户的菜单列表
+  def menu 
+    pages = self.accessable_pages
+    menu_modules = []
+    pages.each do | p |
+      m = p.page_module
+      unless menu_modules.find_index{ |menu_m| menu_m.id == m.id }
+        menu_modules << MenuModule.new(m, pages.collect{|p| p if(p.page_module == m && !p.hidden)} ) 
+      end
+    end
+    menu_modules.to_json
+  end
 end
