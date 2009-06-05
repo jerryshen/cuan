@@ -7,7 +7,7 @@ class Role < ActiveRecord::Base
   has_many :users, :through => :role_users, :class_name => 'User', :foreign_key => 'user_id'
   
   #validation
-  validates_presence_of :name
+  validates_presence_of :name, :message => "角色名称不能为空！"
 
   #列表中实现ID和name的切换显示
   def self.to_json

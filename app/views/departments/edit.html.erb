@@ -1,14 +1,14 @@
-<h1>编辑系部</h1>
-
 <% form_for(@department) do |f| %>
+  <fieldset>
+  <legend>修改系部</legend>
   <%= f.error_messages %>
-
   <p>
-    <%= f.label :name, "名称" %><br />
-    <%= f.text_field :name %>
+    <%= f.label :field, "名称" %>
+    <%= f.text_field :name, :class => "required" %>
   </p>
-  <p>
-    <%= f.submit '更新' %>
+  <p class="bbar">
+    <%= f.submit '保存' %>
     <input type="button" onclick="$page.showListView()" value="取消" />
   </p>
+  </fieldset>
 <% end %>

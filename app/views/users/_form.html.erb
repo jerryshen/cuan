@@ -1,0 +1,49 @@
+<%= f.error_messages %>
+<p>
+  <%= f.label :field, "姓名" %>
+  <%= f.text_field :name, :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "系部"%>
+  <%= f.select :department_id, departments_for_select, {:include_blank => "请选择系部..." }, :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "教学所属系部"%>
+  <%= f.select :td_belongs_id, departments_for_select, {:include_blank => "请选择教学所属系部..." }, :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "性别" %>
+  <%= f.select :gender, [[ '选择性别', ''], [ '男', 'm' ], [ '女', 'f' ]], :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "职称" %>
+  <%= f.select :title_id, titles_for_select, {:include_blank => "请选择职称..." }, :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "职务" %>
+  <%= f.select :position_id, positions_for_select, {:include_blank => "请选择职务..." }, :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "生日" %>
+  <%= f.date_select :birthday, :start_year => 1950, :end_year => 2000, :order => [:year, :month, :day], :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "身份证" %>
+  <%= f.text_field :id_card, :class =>"required" %>
+</p>
+<p>
+  <%= f.label :field, "用户名" %>
+  <%= f.text_field :login_id, :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "密码" %>
+  <%= f.password_field :password, :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "是否入编" %>
+  <%= f.check_box :is_nature %>
+</p>
+<p>
+  <%= f.label :field, "是否离退休" %>
+  <%= f.check_box :is_retired %>
+</p>

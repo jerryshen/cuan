@@ -1,9 +1,9 @@
-<% form_for(@department) do |f| %>
+<% form_for(@title) do |f| %>
   <fieldset>
-  <legend>新建系部</legend>
+  <legend>新建职称</legend>
   <%= f.error_messages %>
   <p>
-    <%= f.label :field, "名称" %>
+    <%= f.label :name, "名称" %>
     <%= f.text_field :name, :class => "required" %>
   </p>
   <p class="bbar">

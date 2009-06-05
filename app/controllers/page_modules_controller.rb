@@ -1,6 +1,6 @@
 class PageModulesController < ApplicationController
-	  protect_from_forgery :except => :index
-  skip_before_filter :verify_authenticity_token
+#  protect_from_forgery :except => :index
+#  skip_before_filter :verify_authenticity_token
   # GET /page_modules
   # GET /page_modules.xml
   def index
@@ -50,11 +50,11 @@ class PageModulesController < ApplicationController
         flash[:notice] = 'PageModule was successfully created.'
         format.html { redirect_to(@page_module) }
         format.xml  { render :xml => @page_module, :status => :created, :location => @page_module }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功创建页面模块！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @page_module.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@page_module.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@page_module.errors.to_json}}"}
       end
     end
   end
@@ -69,11 +69,11 @@ class PageModulesController < ApplicationController
         flash[:notice] = 'PageModule was successfully updated.'
         format.html { redirect_to(@page_module) }
         format.xml  { head :ok }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功更新页面模块！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @page_module.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@page_module.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@page_module.errors.to_json}}"}
       end
     end
   end
@@ -91,7 +91,7 @@ class PageModulesController < ApplicationController
     end
   end
   
-   private
+  private
   def get_json
     pagesize = 10
     if(params[:page_size])

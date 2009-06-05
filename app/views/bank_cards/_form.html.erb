@@ -1,0 +1,17 @@
+<%= f.error_messages %>
+<p>
+  <%= f.label :field, "教职工" %>
+  <%= f.select :user_id, users_for_select, {:include_blank => "请选择教职工..." } %>
+</p>
+<p>
+  <%= f.label :field, "银行" %>
+  <%= f.select :bank_id, banks_for_select, {:include_blank => "请选择教职工..." } %>
+</p>
+<p>
+  <%= f.label :field, "银行卡号" %>
+  <%= f.text_field :card_number, :class => "required"%>
+</p>
+<p>
+  <%= f.label :field, "备注" %>
+  <%= f.text_area :description %>
+</p>

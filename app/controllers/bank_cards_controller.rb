@@ -1,6 +1,6 @@
 class BankCardsController < ApplicationController
-  protect_from_forgery :except => :index
-  skip_before_filter :verify_authenticity_token  
+  #  protect_from_forgery :except => :index
+  #  skip_before_filter :verify_authenticity_token
   # GET /bank_cards
   # GET /bank_cards.xml
   def index
@@ -50,11 +50,11 @@ class BankCardsController < ApplicationController
         flash[:notice] = 'BankCard was successfully created.'
         format.html { redirect_to(@bank_card) }
         format.xml  { render :xml => @bank_card, :status => :created, :location => @bank_card }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功创建银行卡！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @bank_card.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@bank_card.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@bank_card.errors.to_json}}"}
       end
     end
   end
@@ -69,11 +69,11 @@ class BankCardsController < ApplicationController
         flash[:notice] = 'BankCard was successfully updated.'
         format.html { redirect_to(@bank_card) }
         format.xml  { head :ok }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功更新银行卡！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @bank_card.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@bank_card.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@bank_card.errors.to_json}}"}
       end
     end
   end

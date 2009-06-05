@@ -1,6 +1,6 @@
 class TitlesController < ApplicationController
-		  protect_from_forgery :except => :index
-  skip_before_filter :verify_authenticity_token
+#  protect_from_forgery :except => :index
+#  skip_before_filter :verify_authenticity_token
   # GET /titles
   # GET /titles.xml
   def index
@@ -50,11 +50,11 @@ class TitlesController < ApplicationController
         flash[:notice] = 'Title was successfully created.'
         format.html { redirect_to(@title) }
         format.xml  { render :xml => @title, :status => :created, :location => @title }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success",message: "成功创建职称！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @title.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@title.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@department.errors.to_json}}"}
       end
     end
   end
@@ -69,11 +69,11 @@ class TitlesController < ApplicationController
         flash[:notice] = 'Title was successfully updated.'
         format.html { redirect_to(@title) }
         format.xml  { head :ok }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success",message: "成功更新职称！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @title.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@title.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@department.errors.to_json}}"}
       end
     end
   end
@@ -91,7 +91,7 @@ class TitlesController < ApplicationController
     end
   end
   
-       private
+  private
   def get_json
     pagesize = 10
     if(params[:page_size])

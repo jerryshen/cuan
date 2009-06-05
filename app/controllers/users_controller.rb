@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-  protect_from_forgery :except => :index
-  skip_before_filter :verify_authenticity_token  
-
+#  protect_from_forgery :except => :index
+#  skip_before_filter :verify_authenticity_token
   # GET /users
   # GET /users.xml
   def index
@@ -51,11 +50,11 @@ class UsersController < ApplicationController
         flash[:notice] = 'User was successfully created.'
         format.html { redirect_to(@user) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功创建教职工！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@user.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@user.errors.to_json}}"}
       end
     end
   end
@@ -70,11 +69,11 @@ class UsersController < ApplicationController
         flash[:notice] = 'User was successfully updated.'
         format.html { redirect_to(@user) }
         format.xml  { head :ok }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功更新教职工！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@user.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@user.errors.to_json}}"}
       end
     end
   end

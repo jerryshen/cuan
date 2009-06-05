@@ -1,17 +1,14 @@
-<h1>Editing role</h1>
-
 <% form_for(@role) do |f| %>
+  <fieldset>
+  <legend>修改角色</legend>
   <%= f.error_messages %>
-
   <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.label :field, "名称" %>
+    <%= f.text_field :name, :class => "required" %>
   </p>
-  <p>
-    <%= f.submit 'Update' %>
+  <p class="bbar">
+    <%= f.submit '更新' %>
+    <input type="button" onclick="$page.showListView()" value="取消" />
   </p>
-    <p>
-  <%= f.submit '更新',:class => "button" %>
-    <input type="button" class="button" onclick="$page.showListView(false)" value="取消" />
-  </p>
+  </fieldset>
 <% end %>

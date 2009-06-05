@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
-	protect_from_forgery :except => :index
-  skip_before_filter :verify_authenticity_token  
+  #	protect_from_forgery :except => :index
+  #  skip_before_filter :verify_authenticity_token
   # GET /pages
   # GET /pages.xml
   def index
@@ -50,11 +50,11 @@ class PagesController < ApplicationController
         flash[:notice] = 'Page was successfully created.'
         format.html { redirect_to(@page) }
         format.xml  { render :xml => @page, :status => :created, :location => @page }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功创建页面！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @page.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@page.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@page.errors.to_json}}"}
       end
     end
   end
@@ -69,11 +69,11 @@ class PagesController < ApplicationController
         flash[:notice] = 'Page was successfully updated.'
         format.html { redirect_to(@page) }
         format.xml  { head :ok }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功更新页面！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @page.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@page.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@page.errors.to_json}}"}
       end
     end
   end

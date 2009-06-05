@@ -1,6 +1,6 @@
 class BanksController < ApplicationController
-	  protect_from_forgery :except => :index
-  skip_before_filter :verify_authenticity_token
+#  protect_from_forgery :except => :index
+#  skip_before_filter :verify_authenticity_token
 	
   # GET /banks
   # GET /banks.xml
@@ -10,7 +10,7 @@ class BanksController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @banks }
-       format.json { render :text => get_json }
+      format.json { render :text => get_json }
     end
   end
 
@@ -51,11 +51,11 @@ class BanksController < ApplicationController
         flash[:notice] = 'Bank was successfully created.'
         format.html { redirect_to(@bank) }
         format.xml  { render :xml => @bank, :status => :created, :location => @bank }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功创建银行！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @bank.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@bank.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@bank.errors.to_json}}"}
       end
     end
   end
@@ -70,11 +70,11 @@ class BanksController < ApplicationController
         flash[:notice] = 'Bank was successfully updated.'
         format.html { redirect_to(@bank) }
         format.xml  { head :ok }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功更新银行！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @bank.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@bank.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@bank.errors.to_json}}"}
       end
     end
   end
@@ -92,7 +92,7 @@ class BanksController < ApplicationController
     end
   end
   
-     private
+  private
   def get_json
     pagesize = 10
     if(params[:page_size])
