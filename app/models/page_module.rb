@@ -16,4 +16,8 @@ class PageModule < ActiveRecord::Base
     end
     return hash.to_json
   end
+
+  def pages_of_user(user)
+    self.pages.collect{ |p| p.accessable? user }
+  end
 end
