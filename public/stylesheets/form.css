@@ -79,7 +79,7 @@ fieldset input.error, fieldset textarea.error{
   border: 1px solid red;
 }
 
-fieldset input.text, fieldset textarea, fieldset select{
+fieldset input.text,input.password, fieldset textarea, fieldset select{
   width: 200px;
 }
 
