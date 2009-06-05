@@ -1,4 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :retired_fee_cutting_records
+
+  map.resources :retired_college_be_records
+
+  map.resources :retired_basic_salary_records
+
+  map.resources :retired_fee_cuttings
+
+  map.resources :retired_college_benefits
+
   map.resources :assistants
 
   map.resources :retired_basic_salaries

@@ -1,0 +1,25 @@
+<fieldset>
+  <legend>查看离退休人员[<%= @retired_fee_cutting.user.name if @retired_basic_salary.user %>]的扣款信息</legend>
+  <p>
+    <b>离退休人员姓名:</b>
+    <%=h @retired_fee_cutting.user.name if @retired_college_benefit.user.name%>
+  </p>
+
+  <p>
+    <b>其他扣款1:</b>
+    <%=h @retired_fee_cutting.other_fee1 %>
+  </p>
+
+  <p>
+    <b>其他扣款2:</b>
+    <%=h @retired_fee_cutting.other_fee2  %>
+  </p>
+
+  <p>
+    <b>其他扣款3:</b>
+    <%=h @retired_fee_cutting.other_fee3 %>
+  </p>
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>

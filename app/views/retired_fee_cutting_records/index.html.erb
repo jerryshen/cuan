@@ -1,0 +1,20 @@
+<h1>Listing retired_fee_cutting_records</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+  </tr>
+
+<% @retired_fee_cutting_records.each do |retired_fee_cutting_record| %>
+  <tr>
+    <td><%=h retired_fee_cutting_record.user %></td>
+    <td><%= link_to 'Show', retired_fee_cutting_record %></td>
+    <td><%= link_to 'Edit', edit_retired_fee_cutting_record_path(retired_fee_cutting_record) %></td>
+    <td><%= link_to 'Destroy', retired_fee_cutting_record, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New retired_fee_cutting_record', new_retired_fee_cutting_record_path %>

@@ -1,0 +1,29 @@
+<%= f.error_messages %>
+<p>
+  <%= f.label :field, "离退休人员" %>
+  <%= f.select :user_id, get_retired_staffs.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择离退休人员..." }, :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "补贴补差" %>
+  <%= f.text_field :diff_be, :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "电视补贴" %>
+  <%= f.text_field :tv_be, :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "驻蓉补贴" %>
+  <%= f.text_field :beaulty_be, :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "其他1" %>
+  <%= f.text_field :other_be1 %>
+</p>
+<p>
+  <%= f.label :field, "其他2" %>
+  <%= f.text_field :other_be2 %>
+</p>
+<p>
+  <%= f.label :field, "其他3" %>
+  <%= f.text_field :other_be3 %>
+</p>

@@ -1,0 +1,41 @@
+<fieldset>
+  <legend>查看离退休人员[<%= @retired_basic_salary_record.user %>]的基本工资记录信息</legend>
+  <p>
+    <b>离退休人员姓名:</b>
+    <%=h @retired_basic_salary_record.user %>
+  </p>
+
+  <p>
+    <b>年份:</b>
+    <%=h @retired_basic_salary_record.year %>
+  </p>
+
+  <p>
+    <b>月份:</b>
+    <%=h @retired_basic_salary_record.month %>
+  </p>
+
+  <p>
+    <b>月基本退休费:</b>
+    <%=h @retired_basic_salary_record.basic_fee %>
+  </p>
+
+  <p>
+    <b>工改保留补贴_93年:</b>
+    <%=h @retired_basic_salary_record.stay_be %>
+  </p>
+
+  <p>
+    <b>其他国家出台津补贴:</b>
+    <%=h @retired_basic_salary_record.foreign_be %>
+  </p>
+
+  <p>
+    <b>地方出台津补贴:</b>
+    <%=h @retired_basic_salary_record.region_be %>
+  </p>
+
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>
