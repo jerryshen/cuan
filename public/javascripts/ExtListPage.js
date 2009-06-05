@@ -267,25 +267,29 @@ var ExtListPage = function(options){
     var operateColumn = {
         header: "操作栏",
         dataIndex: 'id',
-        width: 100,
+        width: 130,
         sortable: false,
         menuDisabled: false,
         renderer: mackBasicButtons
     }
-    $COLUMNS.push(operateColumn);
     
     var gridWidth = 0;
     //计算表的宽度
     var cal_grid_width = function(column){
-        if (column.width) {
+      if(column.hidden !== true){
+        if (column.width ) {
             gridWidth += column.width;
         }
         else {
             gridWidth += 100;
         }
+      }
     }
     
     eachColumns($COLUMNS, [disableMenu, cal_grid_width]);
+    $COLUMNS[0].menuDisabled = false; //为第一列开启menu
+    gridWidth += operateColumn.width; //add operate column width
+    $COLUMNS.push(operateColumn);
 
     if (gridWidth < 600) {
       var o = gridWidth;
@@ -297,7 +301,6 @@ var ExtListPage = function(options){
         el: $GRID_RENDER_TO,
         width: gridWidth,
         autoHeight: true,
-        autoWidth: true,
         title: $GRID_TITLE,
         store: store,
         trackMouseOver: false,
@@ -307,6 +310,18 @@ var ExtListPage = function(options){
         columns: $COLUMNS,
         iconCls: "icon-grid"
     })
+
+    var columnModel = grid.getColumnModel();
+    columnModel.on("hiddenChange",function(model,columnIndex,hidden){
+      var grid_width = grid.getSize().width;
+      var column_width = model.getColumnWidth(columnIndex);
+      if(hidden){
+        grid.setWidth(grid_width - column_width);
+      }else{
+        grid.setWidth(grid_width + column_width);
+      }
+    })
+
     
   //---------------搜索并载入数据----------------------->
     //当前页序号        
