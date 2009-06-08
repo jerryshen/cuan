@@ -1,8 +1,8 @@
 <fieldset>
-  <legend>查看离退休人员[<%= @retired_fee_cutting.user.name if @retired_basic_salary.user %>]的扣款信息</legend>
+  <legend>查看离退休人员[<%= @retired_fee_cutting.user.name if @retired_fee_cutting.user %>]的扣款信息</legend>
   <p>
     <b>离退休人员姓名:</b>
-    <%=h @retired_fee_cutting.user.name if @retired_college_benefit.user.name%>
+    <%=h @retired_fee_cutting.user.name if @retired_fee_cutting.user.name%>
   </p>
 
   <p>

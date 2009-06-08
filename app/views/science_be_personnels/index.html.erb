@@ -10,9 +10,6 @@
     <input class="button" type="button" id="btnSearch" value="搜索"/>
   </form>
   <div>
-    <div class="nav">
-      <span class="button" id="newItem" onclick="$page.showNewView()"><img  src="/images/icons/new.png"/>新建</span>
-    </div>
     <div id="grid-wrap">
     </div>
   </div>
@@ -30,7 +27,6 @@
   var getUserName = function(value, p, record){
     return users[value]
   }
-
   //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
   // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]}
   //框[]中的为默认值
@@ -44,10 +40,15 @@
         resizable: false
       }, {
         header: "员工姓名",
-        dataIndex: 'user',
+        dataIndex: 'name',
+        sortable: true,
+        renderer : getUserName
+      }, {
+        header: "科研津贴",
+        dataIndex: 'science_be',
         sortable: true
       }, {
-        header: "年份",
+        header: "年度",
         dataIndex: 'year',
         sortable: true
       }, {
@@ -55,22 +56,14 @@
         dataIndex: 'month',
         sortable: true
       }, {
-        header: "其他扣款1",
-        dataIndex: 'other_fee1',
-        sortable: true
-      }, {
-        header: "其他扣款2",
-        dataIndex: 'other_fee2',
-        sortable: true
-      }, {
-        header: "其他扣款3",
-        dataIndex: 'other_fee3',
+        header: "发放日期",
+        dataIndex: 'date',
         sortable: true
       }]
-    var controllerName = "retired_fee_cutting_records";
+    var controllerName = "science_be_personnels";
     options = {
       baseUrl: "http://" + window.location.host + "/" + controllerName,
-      gridTitle: "离退休人员扣款记录管理列表",
+      gridTitle: "人事处－科研津贴管理列表",
       newItemLink: "newItem",
       columns: columns
     }

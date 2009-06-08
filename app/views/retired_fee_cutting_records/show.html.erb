@@ -6,3 +6,39 @@
 
 <%= link_to 'Edit', edit_retired_fee_cutting_record_path(@retired_fee_cutting_record) %> |
 <%= link_to 'Back', retired_fee_cutting_records_path %>
+
+<fieldset>
+  <legend>查看离退休人员[<%= @retired_fee_cutting_record.user %>]的扣款信息</legend>
+  <p>
+    <b>离退休人员姓名:</b>
+    <%=h @retired_fee_cutting_record.user %>
+  </p>
+
+  <p>
+    <b>年份:</b>
+    <%=h @retired_fee_cutting_record.other_fee1 %>
+  </p>
+
+  <p>
+    <b>月份:</b>
+    <%=h @retired_fee_cutting_record.year %>
+  </p>
+
+  <p>
+    <b>其他扣款1:</b>
+    <%=h @retired_fee_cutting_record.month %>
+  </p>
+
+  <p>
+    <b>其他扣款2:</b>
+    <%=h @retired_fee_cutting_record.other_fee2  %>
+  </p>
+
+  <p>
+    <b>其他扣款3:</b>
+    <%=h @retired_fee_cutting_record.other_fee3 %>
+  </p>
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>

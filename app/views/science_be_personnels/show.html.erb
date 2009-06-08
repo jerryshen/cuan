@@ -1,0 +1,30 @@
+<fieldset>
+  <legend>查看科研津贴</legend>
+  <p>
+    <b>员工姓名:</b>
+    <%=h @science_be_personnel.user.name if @science_be_personnel.user %>
+  </p>
+
+  <p>
+    <b>科研津贴:</b>
+    <%=h @science_be_personnel.science_be %>
+  </p>
+
+  <p>
+    <b>年份:</b>
+    <%=h @science_be_personnel.year %>
+  </p>
+
+  <p>
+    <b>月份:</b>
+    <%=h @science_be_personnel.month %>
+  </p>
+
+  <p>
+    <b>发放日期:</b>
+    <%=h @science_be_personnel.date %>
+  </p>
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>
