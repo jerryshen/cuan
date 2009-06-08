@@ -1,0 +1,40 @@
+<fieldset>
+  <legend>查看离退休人员[<%= @retired_college_benefit.user.name if @retired_basic_salary.user %>]的学院补贴信息</legend>
+  <p>
+    <b>离退休人员姓名:</b>
+    <%=h @retired_college_benefit.user.name if @retired_college_benefit.user.name%>
+  </p>
+
+  <p>
+    <b>补贴补差:</b>
+    <%=h @retired_college_benefit.diff_be %>
+  </p>
+
+  <p>
+    <b>电视补贴:</b>
+    <%=h @retired_college_benefit.tv_be %>
+  </p>
+
+  <p>
+    <b>驻蓉补贴:</b>
+    <%=h @retired_college_benefit.beaulty_be %>
+  </p>
+
+  <p>
+    <b>其他1:</b>
+    <%=h @retired_college_benefit.other_be1 %>
+  </p>
+
+  <p>
+    <b>其他2:</b>
+    <%=h @retired_college_benefit.other_be2 %>
+  </p>
+
+  <p>
+    <b>其他3:</b>
+    <%=h @retired_college_benefit.other_be3 %>
+  </p>
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>

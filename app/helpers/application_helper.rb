@@ -1,32 +1,36 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
-  #users for select
+  #basic information for select
   def users_for_select
     User.all.collect {|p| [ p.name, p.id ] }
   end
 
-  #departments for select
   def departments_for_select
     Department.all.collect {|p| [ p.name, p.id ] }
   end
 
-  #titles for select
   def titles_for_select
     Title.all.collect {|p| [ p.name, p.id ] }
   end
 
-  #positions for select
   def positions_for_select
     Position.all.collect {|p| [ p.name, p.id ] }
   end
 
-  #banks for select
   def banks_for_select
     Bank.all.collect {|p| [ p.name, p.id ] }
   end
 
-  #列出教职工中的离退休人员
+  def pages_for_select
+    Page.all.collect {|p| [ p.name, p.id ] }
+  end
+
+  def roles_for_select
+    Role.all.collect {|p| [ p.name, p.id ] }
+  end
+
+  #get retired staffs list
   def get_retired_staffs
     User.find(:all, :conditions => ["is_retired = 1"])
   end

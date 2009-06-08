@@ -1,5 +1,6 @@
 <link href="/javascripts/ext-2.2.1/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
 <link href="/stylesheets/grid.css" media="screen" rel="stylesheet" type="text/css" />
+<%= stylesheet_link_tag "form.css" %>
 <div id="list-view">
   <form style="margin: 10px 0px;" id="search_form">
     <label for="search_name">
@@ -16,12 +17,14 @@
     </div>
   </div>
 </div>
-<div id="new-view" style="display:none">
-  <% @fee_cutting = FeeCutting.new %>
-  <%= render "new", :object => @fee_cutting %>
-</div>
-<%= javascript_include_tag "ExtListPage.js" %>
-<%= javascript_include_tag 'ext-2.2.1/ext-base.js','ext-2.2.1/ext-all.js' %>
+<%= javascript_include_tag 'ext-2.2.1/adapter/jquery/jquery.js'%>
+<%= javascript_include_tag 'ext-2.2.1/adapter/jquery/ext-jquery-adapter.js'%>
+<%= javascript_include_tag 'ext-2.2.1/ext-all.js'%>
+<%= javascript_include_tag 'ExtListPage.js' %>
+<%= javascript_include_tag 'jquery-validate/lib/jquery.form.js' %>
+<%= javascript_include_tag 'jquery-validate/jquery.validate.js' %>
+<%= javascript_include_tag 'jquery-validate/localization/messages_cn.js' %>
+<%= javascript_include_tag 'AjaxForm.js' %>
 <script>
   var users = <%= User.to_json%>
   var getUserName = function(value, p, record){
@@ -41,7 +44,6 @@
       }, {
         header: "教职工",
         dataIndex: 'user_id',
-        width: 100,
         sortable: true,
         renderer : getUserName
       }, {

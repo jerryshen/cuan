@@ -1,0 +1,2 @@
+module ScienceBeSciencesHelper
+end

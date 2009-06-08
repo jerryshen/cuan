@@ -1,6 +1,6 @@
 class FeeCuttingRecordsController < ApplicationController
-  protect_from_forgery :except => :index
-  skip_before_filter :verify_authenticity_token
+#  protect_from_forgery :except => :index
+#  skip_before_filter :verify_authenticity_token
   # GET /fee_cutting_records
   # GET /fee_cutting_records.xml
   def index
@@ -52,6 +52,6 @@ class FeeCuttingRecordsController < ApplicationController
       @fee_cutting_records = FeeCuttingRecord.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = FeeCuttingRecord.count
     end
-    return render_json @fee_cutting_records,count
+    return render_json(@fee_cutting_records,count)
   end
 end

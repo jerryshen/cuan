@@ -1,20 +1,18 @@
-<h1>Editing role_user</h1>
-
 <% form_for(@role_user) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :user %><br />
-    <%= f.text_field :user %>
-  </p>
-  <p>
-    <%= f.label :role %><br />
-    <%= f.text_field :role %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
+  <fieldset>
+    <legend>修改色－用户关系</legend>
+    <%= f.error_messages %>
+    <p>
+      <%= f.label :field, "角色" %>
+      <%= f.select :role_id, roles_for_select, {:include_blank => "请选择角色..." }, :class => "required" %>
+    </p>
+    <p>
+      <%= f.label :field, "用户" %>
+      <%= f.select :user_id, users_for_select, {:include_blank => "请选择用户..." }, :class => "required" %>
+    </p>
+    <p class="bbar">
+      <%= f.submit '更新' %>
+      <input type="button" onclick="$page.showListView()" value="取消" />
+    </p>
+  </fieldset>
 <% end %>
-
-<%= link_to 'Show', @role_user %> |
-<%= link_to 'Back', role_users_path %>

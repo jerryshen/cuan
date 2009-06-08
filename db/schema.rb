@@ -9,7 +9,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 18) do
+ActiveRecord::Schema.define(:version => 29) do
+
+  create_table "assistants", :force => true do |t|
+    t.integer  "user_id"
+    t.float    "benefit"
+    t.float    "other"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assistants", ["user_id"], :name => "index_assistants_on_user_id"
 
   create_table "bank_cards", :force => true do |t|
     t.integer  "user_id"
@@ -59,6 +69,19 @@ ActiveRecord::Schema.define(:version => 18) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "class_benefits", :force => true do |t|
+    t.integer  "user_id"
+    t.float    "total_be"
+    t.string   "term"
+    t.integer  "month"
+    t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_verified", :default => false
+  end
+
+  add_index "class_benefits", ["user_id"], :name => "index_class_benefits_on_user_id"
 
   create_table "college_be_records", :force => true do |t|
     t.string   "user"
@@ -131,6 +154,7 @@ ActiveRecord::Schema.define(:version => 18) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "icon"
   end
 
   create_table "page_roles", :force => true do |t|
@@ -151,6 +175,7 @@ ActiveRecord::Schema.define(:version => 18) do
     t.boolean  "hidden"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "icon"
   end
 
   add_index "pages", ["page_module_id"], :name => "index_pages_on_page_module_id"
@@ -173,6 +198,69 @@ ActiveRecord::Schema.define(:version => 18) do
 
   add_index "retired_basic_salaries", ["user_id"], :name => "index_retired_basic_salaries_on_user_id"
 
+  create_table "retired_basic_salary_records", :force => true do |t|
+    t.string   "user"
+    t.string   "year"
+    t.string   "month"
+    t.float    "basic_fee"
+    t.float    "stay_be"
+    t.float    "foreign_be"
+    t.float    "region_be"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "retired_college_be_records", :force => true do |t|
+    t.string   "user"
+    t.string   "year"
+    t.string   "month"
+    t.float    "diff_be"
+    t.float    "tv_be"
+    t.float    "beaulty_be"
+    t.float    "other_be1"
+    t.float    "other_be2"
+    t.float    "other_be3"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "retired_college_benefits", :force => true do |t|
+    t.integer  "user_id"
+    t.float    "diff_be"
+    t.float    "tv_be"
+    t.float    "beaulty_be"
+    t.float    "other_be1"
+    t.float    "other_be2"
+    t.float    "other_be3"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "retired_college_benefits", ["user_id"], :name => "index_retired_college_benefits_on_user_id"
+
+  create_table "retired_fee_cutting_records", :force => true do |t|
+    t.string   "user"
+    t.string   "year"
+    t.string   "month"
+    t.float    "elc_fee"
+    t.float    "other_fee1"
+    t.float    "other_fee2"
+    t.float    "other_fee3"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "retired_fee_cuttings", :force => true do |t|
+    t.integer  "user_id"
+    t.float    "other_fee1"
+    t.float    "other_fee2"
+    t.float    "other_fee3"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "retired_fee_cuttings", ["user_id"], :name => "index_retired_fee_cuttings_on_user_id"
+
   create_table "role_users", :force => true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
@@ -188,6 +276,29 @@ ActiveRecord::Schema.define(:version => 18) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "science_benefits", :force => true do |t|
+    t.integer  "user_id"
+    t.float    "science_be"
+    t.string   "year"
+    t.integer  "month"
+    t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_verified", :default => false
+  end
+
+  add_index "science_benefits", ["user_id"], :name => "index_science_benefits_on_user_id"
+
+  create_table "station_position_benefits", :force => true do |t|
+    t.integer  "user_id"
+    t.float    "station_be"
+    t.float    "position_be"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "station_position_benefits", ["user_id"], :name => "index_station_position_benefits_on_user_id"
 
   create_table "titles", :force => true do |t|
     t.string   "name"

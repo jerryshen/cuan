@@ -1,48 +1,51 @@
-<p>
-  <b>User:</b>
-  <%=h @college_be_record.user %>
-</p>
+<fieldset>
+  <legend>查看[<%=h @college_be_record.user %>]的学院补贴记录</legend>
+  <p>
+    <b>教职工姓名:</b>
+    <%=h @college_be_record.user %>
+  </p>
 
-<p>
-  <b>Year:</b>
-  <%=h @college_be_record.year %>
-</p>
+  <p>
+    <b>年份:</b>
+    <%=h @college_be_record.year %>
+  </p>
 
-<p>
-  <b>Month:</b>
-  <%=h @college_be_record.month %>
-</p>
+  <p>
+    <b>月份:</b>
+    <%=h @college_be_record.month %>
+  </p>
 
-<p>
-  <b>Life be:</b>
-  <%=h @college_be_record.life_be %>
-</p>
+  <p>
+    <b>生活补贴:</b>
+    <%=h @college_be_record.life_be %>
+  </p>
 
-<p>
-  <b>Diff be:</b>
-  <%=h @college_be_record.diff_be %>
-</p>
+  <p>
+    <b>补贴补差:</b>
+    <%=h @college_be_record.diff_be %>
+  </p>
 
-<p>
-  <b>Livesa be:</b>
-  <%=h @college_be_record.livesa_be %>
-</p>
+  <p>
+    <b>活工资补贴:</b>
+    <%=h @college_be_record.livesa_be %>
+  </p>
 
-<p>
-  <b>Tv be:</b>
-  <%=h @college_be_record.tv_be %>
-</p>
+  <p>
+    <b>电视补贴:</b>
+    <%=h @college_be_record.tv_be %>
+  </p>
 
-<p>
-  <b>Beaulty be:</b>
-  <%=h @college_be_record.beaulty_be %>
-</p>
+  <p>
+    <b>驻蓉补贴:</b>
+    <%=h @college_be_record.beaulty_be %>
+  </p>
 
-<p>
-  <b>Other be:</b>
-  <%=h @college_be_record.other_be %>
-</p>
+  <p>
+    <b>其他:</b>
+    <%=h @college_be_record.other_be %>
+  </p>
 
-
-<%= link_to 'Edit', edit_college_be_record_path(@college_be_record) %> |
-<%= link_to 'Back', college_be_records_path %>
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>

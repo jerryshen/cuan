@@ -1,38 +1,40 @@
-<p>
-  <b>User:</b>
-  <%=h @college_benefit.user %>
-</p>
+<fieldset>
+  <legend>查看[<%= @college_benefit.user.name if @college_benefit.user.name %>]的学院补贴信息</legend>
+  <p>
+    <b>教职工姓名:</b>
+    <%=h @college_benefit.user.name if @college_benefit.user.name %>
+  </p>
 
-<p>
-  <b>Life be:</b>
-  <%=h @college_benefit.life_be %>
-</p>
+  <p>
+    <b>生活补贴:</b>
+    <%=h @college_benefit.life_be %>
+  </p>
 
-<p>
-  <b>Diff be:</b>
-  <%=h @college_benefit.diff_be %>
-</p>
+  <p>
+    <b>补贴补差:</b>
+    <%=h @college_benefit.diff_be %>
+  </p>
 
-<p>
-  <b>Livesa be:</b>
-  <%=h @college_benefit.livesa_be %>
-</p>
+  <p>
+    <b>活工资补贴:</b>
+    <%=h @college_benefit.livesa_be %>
+  </p>
 
-<p>
-  <b>Tv be:</b>
-  <%=h @college_benefit.tv_be %>
-</p>
+  <p>
+    <b>电视补贴:</b>
+    <%=h @college_benefit.tv_be %>
+  </p>
 
-<p>
-  <b>Beaulty be:</b>
-  <%=h @college_benefit.beaulty_be %>
-</p>
+  <p>
+    <b>驻蓉补贴:</b>
+    <%=h @college_benefit.beaulty_be %>
+  </p>
 
-<p>
-  <b>Other be:</b>
-  <%=h @college_benefit.other_be %>
-</p>
-
-
-<%= link_to 'Edit', edit_college_benefit_path(@college_benefit) %> |
-<%= link_to 'Back', college_benefits_path %>
+  <p>
+    <b>其他:</b>
+    <%=h @college_benefit.other_be %>
+  </p>
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>

@@ -1,6 +1,6 @@
 class RoleUsersController < ApplicationController
-  protect_from_forgery :except => :index
-  skip_before_filter :verify_authenticity_token
+  #  protect_from_forgery :except => :index
+  #  skip_before_filter :verify_authenticity_token
   # GET /role_users
   # GET /role_users.xml
   def index
@@ -47,14 +47,14 @@ class RoleUsersController < ApplicationController
 
     respond_to do |format|
       if @role_user.save
-        flash[:notice] = 'RoleUser was successfully created.'
+        #        flash[:notice] = 'RoleUser was successfully created.'
         format.html { redirect_to(@role_user) }
         format.xml  { render :xml => @role_user, :status => :created, :location => @role_user }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success",message: "成功创建角色－用户关系！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @role_user.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@role_user.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@role_user.errors.to_json}}"}
       end
     end
   end
@@ -66,14 +66,14 @@ class RoleUsersController < ApplicationController
 
     respond_to do |format|
       if @role_user.update_attributes(params[:role_user])
-        flash[:notice] = 'RoleUser was successfully updated.'
+        #        flash[:notice] = 'RoleUser was successfully updated.'
         format.html { redirect_to(@role_user) }
         format.xml  { head :ok }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success",message: "成功更新角色－用户关系！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @role_user.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@role_user.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@role_user.errors.to_json}}"}
       end
     end
   end
@@ -105,7 +105,7 @@ class RoleUsersController < ApplicationController
       @role_users = RoleUser.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = RoleUser.count
     end
-    return render_json @role_users,count
+    return render_json(@role_users,count)
   end
   
 end

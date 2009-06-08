@@ -1,6 +1,6 @@
 class CollegeBenefitsController < ApplicationController
-  protect_from_forgery :except => :index
-  skip_before_filter :verify_authenticity_token
+#  protect_from_forgery :except => :index
+#  skip_before_filter :verify_authenticity_token
   # GET /college_benefits
   # GET /college_benefits.xml
   def index
@@ -47,14 +47,14 @@ class CollegeBenefitsController < ApplicationController
 
     respond_to do |format|
       if @college_benefit.save
-        flash[:notice] = 'CollegeBenefit was successfully created.'
+#        flash[:notice] = 'CollegeBenefit was successfully created.'
         format.html { redirect_to(@college_benefit) }
         format.xml  { render :xml => @college_benefit, :status => :created, :location => @college_benefit }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功创建学院补贴！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @college_benefit.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@college_benefit.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@college_benefit.errors.to_json}}"}
       end
     end
   end
@@ -66,14 +66,14 @@ class CollegeBenefitsController < ApplicationController
 
     respond_to do |format|
       if @college_benefit.update_attributes(params[:college_benefit])
-        flash[:notice] = 'CollegeBenefit was successfully updated.'
+#        flash[:notice] = 'CollegeBenefit was successfully updated.'
         format.html { redirect_to(@college_benefit) }
         format.xml  { head :ok }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功更新学院补贴！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @college_benefit.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@college_benefit.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@college_benefit.errors.to_json}}"}
       end
     end
   end
@@ -105,6 +105,6 @@ class CollegeBenefitsController < ApplicationController
       @college_benefits = CollegeBenefit.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = CollegeBenefit.count
     end
-    return render_json @users,count
+    return render_json(@users,count)
   end
 end

@@ -47,7 +47,7 @@ class DepartmentsController < ApplicationController
 
     respond_to do |format|
       if @department.save
-        flash[:notice] = 'Department was successfully created.'
+#        flash[:notice] = 'Department was successfully created.'
         format.html { redirect_to(@department) }
         format.xml  { render :xml => @department, :status => :created, :location => @department }
         format.json { render :text => '{status: "success", message: "成功创建部门！"}'}
@@ -66,7 +66,7 @@ class DepartmentsController < ApplicationController
 
     respond_to do |format|
       if @department.update_attributes(params[:department])
-        flash[:notice] = 'Department was successfully updated.'
+#        flash[:notice] = 'Department was successfully updated.'
         format.html { redirect_to(@department) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success",message: "成功更新部门！"}'}
@@ -109,6 +109,6 @@ class DepartmentsController < ApplicationController
       @departments = Department.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = Department.count
     end
-    return render_json @departments,count
+    return render_json(@departments,count)
   end
 end

@@ -47,7 +47,7 @@ class PositionsController < ApplicationController
 
     respond_to do |format|
       if @position.save
-        flash[:notice] = 'Position was successfully created.'
+#        flash[:notice] = 'Position was successfully created.'
         format.html { redirect_to(@position) }
         format.xml  { render :xml => @position, :status => :created, :location => @position }
         format.json { render :text => '{status: "success", message: "成功创建职务！"}'}
@@ -66,7 +66,7 @@ class PositionsController < ApplicationController
 
     respond_to do |format|
       if @position.update_attributes(params[:position])
-        flash[:notice] = 'Position was successfully updated.'
+#        flash[:notice] = 'Position was successfully updated.'
         format.html { redirect_to(@position) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新职务！"}'}
@@ -105,6 +105,6 @@ class PositionsController < ApplicationController
       @positions = Position.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = Position.count
     end
-    return render_json @positions,count
+    return render_json(@positions,count)
   end
 end

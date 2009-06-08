@@ -1,0 +1,32 @@
+<p>
+  <%= f.label :field, "教职工姓名" %>
+  <%= f.select :user_id, users_for_select, {:include_blank => "请选择教职工..." }, :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "岗位工资"%>
+  <%= f.text_field :station_sa, :size => 10, :class => "required"  %>
+</p>
+<p>
+  <%= f.label :field, "职务工资"%>
+  <%= f.text_field :position_sa, :size => 10, :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "岗位津贴"%>
+  <%= f.text_field :station_be, :size => 10, :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "其他国家出台津补贴"%>
+  <%= f.text_field :foreign_be, :size => 10, :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "地方出台津补贴"%>
+  <%= f.text_field :region_be, :size => 10, :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "艰苦边远"%>
+  <%= f.text_field :hard_be, :size => 10, :class => "required" %>
+</p>
+<p>
+  <%= f.label :field, "公改保留补贴"%>
+  <%= f.text_field :stay_be, :size => 10, :class => "required" %>
+</p>

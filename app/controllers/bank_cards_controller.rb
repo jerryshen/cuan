@@ -47,7 +47,7 @@ class BankCardsController < ApplicationController
 
     respond_to do |format|
       if @bank_card.save
-        flash[:notice] = 'BankCard was successfully created.'
+#        flash[:notice] = 'BankCard was successfully created.'
         format.html { redirect_to(@bank_card) }
         format.xml  { render :xml => @bank_card, :status => :created, :location => @bank_card }
         format.json { render :text => '{status: "success", message: "成功创建银行卡！"}'}
@@ -66,7 +66,7 @@ class BankCardsController < ApplicationController
 
     respond_to do |format|
       if @bank_card.update_attributes(params[:bank_card])
-        flash[:notice] = 'BankCard was successfully updated.'
+#        flash[:notice] = 'BankCard was successfully updated.'
         format.html { redirect_to(@bank_card) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新银行卡！"}'}
@@ -105,6 +105,6 @@ class BankCardsController < ApplicationController
       @bank_cards = BankCard.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = BankCard.count
     end
-    return render_json @bank_cards,count
+    return render_json(@bank_cards,count)
   end
 end

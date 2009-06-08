@@ -1,0 +1,2 @@
+module RetiredFeeCuttingRecordsHelper
+end

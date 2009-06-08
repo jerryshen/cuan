@@ -47,7 +47,7 @@ class PageModulesController < ApplicationController
 
     respond_to do |format|
       if @page_module.save
-        flash[:notice] = 'PageModule was successfully created.'
+#        flash[:notice] = 'PageModule was successfully created.'
         format.html { redirect_to(@page_module) }
         format.xml  { render :xml => @page_module, :status => :created, :location => @page_module }
         format.json { render :text => '{status: "success", message: "成功创建页面模块！"}'}
@@ -66,7 +66,7 @@ class PageModulesController < ApplicationController
 
     respond_to do |format|
       if @page_module.update_attributes(params[:page_module])
-        flash[:notice] = 'PageModule was successfully updated.'
+#        flash[:notice] = 'PageModule was successfully updated.'
         format.html { redirect_to(@page_module) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新页面模块！"}'}
@@ -105,6 +105,6 @@ class PageModulesController < ApplicationController
       @page_modules = PageModule.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = PageModule.count
     end
-    return render_json @page_modules,count
+    return render_json(@page_modules,count)
   end
 end

@@ -4,13 +4,19 @@ class Page < ActiveRecord::Base
   has_many :page_roles
   has_many :roles, :through => :page_roles, :class_name => 'Role', :foreign_key => 'role_id'
 
-  #find roles who can view ths page by page name.
+  #find roles who can view the page by page name.
   def self.find_roles_by_name(name)
     self.find(:all, :conditions => ["name like ?","%#{name}%"]).roles
   end
 
   def self.find_roles_by_url(url)
     #to do auto_link
+  end
+
+  def accessable_users
+    users = []
+    self.roles.each{ |r| users += r.users }
+    return users
   end
 
   #列表中实现ID和name的切换显示
@@ -21,5 +27,10 @@ class Page < ActiveRecord::Base
       hash[attrs["id"]] = attrs["name"]
     end
     return hash.to_json
+  end
+
+  #用户是否有访问本页面的权限
+  def accessable? user
+   self.accessable_users.include? user 
   end
 end

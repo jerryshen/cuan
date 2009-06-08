@@ -1,6 +1,6 @@
 class BasicSalaryRecordsController < ApplicationController
-  protect_from_forgery :except => :index
-  skip_before_filter :verify_authenticity_token
+#  protect_from_forgery :except => :index
+#  skip_before_filter :verify_authenticity_token
   # GET /basic_salary_records
   # GET /basic_salary_records.xml
   def index
@@ -51,6 +51,6 @@ class BasicSalaryRecordsController < ApplicationController
       @basic_salary_records = BasicSalaryRecord.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = BasicSalaryRecord.count
     end
-    return render_json @basic_salary_records,count
+    return render_json(@basic_salary_records,count)
   end
 end

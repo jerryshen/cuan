@@ -1,6 +1,6 @@
 class PageRolesController < ApplicationController
-#	protect_from_forgery :except => :index
-#  skip_before_filter :verify_authenticity_token
+  #	protect_from_forgery :except => :index
+  #  skip_before_filter :verify_authenticity_token
   # GET /page_roles
   # GET /page_roles.xml
   def index
@@ -47,7 +47,7 @@ class PageRolesController < ApplicationController
 
     respond_to do |format|
       if @page_role.save
-        flash[:notice] = 'PageRole was successfully created.'
+#        flash[:notice] = 'PageRole was successfully created.'
         format.html { redirect_to(@page_role) }
         format.xml  { render :xml => @page_role, :status => :created, :location => @page_role }
         format.json { render :text => '{status: "success", message: "成功创建页面－角色关系！"}'}
@@ -66,7 +66,7 @@ class PageRolesController < ApplicationController
 
     respond_to do |format|
       if @page_role.update_attributes(params[:page_role])
-        flash[:notice] = 'PageRole was successfully updated.'
+#        flash[:notice] = 'PageRole was successfully updated.'
         format.html { redirect_to(@page_role) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功修改页面－角色关系！"}'}
@@ -105,7 +105,7 @@ class PageRolesController < ApplicationController
       @page_roles = PageRole.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = PageRole.count
     end
-    return render_json @page_roles,count
+    return render_json(@page_roles,count)
   end
   
  

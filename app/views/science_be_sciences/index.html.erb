@@ -1,0 +1,83 @@
+<link href="/javascripts/ext-2.2.1/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/grid.css" media="screen" rel="stylesheet" type="text/css" />
+<%= stylesheet_link_tag "form.css" %>
+<div id="list-view">
+  <form style="margin: 10px 0px;" id="search_form">
+    <label for="search_name">
+      名称：
+    </label>
+    <input type="text" value="" name="search_name" id="search_name"/>
+    <input class="button" type="button" id="btnSearch" value="搜索"/>
+  </form>
+  <div>
+    <div class="nav">
+      <span class="button" id="newItem" onclick="$page.showNewView()"><img  src="/images/icons/new.png"/>新建</span>
+    </div>
+    <div id="grid-wrap">
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag 'ext-2.2.1/adapter/jquery/jquery.js'%>
+<%= javascript_include_tag 'ext-2.2.1/adapter/jquery/ext-jquery-adapter.js'%>
+<%= javascript_include_tag 'ext-2.2.1/ext-all.js'%>
+<%= javascript_include_tag 'ExtListPage.js' %>
+<%= javascript_include_tag 'jquery-validate/lib/jquery.form.js' %>
+<%= javascript_include_tag 'jquery-validate/jquery.validate.js' %>
+<%= javascript_include_tag 'jquery-validate/localization/messages_cn.js' %>
+<%= javascript_include_tag 'AjaxForm.js' %>
+<script>
+  var users = <%= User.to_json%>
+  var getUserName = function(value, p, record){
+    return users[value]
+  }
+  //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
+  // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]}
+  //框[]中的为默认值
+  Ext.onReady(function(){
+    var columns = [{
+        header: "ID",
+        dataIndex: 'id',
+        width: 30,
+        sortable: true,
+        type: "int",
+        resizable: false
+      }, {
+        header: "员工姓名",
+        dataIndex: 'name',
+        sortable: true,
+        renderer : getUserName
+      }, {
+        header: "科研津贴",
+        dataIndex: 'science_be',
+        sortable: true
+      }, {
+        header: "年度",
+        dataIndex: 'year',
+        sortable: true
+      }, {
+        header: "月份",
+        dataIndex: 'month',
+        sortable: true
+      }, {
+        header: "发放日期",
+        dataIndex: 'date',
+        sortable: true
+      }, {
+        header: "是否审核",
+        dataIndex: 'is_verified',
+        type: 'boolean',
+        sortable: true,
+        renderer: function(value, p, record){
+          return value.toString()=="false" ? "未审核" : "已审核"
+        }
+      }]
+    var controllerName = "science_be_sciences";
+    options = {
+      baseUrl: "http://" + window.location.host + "/" + controllerName,
+      gridTitle: "科研处－科研津贴管理列表",
+      newItemLink: "newItem",
+      columns: columns
+    }
+    $page = new ExtListPage(options);
+  })
+</script>

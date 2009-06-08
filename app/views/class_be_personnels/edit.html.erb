@@ -1,0 +1,26 @@
+<% form_for :class_be_personnel, :url => { :action => 'update', :id => @class_be_personnel.id }, :html => { :method => 'put'} do |f| %>
+  <fieldset>
+    <legend>修改课时津贴</legend>
+    <%= f.error_messages %>
+    <p>
+      <%= f.label :field, "学期总课时津贴" %>
+      <%= f.text_field :total_be, :class => "required" %>
+    </p>
+    <p>
+      <%= f.label :field, "学期" %>
+      <%= f.select :term, [[ '选择学期', ''], [ '第一学期', '1' ], [ '第二学期', '2' ], [ '第三学期', '3' ]], :class => "required" %>
+    </p>
+    <p>
+      <%= f.label :field, "月份" %>
+      <%= f.text_field :month, :class => "required" %>
+    </p>
+    <p>
+      <%= f.label :field, "发放日期" %>
+      <%= f.text_field :date %>
+    </p>
+    <p class="bbar">
+      <%= f.submit '更新' %>
+      <input type="button" onclick="$page.showListView()" value="取消" />
+    </p>
+  </fieldset>
+<% end %>

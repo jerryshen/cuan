@@ -1,43 +1,45 @@
-<p>
-  <b>User:</b>
-  <%=h @fee_cutting.user.name %>
-</p>
+<fieldset>
+  <legend>查看[<%= @fee_cutting.user.name if @fee_cutting.user  %>]的扣款信息</legend>
+  <p>
+    <b>教职工:</b>
+    <%=h @fee_cutting.user.name if @fee_cutting.user.name %>
+  </p>
 
-<p>
-  <b>Room fee:</b>
-  <%=h @fee_cutting.room_fee %>
-</p>
+  <p>
+    <b>住房公积金:</b>
+    <%=h @fee_cutting.room_fee %>
+  </p>
 
-<p>
-  <b>Med fee:</b>
-  <%=h @fee_cutting.med_fee %>
-</p>
+  <p>
+    <b>医疗保险:</b>
+    <%=h @fee_cutting.med_fee %>
+  </p>
 
-<p>
-  <b>Job fee:</b>
-  <%=h @fee_cutting.job_fee %>
-</p>
+  <p>
+    <b>失业保险:</b>
+    <%=h @fee_cutting.job_fee %>
+  </p>
 
-<p>
-  <b>Selfedu fee:</b>
-  <%=h @fee_cutting.selfedu_fee %>
-</p>
+  <p>
+    <b>职工个人教育费:</b>
+    <%=h @fee_cutting.selfedu_fee %>
+  </p>
 
-<p>
-  <b>Other fee1:</b>
-  <%=h @fee_cutting.other_fee1 %>
-</p>
+  <p>
+    <b>其他扣款一:</b>
+    <%=h @fee_cutting.other_fee1 %>
+  </p>
 
-<p>
-  <b>Other fee2:</b>
-  <%=h @fee_cutting.other_fee2 %>
-</p>
+  <p>
+    <b>其他扣款二:</b>
+    <%=h @fee_cutting.other_fee2 %>
+  </p>
 
-<p>
-  <b>Other fee3:</b>
-  <%=h @fee_cutting.other_fee3 %>
-</p>
-
-
-<%= link_to 'Edit', edit_fee_cutting_path(@fee_cutting) %> |
-<input type="button" class="button" onclick="$page.showListView(false)" value="取消" />
+  <p>
+    <b>其他扣款三:</b>
+    <%=h @fee_cutting.other_fee3 %>
+  </p>
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>

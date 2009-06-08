@@ -1,6 +1,6 @@
 class RetiredBasicSalariesController < ApplicationController
-  protect_from_forgery :except => :index
-  skip_before_filter :verify_authenticity_token
+#  protect_from_forgery :except => :index
+#  skip_before_filter :verify_authenticity_token
   # GET /retired_basic_salaries
   # GET /retired_basic_salaries.xml
   def index
@@ -47,14 +47,14 @@ class RetiredBasicSalariesController < ApplicationController
 
     respond_to do |format|
       if @retired_basic_salary.save
-        flash[:notice] = 'RetiredBasicSalary was successfully created.'
+#        flash[:notice] = 'RetiredBasicSalary was successfully created.'
         format.html { redirect_to(@retired_basic_salary) }
         format.xml  { render :xml => @retired_basic_salary, :status => :created, :location => @retired_basic_salary }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success",message: "成功添加离退休人员基本工资！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @retired_basic_salary.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@retired_basic_salary.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@retired_basic_salary.errors.to_json}}"}
       end
     end
   end
@@ -66,14 +66,14 @@ class RetiredBasicSalariesController < ApplicationController
 
     respond_to do |format|
       if @retired_basic_salary.update_attributes(params[:retired_basic_salary])
-        flash[:notice] = 'RetiredBasicSalary was successfully updated.'
+#        flash[:notice] = 'RetiredBasicSalary was successfully updated.'
         format.html { redirect_to(@retired_basic_salary) }
         format.xml  { head :ok }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success",message: "成功修改离退休人员基本工资！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @retired_basic_salary.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@retired_basic_salary.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@retired_basic_salary.errors.to_json}}"}
       end
     end
   end
@@ -105,7 +105,7 @@ class RetiredBasicSalariesController < ApplicationController
       @retired_basic_salaries = RetiredBasicSalary.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = RetiredBasicSalary.count
     end
-    return render_json @retired_basic_salaries,count
+    return render_json(@retired_basic_salaries,count)
   end
 
 end

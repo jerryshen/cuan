@@ -16,7 +16,7 @@
   </p>
   <p>
     <%= f.label :field, "页面模块" %>
-    <%= f.select :page_module_id, PageModule.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择页面模块" } %>
+    <%= f.select :page_module_id, PageModule.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择页面模块..." } %>
   </p>
     <p>
     <%= f.label :field, "是否隐藏" %>
