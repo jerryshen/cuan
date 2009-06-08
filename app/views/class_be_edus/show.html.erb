@@ -1,0 +1,30 @@
+<fieldset>
+  <legend>查看课时津贴</legend>
+  <p>
+    <b>员工姓名:</b>
+    <%=h @class_be_edu.user.name if @class_be_edu.user %>
+  </p>
+
+  <p>
+    <b>学期总课时津贴:</b>
+    <%=h @class_be_edu.total_be %>
+  </p>
+
+  <p>
+    <b>学期:</b>
+    <%=h @class_be_edu.term %>
+  </p>
+
+  <p>
+    <b>月份:</b>
+    <%=h @class_be_edu.month %>
+  </p>
+
+  <p>
+    <b>发放日期:</b>
+    <%=h @class_be_edu.date %>
+  </p>
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>

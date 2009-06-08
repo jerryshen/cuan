@@ -30,7 +30,6 @@
   var getUserName = function(value, p, record){
     return users[value]
   }
-
   //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
   // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]}
   //框[]中的为默认值
@@ -44,10 +43,15 @@
         resizable: false
       }, {
         header: "员工姓名",
-        dataIndex: 'user',
+        dataIndex: 'name',
+        sortable: true,
+        renderer : getUserName
+      }, {
+        header: "科研津贴",
+        dataIndex: 'science_be',
         sortable: true
       }, {
-        header: "年份",
+        header: "年度",
         dataIndex: 'year',
         sortable: true
       }, {
@@ -55,22 +59,22 @@
         dataIndex: 'month',
         sortable: true
       }, {
-        header: "其他扣款1",
-        dataIndex: 'other_fee1',
+        header: "发放日期",
+        dataIndex: 'date',
         sortable: true
       }, {
-        header: "其他扣款2",
-        dataIndex: 'other_fee2',
-        sortable: true
-      }, {
-        header: "其他扣款3",
-        dataIndex: 'other_fee3',
-        sortable: true
+        header: "是否审核",
+        dataIndex: 'is_verified',
+        type: 'boolean',
+        sortable: true,
+        renderer: function(value, p, record){
+          return value.toString()=="false" ? "未审核" : "已审核"
+        }
       }]
-    var controllerName = "retired_fee_cutting_records";
+    var controllerName = "science_be_sciences";
     options = {
       baseUrl: "http://" + window.location.host + "/" + controllerName,
-      gridTitle: "离退休人员扣款记录管理列表",
+      gridTitle: "科研处－科研津贴管理列表",
       newItemLink: "newItem",
       columns: columns
     }

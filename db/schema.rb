@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 25) do
+ActiveRecord::Schema.define(:version => 29) do
 
   create_table "assistants", :force => true do |t|
     t.integer  "user_id"
@@ -69,6 +69,19 @@ ActiveRecord::Schema.define(:version => 25) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "class_benefits", :force => true do |t|
+    t.integer  "user_id"
+    t.float    "total_be"
+    t.string   "term"
+    t.integer  "month"
+    t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_verified", :default => false
+  end
+
+  add_index "class_benefits", ["user_id"], :name => "index_class_benefits_on_user_id"
 
   create_table "college_be_records", :force => true do |t|
     t.string   "user"
@@ -263,6 +276,29 @@ ActiveRecord::Schema.define(:version => 25) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "science_benefits", :force => true do |t|
+    t.integer  "user_id"
+    t.float    "science_be"
+    t.string   "year"
+    t.integer  "month"
+    t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_verified", :default => false
+  end
+
+  add_index "science_benefits", ["user_id"], :name => "index_science_benefits_on_user_id"
+
+  create_table "station_position_benefits", :force => true do |t|
+    t.integer  "user_id"
+    t.float    "station_be"
+    t.float    "position_be"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "station_position_benefits", ["user_id"], :name => "index_station_position_benefits_on_user_id"
 
   create_table "titles", :force => true do |t|
     t.string   "name"

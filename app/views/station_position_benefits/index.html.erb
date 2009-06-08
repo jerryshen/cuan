@@ -30,7 +30,6 @@
   var getUserName = function(value, p, record){
     return users[value]
   }
-
   //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
   // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]}
   //框[]中的为默认值
@@ -44,33 +43,22 @@
         resizable: false
       }, {
         header: "员工姓名",
-        dataIndex: 'user',
+        dataIndex: 'user_id',
+        sortable: true,
+        renderer : getUserName
+      }, {
+        header: "岗位津贴",
+        dataIndex: 'station_be',
         sortable: true
       }, {
-        header: "年份",
-        dataIndex: 'year',
-        sortable: true
-      }, {
-        header: "月份",
-        dataIndex: 'month',
-        sortable: true
-      }, {
-        header: "其他扣款1",
-        dataIndex: 'other_fee1',
-        sortable: true
-      }, {
-        header: "其他扣款2",
-        dataIndex: 'other_fee2',
-        sortable: true
-      }, {
-        header: "其他扣款3",
-        dataIndex: 'other_fee3',
+        header: "职务津贴",
+        dataIndex: 'position_be',
         sortable: true
       }]
-    var controllerName = "retired_fee_cutting_records";
+    var controllerName = "station_position_benefits";
     options = {
       baseUrl: "http://" + window.location.host + "/" + controllerName,
-      gridTitle: "离退休人员扣款记录管理列表",
+      gridTitle: "岗位－职务管理列表",
       newItemLink: "newItem",
       columns: columns
     }
