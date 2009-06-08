@@ -1,4 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :class_be_personnels
+
+  map.resources :class_be_edus
+
+  map.resources :science_be_personnels
+
+  map.resources :science_be_sciences
+
+  map.resources :station_position_benefits
+
   map.resources :retired_fee_cutting_records
 
   map.resources :retired_college_be_records
@@ -35,7 +45,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :positions
 
-  map.resources :titles
+#  map.resources :titles
 
   map.resources :departments
 
