@@ -16,7 +16,7 @@
 
             function make_outlook_menu(modules,icon_base_path,item_click){
                 var navmenu = [];
-                var last_expand_id = 0;
+                //var last_expand_id = 0;
                 for (var i = 0, l = modules.length; i < l; i++) {
                     var amodule = modules[i];
                     var submenus = [];
@@ -35,6 +35,7 @@
                     if(i==0)last_expand_id = panel.id;
                     
                     //展开面板前先关闭已经展开的面板
+                    /*
                     panel.on("beforeexpand", function(){
                         if (last_expand_id) {
                             var cmp = Ext.getCmp(last_expand_id);
@@ -45,8 +46,12 @@
                     panel.on("expand", function(panel){
                         last_expand_id = panel.id
                     });
+                    */
 					panel.on("render",function(cmp){
-						cmp.header.on("click",function(){cmp.toggleCollapse()});
+            cmp.header.on("click",function(header){
+              var id = header.getParent().id;
+              Ext.getCmp(id).toggleCollapse()
+            });
 						cmp.header.dom.style.cursor = "pointer";
 					})
 
@@ -80,6 +85,7 @@
                         width: 200,
                         collapsible: true,
                         margins: "0 0 5 5",
+                        layout: "accordion",
                         items: navmenu
                     }, {
                         id: "taskbar",
