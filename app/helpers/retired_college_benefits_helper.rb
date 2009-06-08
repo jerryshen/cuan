@@ -1,0 +1,2 @@
+module RetiredCollegeBenefitsHelper
+end

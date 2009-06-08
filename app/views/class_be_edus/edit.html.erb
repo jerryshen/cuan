@@ -1,0 +1,10 @@
+<% form_for :class_be_edu, :url => { :action => 'update', :id => @class_be_edu.id }, :html => { :method => 'put'} do |f| %>
+  <fieldset>
+    <legend>修改课时津贴</legend>
+    <%= render :partial => 'form', :locals => { :f => f }  %>
+    <p class="bbar">
+      <%= f.submit '更新' %>
+      <input type="button" onclick="$page.showListView()" value="取消" />
+    </p>
+  </fieldset>
+<% end %>

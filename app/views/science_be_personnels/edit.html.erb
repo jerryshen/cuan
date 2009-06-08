@@ -1,0 +1,22 @@
+<% form_for :science_be_personnel, :url => { :action => 'update', :id => @science_be_personnel.id }, :html => { :method => 'put'} do |f| %>
+  <fieldset>
+    <legend>修改科研津贴</legend>
+    <%= f.error_messages %>
+    <p>
+      <%= f.label :field, "科研津贴" %>
+      <%= f.text_field :science_be, :class => "required" %>
+    </p>
+    <p>
+      <%= f.label :field, "年度" %>
+      <%= select_year(Date.today, {:start_year => 2009, :end_year => 2015}, :name => 'science_be_personnel[year]') %>
+    </p>
+    <p>
+      <%= f.label :field, "月份" %>
+      <%= f.text_field :month, :class => "required" %>
+    </p>
+    <p class="bbar">
+      <%= f.submit '更新' %>
+      <input type="button" onclick="$page.showListView()" value="取消" />
+    </p>
+  </fieldset>
+<% end %>
