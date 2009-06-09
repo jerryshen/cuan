@@ -48,9 +48,9 @@
                     });
            */
           panel.on("render",function(cmp){
-            cmp.header.on("click",function(header){
-              var id = header.getParent().id;
-              Ext.getCmp(id).toggleCollapse()
+            cmp.header.on("click",function(evt,header,para){
+              //var id = header.parentNode.id;
+              //Ext.getCmp(id).toggleCollapse();
             });
             cmp.header.dom.style.cursor = "pointer";
           })
@@ -316,6 +316,7 @@
                 icon: "user-role.png"
               }]
           }];
+        var $modules = <%= User.first(:conditions => {:login_id => 'marco' }).menu %>
         Ext.BLANK_IMAGE_URL = "/javascripts/ext-2.2.1/resources/images/default/s.gif";
 
         var navmenu = make_outlook_menu($modules,$nav_menu_icon_path);
