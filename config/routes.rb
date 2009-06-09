@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :station_position_benefit_records
+
   map.resources :class_be_personnels
 
   map.resources :class_be_edus
