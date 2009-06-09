@@ -23,10 +23,6 @@
 <%= javascript_include_tag 'jquery-validate/localization/messages_cn.js' %>
 <%= javascript_include_tag 'AjaxForm.js' %>
 <script>
-  var users = <%= User.to_json%>
-  var getUserName = function(value, p, record){
-    return users[value]
-  }
   //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
   // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]}
   //框[]中的为默认值
@@ -40,30 +36,29 @@
         resizable: false
       }, {
         header: "员工姓名",
-        dataIndex: 'name',
-        sortable: true,
-        renderer : getUserName
-      }, {
-        header: "学期总课时津贴",
-        dataIndex: 'total_be',
+        dataIndex: 'user',
         sortable: true
       }, {
-        header: "学期",
-        dataIndex: 'term',
+        header: "年度",
+        dataIndex: 'year',
         sortable: true
       }, {
-        header: "计算月",
+        header: "月份",
         dataIndex: 'month',
         sortable: true
       }, {
-        header: "发放日期",
-        dataIndex: 'date',
+        header: "岗位津贴",
+        dataIndex: 'station_be',
+        sortable: true
+      }, {
+        header: "职务津贴",
+        dataIndex: 'position_be',
         sortable: true
       }]
-    var controllerName = "class_be_personnels";
+    var controllerName = "station_position_benefit_records";
     options = {
       baseUrl: "http://" + window.location.host + "/" + controllerName,
-      gridTitle: "人事－课时津贴管理列表",
+      gridTitle: "岗位－职务津贴记录管理列表",
       newItemLink: "newItem",
       columns: columns
     }

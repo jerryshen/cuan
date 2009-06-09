@@ -1,0 +1,31 @@
+<fieldset>
+  <legend>查看员工[<%= @station_position_benefit_record.user %>]的岗位－职务津贴</legend>
+  <p>
+    <b>离退休人员姓名:</b>
+    <%=h @station_position_benefit_record.user %>
+  </p>
+
+  <p>
+    <b>年度:</b>
+    <%=h @station_position_benefit_record.year %>
+  </p>
+
+  <p>
+    <b>月份:</b>
+    <%=h @station_position_benefit_record.month %>
+  </p>
+
+  <p>
+    <b>岗位津贴:</b>
+    <%=h @station_position_benefit_record.station_be %>
+  </p>
+
+  <p>
+    <b>职务津贴:</b>
+    <%=h @station_position_benefit_record.position_be  %>
+  </p>
+
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>

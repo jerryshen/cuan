@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 29) do
+ActiveRecord::Schema.define(:version => 31) do
 
   create_table "assistants", :force => true do |t|
     t.integer  "user_id"
@@ -289,6 +289,16 @@ ActiveRecord::Schema.define(:version => 29) do
   end
 
   add_index "science_benefits", ["user_id"], :name => "index_science_benefits_on_user_id"
+
+  create_table "station_position_benefit_records", :force => true do |t|
+    t.string   "user"
+    t.string   "year"
+    t.string   "month"
+    t.float    "station_be"
+    t.float    "position_be"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "station_position_benefits", :force => true do |t|
     t.integer  "user_id"

@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
     pages.each do | p |
       m = p.page_module
       unless menu_modules.find_index{ |menu_m| menu_m.id == m.id }
-        menu_modules << MenuModule.new(m, pages.collect{|p| p if(p.page_module == m && !p.hidden)} ) 
+        menu_modules << MenuModule.new(m, pages.collect{|p| p if(p.page_module == m && !p.hidden)}.compact! ) 
       end
     end
     menu_modules.to_json

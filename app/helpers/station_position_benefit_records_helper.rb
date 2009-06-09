@@ -1,0 +1,2 @@
+module StationPositionBenefitRecordsHelper
+end
