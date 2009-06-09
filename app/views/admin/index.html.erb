@@ -48,10 +48,10 @@
                     });
            */
           panel.on("render",function(cmp){
-            cmp.header.on("click",function(evt,header,para){
+            //cmp.header.on("click",function(evt,header,para){
               //var id = header.parentNode.id;
               //Ext.getCmp(id).toggleCollapse();
-            });
+           //});
             cmp.header.dom.style.cursor = "pointer";
           })
 
@@ -183,7 +183,7 @@
             pages: [{
                 name: "基本员工信息",
                 url: "/users",
-                icon: "user.png"
+                icon: "userinfo.png"
               },{
                 name: "辅导员信息",
                 url: "/assistants",
@@ -195,11 +195,11 @@
               },{
                 name: "职称",
                 url: "/titles",
-                icon: "department.png"
+                icon: "title.png"
               },{
                 name: "职务",
                 url: "/positions",
-                icon: "department.png"
+                icon: "position.png"
               },{
                 name: "发卡银行",
                 url: "/banks",
@@ -214,23 +214,23 @@
             name: "权限管理",
             icon: "rank",
             pages: [{
-                name: "页面模块",
+                name: "模块",
                 url: "/page_modules",
-                icon: "role.png"
+                icon: "module.png"
               },{
-                name: "页面",
+                name: "功能",
                 url: "/pages",
-                icon: "role.png"
+                icon: "page.png"
               },{
                 name: "角色",
                 url: "/roles",
                 icon: "role.png"
               }, {
-                name: "页面-角色",
+                name: "角色权限分配",
                 url: "/page_roles",
-                icon: "role-page.png"
+                icon: "range.png"
               }, {
-                name: "角色-用户",
+                name: "用户角色设定",
                 url: "/role_users",
                 icon: "user-role.png"
               }]

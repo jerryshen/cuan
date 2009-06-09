@@ -3,11 +3,15 @@
     <legend>修改页面模块</legend>
     <%= f.error_messages %>
     <p>
-      <%= f.label :field, "名称" %>
+      <%= f.label :name, "名称" %>
       <%= f.text_field :name, :class => "required" %>
     </p>
     <p>
-      <%= f.label :field, "描述" %>
+      <%= f.label :index, "显示顺序" %>
+      <%= f.text_field :index %>
+    </p>
+    <p>
+      <%= f.label :description, "描述" %>
       <%= f.text_area :description %>
     </p>
     <p class="bbar">

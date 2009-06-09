@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   end
 
   class MenuModule
-    attr_accessor :id, :name, :icon, :pages
+    attr_accessor :id, :name, :icon, :pages, :index
 
     class MenuPage
       attr_accessor :id, :name, :url, :icon
@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
       @id = page_module.id
       @name = page_module.name
       @icon = page_module.icon
+      @index = page_module.index
       @pages = []
       pages.each{ |p| @pages << MenuPage.new(p) }
     end
@@ -59,6 +60,7 @@ class User < ActiveRecord::Base
         menu_modules << MenuModule.new(m, pages.collect{|p| p if(p.page_module == m && !p.hidden)}.compact! ) 
       end
     end
+    menu_modules.sort!{|x,y| x.index <=> y.index}
     menu_modules.to_json
   end
 end

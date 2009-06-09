@@ -3,23 +3,27 @@
   <legend>新建系部</legend>
   <%= f.error_messages %>
   <p>
-    <%= f.label :field, "名称" %>
+    <%= f.label :name, "名称" %>
     <%= f.text_field :name, :class => "required" %>
   </p>
     <p>
-    <%= f.label :field, "功能" %>
+    <%= f.label :function, "功能" %>
     <%= f.text_area :function, :rows => 10 %>
   </p>
   <p>
-    <%= f.label :field, "链接" %>
+    <%= f.label :url, "链接" %>
     <%= f.text_field :url %>
   </p>
   <p>
-    <%= f.label :field, "页面模块" %>
+    <%= f.label :page_module_id, "页面模块" %>
     <%= f.select :page_module_id, PageModule.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择页面模块..." } %>
   </p>
-    <p>
-    <%= f.label :field, "是否隐藏" %>
+  <p>
+    <%= f.label :icon, "图标" %>
+    <%= f.text_field :icon %>
+  </p>
+  <p>
+    <%= f.label :hidden, "是否隐藏" %>
     <%= f.check_box :hidden %>
   </p>
   <p class="bbar">

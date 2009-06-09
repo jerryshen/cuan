@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 31) do
+ActiveRecord::Schema.define(:version => 32) do
 
   create_table "assistants", :force => true do |t|
     t.integer  "user_id"
@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(:version => 31) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "icon"
+    t.integer  "index",       :default => 1
   end
 
   create_table "page_roles", :force => true do |t|
