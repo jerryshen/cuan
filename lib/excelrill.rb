@@ -23,7 +23,7 @@ module ExcelRill
 		return data
 	end
 
-	#keys["×Ö¶Î1","×Ö¶Î2","×Ö¶Î3"]
+	#keys["ï¿½Ö¶ï¿½1","ï¿½Ö¶ï¿½2","ï¿½Ö¶ï¿½3"]
 	def self.convert_to_hash(data,keys)
 		hashdata = []
 		data.each_index do |row|
@@ -50,7 +50,7 @@ module ExcelRill
 		  sheet_data = parse_sheet(worksheet,option[:data_area])
 		  hash_data = convert_to_hash(sheet_data,option[:keys])
 		rescue
-		  #´¦Àí´íÎó
+		  #ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		ensure
 		  excel.Workbooks.Close
 		  excel.Quit
@@ -58,6 +58,10 @@ module ExcelRill
 		return hash_data
 	end
 end
+
+=begin 
+#example
 file_path = "E:\\9.xls"
-data=ExcelRill::convert_xls_to_hash(file_path,{:data_area=>{:start_row=>2,:end_column=>-22},:keys=>"ÐÕÃû	ÈÕÆÚ	¸ÚÎ»¹¤×Ê	Ð½¼¶¹¤×Ê	¼è¿à±ßÔ¶µØÇø½òÌù	¹¤¸Ä±£Áô²¹Ìù".split(" ")  })
+data=ExcelRill::convert_xls_to_hash(file_path,{:data_area=>{:start_row=>2,:end_column=>-22},:keys=>"ï¿½ï¿½ï¿½ï¿½	ï¿½ï¿½ï¿½ï¿½	ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½	Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½".split(" ")  })
 puts data
+=end
