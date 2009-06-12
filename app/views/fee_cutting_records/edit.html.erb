@@ -1,9 +1,10 @@
-<% form_for(@bank) do |f| %>
+<% form_for(@fee_cutting_record) do |f| %>
   <fieldset>
-    <legend>新建发卡银行</legend>
+    <legend>修改扣款记录</legend>
+    <%= f.error_messages %>
     <%= render :partial => 'form', :locals => { :f => f }  %>
     <p class="bbar">
-      <%= f.submit '保存' %>
+      <%= f.submit '更新' %>
       <input type="button" onclick="$page.showListView()" value="取消" />
     </p>
   </fieldset>

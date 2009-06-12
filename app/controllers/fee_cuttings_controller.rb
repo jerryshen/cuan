@@ -54,7 +54,7 @@ class FeeCuttingsController < ApplicationController
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @fee_cutting.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@department.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@fee_cutting.errors.to_json}}"}
       end
     end
   end
@@ -73,7 +73,7 @@ class FeeCuttingsController < ApplicationController
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @fee_cutting.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@department.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@fee_cutting.errors.to_json}}"}
       end
     end
   end

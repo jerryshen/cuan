@@ -1,13 +1,13 @@
 <%= f.error_messages %>
 <p>
-  <%= f.label :field, "学期总课时津贴" %>
+  <%= f.label :total_be, "学期总课时津贴" %>
   <%= f.text_field :total_be, :class => "required" %>
 </p>
 <p>
-  <%= f.label :field, "学期" %>
+  <%= f.label :term, "学期" %>
   <%= f.select :term, [[ '选择学期', ''], [ '第一学期', '1' ], [ '第二学期', '2' ], [ '第三学期', '3' ]], :class => "required" %>
 </p>
 <p>
-  <%= f.label :field, "计算月" %>
+  <%= f.label :month, "计算月" %>
   <%= f.text_field :month, :class => "required" %>
 </p>

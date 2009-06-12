@@ -1,6 +1,6 @@
 class FeeCuttingRecordsController < ApplicationController
-#  protect_from_forgery :except => :index
-#  skip_before_filter :verify_authenticity_token
+  #  protect_from_forgery :except => :index
+  #  skip_before_filter :verify_authenticity_token
   # GET /fee_cutting_records
   # GET /fee_cutting_records.xml
   def index
@@ -22,6 +22,60 @@ class FeeCuttingRecordsController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @fee_cutting_record }
 
+    end
+  end
+
+  # GET /fee_cutting_records/new
+  # GET /fee_cutting_records/new.xml
+  def new
+    @fee_cutting_record = FeeCuttingRecord.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @fee_cutting_record }
+    end
+  end
+
+  # GET /fee_cutting_records/1/edit
+  def edit
+    @fee_cutting_record = FeeCuttingRecord.find(params[:id])
+  end
+
+  # POST /fee_cutting_records
+  # POST /fee_cutting_records.xml
+  def create
+    @fee_cutting_record = FeeCuttingRecord.new(params[:fee_cutting])
+
+    respond_to do |format|
+      if @fee_cutting_record.save
+        #        flash[:notice] = 'FeeCutting was successfully created.'
+        format.html { redirect_to(@fee_cutting_record) }
+        format.xml  { render :xml => @fee_cutting_record, :status => :created, :location => @fee_cutting_record }
+        format.json { render :text => '{status: "success", message: "成功创建扣款！"}'}
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @fee_cutting_record.errors, :status => :unprocessable_entity }
+        format.json { render :text => "{status: 'failed', error:#{@fee_cutting_record.errors.to_json}}"}
+      end
+    end
+  end
+
+  # PUT /fee_cutting_records/1
+  # PUT /fee_cutting_records/1.xml
+  def update
+    @fee_cutting_record = FeeCuttingRecord.find(params[:id])
+
+    respond_to do |format|
+      if @fee_cutting_record.update_attributes(params[:fee_cutting])
+        #        flash[:notice] = 'FeeCutting was successfully updated.'
+        format.html { redirect_to(@fee_cutting_record) }
+        format.xml  { head :ok }
+        format.json { render :text => '{status: "success", message: "成功更新扣款！"}'}
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @fee_cutting_record.errors, :status => :unprocessable_entity }
+        format.json { render :text => "{status: 'failed', error:#{@fee_cutting_record.errors.to_json}}"}
+      end
     end
   end
 

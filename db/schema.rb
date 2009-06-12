@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 32) do
+ActiveRecord::Schema.define(:version => 33) do
 
   create_table "assistants", :force => true do |t|
     t.integer  "user_id"
@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(:version => 32) do
     t.float    "self_tax"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "net_fee"
   end
 
   create_table "fee_cuttings", :force => true do |t|
@@ -145,6 +146,8 @@ ActiveRecord::Schema.define(:version => 32) do
     t.float    "other_fee3"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "net_fee"
+    t.float    "elc_fee"
   end
 
   add_index "fee_cuttings", ["user_id"], :name => "index_fee_cuttings_on_user_id"
