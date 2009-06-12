@@ -1,17 +1,22 @@
 require 'win32ole'
 module ExcelRill
-	def self.parse_sheet(sheet, option)    
-		sheet.Select
+	def self.get_area_data(sheet, option)    
 		rows = sheet.UsedRange.Rows.count
 		cols = sheet.UsedRange.columns.count
 
 		default = {:start_row => 1,:start_column=> 1, :end_row => -1, :end_column => -1}
 		option = default.merge!(option)
 
+    raise "Êı¾İÇøÓò·¶Î§´íÎó£º¿ªÊ¼ĞĞºÅ±ØĞë´óÓÚ0" unless option[:start_row] > 0
+    raise "Êı¾İÇøÓò·¶Î§´íÎó£º¿ªÊ¼ÁĞºÅ±ØĞë´óÓÚ0" unless option[:start_column] > 0
+
 		startRow = option[:start_row] 
 		startCol = option[:start_column] 
 		endRow = rows + option[:end_row] +1 
 		endCol = cols + option[:end_column] + 1
+
+    raise "Êı¾İÇøÓò·¶Î§´íÎó£º½áÊøĞĞºÅ#{endROw}´óÓÚÆğÊ¼ĞĞºÅ#{startRow}" unless endRow >= startRow
+    raise "Êı¾İÇøÓò·¶Î§´íÎó£º½áÊøÁĞºÅ#{endCol}´óÓÚÆğÊ¼ÁĞºÅ#{startCol}" unless endCol >= startCol
 
 		data = []
 		for row in startRow..endRow
@@ -23,45 +28,153 @@ module ExcelRill
 		return data
 	end
 
-	#keys["ï¿½Ö¶ï¿½1","ï¿½Ö¶ï¿½2","ï¿½Ö¶ï¿½3"]
 	def self.convert_to_hash(data,keys)
 		hashdata = []
 		data.each_index do |row|
 		  hashRow = hashdata[row] = {}
 		  dataRow = data[row]
 		  dataRow.each_index do |col|
-        hashRow[keys[col]] = dataRow[col]
+        if key = keys[col]
+          hashRow[key] = dataRow[col]
+        else
+          raise "µÚ#{col}ÁĞµÄkey²»´æÔÚ"
+        end
 		  end
 		end
 		return hashdata
 	end
 
-	def self.convert_xls_to_hash(file_path,option)
-		default = {:sheet_index => 1,:keys=> []}
-		option = default.merge(option)
-    
-		hash_data = []
-		excel = WIN32OLE::new('excel.Application')
+  #»ñÈ¡Ä³¸öµ¥Ôª¸ñµÄÖµ
+  def self.get_cell_value(sheet,row,col)
+    return sheet.Cells(row,col).value
+  end
+
+  def self.parse_excel(file_path,blocks)
+    raise "ÎÄ¼ş²»´æÔÚ" unless File.exist?(file_path)
+    excel = WIN32OLE::new('excel.Application')
 		excel.visible = false     # in case you want to see what happens 
 		excel.Application.DisplayAlerts = false
 		workbook = excel.Workbooks.Open(file_path)
     begin
-		  worksheet = workbook.Worksheets(option[:sheet_index])
-		  sheet_data = parse_sheet(worksheet,option[:data_area])
-		  hash_data = convert_to_hash(sheet_data,option[:keys])
-		rescue
-		  #ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+      blocks.each{ |proc| proc.call(workbook)}
+		rescue => error
+      raise error
 		ensure
 		  excel.Workbooks.Close
 		  excel.Quit
 		end
-		return hash_data
-	end
+  end
+
+
+  def self.parse_sheet(workbook,index,blocks)
+    sheet = workbook.Worksheets(index)
+    sheet.Select
+    blocks.each{|proc| proc.call(sheet)}
+    sheet = nil
+  end
 end
 
-=begin 
-#example
-file_path = "E:\\9.xls"
-data=ExcelRill::convert_xls_to_hash(file_path,{:data_area=>{:start_row=>2,:end_column=>-22},:keys=>"ï¿½ï¿½ï¿½ï¿½	ï¿½ï¿½ï¿½ï¿½	ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½	Ğ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½".split(" ")  })
-puts data
-=end
+def import_salary(file_path,option)
+		default = {:sheet_index => 1,:keys=> [], :month_cell => {:row => 1,:col => 1}}
+		option = default.merge(option)
+    raise "¹¤×÷±íºÅ±ØĞë´óÓÚ0" unless option[:sheet_index] > 0
+
+		hash_data = [] 
+    proc_workbook = lambda do |workbook|
+      row_data = []
+      procs = []
+      get_salary_detail = lambda  do |sheet|
+        row_data = ExcelRill.get_area_data(sheet,option[:data_area])
+      end
+      procs << get_salary_detail
+     
+      if option[:month_cell]
+        year_month = ''
+        get_year_month = lambda do |sheet|
+          pos = option[:month_cell]
+          year_month = ExcelRill.get_cell_value(sheet,pos[:row],pos[:col])
+        end
+        procs << get_year_month
+      end
+      ExcelRill.parse_sheet(workbook,option[:sheet_index],procs)
+
+      hash_data = ExcelRill.convert_to_hash(row_data,option[:keys])
+      
+      if option[:month_cell] && !year_month.empty?
+        year_month = year_month[-7..-1].split('-')
+        if(year_month.length == 2)
+          year = year_month[0][-4..-1]
+          month = year_month[1]
+          hash_data.each do |row|
+            row[:year] = year
+            row[:month] = month
+          end
+        end
+      end
+      
+    end
+    ExcelRill.parse_excel(file_path,[proc_workbook])
+    return hash_data
+  end
+  
+def print_data(data)
+  data.each_index do |i|
+    puts 
+    puts "----µÚ#{i+1}ÌõÊı¾İ----"
+    
+    data[i].each_key do |key|
+      puts "#{key}: #{data[i][key]}"
+    end
+  end
+end
+
+def import_lixu_renyuan_gongzi
+  option = {:data_area=>{:start_row=>5,:start_column=>2}}
+  option[:sheet_index]=2
+  option[:keys]= %w(ĞÕÃû	ÔÂ»ù±¾ÀëĞİ·Ñ	¹¤¸Ä±£Áô²¹Ìù_93Äê	ÆäËû¹ú¼Ò³öÌ¨½ò²¹Ìù	µØ·½³öÌ¨½ò²¹Ìù	²¹·¢¹¤×Ê	¿ÛË®·Ñ	Ó¦·¢¹¤×Ê	Ó¦¿ÛÏî	Êµ·¢¹¤×Ê)
+  data=import_salary("D:/My Documents/git/cuan/doc/xls/5ÔÂÀëĞİÈËÔ±¹¤×Ê.xls",option)
+  print_data(data)
+end
+
+
+def import_zaizi_xueyuan_gongzi
+  option = {:data_area=>{:start_row=>2,:start_column=>3}}
+  option[:month_cell]=nil
+  option[:sheet_index]=1
+  option[:keys]= %w(ĞÕÃû	ÈÕÆÚ	¸ÚÎ»¹¤×Ê	Ğ½¼¶¹¤×Ê	¼è¿à±ßÔ¶µØÇø½òÌù	¹¤¸Ä±£Áô²¹Ìù	ÆäËû¹ú¼Ò³öÌ¨½òÌù	µØ·½³öÌ¨½òÌù	¿Û·¢¹¤×Ê	²¹·¢¹¤×Ê	Éú»î²¹Ìù	²¹Ìù²¹²î	»î¹¤×Ê²¹²î	µçÊÓ²¹Ìù	×¤ÈØ²¹Ìù	ÆäËû1	Ó¦·¢¹¤×Ê	×¡·¿¹«»ı½ğ	Ö°¹¤Ò½ÁÆ±£ÏÕ·Ñ	Ö°¹¤¸öÈË½ÌÓı·Ñ	¸öÈËËùµÃË°	¿ÛË®µç·Ñ	¿ÛÊ§Òµ±£ÏÕ·Ñ	ÆäËû¿Û¿îÒ»	ÆäËû¿Û¿î¶ş	ÆäËû¿Û¿îÈı	Êµ·¢¹¤×Ê)
+  data=import_salary("D:/My Documents/git/cuan/doc/xls/09Äê5ÔÂÔÚÖ°Ñ§Ôº¹¤×Ê.xls",option)
+  print_data(data)  
+end
+
+#!!!not over
+def import_tuixiu_renyuan_gongzi
+  option = {:data_area=>{:start_row=>7,:start_column=>2}}
+  option[:sheet_index]=2
+  option[:keys]= %w(ĞÕÃû	ÔÂ»ù±¾ÍËĞİ·Ñ	¹¤¸Ä±£Áô²¹Ìù_93Äê	ÆäËû¹ú¼Ò³öÌ¨½ò²¹Ìù	µØ·½³öÌ¨½ò²¹Ìù	¿ÛË®·Ñ	ÆäËû¿Û¿î¶ş	ÆäËû¿Û¿îÈı	Ó¦·¢¹¤×Ê	Ó¦¿ÛÏî	Êµ·¢¹¤×Ê)
+  data=import_salary("D:/My Documents/git/cuan/doc/xls/5ÔÂÍËĞİÈËÔ±¹¤×Ê.xls",option)
+  print_data(data)  
+end
+
+
+def import_tuixiu_renyuan_xueyuan_gongzi
+  option = {:data_area=>{:start_row=>2,:start_column=>2}}
+  option[:month_cell]=nil
+  option[:sheet_index]=1
+  option[:keys]= %w(ĞÕÃû	ÈÕÆÚ	²¹Ìù²¹²î	µçÊÓ²¹Ìù	×¤ÈØ²¹Ìù	ÆäËûÒ»	ÆäËû¶ş	ÆäËûÈı	¿ÛË®µç·Ñ	ÆäËû¿Û¿îÒ»	ÆäËû¿Û¿î¶ş	ÆäËû¿Û¿îÈı	Êµ·¢½ğ¶î)
+  data=import_salary("D:/My Documents/git/cuan/doc/xls/09Äê5ÔÂÍËĞİÈËÔ±Ñ§Ôº¹¤×Ê.xls",option)
+  print_data(data)  
+end
+
+def import_caizheng_zaizi_gongzi_beifen
+  option = {:data_area=>{:start_row=>4,:start_column=>2}}
+  option[:sheet_index]=1
+  option[:keys]= %w(ĞÕÃû	¸ÚÎ»¹¤×Ê	¼¼ÊõµÈ¼¶£¨Ö°Îñ£©¹¤×Ê	¸ÚÎ»½òÌù	ÆäËû¹ú¼Ò³öÌ¨½ò²¹Ìù	µØ·½³öÌ¨½ò²¹Ìù	²¹·¢¹¤×Ê	¿Û×¡·¿¹«»ı½ğ	¿ÛÖ°¹¤Ò½ÁÆ±£ÏÕ·Ñ	¿ÛË®·Ñ	¿ÛÊ§Òµ±£ÏÕ	ÆäËû¿Û¿îÒ»	ÆäËû¿Û¿î¶ş	ÆäËû¿Û¿îÈı	Ó¦·¢¹¤×Ê	Ó¦¿ÛÏî	Êµ·¢¹¤×Ê)
+  data=import_salary("D:/My Documents/git/cuan/doc/xls/5ÔÂ²ÆÕşÔÚÖ°¹¤×Ê±¸·İ.xls",option)
+  print_data(data)  
+end
+
+#~ import_lixu_renyuan_gongzi
+#~ import_zaizi_xueyuan_gongzi
+#~ import_tuixiu_renyuan_gongzi
+#~ import_tuixiu_renyuan_xueyuan_gongzi
+#~ import_caizheng_zaizi_gongzi_beifen
