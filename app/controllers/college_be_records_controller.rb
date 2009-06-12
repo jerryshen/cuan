@@ -1,6 +1,6 @@
 class CollegeBeRecordsController < ApplicationController
-  protect_from_forgery :except => :index
-  skip_before_filter :verify_authenticity_token
+  #  protect_from_forgery :except => :index
+  #  skip_before_filter :verify_authenticity_token
   # GET /college_be_records
   # GET /college_be_records.xml
   def index
@@ -47,14 +47,14 @@ class CollegeBeRecordsController < ApplicationController
 
     respond_to do |format|
       if @college_be_record.save
-#        flash[:notice] = 'CollegeBeRecord was successfully created.'
+        #        flash[:notice] = 'CollegeBeRecord was successfully created.'
         format.html { redirect_to(@college_be_record) }
         format.xml  { render :xml => @college_be_record, :status => :created, :location => @college_be_record }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功创建学院补贴记录！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @college_be_record.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@college_be_record.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@college_be_record.errors.to_json}}"}
       end
     end
   end
@@ -66,14 +66,14 @@ class CollegeBeRecordsController < ApplicationController
 
     respond_to do |format|
       if @college_be_record.update_attributes(params[:college_be_record])
-#        flash[:notice] = 'CollegeBeRecord was successfully updated.'
+        #        flash[:notice] = 'CollegeBeRecord was successfully updated.'
         format.html { redirect_to(@college_be_record) }
         format.xml  { head :ok }
-        format.json { render :text => '{status: "success"}'}
+        format.json { render :text => '{status: "success", message: "成功修改学院补贴记录记录！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @college_be_record.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@college_be_record.errors}'}"}
+        format.json { render :text => "{status: 'failed', error:#{@college_be_record.errors.to_json}}"}
       end
     end
   end

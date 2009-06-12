@@ -2,14 +2,18 @@
 <link href="/stylesheets/grid.css" media="screen" rel="stylesheet" type="text/css" />
 <%= stylesheet_link_tag "form.css" %>
 <div id="list-view">
-  <form style="margin: 10px 0px;" id="search_form">
-    <label for="search_name">
-      姓名：
-    </label>
-    <input type="text" value="" name="search_name" id="search_name"/>
-    <input class="button" type="button" id="btnSearch" value="搜索"/>
-  </form>
+<form style="margin: 10px 0px;" id="search_form">
+  <label for="search_name">
+    姓名：
+  </label>
+  <input type="text" value="" name="search_name" id="search_name"/>
+  <input class="button" type="button" id="btnSearch" value="搜索"/>
+</form>
+<div>
   <div>
+    <div class="nav">
+      <span class="button" id="newItem" onclick="$page.showNewView()"><img  src="/images/icons/new.png"/>新建</span>
+    </div>
     <div id="grid-wrap">
     </div>
   </div>

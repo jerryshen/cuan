@@ -1,6 +1,14 @@
 <p>
-  <%= f.label :user_id, "教职工姓名" %>
-  <%= f.select :user_id, users_for_select, {:include_blank => "请选择教职工..." }, :class => "required" %>
+  <%= f.label :user, "员工姓名"%>
+  <%= f.text_field :user, :size => 10, :class => "required"  %>
+</p>
+<p>
+  <%= f.label :year, "年度"%>
+  <%= f.text_field :year, :size => 10, :class => "required"  %>
+</p>
+<p>
+  <%= f.label :month, "月份"%>
+  <%= f.text_field :month, :size => 10, :class => "required"  %>
 </p>
 <p>
   <%= f.label :station_sa, "岗位工资"%>
@@ -21,6 +29,10 @@
 <p>
   <%= f.label :region_be, "地方出台津补贴"%>
   <%= f.text_field :region_be, :size => 10, :class => "required" %>
+</p>
+<p>
+  <%= f.label :add_sa, "补发工资"%>
+  <%= f.text_field :add_sa, :size => 10  %>
 </p>
 <p>
   <%= f.label :hard_be, "艰苦边远"%>

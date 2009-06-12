@@ -1,7 +1,15 @@
 <%= f.error_messages %>
 <p>
-  <%= f.label :user_id, "教职工姓名" %>
-  <%= f.select :user_id, users_for_select, {:include_blank => "请选择教职工..." }, :class => "required" %>
+  <%= f.label :user, "员工姓名"%>
+  <%= f.text_field :user, :size => 10, :class => "required"  %>
+</p>
+<p>
+  <%= f.label :year, "年份"%>
+  <%= f.text_field :year, :size => 10, :class => "required"  %>
+</p>
+<p>
+  <%= f.label :month, "月份"%>
+  <%= f.text_field :month, :size => 10, :class => "required"  %>
 </p>
 <p>
   <%= f.label :life_be, "生活补贴"%>

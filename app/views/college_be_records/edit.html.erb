@@ -1,7 +1,7 @@
-<% form_for(@bank) do |f| %>
+<% form_for(@college_be_record) do |f| %>
   <fieldset>
-    <legend>修改发卡银行</legend>
-    <%= render :partial => 'form', :locals => { :f => f }  %>
+    <legend>修改学院补贴记录</legend>
+    <%= render :partial => 'form', :locals => { :f => f } %>
     <p class="bbar">
       <%= f.submit '更新' %>
       <input type="button" onclick="$page.showListView()" value="取消" />

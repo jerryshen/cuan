@@ -1,7 +1,7 @@
-<% form_for(@bank) do |f| %>
+<% form_for(@basic_salary_record) do |f| %>
   <fieldset>
-    <legend>新建发卡银行</legend>
-    <%= render :partial => 'form', :locals => { :f => f }  %>
+    <legend>添加教职工基本工资记录</legend>
+    <%= render :partial => 'form', :locals => {:f => f } %>
     <p class="bbar">
       <%= f.submit '保存' %>
       <input type="button" onclick="$page.showListView()" value="取消" />
