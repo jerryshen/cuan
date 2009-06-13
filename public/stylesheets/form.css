@@ -6,6 +6,7 @@ fieldset {
   background:#fff;
   text-align: left;
   font-size: 12px;
+  line-height: 18px;
 }
 
 fieldset * {
@@ -69,6 +70,12 @@ fieldset label.item{
   width: auto;
   text-align: left;
   color: #666666;
+}
+
+fieldset label.vitem{
+  width: auto;
+  display: block;
+  clear: both;
 }
 
 fieldset input.checkbox, fieldset input.radio{

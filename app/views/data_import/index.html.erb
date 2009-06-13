@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>数据导入</title>
+    <%= stylesheet_link_tag "form.css" %>
+  </head>
+  <body>
+
+    <% form_tag('/data_import/import', :multipart => true) do |f| %>
+      <fieldset>
+        <legend>数据导入</legend>
+        <p>
+          <label for="import_file">导入文件</label><input class="file" id="import_file" type="file" name="excel_file" />
+        </p>
+        <p>
+          <label class="v-radio-group-header">数据类别 </label>
+          <div style="float:left;">
+            <label class="vitem" for="category_1"><input id="category_1" name="category" type="radio" value="1" />财政在职工资<label>
+            <label class="vitem" for="category_2"><input id="category_2" name="category" type="radio" value="2" />在职人员学院工资<label>
+            <label class="vitem" for="category_3"><input id="category_3" name="category" type="radio" value="3" />离休人员工资<label>
+            <label class="vitem" for="category_4"><input id="category_4" name="category" type="radio" value="4" />退休人员工资<label>
+            <label class="vitem" for="category_5"><input id="category_5" name="category" type="radio" value="5" />退休人员学院工资<label>
+          </div>
+        </p>
+        <p class="bbar">
+          <input class="submit" type="submit" value="导入" />
+        </p>
+      </fieldset>
+    <% end %>
+  </body>
+</html>
