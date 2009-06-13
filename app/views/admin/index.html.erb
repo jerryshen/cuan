@@ -3,9 +3,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     <title>网站管理后台</title>
-    <%= javascript_include_tag 'ext-2.2.1/ext-base.js','ext-2.2.1/ext-all.js' %>
+    <%= javascript_include_tag 'ext-2.2.1/adapter/ext/ext-base.js','ext-2.2.1/ext-all.js' %>
     <link href="/javascripts/ext-2.2.1/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
-    <%= stylesheet_link_tag 'nav-menu.css' %>
+    <%= stylesheet_link_tag 'nav-menu.css','ext-cn.css' %>
     <script>
       function init_clock(){
         var _getNewDate = function(){

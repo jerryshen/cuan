@@ -1,0 +1,36 @@
+.x-grid3-hd-inner{
+	padding: 4px 4px 4px 6px;
+}
+
+.x-grid3-hd-row td,
+.x-grid3-summary-row td,
+.x-grid3-row td{
+	font-size: 12px;
+}
+
+.x-panel-header{
+	font-size: 13px;
+	line-height: 17px;
+}
+
+.x-btn button{
+	font-size: 12px;
+}
+
+.x-panel-bbar .x-toolbar{
+	padding: 4px;
+}
+
+.x-tab-strip span.x-tab-strip-text{
+	font-size: 12px;
+	padding: 5px 0;
+}
+
+.x-panel-header{
+	font-size: 12px;
+	line-height: 17px;
+}
+
+.x-toolbar td, .x-toolbar span, .x-toolbar input, .x-toolbar div, .x-toolbar select, .x-toolbar label{
+  font-size: 12px;
+}
