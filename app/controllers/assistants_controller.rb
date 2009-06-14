@@ -98,7 +98,7 @@ class AssistantsController < ApplicationController
     end
     if(params[:search_name] && params[:search_name].to_s!='')
       @assistants = Assistant.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
-      count = AssistantAssistant.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
+      count = Assistant.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
     else
       @assistants = Assistant.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = Assistant.count

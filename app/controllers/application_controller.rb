@@ -5,8 +5,14 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
+  attr_accessor :current_user
+  before_filter :get_current_user , :except => [:logout,:login]
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+
+  def get_current_user
+    @current_user = User.first(:conditions => {:id => session[:user_id] }) if session[:user_id]
+  end
 
   def session_timeout
     return  30 * 60  #30 minutes
@@ -14,15 +20,15 @@ class ApplicationController < ActionController::Base
 
   def session_overtime?
     if(session[:last_request_time])
-    return (Time.now - session[:last_request_time]) > session_timeout()
+      return (Time.now - session[:last_request_time]) > session_timeout()
     else
-        return false
+      return false
     end
   end
 
   def authorize
     if !session_overtime? && session[:user_id]
-        session[:last_request_time] = Time.now
+      session[:last_request_time] = Time.now
     else
       reset_session
       redirect_to :controller => "admin",:action => "login"

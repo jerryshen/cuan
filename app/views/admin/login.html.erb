@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<%= javascript_include_tag 'application' %>
+        <title>Airline CMS Login</title>
+        <style type="text/css">
+         <!--
+
+        .STYLE1 {
+            color: #ee9128
+        }
+        -->
+        </style>
+
+		<script>
+			if(self!=top){top.location=self.location;} //防止被iframe
+			$import("org.prototype.*");
+			function login(){
+				var username=document.getElementById("username").value;
+				var password=document.getElementById("password").value;
+				if(username.length==0){
+					alert("Please enter the username!");
+					return;
+				}
+				if(password.length==0){
+					alert("Please enter the password!");
+					return;
+				}
+				document.getElementById("loginForm").submit();
+			}
+
+			function enterSubmit(event)
+			{
+				if (event.keyCode == 13) //13: enter
+				{
+					event.returnValue=false;
+					event.cancel = true;
+					login();
+				}
+			}
+
+			var changeCaptcha = function(){
+						URL = '/login/change_captcha';
+						new Ajax.Request(URL, {  
+							method: 'get',  
+							onSuccess: function(transport) {
+							    var notice = $('notice');    
+							    if ( data = transport.responseText)
+											var captcha_image = data.split(";")[0];
+											var captcha_digest = data.split(";")[1];
+											document.getElementById('captcha_image').src = captcha_image;
+											document.getElementById('captcha_digest').value = captcha_digest														    
+							    }
+						})  
+			}
+
+			$iloho.bodyload(function(){
+				document.getElementById("username").focus();
+				$iloho.addEventListener(document.getElementsByName("captcha_key")[0],"keydown",enterSubmit)
+			})
+		</script>
+    </head>
+    <body>
+        <div class="bg-login">
+            <div class="bg-login-title">
+                Salary Management System
+            </div>
+              <% form_tag "/admin/try_to_login",:id=>"loginForm",:method=>"post" do |f| %>
+            <div>
+                <div>
+                    <div>
+                        <div>
+                            <div>
+                                Username:<input name="username" id="username" type="text" class="bg-input" />
+                            </div>
+                            <div>
+                                Password:<input name="password" id="password" type="password" class="bg-input2" />
+                            </div>
+							<div><%= flash.now[:notice] %></div>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="#" onclick="login()">Login</a>
+                    </div>
+                    <div>
+                        <a href="#">Cancel</a>
+                    </div>
+                </div>
+			</div>
+			<% end %>
+        </div>
+    </body>
+</html>

@@ -1,6 +1,7 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
+
   #basic information for select
   def users_for_select
     User.all.collect {|p| [ p.name, p.id ] }

@@ -177,146 +177,7 @@
 
       Ext.onReady(function(){
         var $nav_menu_icon_path = "/images/nav-menu-icons/";
-        var $modules = [{
-            name: "基础资料",
-            icon: "abcinfo",
-            pages: [{
-                name: "基本员工信息",
-                url: "/users",
-                icon: "userinfo.png"
-              },{
-                name: "辅导员信息",
-                url: "/assistants",
-                icon: "user.png"
-              }, {
-                name: "系部",
-                url: "/departments",
-                icon: "department.png"
-              },{
-                name: "职称",
-                url: "/titles",
-                icon: "title.png"
-              },{
-                name: "职务",
-                url: "/positions",
-                icon: "position.png"
-              },{
-                name: "发卡银行",
-                url: "/banks",
-                icon: "bank.png"
-              },{
-                name: "银行卡",
-                url: "/bank_cards",
-                icon: "bank.png"
-              }
-            ]
-          }, {
-            name: "权限管理",
-            icon: "rank",
-            pages: [{
-                name: "模块",
-                url: "/page_modules",
-                icon: "module.png"
-              },{
-                name: "功能",
-                url: "/pages",
-                icon: "page.png"
-              },{
-                name: "角色",
-                url: "/roles",
-                icon: "role.png"
-              }, {
-                name: "角色权限分配",
-                url: "/page_roles",
-                icon: "range.png"
-              }, {
-                name: "用户角色设定",
-                url: "/role_users",
-                icon: "user-role.png"
-              }]
-          }, {
-            name: "工资管理",
-            icon: "rank",
-            pages:[{
-                name: "教职工基本工资",
-                url: "/basic_salaries",
-                icon: "user-role.png"
-              },{
-                name: "教职工基本工资记录",
-                url: "/basic_salary_records",
-                icon: "user-role.png"
-              },{
-                name: "扣款",
-                url: "/fee_cuttings",
-                icon: "user-role.png"
-              },{
-                name: "扣款记录",
-                url: "/fee_cutting_records",
-                icon: "user-role.png"
-              },{
-                name: "学院补贴",
-                url: "/college_benefits",
-                icon: "user-role.png"
-              },{
-                name: "学院补贴记录",
-                url: "/college_be_records",
-                icon: "user-role.png"
-              },{
-                name: "离退休人员基本工资",
-                url: "/retired_basic_salaries",
-                icon: "user-role.png"
-              },{
-                name: "离退休人员基本工资记录",
-                url: "/retired_basic_salary_records",
-                icon: "user-role.png"
-              },{
-                name: "离退休人员学院补贴",
-                url: "/retired_college_benefits",
-                icon: "user-role.png"
-              },{
-                name: "离退休人员学院补贴记录",
-                url: "/retired_college_be_records",
-                icon: "user-role.png"
-              },{
-                name: "离退休人员扣款",
-                url: "/retired_fee_cuttings",
-                icon: "user-role.png"
-              },{
-                name: "离退休人员扣款记录",
-                url: "/retired_fee_cutting_records",
-                icon: "user-role.png"
-              }]
-          },
-          {
-            name: "津贴管理",
-            icon: "rank",
-            pages: [{
-                name: "岗位－职务津贴",
-                url: "/station_position_benefits",
-                icon: "user-role.png"
-              },{
-                name: "岗位－职务津贴记录",
-                url: "/station_position_benefit_records",
-                icon: "user-role.png"
-              },{
-                name: "科研津贴－科研",
-                url: "/science_be_sciences",
-                icon: "user-role.png"
-              },{
-                name: "科研津贴－人事",
-                url: "/science_be_personnels",
-                icon: "user-role.png"
-              },{
-                name: "课时津贴－教务员",
-                url: "/class_be_edus",
-                icon: "user-role.png"
-              },{
-                name: "课时津贴－人事",
-                url: "/class_be_personnels",
-                icon: "user-role.png"
-              }]
-          }];
-        var $modules = <%= User.first(:conditions => {:login_id => 'marco' }).menu %>
+        var $modules = <%= @current_user.menu %>
         Ext.BLANK_IMAGE_URL = "/javascripts/ext-2.2.1/resources/images/default/s.gif";
 
         var navmenu = make_outlook_menu($modules,$nav_menu_icon_path);
@@ -334,7 +195,7 @@
       </div>
       <div style='float:right;'>
         <span style='margin-right:15px;' id="clock"></span>
-        登录用户：<span style='color:green'>李明</span>，<img src="/images/icons/logout.png" /><a href='/logout'>退出</a>
+        登录用户：<span style='color:green'><%= @current_user.name %></span>，<img src="/images/icons/logout.png" /><a href='/logout'>退出</a>
       </div>
     </div>
   </body>

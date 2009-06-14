@@ -1,3 +1,4 @@
+require 'digest/sha1'
 class User < ActiveRecord::Base
   #mapping
   belongs_to :department, :class_name => 'Department', :foreign_key => 'department_id'
@@ -9,6 +10,39 @@ class User < ActiveRecord::Base
   has_many :roles, :through => :role_users, :class_name => 'Role', :foreign_key => 'role_id'
 
   has_many :bank_cards
+
+  validates_presence_of :update_password, :only => 'create'
+
+  before_destroy :dont_destroy_admin
+  attr_accessor :update_password
+
+  def before_create
+    if !self.update_password.blank?
+      self.password = User.encryption_password(self.update_password)
+    end
+  end
+
+  def before_update
+    if !self.update_password.blank?
+      self.password =  User.encryption_password(self.update_password)
+    end
+  end
+
+  def self.login (username ,password)
+#    find(:first,:conditions => ["login_id=? and password=?",username,User.encryption_password(password)])
+    find_by_login_id_and_password(username,User.encryption_password(password))
+  end
+
+  def dont_destroy_admin
+    raise "can't destroy admin" if login_id == "admin"
+  end
+
+  def change_password (old_password, new_password)
+    if User.login(username,old_password)
+      return true	if update_attributes(:password =>User.encryption_password(new_password))
+    end
+    return false
+	end
 
   #列表中实现ID和name的切换显示
   def self.to_json
@@ -62,5 +96,10 @@ class User < ActiveRecord::Base
     end
     menu_modules.sort!{|x,y| x.index <=> y.index}
     menu_modules.to_json
+  end
+
+  private
+  def self.encryption_password(password)
+    Digest::SHA1.hexdigest(password)
   end
 end

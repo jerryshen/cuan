@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  #before_filter :authorize, :except => [:login,:try_to_login,:get_session_past_due_minutes,:index]
+  before_filter :authorize, :except => [:login,:try_to_login,:get_session_past_due_minutes,:index]
   def index
   end
 
@@ -11,21 +11,24 @@ class AdminController < ApplicationController
     end
   end
 
+#  def check_captcha
+#    if ! Captcha.is_valid(params[:captcha_key].upcase, params[:captcha_digest])
+#      return false
+#    end
+#    return true
+#  end
+
   def try_to_login
     if request.post?
-      if check_captcha()
         if(user = User.login(params[:username],params[:password]))
-            session[:user_id] = user.id
-            session[:last_request_time] = Time.now
-            redirect_to :action => 'index'
+          session[:user_id] = user.id
+          @current_user = user
+          session[:last_request_time] = Time.now
+          redirect_to :action => 'index'
         else
-          flash[:notice] = "Invalid user/password combination"
-          redirect_to :action => 'login'
+          flash.now[:notice] = "Invalid user/password combination"
+          render :action => 'login'
         end
-      else
-        flash[:notice] = 'Please input the image text correctly.'
-        redirect_to :action => 'login'
-      end
     end
   end
 

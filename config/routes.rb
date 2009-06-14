@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :app_configs
+
   map.resources :station_position_benefit_records
 
   map.resources :class_be_personnels
@@ -47,7 +49,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :positions
 
-#  map.resources :titles
+  map.resources :titles
 
   map.resources :departments
 
@@ -58,6 +60,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :pages
 
   map.resources :page_modules
+
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -99,6 +102,9 @@ ActionController::Routing::Routes.draw do |map|
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
   map.connect ':controller/:action', :controller => ["data_import"]
+  map.connect ':controller/:action', :controller => 'admin'
+  map.connect '/logout', :controller => 'admin', :action => 'logout'
+  map.connect 'sign-in', :controller => 'admin', :action => 'login'
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end
