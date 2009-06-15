@@ -1,5 +1,4 @@
 class AdminController < ApplicationController
-  before_filter :authorize, :except => [:login,:try_to_login,:get_session_past_due_minutes,:index]
   def index
   end
 
@@ -39,7 +38,7 @@ class AdminController < ApplicationController
 
   #获取session多少分钟后过期
   def get_session_past_due_minutes
-    if(manage_session_overtime?)
+    if(session_overtime?)
       reset_session
       render :text => "0"
     else

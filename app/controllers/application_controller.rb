@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   attr_accessor :current_user
   before_filter :get_current_user , :except => [:logout,:login]
+  before_filter :authorize, :except => [:login,:try_to_login]
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 

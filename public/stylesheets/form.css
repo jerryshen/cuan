@@ -80,6 +80,7 @@ fieldset label.vitem{
 
 fieldset input.checkbox, fieldset input.radio{
   >margin-top: -5px; /*forIE*/
+  margin-right: 5px;
 }
 
 fieldset input.error, fieldset textarea.error{
@@ -88,6 +89,11 @@ fieldset input.error, fieldset textarea.error{
 
 fieldset input.text,input.password, fieldset textarea, fieldset select{
   width: 200px;
+}
+
+fieldset ul.group-list-v{
+  float: left;
+  list-style-type: none;
 }
 
 fieldset p{

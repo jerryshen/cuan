@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>数据恢复</title>
+    <%= stylesheet_link_tag "form" %>
+  </head>
+  <body>
+    <% form_tag('/data_backup/do_restore', :method => "post") do -%>
+      <fieldset>
+        <legend>数据恢复</legend>
+        <p> <%= flash[:notice]  %></p>
+        <p class="error"><%= flash[:error] %></p>
+        <p>
+          <label class="v-radio-group-header">备份列表 </label>
+          <ul class="group-list-v">
+            <% @list.each_index do |i| %>
+              <% file_name = @list[i] %>
+              <li>
+              <label class="vitem" for="file_<%= i %>">
+                <input id="file_<%= i%>" name="restore_file" class="radio" type="radio" value="<%= file_name %>" /><%= file_name %>
+              </label>
+              </li>
+            <% end %>
+          </ul>
+        </p>
+        <p class="bbar">
+        <%= submit_tag "恢复",:class => "submit",:onsubmit =>"return confirm('确定要恢复该备份？')" %>
+        </p>
+      </fieldset>
+    <% end %>
+  </body>
+</html>
