@@ -1,14 +1,10 @@
 <% form_for(@title) do |f| %>
   <fieldset>
-  <legend>修改职称</legend>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :name, "名称" %>
-    <%= f.text_field :name, :class => "required" %>
-  </p>
-  <p class="bbar">
-    <%= f.submit '更新' %>
-    <input type="button" onclick="$page.showListView()" value="取消" />
-  </p>
+    <legend>修改职称</legend>
+    <%= render :partial => 'form', :locals => { :f => f }  %>
+    <p class="bbar">
+      <%= f.submit '更新' %>
+      <input type="button" onclick="$page.showListView()" value="取消" />
+    </p>
   </fieldset>
 <% end %>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 34) do
+ActiveRecord::Schema.define(:version => 35) do
 
   create_table "app_configs", :force => true do |t|
     t.string   "key"
@@ -326,6 +326,18 @@ ActiveRecord::Schema.define(:version => 34) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "undefind_fees", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "subject"
+    t.float    "fee"
+    t.datetime "date"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "undefind_fees", ["user_id"], :name => "index_undefind_fees_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

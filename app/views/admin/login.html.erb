@@ -15,7 +15,6 @@
 
 		<script>
 			if(self!=top){top.location=self.location;} //防止被iframe
-			$import("org.prototype.*");
 			function login(){
 				var username=document.getElementById("username").value;
 				var password=document.getElementById("password").value;
@@ -54,11 +53,6 @@
 							    }
 						})  
 			}
-
-			$iloho.bodyload(function(){
-				document.getElementById("username").focus();
-				$iloho.addEventListener(document.getElementsByName("captcha_key")[0],"keydown",enterSubmit)
-			})
 		</script>
     </head>
     <body>
