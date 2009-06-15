@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
 
   attr_accessor :current_user
   before_filter :get_current_user , :except => [:logout,:login]
-  before_filter :authorize, :except => [:login,:try_to_login]
+  before_filter :authorize_session, :except => [:login,:try_to_login]
+  before_filter :authorize_permission, :except => [:login,:try_to_login]
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
@@ -27,13 +28,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def authorize
+  def authorize_session
     if !session_overtime? && session[:user_id]
       session[:last_request_time] = Time.now
     else
       reset_session
       redirect_to :controller => "admin",:action => "login"
     end
+  end
+
+  def authorize_permission
+      unless Page.accessable?(request.url,@current_user)
+        render :text => "警告，你没有权限访问该页面！"
+      end
   end
 
   protected
