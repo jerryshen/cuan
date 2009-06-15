@@ -107,6 +107,6 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action', :controller => ["admin,data_import,data_backup"]
   map.connect '/logout', :controller => 'admin', :action => 'logout'
   map.connect '/signin', :controller => 'admin', :action => 'login'
-  #map.connect ':controller/:action/:id'
-  #map.connect ':controller/:action/:id.:format'
+  map.connect ':controller/:action/:id'
+  map.connect ':controller/:action/:id.:format'
 end
