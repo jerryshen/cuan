@@ -4,6 +4,14 @@
   <%= f.text_field :user, :class => "required", :size => 10 %>
 </p>
 <p>
+  <%= f.label :year, "年度" %>
+  <%= select_year(Time.now.year, {:start_year => 2009, :end_year => 2015}, :name => 'fee_cutting_record[year]') %>
+</p>
+<p>
+  <%= f.label :month, "月份" %><br />
+  <%= select_month(Time.now.month, {:use_month_numbers => true}, :name => 'fee_cutting_record[month]')  %>
+</p>
+<p>
   <%= f.label :room_fee, "住房公积金" %>
   <%= f.text_field :room_fee, :class => "required", :size => 10 %>
 </p>

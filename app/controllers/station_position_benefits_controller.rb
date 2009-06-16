@@ -36,7 +36,7 @@ class StationPositionBenefitsController < ApplicationController
   end
 
   def create
-    @station_position_benefit = StationPositionBenefit.new(params[:role])
+    @station_position_benefit = StationPositionBenefit.new(params[:station_position_benefit])
 
     respond_to do |format|
       if @station_position_benefit.save
@@ -56,7 +56,7 @@ class StationPositionBenefitsController < ApplicationController
     @station_position_benefit = StationPositionBenefit.find(params[:id])
 
     respond_to do |format|
-      if @station_position_benefit.update_attributes(params[:role])
+      if @station_position_benefit.update_attributes(params[:station_position_benefit])
         #        flash[:notice] = 'Role was successfully updated.'
         format.html { redirect_to(@station_position_benefit) }
         format.xml  { head :ok }

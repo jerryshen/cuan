@@ -22,6 +22,53 @@ class StationPositionBenefitRecordsController < ApplicationController
     end
   end
 
+  def new
+    @station_position_benefit_record = StationPositionBenefitRecord.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @station_position_benefit_record }
+    end
+  end
+
+  def edit
+    @station_position_benefit_record = StationPositionBenefitRecord.find(params[:id])
+  end
+
+  def create
+    @station_position_benefit_record = StationPositionBenefitRecord.new(params[:station_position_benefit_record])
+
+    respond_to do |format|
+      if @station_position_benefit_record.save
+        #        flash[:notice] = 'Role was successfully created.'
+        format.html { redirect_to(@station_position_benefit_record) }
+        format.xml  { render :xml => @station_position_benefit_record, :status => :created, :location => @station_position_benefit_record }
+        format.json { render :text => '{status: "success", message: "成功申请科研津贴记录！"}'}
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @station_position_benefit_record.errors, :status => :unprocessable_entity }
+        format.json { render :text => "{status: 'failed', error:#{@station_position_benefit_record.errors.to_json}}"}
+      end
+    end
+  end
+
+  def update
+    @station_position_benefit_record = StationPositionBenefitRecord.find(params[:id])
+
+    respond_to do |format|
+      if @station_position_benefit_record.update_attributes(params[:station_position_benefit_record])
+        #        flash[:notice] = 'Role was successfully updated.'
+        format.html { redirect_to(@station_position_benefit_record) }
+        format.xml  { head :ok }
+        format.json { render :text => '{status: "success", message: "成功更新科研津贴记录！"}'}
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @station_position_benefit_record.errors, :status => :unprocessable_entity }
+        format.json { render :text => "{status: 'failed', error:#{@station_position_benefit_record.errors.to_json}}"}
+      end
+    end
+  end
+
   # DELETE /station_position_benefit_records/1
   # DELETE /station_position_benefit_records/1.xml
   def destroy

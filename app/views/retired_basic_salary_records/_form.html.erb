@@ -1,0 +1,29 @@
+<%= f.error_messages %>
+<p>
+  <%= f.label :user_id, "离退休人员" %><br />
+  <%= f.select :user_id, get_retired_staffs.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择离退休人员..." }, :class => "required" %>
+</p>
+<p>
+  <%= f.label :year, "年度" %>
+  <%= select_year(Time.now.year, {:start_year => 2009, :end_year => 2015}, :name => 'retired_basic_salary_record[year]') %>
+</p>
+<p>
+  <%= f.label :month, "月份" %><br />
+  <%= select_month(Time.now.month, {:use_month_numbers => true}, :name => 'retired_basic_salary_record[month]')  %>
+</p>
+<p>
+  <%= f.label :basic_fee, "月基本退休费" %><br />
+  <%= f.text_field :basic_fee, :class => "required" %>
+</p>
+<p>
+  <%= f.label :stay_be, "工改保留补贴_93年" %><br />
+  <%= f.text_field :stay_be, :class => "required" %>
+</p>
+<p>
+  <%= f.label :foreign_be, "其他国家出台津补贴" %><br />
+  <%= f.text_field :foreign_be, :class => "required" %>
+</p>
+<p>
+  <%= f.label :region_be, "地方出台津补贴" %><br />
+  <%= f.text_field :region_be, :class => "required" %>
+</p>

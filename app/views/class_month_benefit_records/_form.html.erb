@@ -1,0 +1,18 @@
+<%= f.error_messages %>
+
+<p>
+  <%= f.label :user_id, "教职工" %>
+  <%= f.select :user_id, users_for_select, {:include_blank => "请选择教职工..." }, :class => "required" %>
+</p>
+<p>
+  <%= f.label :fee, "金额" %>
+  <%= f.text_field :fee, :class => "required" %>
+</p>
+<p>
+  <%= f.label :month, "发放月份" %><br />
+  <%= select_month(Time.now.month, {:use_month_numbers => true}, :name => 'class_month_benefit_record[month]')  %>
+</p>
+<p>
+  <%= f.label :date %><br />
+  <%= select_day(Time.now.day, {}, :name => 'class_month_benefit_record[day]', :class => "required")  %>
+</p>

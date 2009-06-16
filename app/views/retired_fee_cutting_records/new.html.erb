@@ -1,0 +1,10 @@
+<% form_for(@retired_fee_cutting_record) do |f| %>
+  <fieldset>
+    <legend>添加离退休人员扣款记录</legend>
+    <%= render :partial => 'form', :locals => {:f =>f}  %>
+    <p class="bbar">
+      <%= f.submit '保存' %>
+      <input type="button" onclick="$page.showListView()" value="取消" />
+    </p>
+  </fieldset>
+<% end %>

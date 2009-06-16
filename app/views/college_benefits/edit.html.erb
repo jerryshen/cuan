@@ -1,7 +1,6 @@
 <% form_for(@college_benefit) do |f| %>
   <fieldset>
     <legend>修改学院补贴</legend>
-    <%= f.error_messages %>
     <%= render :partial => 'form', :locals => { :f => f } %>
     <p class="bbar">
       <%= f.submit '更新' %>

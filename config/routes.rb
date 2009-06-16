@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :class_month_benefit_records
+
   map.resources :undefind_fees
 
   map.resources :app_configs

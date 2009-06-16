@@ -21,7 +21,59 @@ class RetiredFeeCuttingRecordsController < ApplicationController
       format.xml  { render :xml => @retired_fee_cutting_record }
     end
   end
+  # GET /retired_fee_cutting_records/new
+  # GET /retired_fee_cutting_records/new.xml
+  def new
+    @retired_fee_cutting_record = RetiredFeeCuttingRecord.new
 
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @retired_fee_cutting_record }
+    end
+  end
+
+  # GET /retired_fee_cutting_records/1/edit
+  def edit
+    @retired_fee_cutting_record = RetiredFeeCuttingRecord.find(params[:id])
+  end
+
+  # POST /retired_fee_cutting_records
+  # POST /retired_fee_cutting_records.xml
+  def create
+    @retired_fee_cutting_record = RetiredFeeCuttingRecord.new(params[:retired_fee_cutting_record])
+
+    respond_to do |format|
+      if @retired_fee_cutting_record.save
+        #        flash[:notice] = 'RetiredFeeCutting was successfully created.'
+        format.html { redirect_to(@retired_fee_cutting_record) }
+        format.xml  { render :xml => @retired_fee_cutting_record, :status => :created, :location => @retired_fee_cutting_record }
+        format.json { render :text => '{status: "success", message: "成功添加离退休人员扣款！"}'}
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @retired_fee_cutting_record.errors, :status => :unprocessable_entity }
+        format.json { render :text => "{status: 'failed', error:#{@retired_fee_cutting_record.errors.to_json}}"}
+      end
+    end
+  end
+
+  # PUT /retired_fee_cutting_records/1
+  # PUT /retired_fee_cutting_records/1.xml
+  def update
+    @retired_fee_cutting_record = RetiredFeeCuttingRecord.find(params[:id])
+
+    respond_to do |format|
+      if @retired_fee_cutting_record.update_attributes(params[:retired_fee_cutting_record])
+        #        flash[:notice] = 'RetiredFeeCutting was successfully updated.'
+        format.html { redirect_to(@retired_fee_cutting_record) }
+        format.xml  { head :ok }
+        format.json { render :text => '{status: "success", message: "成功更新离退休人员扣款！"}'}
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @retired_fee_cutting_record.errors, :status => :unprocessable_entity }
+        format.json { render :text => "{status: 'failed', error:#{@retired_fee_cutting_record.errors.to_json}}"}
+      end
+    end
+  end
   # DELETE /retired_fee_cutting_records/1
   # DELETE /retired_fee_cutting_records/1.xml
   def destroy

@@ -1,0 +1,23 @@
+<p>
+  <b>User:</b>
+  <%=h @class_month_benefit_record.user %>
+</p>
+
+<p>
+  <b>Fee:</b>
+  <%=h @class_month_benefit_record.fee %>
+</p>
+
+<p>
+  <b>Month:</b>
+  <%=h @class_month_benefit_record.month %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%=h @class_month_benefit_record.date %>
+</p>
+
+
+<%= link_to 'Edit', edit_class_month_benefit_record_path(@class_month_benefit_record) %> |
+<%= link_to 'Back', class_month_benefit_records_path %>

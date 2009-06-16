@@ -1,18 +1,10 @@
 <% form_for(@page_role) do |f| %>
   <fieldset>
     <legend>修改页面－角色关系</legend>
-    <%= f.error_messages %>
-    <p>
-      <%= f.label :field, "页面" %>
-      <%= f.select :page_id, pages_for_select, {:include_blank => "请选择页面..." }) %>
-  </p>
-  <p>
-    <%= f.label :field, "角色" %>
-    <%= f.select :role_id, roles_for_select, {:include_blank => "请选择角色..." }) %>
-  </p>
-  <p class="bbar">
-  <%= f.submit '更新' %>
-    <input type="button" onclick="$page.showListView()" value="取消" />
-  </p>
-</fieldset>
+    <%= render :partial => 'form', :locals => { :f => f }  %>
+    <p class="bbar">
+      <%= f.submit '更新' %>
+      <input type="button" onclick="$page.showListView()" value="取消" />
+    </p>
+  </fieldset>
 <% end %>

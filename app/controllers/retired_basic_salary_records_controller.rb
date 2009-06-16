@@ -88,4 +88,21 @@ class RetiredBasicSalaryRecordsController < ApplicationController
       format.json { render :text => '{status: "success"}'}
     end
   end
+
+  private
+  def get_json
+    pagesize = 10
+    if(params[:page_size])
+      param_pagesize = params[:page_size].to_i
+      if param_pagesize > 0 then pagesize = param_pagesize end
+    end
+    if(params[:search_name] && params[:search_name].to_s!='')
+      @retired_basic_salary_records = RetiredBasicSalaryRecord.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
+      count = RetiredBasicSalaryRecord.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
+    else
+      @retired_basic_salary_records = RetiredBasicSalaryRecord.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      count = RetiredBasicSalaryRecord.count
+    end
+    return render_json(@retired_basic_salary_records,count)
+  end
 end

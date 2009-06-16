@@ -10,6 +10,13 @@ class User < ActiveRecord::Base
   has_many :roles, :through => :role_users, :class_name => 'Role', :foreign_key => 'role_id'
 
   has_many :bank_cards
+  has_many :class_month_benefit_records
+  has_many :basic_salary_records
+  has_many :college_be_records
+  has_many :fee_cutting_records
+  has_many :retired_basic_salary_records
+  has_many :retired_college_be_records
+  has_many :retired_fee_cutting_records
 
   validates_presence_of :update_password, :only => 'create'
 
@@ -29,7 +36,7 @@ class User < ActiveRecord::Base
   end
 
   def self.login (username ,password)
-#    find(:first,:conditions => ["login_id=? and password=?",username,User.encryption_password(password)])
+    #    find(:first,:conditions => ["login_id=? and password=?",username,User.encryption_password(password)])
     find_by_login_id_and_password(username,User.encryption_password(password))
   end
 

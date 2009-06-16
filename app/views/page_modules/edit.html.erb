@@ -1,19 +1,7 @@
 <% form_for(@page_module) do |f| %>
   <fieldset>
     <legend>修改页面模块</legend>
-    <%= f.error_messages %>
-    <p>
-      <%= f.label :name, "名称" %>
-      <%= f.text_field :name, :class => "required" %>
-    </p>
-    <p>
-      <%= f.label :index, "显示顺序" %>
-      <%= f.text_field :index %>
-    </p>
-    <p>
-      <%= f.label :description, "描述" %>
-      <%= f.text_area :description %>
-    </p>
+    <%= render :partial => 'form', :locals => { :f => f }  %>
     <p class="bbar">
       <%= f.submit '更新' %>
       <input type="button" onclick="$page.showListView()" value="取消" />

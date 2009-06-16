@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 35) do
+ActiveRecord::Schema.define(:version => 36) do
 
   create_table "app_configs", :force => true do |t|
     t.string   "key"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(:version => 35) do
   add_index "basic_salaries", ["user_id"], :name => "index_basic_salaries_on_user_id"
 
   create_table "basic_salary_records", :force => true do |t|
-    t.string   "user"
+    t.integer  "user_id",     :limit => 255
     t.string   "year"
     t.string   "month"
     t.float    "station_sa"
@@ -77,6 +77,8 @@ ActiveRecord::Schema.define(:version => 35) do
     t.datetime "updated_at"
   end
 
+  add_index "basic_salary_records", ["user_id"], :name => "index_basic_salary_records_on_user_id"
+
   create_table "class_benefits", :force => true do |t|
     t.integer  "user_id"
     t.float    "total_be"
@@ -90,8 +92,19 @@ ActiveRecord::Schema.define(:version => 35) do
 
   add_index "class_benefits", ["user_id"], :name => "index_class_benefits_on_user_id"
 
+  create_table "class_month_benefit_records", :force => true do |t|
+    t.integer  "user_id"
+    t.float    "fee"
+    t.integer  "month"
+    t.integer  "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "class_month_benefit_records", ["user_id"], :name => "index_class_month_benefit_records_on_user_id"
+
   create_table "college_be_records", :force => true do |t|
-    t.string   "user"
+    t.integer  "user_id",    :limit => 255
     t.string   "year"
     t.string   "month"
     t.float    "life_be"
@@ -103,6 +116,8 @@ ActiveRecord::Schema.define(:version => 35) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "college_be_records", ["user_id"], :name => "index_college_be_records_on_user_id"
 
   create_table "college_benefits", :force => true do |t|
     t.integer  "user_id"
@@ -125,7 +140,7 @@ ActiveRecord::Schema.define(:version => 35) do
   end
 
   create_table "fee_cutting_records", :force => true do |t|
-    t.string   "user"
+    t.integer  "user_id",     :limit => 255
     t.string   "year"
     t.string   "month"
     t.float    "room_fee"
@@ -141,6 +156,8 @@ ActiveRecord::Schema.define(:version => 35) do
     t.datetime "updated_at"
     t.float    "net_fee"
   end
+
+  add_index "fee_cutting_records", ["user_id"], :name => "index_fee_cutting_records_on_user_id"
 
   create_table "fee_cuttings", :force => true do |t|
     t.integer  "user_id"
@@ -210,7 +227,7 @@ ActiveRecord::Schema.define(:version => 35) do
   add_index "retired_basic_salaries", ["user_id"], :name => "index_retired_basic_salaries_on_user_id"
 
   create_table "retired_basic_salary_records", :force => true do |t|
-    t.string   "user"
+    t.integer  "user_id",    :limit => 255
     t.string   "year"
     t.string   "month"
     t.float    "basic_fee"
@@ -221,8 +238,10 @@ ActiveRecord::Schema.define(:version => 35) do
     t.datetime "updated_at"
   end
 
+  add_index "retired_basic_salary_records", ["user_id"], :name => "index_retired_basic_salary_records_on_user_id"
+
   create_table "retired_college_be_records", :force => true do |t|
-    t.string   "user"
+    t.integer  "user_id",    :limit => 255
     t.string   "year"
     t.string   "month"
     t.float    "diff_be"
@@ -234,6 +253,8 @@ ActiveRecord::Schema.define(:version => 35) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "retired_college_be_records", ["user_id"], :name => "index_retired_college_be_records_on_user_id"
 
   create_table "retired_college_benefits", :force => true do |t|
     t.integer  "user_id"
@@ -250,7 +271,7 @@ ActiveRecord::Schema.define(:version => 35) do
   add_index "retired_college_benefits", ["user_id"], :name => "index_retired_college_benefits_on_user_id"
 
   create_table "retired_fee_cutting_records", :force => true do |t|
-    t.string   "user"
+    t.integer  "user_id",    :limit => 255
     t.string   "year"
     t.string   "month"
     t.float    "elc_fee"
@@ -260,6 +281,8 @@ ActiveRecord::Schema.define(:version => 35) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "retired_fee_cutting_records", ["user_id"], :name => "index_retired_fee_cutting_records_on_user_id"
 
   create_table "retired_fee_cuttings", :force => true do |t|
     t.integer  "user_id"
@@ -302,7 +325,7 @@ ActiveRecord::Schema.define(:version => 35) do
   add_index "science_benefits", ["user_id"], :name => "index_science_benefits_on_user_id"
 
   create_table "station_position_benefit_records", :force => true do |t|
-    t.string   "user"
+    t.integer  "user_id",     :limit => 255
     t.string   "year"
     t.string   "month"
     t.float    "station_be"
@@ -310,6 +333,8 @@ ActiveRecord::Schema.define(:version => 35) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "station_position_benefit_records", ["user_id"], :name => "index_station_position_benefit_records_on_user_id"
 
   create_table "station_position_benefits", :force => true do |t|
     t.integer  "user_id"

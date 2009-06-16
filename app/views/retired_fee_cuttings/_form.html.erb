@@ -1,17 +1,17 @@
 <%= f.error_messages %>
 <p>
-  <%= f.label :field, "离退休人员" %>
+  <%= f.label :user_id, "离退休人员" %>
   <%= f.select :user_id, get_retired_staffs.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择离退休人员..." }, :class => "required" %>
 </p>
 <p>
-  <%= f.label :field, "其他扣款1" %>
+  <%= f.label :other_fee1, "其他扣款1" %>
   <%= f.text_field :other_fee1 %>
 </p>
 <p>
-  <%= f.label :field, "其他扣款2" %>
+  <%= f.label :other_fee2, "其他扣款2" %>
   <%= f.text_field :other_fee2 %>
 </p>
 <p>
-  <%= f.label :field, "其他扣款3" %>
+  <%= f.label :other_fee3, "其他扣款3" %>
   <%= f.text_field :other_fee3 %>
 </p>

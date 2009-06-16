@@ -1,19 +1,7 @@
 <% form_for(@page_module) do |f| %>
   <fieldset>
     <legend>新建页面模块</legend>
-    <%= f.error_messages %>
-    <p>
-      <%= f.label :field, "名称" %>
-      <%= f.text_field :name, :class => "required" %>
-    </p>
-    <p>
-      <%= f.label :index, "显示顺序" %>
-      <%= f.text_field :index %>
-    </p>
-    <p>
-      <%= f.label :field, "描述" %>
-      <%= f.text_area :description %>
-    </p>
+    <%= render :partial => 'form', :locals => { :f => f }  %>
     <p class="bbar">
       <%= f.submit '保存' %>
       <input type="button" onclick="$page.showListView()" value="取消" />

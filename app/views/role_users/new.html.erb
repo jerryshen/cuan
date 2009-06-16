@@ -1,15 +1,7 @@
 <% form_for(@role_user) do |f| %>
   <fieldset>
     <legend>新角色－用户关系</legend>
-    <%= f.error_messages %>
-    <p>
-      <%= f.label :field, "角色" %>
-      <%= f.select :role_id, roles_for_select, {:include_blank => "请选择角色..." }, :class => "required" %>
-    </p>
-    <p>
-      <%= f.label :field, "用户" %>
-      <%= f.select :user_id, users_for_select, {:include_blank => "请选择用户..." }, :class => "required" %>
-    </p>
+    <%= render :partial => 'form', :locals => { :f => f }  %>
     <p class="bbar">
       <%= f.submit '保存' %>
       <input type="button" onclick="$page.showListView()" value="取消" />
