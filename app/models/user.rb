@@ -35,18 +35,17 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.login (username ,password)
-    #    find(:first,:conditions => ["login_id=? and password=?",username,User.encryption_password(password)])
-    find_by_login_id_and_password(username,User.encryption_password(password))
+  def self.login(login_id,password)
+    find_by_login_id_and_password(login_id,User.encryption_password(password))
   end
 
   def dont_destroy_admin
     raise "can't destroy admin" if login_id == "admin"
   end
 
-  def change_password (old_password, new_password)
-    if User.login(username,old_password)
-      return true	if update_attributes(:password =>User.encryption_password(new_password))
+  def change_password(old_password,new_password)
+    if User.login(login_id,old_password)
+      return true if update_attributes(:update_password => new_password)
     end
     return false
 	end

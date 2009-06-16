@@ -1,0 +1,47 @@
+<fieldset>
+  <legend>我的个人信息</legend>
+  <p>
+    <b>姓名:</b>
+    <%=h @current_user.name %>
+  </p>
+  <p>
+    <b>教学所属系部:</b>
+    <%=h @current_user.department.name if @current_user.department %>
+  </p>
+  <p>
+    <b>姓名:</b>
+    <%=h @current_user.td_belongs.name if @current_user.td_belongs %>
+  </p>
+  <p>
+    <b>性别:</b>
+    <%=h fuzzy_gender(@current_user.gender) %>
+  </p>
+  <p>
+    <b>职称:</b>
+    <%=h @current_user.title.name if @current_user.title %>
+  </p>
+  <p>
+    <b>职务:</b>
+    <%=h @current_user.position.name if @current_user.position %>
+  </p>
+  <p>
+    <b>生日:</b>
+    <%=h fuzzy_time(@current_user.birthday) %>
+  </p>
+  <p>
+    <b>身份证号:</b>
+    <%=h @current_user.id_card %>
+  </p>
+  <p>
+    <b>登录用户名:</b>
+    <%=h @current_user.login_id %>
+  </p>
+  <p>
+    <b>是否入编:</b>
+    <%=h @current_user.is_nature.to_s == "true" ? "是" : "否" %>
+  </p>
+  <p>
+    <b>是否离退休:</b>
+    <%=h @current_user.is_retired.to_s == "true" ? "是" : "否" %>
+  </p>
+</fieldset>
