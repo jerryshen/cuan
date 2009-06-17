@@ -102,8 +102,13 @@ class CollegeBenefitsController < ApplicationController
     conditions = '1=1'
     condition_values = []
     if(params[:search_name] && params[:search_name] != '')
-      conditions += " AND name like ? "
-      condition_values << "%#{params[:search_name]}%"
+     if user = User.find_by_name(params[:search_name])
+       user_id = user.id
+     else
+       user_id = 0
+     end
+      conditions += " AND user_id = ? "
+      condition_values << user_id
     end
 
     if(conditions != '1=1')
