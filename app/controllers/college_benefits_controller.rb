@@ -98,13 +98,25 @@ class CollegeBenefitsController < ApplicationController
       param_pagesize = params[:page_size].to_i
       if param_pagesize > 0 then pagesize = param_pagesize end
     end
-    if(params[:search_name] && params[:search_name].to_s!='')
-      @college_benefits = CollegeBenefit.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
-      count = CollegeBenefit.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
+
+    conditions = '1=1'
+    condition_values = []
+    if(params[:search_name] && params[:search_name] != '')
+      conditions += " AND name like ? "
+      condition_values << "%#{params[:search_name]}%"
+    end
+
+    if(conditions != '1=1')
+      option_conditions = [conditions,condition_values].flatten!
+      @college_benefits = CollegeBenefit.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
+      count = CollegeBenefit.count(:conditions => option_conditions)
+    elsif
+      @college_benefits = CollegeBenefit.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON college_benefits.user_id=p.id" , :conditions =>["p.department_id =?",params[:search_department_id]],:per_page=>pagesize, :page => params[:page] || 1 )
+      count = @college_benefits.length
     else
-      @college_benefits = CollegeBenefit.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      @college_benefits = CollegeBenefit.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
       count = CollegeBenefit.count
     end
-    return render_json(@users,count)
+    return render_json(@college_benefits,count)
   end
 end
