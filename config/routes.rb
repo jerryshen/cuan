@@ -106,7 +106,7 @@ ActionController::Routing::Routes.draw do |map|
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
   map.root :controller => 'admin', :action => 'login'
-  map.connect ':controller/:action', :controller => ["admin,data_import,data_backup,profile"]
+  map.connect ':controller/:action', :controller => ["admin,data_import,data_backup,profile,backup_interval"]
   map.connect '/logout', :controller => 'admin', :action => 'logout'
   map.connect '/signin', :controller => 'admin', :action => 'login'
   map.connect ':controller/:action/:id'
