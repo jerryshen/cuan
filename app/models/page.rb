@@ -4,7 +4,11 @@ class Page < ActiveRecord::Base
   belongs_to :page_module, :class_name => 'PageModule', :foreign_key => 'page_module_id'
   has_many :page_roles
   has_many :roles, :through => :page_roles, :class_name => 'Role', :foreign_key => 'role_id'
-  validates_presence_of :page_module_id
+
+  #validations
+  validates_presence_of :page_module_id, :message => "模块不能为空"
+  validates_presence_of :url, :message => "链接不能为空"
+  validates_uniqueness_of :url, :message => "链接不能重复"
 
   #find roles who can view the page by page name.
   def self.find_roles_by_name(name)
