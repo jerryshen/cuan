@@ -13,10 +13,11 @@
 .nav-page-list li img
 {
     cursor: pointer;
-	display: block;
+    display: block;
     width: 32px;
     height: 32px;
-	margin-left: 85px;
+    margin-left: 85px;
+    *margin-left: 0px; /*hack for ie6,ie7*/
 }
 
 .nav-page-list li span
