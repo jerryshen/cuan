@@ -1,9 +1,9 @@
     <%= f.error_messages %>
     <p>
       <%= f.label :role_id, "角色" %>
-      <%= f.select :role_id, roles_for_select, {:include_blank => "请选择角色..." }, :class => "required" %>
+      <%= f.select :role_id, Role.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择角色..." }, :class => "required" %>
     </p>
     <p>
       <%= f.label :user_id, "用户" %>
-      <%= f.select :user_id, users_for_select, {:include_blank => "请选择用户..." }, :class => "required" %>
+      <%= f.select :user_id, User.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择用户..." }, :class => "required" %>
     </p>

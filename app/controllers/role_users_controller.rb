@@ -98,11 +98,30 @@ class RoleUsersController < ApplicationController
       param_pagesize = params[:page_size].to_i
       if param_pagesize > 0 then pagesize = param_pagesize end
     end
-    if(params[:search_name] && params[:search_name].to_s!='')
-      @role_users = RoleUser.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
-      count = RoleUser.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
+
+    conditions = '1=1'
+    condition_values = []
+    if(params[:search_name] && params[:search_name] != '')
+     if user = User.find_by_name(params[:search_name])
+       user_id = user.id
+     else
+       user_id = 0
+     end
+      conditions += " AND user_id = ? "
+      condition_values << user_id
+    end
+
+    if(params[:search_role_id] && params[:search_role_id] != '')
+      conditions += " AND role_id = ? "
+      condition_values << params[:search_role_id]
+    end
+
+    if(conditions != '1=1')
+      option_conditions = [conditions,condition_values].flatten!
+      @role_users = RoleUser.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
+      count = RoleUser.count(:conditions => option_conditions)
     else
-      @role_users = RoleUser.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      @role_users = RoleUser.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
       count = RoleUser.count
     end
     return render_json(@role_users,count)

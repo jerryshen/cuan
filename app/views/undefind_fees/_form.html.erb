@@ -2,7 +2,7 @@
 
 <p>
   <%= f.label :user_id, "用户" %>
-  <%= f.select :user_id, users_for_select, {:include_blank => "请选择用户..." }, :class => "required" %>
+  <%= f.select :user_id, User.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择用户..." }, :class => "required" %>
 </p>
 <p>
   <%= f.label :subject, "名目" %><br />
@@ -17,6 +17,6 @@
   <%= f.datetime_select :date %>
 </p>
 <p>
-  <%= f.label :type, "类型" %><br />
-  <%= f.text_field :type %>
+  <%= f.label :be_type, "类型" %><br />
+  <%= f.text_field :be_type %>
 </p>

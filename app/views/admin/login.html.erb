@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<%= javascript_include_tag 'application' %>
-        <title>Airline CMS Login</title>
+        <title>工资管理系统登录</title>
         <style type="text/css">
          <!--
 
@@ -19,11 +19,11 @@
 				var username=document.getElementById("username").value;
 				var password=document.getElementById("password").value;
 				if(username.length==0){
-					alert("Please enter the username!");
+					alert("请输入帐号!");
 					return;
 				}
 				if(password.length==0){
-					alert("Please enter the password!");
+					alert("请输入密码!");
 					return;
 				}
 				document.getElementById("loginForm").submit();
@@ -58,7 +58,7 @@
     <body>
         <div class="bg-login">
             <div class="bg-login-title">
-                Salary Management System
+                工资管理系统
             </div>
               <% form_tag "/admin/try_to_login",:id=>"loginForm",:method=>"post" do |f| %>
             <div>
@@ -66,19 +66,19 @@
                     <div>
                         <div>
                             <div>
-                                Username:<input name="username" id="username" type="text" class="bg-input" />
+                                帐号:<input name="username" id="username" type="text" class="bg-input" />
                             </div>
                             <div>
-                                Password:<input name="password" id="password" type="password" class="bg-input2" />
+                                密码:<input name="password" id="password" type="password" class="bg-input2" />
                             </div>
 							<div><%= flash.now[:notice] %></div>
                         </div>
                     </div>
                     <div>
-                        <a href="#" onclick="login()">Login</a>
+                        <a href="#" onclick="login()">登陆</a>
                     </div>
                     <div>
-                        <a href="#">Cancel</a>
+                        <a href="#">取消</a>
                     </div>
                 </div>
 			</div>

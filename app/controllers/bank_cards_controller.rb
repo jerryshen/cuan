@@ -47,7 +47,7 @@ class BankCardsController < ApplicationController
 
     respond_to do |format|
       if @bank_card.save
-#        flash[:notice] = 'BankCard was successfully created.'
+        #        flash[:notice] = 'BankCard was successfully created.'
         format.html { redirect_to(@bank_card) }
         format.xml  { render :xml => @bank_card, :status => :created, :location => @bank_card }
         format.json { render :text => '{status: "success", message: "成功创建银行卡！"}'}
@@ -66,7 +66,7 @@ class BankCardsController < ApplicationController
 
     respond_to do |format|
       if @bank_card.update_attributes(params[:bank_card])
-#        flash[:notice] = 'BankCard was successfully updated.'
+        #        flash[:notice] = 'BankCard was successfully updated.'
         format.html { redirect_to(@bank_card) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新银行卡！"}'}
@@ -98,11 +98,25 @@ class BankCardsController < ApplicationController
       param_pagesize = params[:page_size].to_i
       if param_pagesize > 0 then pagesize = param_pagesize end
     end
-    if(params[:search_name] && params[:search_name].to_s!='')
-      @bank_cards = BankCard.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
-      count = BankCard.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
+
+    conditions = '1=1'
+    condition_values = []
+    if(params[:search_name] && params[:search_name] != '')
+     if user = User.find_by_name(params[:search_name])
+       user_id = user.id
+     else
+       user_id = 0
+     end
+      conditions += " AND user_id = ? "
+      condition_values << user_id
+    end
+
+    if(conditions != '1=1')
+      option_conditions = [conditions,condition_values].flatten!
+      @bank_cards = BankCard.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
+      count = BankCard.count(:conditions => option_conditions)
     else
-      @bank_cards = BankCard.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      @bank_cards = BankCard.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
       count = BankCard.count
     end
     return render_json(@bank_cards,count)

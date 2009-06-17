@@ -1,7 +1,7 @@
 <%= f.error_messages %>
 <p>
   <%= f.label :user_id, "教职工" %>
-  <%= f.select :user_id, users_for_select, {:include_blank => "请选择教职工..." }, :class => "required" %>
+  <%= f.select :user_id, User.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择教职工..." }, :class => "required" %>
 </p>
 <p>
   <%= f.label :year, "年度" %>

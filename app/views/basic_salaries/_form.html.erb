@@ -1,6 +1,6 @@
 <p>
   <%= f.label :user_id, "教职工姓名" %>
-  <%= f.select :user_id, users_for_select, {:include_blank => "请选择教职工..." }, :class => "required" %>
+  <%= f.select :user_id, User.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择教职工..." }, :class => "required" %>
 </p>
 <p>
   <%= f.label :station_sa, "岗位工资"%>

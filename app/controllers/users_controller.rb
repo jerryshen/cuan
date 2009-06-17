@@ -98,11 +98,30 @@ class UsersController < ApplicationController
       param_pagesize = params[:page_size].to_i
       if param_pagesize > 0 then pagesize = param_pagesize end
     end
-    if(params[:search_name] && params[:search_name].to_s!='')
-      @users = User.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
-      count = User.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
+
+    conditions = '1=1'
+    condition_values = []
+    if(params[:search_name] && params[:search_name] != '')
+      conditions += " AND name like ? "
+      condition_values << "%#{params[:search_name]}%"
+    end
+
+    if(params[:search_department_id] && params[:search_department_id] != '')
+      conditions += " AND department_id = ? "
+      condition_values << params[:search_department_id]
+    end
+
+    if(params[:search_title_id] && params[:search_title_id] != '')
+      conditions += " AND title_id = ? "
+      condition_values << params[:search_title_id]
+    end
+
+    if(conditions != '1=1')
+      option_conditions = [conditions,condition_values].flatten!
+      @users = User.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
+      count = User.count(:conditions => option_conditions)
     else
-      @users = User.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      @users = User.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
       count = User.count
     end
     return render_json(@users,count)

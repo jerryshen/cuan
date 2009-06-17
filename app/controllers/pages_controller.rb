@@ -107,11 +107,25 @@ class PagesController < ApplicationController
       param_pagesize = params[:page_size].to_i
       if param_pagesize > 0 then pagesize = param_pagesize end
     end
-    if(params[:search_name] && params[:search_name].to_s!='')
-      @pages = Page.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
-      count = Page.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
+
+    conditions = '1=1'
+    condition_values = []
+    if(params[:search_name] && params[:search_name] != '')
+      conditions += " AND name like ? "
+      condition_values << "%#{params[:search_name]}%"
+    end
+
+    if(params[:search_page_module_id] && params[:search_page_module_id] != '')
+      conditions += " AND page_module_id = ? "
+      condition_values << params[:search_page_module_id]
+    end
+
+    if(conditions != '1=1')
+      option_conditions = [conditions,condition_values].flatten!
+      @pages = Page.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
+      count = Page.count(:conditions => option_conditions)
     else
-      @pages = Page.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      @pages = Page.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
       count = Page.count
     end
     return render_json(@pages,count)

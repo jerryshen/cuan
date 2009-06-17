@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 36) do
+ActiveRecord::Schema.define(:version => 37) do
 
   create_table "app_configs", :force => true do |t|
     t.string   "key"
@@ -357,7 +357,7 @@ ActiveRecord::Schema.define(:version => 36) do
     t.string   "subject"
     t.float    "fee"
     t.datetime "date"
-    t.string   "type"
+    t.string   "be_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
