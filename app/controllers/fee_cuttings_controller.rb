@@ -98,11 +98,27 @@ class FeeCuttingsController < ApplicationController
       param_pagesize = params[:page_size].to_i
       if param_pagesize > 0 then pagesize = param_pagesize end
     end
-    if(params[:search_name] && params[:search_name].to_s!='')
-      @fee_cuttings = FeeCutting.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
-      count = FeeCutting.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
+
+    unless(params[:search_name].blank?)
+      if user = User.find_by_name(params[:search_name])
+        user_id = user.id
+      else
+        user_id = 0
+      end
+      @fee_cuttings = FeeCutting.paginate(:order =>"id DESC", :conditions => ["user_id =?",user_id],:per_page=>pagesize, :page => params[:page] || 1)
+      count = @fee_cuttings.length
+    end
+
+    unless(params[:search_department_id].blank?)
+      @fee_cuttings = FeeCutting.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON fee_cuttings.user_id=p.id" , :conditions =>["p.department_id =?",params[:search_department_id]],:per_page=>pagesize, :page => params[:page] || 1 )
+      count = @fee_cuttings.length
+    end
+
+    unless(params[:search_department_id].blank? or params[:search_name].blank?)
+      @fee_cuttings = FeeCutting.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON fee_cuttings.user_id=p.id" , :conditions =>["p.department_id =? and p.name like ?",params[:search_department_id],"%#{params[:search_name]}%"],:per_page=>pagesize, :page => params[:page] || 1 )
+      count = @fee_cuttings.length
     else
-      @fee_cuttings = FeeCutting.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      @fee_cuttings = FeeCutting.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
       count = FeeCutting.count
     end
     return render_json(@fee_cuttings,count)

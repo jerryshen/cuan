@@ -99,24 +99,23 @@ class CollegeBenefitsController < ApplicationController
       if param_pagesize > 0 then pagesize = param_pagesize end
     end
 
-    conditions = '1=1'
-    condition_values = []
-    if(params[:search_name] && params[:search_name] != '')
-     if user = User.find_by_name(params[:search_name])
-       user_id = user.id
-     else
-       user_id = 0
-     end
-      conditions += " AND user_id = ? "
-      condition_values << user_id
+    unless(params[:search_name].blank?)
+      if user = User.find_by_name(params[:search_name])
+        user_id = user.id
+      else
+        user_id = 0
+      end
+      @college_benefits = CollegeBenefit.paginate(:order =>"id DESC", :conditions => ["user_id =?",user_id],:per_page=>pagesize, :page => params[:page] || 1)
+      count = @college_benefits.length
     end
 
-    if(conditions != '1=1')
-      option_conditions = [conditions,condition_values].flatten!
-      @college_benefits = CollegeBenefit.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
-      count = CollegeBenefit.count(:conditions => option_conditions)
-    elsif
+    unless(params[:search_department_id].blank?)
       @college_benefits = CollegeBenefit.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON college_benefits.user_id=p.id" , :conditions =>["p.department_id =?",params[:search_department_id]],:per_page=>pagesize, :page => params[:page] || 1 )
+      count = @college_benefits.length
+    end
+
+    unless(params[:search_department_id].blank? or params[:search_name].blank?)
+      @college_benefits = CollegeBenefit.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON college_benefits.user_id=p.id" , :conditions =>["p.department_id =? and p.name like ?",params[:search_department_id],"%#{params[:search_name]}%"],:per_page=>pagesize, :page => params[:page] || 1 )
       count = @college_benefits.length
     else
       @college_benefits = CollegeBenefit.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
