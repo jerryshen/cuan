@@ -17,7 +17,7 @@
     <script>
       if(self!=top){top.location=self.location;} //防止被iframe
       function login(){
-        var username=document.getElementById("username").value;
+        var username=document.getElementById("login_id").value;
         var password=document.getElementById("password").value;
         if(username.length==0){
           alert("请输入帐号!");
@@ -39,21 +39,6 @@
           login();
         }
       }
-
-      var changeCaptcha = function(){
-        URL = '/login/change_captcha';
-        new Ajax.Request(URL, {  
-          method: 'get',  
-          onSuccess: function(transport) {
-                var notice = $('notice');    
-                if ( data = transport.responseText)
-              var captcha_image = data.split(";")[0];
-            var captcha_digest = data.split(";")[1];
-            document.getElementById('captcha_image').src = captcha_image;
-            document.getElementById('captcha_digest').value = captcha_digest														    
-              }
-        })  
-      }
     </script>
   </head>
   <body>
@@ -67,14 +52,14 @@
             <div class="bg-login-down">
               <div class="bg-login-leftcol">
                 <div class="bg-login-name">
-                  帐号:<input name="username" id="username" type="text" class="bg-input" />
+                  帐号:<input name="login_id" id="username" type="text" class="bg-input" />
                 </div>
                 <div class="bg-login-password">
                   密码:<input name="password" id="password" type="password" class="bg-input2" />
                 </div>
                 <div class="forget-password"><%= flash[:notice] %></div>
                 <div class="bg-login-password">
-                  <%#=captcha%>
+                  <%#=  captcha %>
                 </div>
               </div>
             </div>

@@ -89,11 +89,22 @@ class StationPositionBenefitRecordsController < ApplicationController
       param_pagesize = params[:page_size].to_i
       if param_pagesize > 0 then pagesize = param_pagesize end
     end
-    if(params[:search_name] && params[:search_name].to_s!='')
-      @station_position_benefit_records = StationPositionBenefitRecord.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
-      count = StationPositionBenefitRecord.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
+    if(!params[:search_name].blank? && params[:search_department_id].blank?)
+      if user = User.find_by_name(params[:search_name])
+        user_id = user.id
+      else
+        user_id = 0
+      end
+      @station_position_benefit_records = StationPositionBenefitRecord.paginate(:order =>"id DESC", :conditions => ["user_id =?",user_id],:per_page=>pagesize, :page => params[:page] || 1)
+      count = @station_position_benefit_records.length
+    elsif(!params[:search_department_id].blank? && params[:search_name].blank?)
+      @station_position_benefit_records = StationPositionBenefitRecord.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON station_position_benefit_records.user_id=p.id" , :conditions =>["p.department_id =?",params[:search_department_id]],:per_page=>pagesize, :page => params[:page] || 1 )
+      count = @station_position_benefit_records.length
+    elsif(!params[:search_department_id].blank? && !params[:search_name].blank?)
+      @station_position_benefit_records = StationPositionBenefitRecord.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON station_position_benefit_records.user_id=p.id" , :conditions =>["p.department_id =? and p.name like ?",params[:search_department_id],"%#{params[:search_name]}%"],:per_page=>pagesize, :page => params[:page] || 1 )
+      count = @station_position_benefit_records.length
     else
-      @station_position_benefit_records = StationPositionBenefitRecord.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      @station_position_benefit_records = StationPositionBenefitRecord.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
       count = StationPositionBenefitRecord.count
     end
     return render_json(@station_position_benefit_records,count)

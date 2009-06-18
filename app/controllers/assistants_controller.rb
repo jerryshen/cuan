@@ -89,18 +89,29 @@ class AssistantsController < ApplicationController
     end
   end
 
-  private
+ private
   def get_json
     pagesize = 10
     if(params[:page_size])
       param_pagesize = params[:page_size].to_i
       if param_pagesize > 0 then pagesize = param_pagesize end
     end
-    if(params[:search_name] && params[:search_name].to_s!='')
-      @assistants = Assistant.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
-      count = Assistant.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
+    if(!params[:search_name].blank? && params[:search_department_id].blank?)
+      if user = User.find_by_name(params[:search_name])
+        user_id = user.id
+      else
+        user_id = 0
+      end
+      @assistants = Assistant.paginate(:order =>"id DESC", :conditions => ["user_id =?",user_id],:per_page=>pagesize, :page => params[:page] || 1)
+      count = @assistants.length
+    elsif(!params[:search_department_id].blank? && params[:search_name].blank?)
+      @assistants = Assistant.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON assistants.user_id=p.id" , :conditions =>["p.department_id =?",params[:search_department_id]],:per_page=>pagesize, :page => params[:page] || 1 )
+      count = @assistants.length
+    elsif(!params[:search_department_id].blank? && !params[:search_name].blank?)
+      @assistants = Assistant.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON assistants.user_id=p.id" , :conditions =>["p.department_id =? and p.name like ?",params[:search_department_id],"%#{params[:search_name]}%"],:per_page=>pagesize, :page => params[:page] || 1 )
+      count = @assistants.length
     else
-      @assistants = Assistant.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      @assistants = Assistant.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
       count = Assistant.count
     end
     return render_json(@assistants,count)

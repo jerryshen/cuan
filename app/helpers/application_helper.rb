@@ -1,6 +1,6 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-
+  
   #select options for index searching
   def list_departments_for_search
     @options = [["所有",""]]
