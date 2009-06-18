@@ -1,6 +1,6 @@
 class RetiredBasicSalariesController < ApplicationController
-#  protect_from_forgery :except => :index
-#  skip_before_filter :verify_authenticity_token
+  #  protect_from_forgery :except => :index
+  #  skip_before_filter :verify_authenticity_token
   # GET /retired_basic_salaries
   # GET /retired_basic_salaries.xml
   def index
@@ -47,7 +47,7 @@ class RetiredBasicSalariesController < ApplicationController
 
     respond_to do |format|
       if @retired_basic_salary.save
-#        flash[:notice] = 'RetiredBasicSalary was successfully created.'
+        #        flash[:notice] = 'RetiredBasicSalary was successfully created.'
         format.html { redirect_to(@retired_basic_salary) }
         format.xml  { render :xml => @retired_basic_salary, :status => :created, :location => @retired_basic_salary }
         format.json { render :text => '{status: "success",message: "成功添加离退休人员基本工资！"}'}
@@ -66,7 +66,7 @@ class RetiredBasicSalariesController < ApplicationController
 
     respond_to do |format|
       if @retired_basic_salary.update_attributes(params[:retired_basic_salary])
-#        flash[:notice] = 'RetiredBasicSalary was successfully updated.'
+        #        flash[:notice] = 'RetiredBasicSalary was successfully updated.'
         format.html { redirect_to(@retired_basic_salary) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success",message: "成功修改离退休人员基本工资！"}'}
@@ -98,11 +98,22 @@ class RetiredBasicSalariesController < ApplicationController
       param_pagesize = params[:page_size].to_i
       if param_pagesize > 0 then pagesize = param_pagesize end
     end
-    if(params[:search_name] && params[:search_name].to_s!='')
-      @retired_basic_salaries = RetiredBasicSalary.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
-      count = RetiredBasicSalary.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
+    if(!params[:search_name].blank? && params[:search_department_id].blank?)
+      if user = User.find_by_name(params[:search_name])
+        user_id = user.id
+      else
+        user_id = 0
+      end
+      @retired_basic_salaries = RetiredBasicSalary.paginate(:order =>"id DESC", :conditions => ["user_id =?",user_id],:per_page=>pagesize, :page => params[:page] || 1)
+      count = @retired_basic_salaries.length
+    elsif(!params[:search_department_id].blank? && params[:search_name].blank?)
+      @fee_cuttings = RetiredBasicSalary.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON retired_basic_salaries.user_id=p.id" , :conditions =>["p.department_id =?",params[:search_department_id]],:per_page=>pagesize, :page => params[:page] || 1 )
+      count = @retired_basic_salaries.length
+    elsif(!params[:search_department_id].blank? && !params[:search_name].blank?)
+      @retired_basic_salaries = RetiredBasicSalary.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON retired_basic_salaries.user_id=p.id" , :conditions =>["p.department_id =? and p.name like ?",params[:search_department_id],"%#{params[:search_name]}%"],:per_page=>pagesize, :page => params[:page] || 1 )
+      count = @retired_basic_salaries.length
     else
-      @retired_basic_salaries = RetiredBasicSalary.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      @retired_basic_salaries = RetiredBasicSalary.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
       count = RetiredBasicSalary.count
     end
     return render_json(@retired_basic_salaries,count)

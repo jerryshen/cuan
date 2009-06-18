@@ -3,10 +3,38 @@
 <%= stylesheet_link_tag "form.css" %>
 <div id="list-view">
 <form style="margin: 10px 0px;" id="search_form">
-  <label for="search_name">
-    姓名：
-  </label>
-  <input type="text" value="" name="search_name" id="search_name"/>
+    <label for="search_department_id">系部:</label>
+    <% list_departments_for_search %>
+    <select style="margin:0px;padding:0px;float:none;" id="search_department_id" name="search_department_id">
+      <% @options.each do |option| %>
+        <option value="<%= option[1] %>"><%= option[0] %></option>
+      <% end %>
+    </select>
+    <label for="search_name">姓名：</label>
+    <input type="text" value="" size="15" name="search_name" id="search_name"/>
+    <label for="search_year_month">年月:</label>
+    <select style="margin: 0px; padding: 0px; float: none;" name="search_year" id="search_year">
+      <option value="" selected="selected">年度</option>
+      <option value="2009">2009</option>
+      <option value="2010">2010</option>
+      <option value="2011">2011</option>
+      <option value="2012">2012</option>
+    </select>
+    <select style="margin: 0px; padding: 0px; float: none;" name="search_month" id="search_month">
+      <option value="" selected="selected">月份</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
   <input class="button" type="button" id="btnSearch" value="搜索"/>
   <input value="重置"class="btnreset" type="reset" />
   <input value="刷新 " onclick="window.location.reload()" class="btnrefresh" type="button"  />
@@ -20,6 +48,7 @@
     </div>
   </div>
 </div>
+</div>
 <%= javascript_include_tag 'ext-2.2.1/adapter/jquery/jquery.js'%>
 <%= javascript_include_tag 'ext-2.2.1/adapter/jquery/ext-jquery-adapter.js'%>
 <%= javascript_include_tag 'ext-2.2.1/ext-all.js'%>
@@ -29,6 +58,10 @@
 <%= javascript_include_tag 'jquery-validate/localization/messages_cn.js' %>
 <%= javascript_include_tag 'AjaxForm.js' %>
 <script>
+    var users = <%= User.to_json%>
+  var getUserName = function(value, p, record){
+    return users[value]
+  }
   //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
   // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]}
   //框[]中的为默认值
@@ -42,10 +75,11 @@
         resizable: false
       }, {
         header: "教职工",
-        dataIndex: 'user',
-        sortable: true
+        dataIndex: 'user_id',
+        sortable: true,
+        renderer: getUserName
       }, {
-        header: "年份",
+        header: "年度",
         dataIndex: 'year',
         sortable: true
       }, {

@@ -1,6 +1,6 @@
 class CollegeBenefitsController < ApplicationController
-#  protect_from_forgery :except => :index
-#  skip_before_filter :verify_authenticity_token
+  #  protect_from_forgery :except => :index
+  #  skip_before_filter :verify_authenticity_token
   # GET /college_benefits
   # GET /college_benefits.xml
   def index
@@ -47,7 +47,7 @@ class CollegeBenefitsController < ApplicationController
 
     respond_to do |format|
       if @college_benefit.save
-#        flash[:notice] = 'CollegeBenefit was successfully created.'
+        #        flash[:notice] = 'CollegeBenefit was successfully created.'
         format.html { redirect_to(@college_benefit) }
         format.xml  { render :xml => @college_benefit, :status => :created, :location => @college_benefit }
         format.json { render :text => '{status: "success", message: "成功创建学院补贴！"}'}
@@ -66,7 +66,7 @@ class CollegeBenefitsController < ApplicationController
 
     respond_to do |format|
       if @college_benefit.update_attributes(params[:college_benefit])
-#        flash[:notice] = 'CollegeBenefit was successfully updated.'
+        #        flash[:notice] = 'CollegeBenefit was successfully updated.'
         format.html { redirect_to(@college_benefit) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新学院补贴！"}'}
@@ -99,7 +99,7 @@ class CollegeBenefitsController < ApplicationController
       if param_pagesize > 0 then pagesize = param_pagesize end
     end
 
-    unless(params[:search_name].blank?)
+    if(!params[:search_name].blank? && params[:search_department_id].blank?)
       if user = User.find_by_name(params[:search_name])
         user_id = user.id
       else
@@ -107,14 +107,10 @@ class CollegeBenefitsController < ApplicationController
       end
       @college_benefits = CollegeBenefit.paginate(:order =>"id DESC", :conditions => ["user_id =?",user_id],:per_page=>pagesize, :page => params[:page] || 1)
       count = @college_benefits.length
-    end
-
-    unless(params[:search_department_id].blank?)
+    elsif(!params[:search_department_id].blank? && params[:search_name].blank?)
       @college_benefits = CollegeBenefit.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON college_benefits.user_id=p.id" , :conditions =>["p.department_id =?",params[:search_department_id]],:per_page=>pagesize, :page => params[:page] || 1 )
       count = @college_benefits.length
-    end
-
-    unless(params[:search_department_id].blank? or params[:search_name].blank?)
+    elsif(!params[:search_department_id].blank? && !params[:search_name].blank?)
       @college_benefits = CollegeBenefit.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON college_benefits.user_id=p.id" , :conditions =>["p.department_id =? and p.name like ?",params[:search_department_id],"%#{params[:search_name]}%"],:per_page=>pagesize, :page => params[:page] || 1 )
       count = @college_benefits.length
     else

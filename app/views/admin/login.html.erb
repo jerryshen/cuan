@@ -1,88 +1,93 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<%= javascript_include_tag 'application' %>
-        <title>工资管理系统登录</title>
-        <style type="text/css">
-         <!--
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <%= stylesheet_link_tag 'background-login' %>
+    <%= javascript_include_tag 'application' %>
+    <title>工资管理系统登录</title>
+    <style type="text/css">
+      <!--
 
-        .STYLE1 {
-            color: #ee9128
+      .STYLE1 {
+        color: #ee9128
+      }
+      -->
+    </style>
+
+    <script>
+      if(self!=top){top.location=self.location;} //防止被iframe
+      function login(){
+        var username=document.getElementById("username").value;
+        var password=document.getElementById("password").value;
+        if(username.length==0){
+          alert("请输入帐号!");
+          return;
         }
-        -->
-        </style>
+        if(password.length==0){
+          alert("请输入密码!");
+          return;
+        }
+        document.getElementById("loginForm").submit();
+      }
 
-		<script>
-			if(self!=top){top.location=self.location;} //防止被iframe
-			function login(){
-				var username=document.getElementById("username").value;
-				var password=document.getElementById("password").value;
-				if(username.length==0){
-					alert("请输入帐号!");
-					return;
-				}
-				if(password.length==0){
-					alert("请输入密码!");
-					return;
-				}
-				document.getElementById("loginForm").submit();
-			}
+      function enterSubmit(event)
+      {
+        if (event.keyCode == 13) //13: enter
+        {
+          event.returnValue=false;
+          event.cancel = true;
+          login();
+        }
+      }
 
-			function enterSubmit(event)
-			{
-				if (event.keyCode == 13) //13: enter
-				{
-					event.returnValue=false;
-					event.cancel = true;
-					login();
-				}
-			}
-
-			var changeCaptcha = function(){
-						URL = '/login/change_captcha';
-						new Ajax.Request(URL, {  
-							method: 'get',  
-							onSuccess: function(transport) {
-							    var notice = $('notice');    
-							    if ( data = transport.responseText)
-											var captcha_image = data.split(";")[0];
-											var captcha_digest = data.split(";")[1];
-											document.getElementById('captcha_image').src = captcha_image;
-											document.getElementById('captcha_digest').value = captcha_digest														    
-							    }
-						})  
-			}
-		</script>
-    </head>
-    <body>
-        <div class="bg-login">
-            <div class="bg-login-title">
-                工资管理系统
-            </div>
-              <% form_tag "/admin/try_to_login",:id=>"loginForm",:method=>"post" do |f| %>
-            <div>
-                <div>
-                    <div>
-                        <div>
-                            <div>
-                                帐号:<input name="username" id="username" type="text" class="bg-input" />
-                            </div>
-                            <div>
-                                密码:<input name="password" id="password" type="password" class="bg-input2" />
-                            </div>
-							<div><%= flash.now[:notice] %></div>
-                        </div>
-                    </div>
-                    <div>
-                        <a href="#" onclick="login()">登陆</a>
-                    </div>
-                    <div>
-                        <a href="#">取消</a>
-                    </div>
+      var changeCaptcha = function(){
+        URL = '/login/change_captcha';
+        new Ajax.Request(URL, {  
+          method: 'get',  
+          onSuccess: function(transport) {
+                var notice = $('notice');    
+                if ( data = transport.responseText)
+              var captcha_image = data.split(";")[0];
+            var captcha_digest = data.split(";")[1];
+            document.getElementById('captcha_image').src = captcha_image;
+            document.getElementById('captcha_digest').value = captcha_digest														    
+              }
+        })  
+      }
+    </script>
+  </head>
+  <body>
+    <div class="bg-login">
+      <div class="bg-login-title">
+        工 资 管 理 系 统
+      </div>
+      <% form_tag "/admin/try_to_login",:id=>"loginForm",:method=>"post" do |f| %>
+        <div class="bg-login-content">
+          <div class="bg-login-right">
+            <div class="bg-login-down">
+              <div class="bg-login-leftcol">
+                <div class="bg-login-name">
+                  帐号:<input name="username" id="username" type="text" class="bg-input" />
                 </div>
-			</div>
-			<% end %>
+                <div class="bg-login-password">
+                  密码:<input name="password" id="password" type="password" class="bg-input2" />
+                </div>
+                <div class="forget-password"><%= flash[:notice] %></div>
+                <div class="bg-login-password">
+                  <%#=captcha%>
+                </div>
+              </div>
+            </div>
+            <div class="bg-log">
+              <a href="#" onclick="login()">Login</a>
+            </div>
+            <div class="bg-cancel">
+              <a href="#">Cancel</a>
+            </div>
+            <!--div class="login-forget"-->
+          </div>
         </div>
-    </body>
+      <% end %>
+    </div>
+  </body>
 </html>

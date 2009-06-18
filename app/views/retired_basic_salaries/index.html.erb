@@ -3,10 +3,15 @@
 <%= stylesheet_link_tag "form.css" %>
 <div id="list-view">
   <form style="margin: 10px 0px;" id="search_form">
-    <label for="search_name">
-      姓名：
-    </label>
-    <input type="text" value="" name="search_name" id="search_name"/>
+    <label for="search_department_id">系部:</label>
+    <% list_departments_for_search %>
+    <select style="margin:0px;padding:0px;float:none;" id="search_department_id" name="search_department_id">
+      <% @options.each do |option| %>
+        <option value="<%= option[1] %>"><%= option[0] %></option>
+      <% end %>
+    </select>
+    <label for="search_name">姓名：</label>
+    <input type="text" value="" size="15" name="search_name" id="search_name"/>
     <input class="button" type="button" id="btnSearch" value="搜索"/>
     <input value="重置"class="btnreset" type="reset" />
     <input value="刷新 " onclick="window.location.reload()" class="btnrefresh" type="button"  />
@@ -47,7 +52,8 @@
       }, {
         header: "教职工",
         dataIndex: 'user_id',
-        sortable: true
+        sortable: true,
+        renderer: getUserName
       }, {
         header: "月基本退休费",
         dataIndex: 'basic_fee',
