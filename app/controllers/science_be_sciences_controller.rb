@@ -14,7 +14,7 @@ class ScienceBeSciencesController < ApplicationController
   # GET /science_be_sciences/1
   # GET /science_be_sciences/1.xml
   def show
-    @science_be_science = ScienceBenefit.find(params[:id])
+    @science_be_science = ScienceBenefit.find_by_id_and_user_id(params[:id],@current_user.id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,13 +35,16 @@ class ScienceBeSciencesController < ApplicationController
 
   # GET /science_be_sciences/1/edit
   def edit
-    @science_be_science = ScienceBenefit.find(params[:id])
+    @science_be_science = ScienceBenefit.find_by_id_and_user_id(params[:id],@current_user.id)
   end
 
   # POST /science_be_sciences
   # POST /science_be_sciences.xml
   def create
     @science_be_science = ScienceBenefit.new(params[:science_be_science])
+    if is_admin?
+      @science_be_science.user_id = @current_user.id
+    end
 
     respond_to do |format|
       if @science_be_science.save
@@ -60,7 +63,7 @@ class ScienceBeSciencesController < ApplicationController
   # PUT /science_be_sciences/1
   # PUT /science_be_sciences/1.xml
   def update
-    @science_be_science = ScienceBenefit.find(params[:id])
+    @science_be_science = ScienceBenefit.find_by_id_and_user_id(params[:id],@current_user.id)
 
     respond_to do |format|
       if @science_be_science.update_attributes(params[:science_be_science])
@@ -79,7 +82,7 @@ class ScienceBeSciencesController < ApplicationController
   # DELETE /science_be_sciences/1
   # DELETE /science_be_sciences/1.xml
   def destroy
-    @science_be_science = ScienceBenefit.find(params[:id])
+    @science_be_science = ScienceBenefit.find_by_id_and_user_id(params[:id],@current_user.id)
     @science_be_science.destroy
 
     respond_to do |format|
@@ -95,12 +98,15 @@ class ScienceBeSciencesController < ApplicationController
       param_pagesize = params[:page_size].to_i
       if param_pagesize > 0 then pagesize = param_pagesize end
     end
-    if(params[:search_name] && params[:search_name].to_s!='')
-      @science_be_sciences = ScienceBenefit.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
-      count = ScienceBenefit.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
+    if(!params[:search_verify].blank?)
+      value=(params[:search_verify].to_i == 0? false : true)
+      condition = ["user_id = ? and is_verified = ?", @current_user.id, value]
+      @science_be_sciences = ScienceBenefit.paginate(:order =>"id DESC", :conditions => condition,:per_page=>pagesize,:page => params[:page] || 1)
+      count = @science_be_sciences.length
     else
-      @science_be_sciences = ScienceBenefit.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
-      count = ScienceBenefit.count
+      condition = ["user_id =?", @current_user.id]
+      @science_be_sciences = ScienceBenefit.paginate(:order =>"id DESC",:conditions => condition ,:per_page=>pagesize,:page => params[:page] || 1)
+      count = @science_be_sciences.count
     end
     return render_json(@science_be_sciences,count)
   end

@@ -16,6 +16,11 @@ class ApplicationController < ActionController::Base
     @current_user = User.first(:conditions => {:id => session[:user_id] }) if session[:user_id]
   end
 
+  def is_admin?
+    name = "超级管理员"
+    return true if @current_user.roles.find_by_name(name)
+  end
+
   def session_timeout
     return  30 * 60  #30 minutes
   end
@@ -38,13 +43,12 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_permission
-      unless Page.accessable?(request.url,@current_user)
-        render :text => "警告，你没有权限访问该页面！"
-      end
+    unless Page.accessable?(request.url,@current_user)
+      render :text => "警告，你没有权限访问该页面！"
+    end
   end
 
   protected
-
   #get json data
   def render_json records,total
     json_texts = []
