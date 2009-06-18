@@ -16,7 +16,6 @@
 
       function make_outlook_menu(modules,icon_base_path,item_click){
         var navmenu = [];
-        //var last_expand_id = 0;
         for (var i = 0, l = modules.length; i < l; i++) {
           var amodule = modules[i];
           var submenus = [];
@@ -28,33 +27,11 @@
           var option = {};
           option.title = amodule.name;
           option.collapsible = true;
+          option.autoScroll = true;
+          option.autoHeight = true;
           option.html = "<ul class='nav-page-list'>" + submenus.join('') + "</ul>";
-          if(i)option.collapsed  = true; //默认只展开第一个面板,其他收起
+          //if(i)option.collapsed  = true; //默认只展开第一个面板,其他收起
           var panel = new Ext.Panel(option);
-
-          if(i==0)last_expand_id = panel.id;
-
-          //展开面板前先关闭已经展开的面板
-          /*
-                    panel.on("beforeexpand", function(){
-                        if (last_expand_id) {
-                            var cmp = Ext.getCmp(last_expand_id);
-                            if (cmp)
-                                cmp.collapse();
-                        }
-                    })
-                    panel.on("expand", function(panel){
-                        last_expand_id = panel.id
-                    });
-           */
-          panel.on("render",function(cmp){
-            //cmp.header.on("click",function(evt,header,para){
-              //var id = header.parentNode.id;
-              //Ext.getCmp(id).toggleCollapse();
-           //});
-            cmp.header.dom.style.cursor = "pointer";
-          })
-
           navmenu.push(panel);
         }
         return navmenu;

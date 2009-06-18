@@ -45,14 +45,14 @@
     return String.format("<a href='#' action ='hidden' title='Hidden' class='gridButton' url='/pages/hide/{0}'>{1}</a>",record.data.id,text);
   }
 
-  var bind_hidden_link_click = function(alink,reloadPageData){
+  var bind_hidden_link_click = function(alink){
     var url = alink.getAttribute("url");
     Ext.get(alink).on("click",function(){
       Ext.Ajax.request({
         url: url,
         success: function(rq,params){ //rq:请求的响应，params请求时的参数（此处为｛url,success,failure｝)
           if(rq.responseText=="true"){
-            reloadPageData();
+            $page.refreshGridData();
           }else{
             Ext.MessageBox.alert(MsgDic[1],MsgDic[10000]);
           }
