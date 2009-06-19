@@ -3,14 +3,15 @@
 <%= stylesheet_link_tag "form.css" %>
 <div id="list-view">
   <form style="margin: 10px 0px;" id="search_form">
-    <label for="search_name">
-      是否审核：
-    </label>
-    <select style="margin: 0px; padding: 0px; float: none;" name="search_verify" id="search_verify">
-      <option value="" selected="selected">请选择</option>
-      <option value="0">未审核</option>
-      <option value="1">已审核</option>
-    </select>>
+    <label for="search_department_id">系部:</label>
+    <% list_departments_for_search %>
+    <select style="margin:0px;padding:0px;float:none;" id="search_department_id" name="search_department_id">
+      <% @options.each do |option| %>
+        <option value="<%= option[1] %>"><%= option[0] %></option>
+      <% end %>
+    </select>
+    <label for="search_name">姓名：</label>
+    <input type="text" value="" size="15" name="search_name" id="search_name"/>
     <input class="button" type="button" id="btnSearch" value="搜索"/>
     <input value="重置"class="btnreset" type="reset" />
     <input value="刷新 " onclick="window.location.reload()" class="btnrefresh" type="button"  />
@@ -33,7 +34,7 @@
 <%= javascript_include_tag 'AjaxForm.js' %>
 <script>
   var users = <%= User.to_json%>
-  var getUserName = function(value, p, record){
+  var getUserName = function(value){
     return users[value]
   }
   //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
@@ -48,39 +49,27 @@
         type: "int",
         resizable: false
       }, {
-        header: "员工姓名",
+        header: "教职工",
         dataIndex: 'user_id',
         sortable: true,
         renderer : getUserName
       }, {
-        header: "学期总课时津贴",
-        dataIndex: 'total_be',
-        sortable: true
-      }, {
-        header: "学期",
+        header: "发放学期",
         dataIndex: 'term',
         sortable: true
       }, {
-        header: "计算月",
-        dataIndex: 'month',
+        header: "金额",
+        dataIndex: 'fee',
         sortable: true
       }, {
         header: "发放日期",
         dataIndex: 'date',
         sortable: true
-      }, {
-        header: "是否审核",
-        dataIndex: 'is_verified',
-        type: 'boolean',
-        sortable: true,
-        renderer: function(value){
-          return value.toString()=="false" ? "未审核" : "已审核"
-        }
       }]
-    var controllerName = "class_be_edus";
+    var controllerName = "performance_benefit_records";
     options = {
       baseUrl: "http://" + window.location.host + "/" + controllerName,
-      gridTitle: "教务员－课时津贴管理列表",
+      gridTitle: "绩效津贴记录管理列表",
       newItemLink: "newItem",
       columns: columns
     }

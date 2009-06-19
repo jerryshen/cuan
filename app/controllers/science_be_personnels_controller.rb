@@ -34,7 +34,6 @@ class ScienceBePersonnelsController < ApplicationController
 
     respond_to do |format|
       if @science_be_personnel.update_attributes(params[:science_be_personnel])
-        flash[:notice] = 'ScienceBePersonnel was successfully updated.'
         format.html { redirect_to(@science_be_personnel) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功修改科研津贴申请！"}'}
@@ -59,18 +58,48 @@ class ScienceBePersonnelsController < ApplicationController
     end
   end
 
+  def verify
+    @science_be_personnel = ScienceBenefit.find(params[:id])
+    if @science_be_personnel.verify
+      render :text =>"true"
+    else
+      render :text =>"false"
+    end
+  end
+
+  private
   def get_json
     pagesize = 10
     if(params[:page_size])
       param_pagesize = params[:page_size].to_i
       if param_pagesize > 0 then pagesize = param_pagesize end
     end
-    if(params[:search_name] && params[:search_name].to_s!='')
-      @science_be_personnels = ScienceBenefit.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
-      count = ScienceBenefit.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
+
+    conditions = '1=1'
+    condition_values = []
+    if(!params[:search_name].blank?)
+      if user = User.find_by_name(params[:search_name])
+        user_id = user.id
+      else
+        user_id = 0
+      end
+      conditions += " AND user_id = ?"
+      condition_values << user_id
+    end
+
+    if(!params[:search_verify].blank?)
+      value=(params[:search_verify].to_i ==0? false : true)
+      conditions += " AND is_verified = ? "
+      condition_values << value
+    end
+
+    if(conditions != '1=1')
+      option_conditions = [conditions,condition_values].flatten!
+      @science_be_personnels = ScienceBenefit.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
+      count = @science_be_personnels.length
     else
-      @science_be_personnels = ScienceBenefit.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
-      count = ScienceBenefit.count
+      @science_be_personnels = ScienceBenefit.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
+      count = @science_be_personnels.length
     end
     return render_json(@science_be_personnels,count)
   end

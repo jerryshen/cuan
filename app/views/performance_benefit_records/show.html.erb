@@ -1,0 +1,23 @@
+<p>
+  <b>User:</b>
+  <%=h @performance_benefit_record.user %>
+</p>
+
+<p>
+  <b>Term:</b>
+  <%=h @performance_benefit_record.term %>
+</p>
+
+<p>
+  <b>Fee:</b>
+  <%=h @performance_benefit_record.fee %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%=h @performance_benefit_record.date %>
+</p>
+
+
+<%= link_to 'Edit', edit_performance_benefit_record_path(@performance_benefit_record) %> |
+<%= link_to 'Back', performance_benefit_records_path %>

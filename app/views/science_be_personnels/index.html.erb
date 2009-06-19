@@ -3,10 +3,14 @@
 <%= stylesheet_link_tag "form.css" %>
 <div id="list-view">
   <form style="margin: 10px 0px;" id="search_form">
-    <label for="search_name">
-      名称：
-    </label>
-    <input type="text" value="" name="search_name" id="search_name"/>
+    <label for="search_name">姓名:</label>
+    <input type="text" value="" size="15" name="search_name" id="search_name"/>
+    <label for="search_verify">是否审核：</label>
+    <select style="margin: 0px; padding: 0px; float: none;" name="search_verify" id="search_verify">
+      <option value="" selected="selected">请选择</option>
+      <option value="0">未审核</option>
+      <option value="1">已审核</option>
+    </select>
     <input class="button" type="button" id="btnSearch" value="搜索"/>
     <input value="重置"class="btnreset" type="reset" />
     <input value="刷新 " onclick="window.location.reload()" class="btnrefresh" type="button"  />
@@ -26,8 +30,32 @@
 <%= javascript_include_tag 'AjaxForm.js' %>
 <script>
   var users = <%= User.to_json%>
-  var getUserName = function(value, p, record){
+  var getUserName = function(value){
     return users[value]
+  }
+
+  var makeAsVerifyLink = function(value, p, record){
+    var text = value.toString()=="true" ? "已经通过审核" : "未审核（点击通过审核）";
+    return String.format("<a href='#' action ='verify' title='审核' class='gridButton' url='/science_be_personnels/verify/{0}'>{1}</a>",record.data.id,text);
+  }
+
+  var bind_verify_link_click = function(alink){
+    var url = alink.getAttribute("url");
+    Ext.get(alink).on("click",function(){
+      Ext.Ajax.request({
+        url: url,
+        success: function(rq,params){ //rq:请求的响应，params请求时的参数（此处为｛url,success,failure｝)
+          if(rq.responseText=="true"){
+            $page.refreshGridData();
+          }else{
+            Ext.MessageBox.show({msg:"您么权限删除已经通过审核的津贴",buttons: Ext.MessageBox.OK,icon:Ext.MessageBox.ERROR});
+          }
+        },
+        failure: function(){
+          Ext.MessageBox.show({msg:"您没有权限取消已经通过审核的津贴",buttons: Ext.MessageBox.OK,icon:Ext.MessageBox.WARNING});
+        }
+      });
+    })
   }
   //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
   // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]}
@@ -42,7 +70,7 @@
         resizable: false
       }, {
         header: "员工姓名",
-        dataIndex: 'name',
+        dataIndex: 'user_id',
         sortable: true,
         renderer : getUserName
       }, {
@@ -61,13 +89,23 @@
         header: "发放日期",
         dataIndex: 'date',
         sortable: true
+      }, {
+        header: "审核",
+        dataIndex: 'is_verified',
+        type: 'boolean',
+        width: 150,
+        sortable: true,
+        renderer: makeAsVerifyLink
       }]
     var controllerName = "science_be_personnels";
     options = {
       baseUrl: "http://" + window.location.host + "/" + controllerName,
       gridTitle: "人事处－科研津贴管理列表",
       newItemLink: "newItem",
-      columns: columns
+      columns: columns,
+      bindlinks: {
+        "verify": bind_verify_link_click
+      }
     }
     $page = new ExtListPage(options);
   })

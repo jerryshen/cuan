@@ -48,7 +48,7 @@ class ScienceBeSciencesController < ApplicationController
 
     respond_to do |format|
       if @science_be_science.save
-#        flash[:notice] = 'ScienceBeScience was successfully created.'
+        #        flash[:notice] = 'ScienceBeScience was successfully created.'
         format.html { redirect_to(@science_be_science) }
         format.xml  { render :xml => @science_be_science, :status => :created, :location => @science_be_science }
         format.json { render :text => '{status: "success", message: "成功提交科研津贴申请！"}'}
@@ -67,7 +67,7 @@ class ScienceBeSciencesController < ApplicationController
 
     respond_to do |format|
       if @science_be_science.update_attributes(params[:science_be_science])
-#        flash[:notice] = 'ScienceBeScience was successfully updated.'
+        #        flash[:notice] = 'ScienceBeScience was successfully updated.'
         format.html { redirect_to(@science_be_science) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功修改科研津贴！"}'}
@@ -92,6 +92,7 @@ class ScienceBeSciencesController < ApplicationController
     end
   end
 
+  private
   def get_json
     pagesize = 10
     if(params[:page_size])

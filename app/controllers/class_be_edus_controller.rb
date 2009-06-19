@@ -14,7 +14,7 @@ class ClassBeEdusController < ApplicationController
   # GET /class_be_edus/1
   # GET /class_be_edus/1.xml
   def show
-    @class_be_edu = ClassBenefit.find(params[:id])
+    @class_be_edu = ClassBenefit.find_by_id_and_user_id(params[:id],@current_user.id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,17 +35,19 @@ class ClassBeEdusController < ApplicationController
 
   # GET /class_be_edus/1/edit
   def edit
-    @class_be_edu = ClassBenefit.find(params[:id])
+    @class_be_edu = ClassBenefit.find_by_id_and_user_id(params[:id],@current_user.id)
   end
 
   # POST /class_be_edus
   # POST /class_be_edus.xml
   def create
     @class_be_edu = ClassBenefit.new(params[:class_be_edu])
+    if is_admin?
+      @class_be_edu.user_id = @current_user.id
+    end
 
     respond_to do |format|
       if @class_be_edu.save
-#        flash[:notice] = 'ClassBeEdu was successfully created.'
         format.html { redirect_to(@class_be_edu) }
         format.xml  { render :xml => @class_be_edu, :status => :created, :location => @class_be_edu }
         format.json { render :text => '{status: "success", message: "成功提交课时津贴申请！"}'}
@@ -60,11 +62,10 @@ class ClassBeEdusController < ApplicationController
   # PUT /class_be_edus/1
   # PUT /class_be_edus/1.xml
   def update
-    @class_be_edu = ClassBenefit.find(params[:id])
+    @class_be_edu = ClassBenefit.findby_id_and_user_id(params[:id],@current_user.id)
 
     respond_to do |format|
       if @class_be_edu.update_attributes(params[:class_be_edu])
-#        flash[:notice] = 'ClassBeEdu was successfully updated.'
         format.html { redirect_to(@class_be_edu) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功修改课时津贴申请！"}'}
@@ -79,7 +80,7 @@ class ClassBeEdusController < ApplicationController
   # DELETE /class_be_edus/1
   # DELETE /class_be_edus/1.xml
   def destroy
-    @class_be_edu = ClassBenefit.find(params[:id])
+    @class_be_edu = ClassBenefit.find_by_id_and_user_id(params[:id],@current_user.id)
     @class_be_edu.destroy
 
     respond_to do |format|
@@ -89,18 +90,22 @@ class ClassBeEdusController < ApplicationController
     end
   end
 
+  private
   def get_json
     pagesize = 10
     if(params[:page_size])
       param_pagesize = params[:page_size].to_i
       if param_pagesize > 0 then pagesize = param_pagesize end
     end
-    if(params[:search_name] && params[:search_name].to_s!='')
-      @class_be_edus = ClassBenefit.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
-      count = ClassBenefit.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
+    if(!params[:search_verify].blank?)
+      value=(params[:search_verify].to_i == 0? false : true)
+      condition = ["user_id = ? and is_verified = ?", @current_user.id, value]
+      @class_be_edus = ClassBenefit.paginate(:order =>"id DESC", :conditions => condition,:per_page=>pagesize,:page => params[:page] || 1)
+      count = @class_be_edus.length
     else
-      @class_be_edus = ClassBenefit.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
-      count = ClassBenefit.count
+      condition = ["user_id =?", @current_user.id]
+      @class_be_edus = ClassBenefit.paginate(:order =>"id DESC",:conditions => condition ,:per_page=>pagesize,:page => params[:page] || 1)
+      count = @class_be_edus.count
     end
     return render_json(@class_be_edus,count)
   end

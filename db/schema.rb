@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 39) do
+ActiveRecord::Schema.define(:version => 40) do
 
   create_table "app_configs", :force => true do |t|
     t.string   "key"
@@ -207,6 +207,17 @@ ActiveRecord::Schema.define(:version => 39) do
   end
 
   add_index "pages", ["page_module_id"], :name => "index_pages_on_page_module_id"
+
+  create_table "performance_benefit_records", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "term"
+    t.float    "fee"
+    t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "performance_benefit_records", ["user_id"], :name => "index_performance_benefit_records_on_user_id"
 
   create_table "performance_benefit_stds", :force => true do |t|
     t.integer  "user_id"

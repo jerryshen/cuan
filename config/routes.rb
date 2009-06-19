@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :performance_benefit_records
+
   map.resources :performance_benefit_stds
 
   map.resources :welfare_benefits
