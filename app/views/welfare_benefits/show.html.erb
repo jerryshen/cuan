@@ -1,0 +1,23 @@
+<p>
+  <b>User:</b>
+  <%=h @welfare_benefit.user %>
+</p>
+
+<p>
+  <b>Subject:</b>
+  <%=h @welfare_benefit.subject %>
+</p>
+
+<p>
+  <b>Fee:</b>
+  <%=h @welfare_benefit.fee %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%=h @welfare_benefit.date %>
+</p>
+
+
+<%= link_to 'Edit', edit_welfare_benefit_path(@welfare_benefit) %> |
+<%= link_to 'Back', welfare_benefits_path %>

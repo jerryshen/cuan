@@ -111,8 +111,8 @@ class RetiredFeeCuttingsController < ApplicationController
       @retired_fee_cuttings = RetiredFeeCutting.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON retired_fee_cuttings.user_id=p.id" , :conditions =>["p.department_id =? and p.name like ?",params[:search_department_id],"%#{params[:search_name]}%"],:per_page=>pagesize, :page => params[:page] || 1 )
       count = @retired_fee_cuttings.length
     else
-      @fee_cuttings = RetiredFeeCutting.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
-      count = RetiredFeeCutting.count
+      @retired_fee_cuttings = RetiredFeeCutting.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
+      count = @retired_fee_cuttings.length
     end
     return render_json(@retired_fee_cuttings,count)
   end

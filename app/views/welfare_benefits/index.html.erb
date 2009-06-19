@@ -1,18 +1,13 @@
 <link href="/javascripts/ext-2.2.1/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
-<link href="/stylesheets/grid.css" media="screen" rel="stylesheet" type="text/css" />
+<%= stylesheet_link_tag "grid.css" %>
 <%= stylesheet_link_tag "form.css" %>
 <div id="list-view">
   <form style="margin: 10px 0px;" id="search_form">
-    <label for="search_page_id">页面:</label>
-    <% list_pages_for_search %>
-    <select style="margin:0px;padding:0px;float:none;" id="search_page_id" name="search_page_id">
-      <% @options.each do |option| %>
-        <option value="<%= option[1] %>"><%= option[0] %></option>
-      <% end %>
-    </select>
-    <label for="search_page_id">角色:</label>
-    <% list_roles_for_search %>
-    <select style="margin:0px;padding:0px;float:none;" id="search_role_id" name="search_role_id">
+    <label for="search_name">姓名:</label>
+    <input type="text" value="" size="15" name="search_name" id="search_name"/>
+    <label for="search_department_id">系部:</label>
+    <% list_departments_for_search %>
+    <select style="margin:0px;padding:0px;float:none;" id="search_department_id" name="search_department_id">
       <% @options.each do |option| %>
         <option value="<%= option[1] %>"><%= option[0] %></option>
       <% end %>
@@ -38,14 +33,9 @@
 <%= javascript_include_tag 'jquery-validate/localization/messages_cn.js' %>
 <%= javascript_include_tag 'AjaxForm.js' %>
 <script>
-  var pages = <%= Page.to_json%>
-  var getPageName = function(value, p, record){
-    return pages[value]
-  }
-
-  var roles = <%= Role.to_json%>
-  var getRoleName = function(value, p, record){
-    return roles[value]
+  var users = <%= User.to_json%>
+  var getUserName = function(value, p, record){
+    return users[value]
   }
   //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
   // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]}
@@ -59,22 +49,27 @@
         type: "int",
         resizable: false
       }, {
-        header: "页面",
-        dataIndex: 'page_id',
-        width: 200,
+        header: "员工姓名",
+        dataIndex: 'user_id',
         sortable: true,
-        renderer : getPageName
+        renderer: getUserName
       }, {
-        header: "角色",
-        dataIndex: 'role_id',
-        width: 180,
-        sortable: true,
-        renderer : getRoleName
+        header: "福利津贴名目",
+        dataIndex: 'subject',
+        sortable: true
+      }, {
+        header: "金额",
+        dataIndex: 'fee',
+        sortable: true
+      }, {
+        header: "发放时间",
+        dataIndex: 'subject',
+        sortable: true
       }]
-    var controllerName = "page_roles";
+    var controllerName = "welfare_benefits";
     options = {
       baseUrl: "http://" + window.location.host + "/" + controllerName,
-      gridTitle: "页面-角色关系管理列表",
+      gridTitle: "福利津贴记录管理列表",
       newItemLink: "newItem",
       columns: columns
     }

@@ -47,7 +47,7 @@ class PageRolesController < ApplicationController
 
     respond_to do |format|
       if @page_role.save
-#        flash[:notice] = 'PageRole was successfully created.'
+        #        flash[:notice] = 'PageRole was successfully created.'
         format.html { redirect_to(@page_role) }
         format.xml  { render :xml => @page_role, :status => :created, :location => @page_role }
         format.json { render :text => '{status: "success", message: "成功创建页面－角色关系！"}'}
@@ -66,7 +66,7 @@ class PageRolesController < ApplicationController
 
     respond_to do |format|
       if @page_role.update_attributes(params[:page_role])
-#        flash[:notice] = 'PageRole was successfully updated.'
+        #        flash[:notice] = 'PageRole was successfully updated.'
         format.html { redirect_to(@page_role) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功修改页面－角色关系！"}'}
@@ -98,12 +98,26 @@ class PageRolesController < ApplicationController
       param_pagesize = params[:page_size].to_i
       if param_pagesize > 0 then pagesize = param_pagesize end
     end
-    if(params[:search_name] && params[:search_name].to_s!='')
-      @page_roles = PageRole.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
-      count = PageRole.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
+
+    conditions = '1=1'
+    condition_values = []
+    if(!params[:search_page_id].blank?)
+      conditions += " AND page_id = ? "
+      condition_values << params[:search_page_id]
+    end
+
+    if(!params[:search_role_id].blank?)
+      conditions += " AND role_id = ? "
+      condition_values << params[:search_role_id]
+    end
+
+    if(conditions != '1=1')
+      option_conditions = [conditions,condition_values].flatten!
+      @page_roles = PageRole.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
+      count = @page_roles.length
     else
-      @page_roles = PageRole.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
-      count = PageRole.count
+      @page_roles = PageRole.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
+      count = @page_roles.length
     end
     return render_json(@page_roles,count)
   end

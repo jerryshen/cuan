@@ -1,8 +1,8 @@
-module PageRolesHelper
+module PerformanceBenefitStdsHelper
   #select options for index searching
-  def list_pages_for_search
+  def list_titles_for_search
     @options = [["所有",""]]
-    Page.find_by_sql("select id,name from pages").each do |row|
+    Title.find_by_sql("select id,name from titles").each do |row|
       ar=[]
       ar << row.attributes["name"].to_s
       ar << row.attributes["id"].to_s
@@ -10,9 +10,9 @@ module PageRolesHelper
     end
   end
 
-  def list_roles_for_search
+  def list_positions_for_search
     @options = [["所有",""]]
-    Role.find_by_sql("select id,name from roles").each do |row|
+      Position.find_by_sql("select id,name from positions").each do |row|
       ar=[]
       ar << row.attributes["name"].to_s
       ar << row.attributes["id"].to_s

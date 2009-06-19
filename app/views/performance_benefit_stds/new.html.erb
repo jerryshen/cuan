@@ -1,0 +1,10 @@
+<% form_for(@performance_benefit_std) do |f| %>
+  <fieldset>
+    <legend>添加员工绩效津贴标准金额</legend>
+    <%= render :partial => 'form', :locals => { :f => f }  %>
+    <p class="bbar">
+      <%= f.submit '保存' %>
+      <input type="button" onclick="$page.showListView()" value="取消" />
+    </p>
+  </fieldset>
+<% end %>

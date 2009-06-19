@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 37) do
+ActiveRecord::Schema.define(:version => 39) do
 
   create_table "app_configs", :force => true do |t|
     t.string   "key"
@@ -208,6 +208,15 @@ ActiveRecord::Schema.define(:version => 37) do
 
   add_index "pages", ["page_module_id"], :name => "index_pages_on_page_module_id"
 
+  create_table "performance_benefit_stds", :force => true do |t|
+    t.integer  "user_id"
+    t.float    "std_fee"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "performance_benefit_stds", ["user_id"], :name => "index_performance_benefit_stds_on_user_id"
+
   create_table "positions", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -385,5 +394,16 @@ ActiveRecord::Schema.define(:version => 37) do
   add_index "users", ["position_id"], :name => "index_users_on_position_id"
   add_index "users", ["td_belongs_id"], :name => "index_users_on_td_belongs_id"
   add_index "users", ["title_id"], :name => "index_users_on_title_id"
+
+  create_table "welfare_benefits", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "subject"
+    t.float    "fee"
+    t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "welfare_benefits", ["user_id"], :name => "index_welfare_benefits_on_user_id"
 
 end

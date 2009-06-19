@@ -1,0 +1,3 @@
+class PerformanceBenefitStd < ActiveRecord::Base
+  belongs_to :user
+end
