@@ -41,4 +41,9 @@ class DataBackupController < ApplicationController
         format.html { redirect_to  :action => "restore" }
     end
   end
+
+  #获取备份间隔时间设置(小时为单位)
+  def interval
+    render :text => AppConfig.get("database_backup_interval")
+  end
 end

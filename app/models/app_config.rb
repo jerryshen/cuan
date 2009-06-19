@@ -1,8 +1,8 @@
 class AppConfig < ActiveRecord::Base
-  
   #APP CONFIG get value by key
   def self.get(key)
-    return find_by_key(key).value
+    config = find_by_key(key)
+    return config.nil? ? "" : config.value
   end
 
   def self.set(key,value)

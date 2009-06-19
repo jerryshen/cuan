@@ -1,2 +1,0 @@
-module BackupIntervalHelper
-end
