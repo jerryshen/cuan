@@ -101,17 +101,17 @@ class UsersController < ApplicationController
 
     conditions = '1=1'
     condition_values = []
-    if(params[:search_name] && params[:search_name] != '')
+    if(!params[:search_name].blank?)
       conditions += " AND name like ? "
       condition_values << "%#{params[:search_name]}%"
     end
 
-    if(params[:search_department_id] && params[:search_department_id] != '')
+    if(!params[:search_department_id].blank?)
       conditions += " AND department_id = ? "
       condition_values << params[:search_department_id]
     end
 
-    if(params[:search_title_id] && params[:search_title_id] != '')
+    if(!params[:search_title_id].blank?)
       conditions += " AND title_id = ? "
       condition_values << params[:search_title_id]
     end

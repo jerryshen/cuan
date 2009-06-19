@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 40) do
+ActiveRecord::Schema.define(:version => 41) do
 
   create_table "app_configs", :force => true do |t|
     t.string   "key"
@@ -399,6 +399,7 @@ ActiveRecord::Schema.define(:version => 40) do
     t.boolean  "is_retired"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "theme"
   end
 
   add_index "users", ["department_id"], :name => "index_users_on_department_id"
