@@ -99,23 +99,32 @@ class BasicSalariesController < ApplicationController
       if param_pagesize > 0 then pagesize = param_pagesize end
     end
 
-    if(!params[:search_name].blank? && params[:search_department_id].blank?)
+    conditions = '1=1'
+    condition_values = []
+    if(!params[:search_name].blank?)
       if user = User.find_by_name(params[:search_name])
         user_id = user.id
       else
         user_id = 0
       end
-      @basic_salaries = BasicSalary.paginate(:order =>"id DESC", :conditions => ["user_id =?",user_id],:per_page=>pagesize, :page => params[:page] || 1)
-      count = @basic_salaries.length
-    elsif(!params[:search_department_id].blank? && params[:search_name].blank?)
-      @basic_salaries = BasicSalary.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON basic_salaries.user_id=p.id" , :conditions =>["p.department_id =?",params[:search_department_id]],:per_page=>pagesize, :page => params[:page] || 1 )
-      count = @basic_salaries.length
-    elsif(!params[:search_department_id].blank? && !params[:search_name].blank?)
-      @basic_salaries = BasicSalary.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON basic_salaries.user_id=p.id" , :conditions =>["p.department_id =? and p.name like ?",params[:search_department_id],"%#{params[:search_name]}%"],:per_page=>pagesize, :page => params[:page] || 1 )
+      joins = ""
+      conditions += " AND user_id = ?"
+      condition_values << user_id
+    end
+
+    if(!params[:search_department_id].blank?)
+      joins = "INNER JOIN users p ON basic_salaries.user_id=p.id"
+      conditions += " AND p.department_id = ? "
+      condition_values << params[:search_department_id]
+    end
+
+    if(conditions != '1=1')
+      option_conditions = [conditions,condition_values].flatten!
+      @basic_salaries = BasicSalary.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
       count = @basic_salaries.length
     else
       @basic_salaries = BasicSalary.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
-      count = BasicSalary.count
+      count = @basic_salaries.length
     end
     return render_json(@basic_salaries,count)
   end

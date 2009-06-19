@@ -1,6 +1,6 @@
 class FeeCuttingsController < ApplicationController
-#  protect_from_forgery :except => :index
-#  skip_before_filter :verify_authenticity_token
+  #  protect_from_forgery :except => :index
+  #  skip_before_filter :verify_authenticity_token
   # GET /fee_cuttings
   # GET /fee_cuttings.xml
   def index
@@ -47,7 +47,7 @@ class FeeCuttingsController < ApplicationController
 
     respond_to do |format|
       if @fee_cutting.save
-#        flash[:notice] = 'FeeCutting was successfully created.'
+        #        flash[:notice] = 'FeeCutting was successfully created.'
         format.html { redirect_to(@fee_cutting) }
         format.xml  { render :xml => @fee_cutting, :status => :created, :location => @fee_cutting }
         format.json { render :text => '{status: "success", message: "成功创建扣款！"}'}
@@ -66,7 +66,7 @@ class FeeCuttingsController < ApplicationController
 
     respond_to do |format|
       if @fee_cutting.update_attributes(params[:fee_cutting])
-#        flash[:notice] = 'FeeCutting was successfully updated.'
+        #        flash[:notice] = 'FeeCutting was successfully updated.'
         format.html { redirect_to(@fee_cutting) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新扣款！"}'}
@@ -98,23 +98,33 @@ class FeeCuttingsController < ApplicationController
       param_pagesize = params[:page_size].to_i
       if param_pagesize > 0 then pagesize = param_pagesize end
     end
-    if(!params[:search_name].blank? && params[:search_department_id].blank?)
+
+    conditions = '1=1'
+    condition_values = []
+    if(!params[:search_name].blank?)
       if user = User.find_by_name(params[:search_name])
         user_id = user.id
       else
         user_id = 0
       end
-      @fee_cuttings = FeeCutting.paginate(:order =>"id DESC", :conditions => ["user_id =?",user_id],:per_page=>pagesize, :page => params[:page] || 1)
-      count = @fee_cuttings.length
-    elsif(!params[:search_department_id].blank? && params[:search_name].blank?)
-      @fee_cuttings = FeeCutting.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON fee_cuttings.user_id=p.id" , :conditions =>["p.department_id =?",params[:search_department_id]],:per_page=>pagesize, :page => params[:page] || 1 )
-      count = @fee_cuttings.length
-    elsif(!params[:search_department_id].blank? && !params[:search_name].blank?)
-      @fee_cuttings = FeeCutting.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON fee_cuttings.user_id=p.id" , :conditions =>["p.department_id =? and p.name like ?",params[:search_department_id],"%#{params[:search_name]}%"],:per_page=>pagesize, :page => params[:page] || 1 )
+      joins = ""
+      conditions += " AND user_id = ?"
+      condition_values << user_id
+    end
+
+    if(!params[:search_department_id].blank?)
+      joins = "INNER JOIN users p ON fee_cuttings.user_id=p.id"
+      conditions += " AND p.department_id = ? "
+      condition_values << params[:search_department_id]
+    end
+
+    if(conditions != '1=1')
+      option_conditions = [conditions,condition_values].flatten!
+      @fee_cuttings = FeeCutting.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
       count = @fee_cuttings.length
     else
       @fee_cuttings = FeeCutting.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
-      count = FeeCutting.count
+      count = @fee_cuttings.length
     end
     return render_json(@fee_cuttings,count)
   end

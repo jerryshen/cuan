@@ -99,23 +99,45 @@ class FeeCuttingRecordsController < ApplicationController
       param_pagesize = params[:page_size].to_i
       if param_pagesize > 0 then pagesize = param_pagesize end
     end
-    if(!params[:search_name].blank? && params[:search_department_id].blank?)
+
+    conditions = '1=1'
+    condition_values = []
+    if(!params[:search_name].blank?)
       if user = User.find_by_name(params[:search_name])
         user_id = user.id
       else
         user_id = 0
       end
-      @fee_cutting_records = FeeCuttingRecord.paginate(:order =>"id DESC", :conditions => ["user_id =?",user_id],:per_page=>pagesize, :page => params[:page] || 1)
-      count = @fee_cutting_records.length
-    elsif(!params[:search_department_id].blank? && params[:search_name].blank?)
-      @fee_cutting_records = FeeCuttingRecord.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON fee_cutting_records.user_id=p.id" , :conditions =>["p.department_id =?",params[:search_department_id]],:per_page=>pagesize, :page => params[:page] || 1 )
-      count = @fee_cutting_records.length
-    elsif(!params[:search_department_id].blank? && !params[:search_name].blank?)
-      @fee_cutting_records = FeeCuttingRecord.paginate(:order => "id DESC", :joins =>"INNER JOIN users p ON fee_cutting_records.user_id=p.id" , :conditions =>["p.department_id =? and p.name like ?",params[:search_department_id],"%#{params[:search_name]}%"],:per_page=>pagesize, :page => params[:page] || 1 )
+      joins = ""
+      conditions += " AND user_id = ?"
+      condition_values << user_id
+    end
+
+    if(!params[:search_year].blank?)
+      joins = ""
+      conditions += " AND year = ?"
+      condition_values << params[:search_year]
+    end
+
+    if(!params[:search_month].blank?)
+      joins = ""
+      conditions += " AND month = ?"
+      condition_values << params[:search_month]
+    end
+
+    if(!params[:search_department_id].blank?)
+      joins = "INNER JOIN users p ON ffee_cutting_records.user_id=p.id"
+      conditions += " AND p.department_id = ? "
+      condition_values << params[:search_department_id]
+    end
+
+    if(conditions != '1=1')
+      option_conditions = [conditions,condition_values].flatten!
+      @fee_cutting_records = FeeCuttingRecord.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
       count = @fee_cutting_records.length
     else
       @fee_cutting_records = FeeCuttingRecord.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
-      count = FeeCuttingRecord.count
+      count = @fee_cutting_records.length
     end
     return render_json(@fee_cutting_records,count)
   end

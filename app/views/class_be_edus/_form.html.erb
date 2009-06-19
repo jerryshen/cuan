@@ -1,4 +1,12 @@
 <%= f.error_messages %>
+
+<% if current_admin? %>
+  <p>
+    <%= f.label :user_id, "用户" %>
+    <%= f.select :user_id, get_science_staffs.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择用户..." }, :class => "required" %>
+  </p>
+<% else %>
+<% end %>
 <p>
   <%= f.label :total_be, "学期总课时津贴" %>
   <%= f.text_field :total_be, :class => "required" %>
