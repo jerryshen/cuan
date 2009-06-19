@@ -129,10 +129,10 @@ class RetiredFeeCuttingRecordsController < ApplicationController
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
       @retired_fee_cutting_records = RetiredFeeCuttingRecord.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
-      count = @retired_fee_cutting_records.length
+      count = RetiredFeeCuttingRecord.count(:joins => joins, :conditions => option_conditions)
     else
       @retired_fee_cutting_records = RetiredFeeCuttingRecord.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
-      count = @retired_fee_cutting_records.length
+      count = RetiredFeeCuttingRecord.count
     end
     return render_json(@retired_fee_cutting_records,count)
   end

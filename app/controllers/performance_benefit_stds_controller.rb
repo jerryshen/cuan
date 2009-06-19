@@ -122,10 +122,10 @@ class PerformanceBenefitStdsController < ApplicationController
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
       @performance_benefit_stds = PerformanceBenefitStd.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
-      count = @performance_benefit_stds.length
+      count = PerformanceBenefitStd.count(:joins => joins, :conditions => option_conditions)
     else
       @performance_benefit_stds = PerformanceBenefitStd.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
-      count = @performance_benefit_stds.length
+      count = PerformanceBenefitStd.count
     end
     return render_json(@performance_benefit_stds,count)
   end

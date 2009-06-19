@@ -100,7 +100,7 @@ class PageModulesController < ApplicationController
     end
     if(params[:search_name] && params[:search_name].to_s!='')
       @page_modules = PageModule.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
-      count = User.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
+      count = PageModule.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
     else
       @page_modules = PageModule.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
       count = PageModule.count

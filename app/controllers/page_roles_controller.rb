@@ -114,10 +114,10 @@ class PageRolesController < ApplicationController
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
       @page_roles = PageRole.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
-      count = @page_roles.length
+      count = PageRole.count(:conditions => option_conditions)
     else
       @page_roles = PageRole.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
-      count = @page_roles.length
+      count = PageRole.count
     end
     return render_json(@page_roles,count)
   end

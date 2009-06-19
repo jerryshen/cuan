@@ -121,10 +121,10 @@ class CollegeBenefitsController < ApplicationController
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
       @college_benefits = CollegeBenefit.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
-      count = @college_benefits.length
+      count = CollegeBenefit.count(:joins => joins, :conditions => option_conditions)
     else
       @college_benefits = CollegeBenefit.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
-      count = @college_benefits.length
+      count = CollegeBenefit.count
     end
     return render_json(@college_benefits,count)
   end

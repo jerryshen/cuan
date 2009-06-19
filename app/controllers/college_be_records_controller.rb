@@ -133,10 +133,10 @@ class CollegeBeRecordsController < ApplicationController
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
       @college_be_records = CollegeBeRecord.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
-      count = @college_be_records.length
+      count = CollegeBeRecord.count(:joins => joins, :conditions => option_conditions)
     else
       @college_be_records = CollegeBeRecord.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
-      count = @college_be_records.length
+      count = CollegeBeRecord.count
     end
     return render_json(@college_be_records,count)
   end

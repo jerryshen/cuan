@@ -103,7 +103,7 @@ class TitlesController < ApplicationController
       count = Title.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
     else
       @titles = Title.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
-      count = Bank.count
+      count = Title.count
     end
     return render_json(@titles,count)
   end

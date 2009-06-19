@@ -101,11 +101,11 @@ class ClassBeEdusController < ApplicationController
       value=(params[:search_verify].to_i == 0? false : true)
       condition = ["user_id = ? and is_verified = ?", @current_user.id, value]
       @class_be_edus = ClassBenefit.paginate(:order =>"id DESC", :conditions => condition,:per_page=>pagesize,:page => params[:page] || 1)
-      count = @class_be_edus.length
+      count = ClassBenefit.count(:conditions => condition)
     else
       condition = ["user_id =?", @current_user.id]
       @class_be_edus = ClassBenefit.paginate(:order =>"id DESC",:conditions => condition ,:per_page=>pagesize,:page => params[:page] || 1)
-      count = @class_be_edus.count
+      count = ClassBenefit.count(:conditions => condition)
     end
     return render_json(@class_be_edus,count)
   end

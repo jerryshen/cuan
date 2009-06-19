@@ -103,11 +103,11 @@ class ScienceBeSciencesController < ApplicationController
       value=(params[:search_verify].to_i == 0? false : true)
       condition = ["user_id = ? and is_verified = ?", @current_user.id, value]
       @science_be_sciences = ScienceBenefit.paginate(:order =>"id DESC", :conditions => condition,:per_page=>pagesize,:page => params[:page] || 1)
-      count = @science_be_sciences.length
+      count = ScienceBenefit.count(:conditions => condition)
     else
       condition = ["user_id =?", @current_user.id]
       @science_be_sciences = ScienceBenefit.paginate(:order =>"id DESC",:conditions => condition ,:per_page=>pagesize,:page => params[:page] || 1)
-      count = @science_be_sciences.count
+      count = ScienceBenefit.count(:conditions => condition)
     end
     return render_json(@science_be_sciences,count)
   end

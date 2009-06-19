@@ -121,10 +121,10 @@ class BasicSalariesController < ApplicationController
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
       @basic_salaries = BasicSalary.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
-      count = @basic_salaries.length
+      count = BasicSalary.count(:joins => joins, :conditions => option_conditions)
     else
       @basic_salaries = BasicSalary.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
-      count = @basic_salaries.length
+      count = BasicSalary.count
     end
     return render_json(@basic_salaries,count)
   end

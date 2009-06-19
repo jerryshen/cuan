@@ -96,10 +96,10 @@ class ClassBePersonnelsController < ApplicationController
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
       @class_be_personnels = ClassBenefit.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
-      count = @class_be_personnels.length
+      count = ClassBenefit.count(:conditions => option_conditions)
     else
       @class_be_personnels = ClassBenefit.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
-      count = @class_be_personnels.length
+      count = ClassBenefit.count
     end
     return render_json(@class_be_personnels,count)
   end

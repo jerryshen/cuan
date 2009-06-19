@@ -96,10 +96,10 @@ class ScienceBePersonnelsController < ApplicationController
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
       @science_be_personnels = ScienceBenefit.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
-      count = @science_be_personnels.length
+      count = ScienceBenefit.count(:conditions => option_conditions)
     else
       @science_be_personnels = ScienceBenefit.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
-      count = @science_be_personnels.length
+      count = ScienceBenefit.count
     end
     return render_json(@science_be_personnels,count)
   end
