@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  #  protect_from_forgery :except => :index
-  #  skip_before_filter :verify_authenticity_token
+  protect_from_forgery :except => [:update_theme]
   # GET /users
   # GET /users.xml
   def index
@@ -88,6 +87,16 @@ class UsersController < ApplicationController
       format.html { redirect_to(users_url) }
       format.xml  { head :ok }
       format.json { render :text => '{status: "success"}'}
+    end
+  end
+
+  def update_theme
+    if request.post?
+      if @current_user.update_theme(params[:theme])
+        render :text => "true"
+      else
+        render :text => "false"
+      end
     end
   end
 

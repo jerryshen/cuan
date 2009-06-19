@@ -577,3 +577,11 @@ var ExtListPage = function(options){
     }
 }
 
+function changeSkin(value){
+  Ext.util.CSS.swapStyleSheet('theme', '/javascripts/ext-2.2.1/resources/css/' + value + '.css');
+};
+
+Ext.onReady(function(){
+  /*alert(window.parent.$CURR_STYLE);*/
+  /*changeSkin(window.parent.$CURR_STYLE);*/
+})

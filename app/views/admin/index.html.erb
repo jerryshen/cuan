@@ -5,6 +5,7 @@
     <title>网站管理后台</title>
     <%= javascript_include_tag 'ext-2.2.1/adapter/ext/ext-base.js','ext-2.2.1/ext-all.js' %>
     <link href="/javascripts/ext-2.2.1/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
+    <link id="theme" href="" media="screen" rel="stylesheet" type="text/css" />
     <%= stylesheet_link_tag 'nav-menu.css','ext-cn.css' %>
     <script>
       function init_clock(){
@@ -21,14 +22,14 @@
           var submenus = [];
           for (var j = 0, k = amodule.pages.length; j < k; j++) {
             var apage = amodule.pages[j];
-            submenus.push(String.format("<li url='{1}' name='{0}' ><img src='{3}{2}' /><span>{0}</span></li>", apage.name, apage.url, apage.icon,icon_base_path));
+            submenus.push(String.format("<li url='{1}' name='{0}' ><img src='{3}{2}' /><br/><span>{0}</span></li>", apage.name, apage.url, apage.icon,icon_base_path));
           };
 
           var option = {};
           option.title = amodule.name;
           option.collapsible = true;
           option.autoScroll = true;
-          option.autoHeight = true;
+          //option.autoHeight = true;
           option.html = "<ul class='nav-page-list'>" + submenus.join('') + "</ul>";
           //if(i)option.collapsed  = true; //默认只展开第一个面板,其他收起
           var panel = new Ext.Panel(option);
@@ -152,7 +153,38 @@
         });
       };
 
+      function changeSkin(value){
+        $CURR_STYLE = value;
+				Ext.util.CSS.swapStyleSheet('theme', '/javascripts/ext-2.2.1/resources/css/' + value + '.css');
+        Ext.Ajax.request({
+          method: "POST",
+          url: "/users/update_theme",
+          params: {"theme": value},
+          success: function(rq,params)
+          {
+            if(rq.responseText == "true"){
+              var tabs = document.getElementsByTagName("iframe");
+              for(var i=0,l=tabs.length; i<l; i++){
+                var atab = tabs[i];
+                var fun = atab.contentWindow.changeSkin;
+                if(fun)atab.contentWindow.location.reload();
+                //if(fun)fun.call(atab.contentWindow,value);
+              }
+            }
+            else{
+              Ext.MessageBox.show({
+                  title: "更改主题",
+                  msg: "更新主题失败！",
+                  buttons: Ext.MessageBox.OK,
+                  icon: Ext.MessageBox.WARNING
+              });
+            }
+          }
+        })
+			};
+
       Ext.onReady(function(){
+        $CURR_STYLE = document.getElementById("selStyle").value;
         var $nav_menu_icon_path = "/images/nav-menu-icons/";
         var $modules = <%= @current_user.menu %>
         Ext.BLANK_IMAGE_URL = "/javascripts/ext-2.2.1/resources/images/default/s.gif";
@@ -171,6 +203,17 @@
         <h3>网站管理系统</h3>
       </div>
       <div style='float:right;'>
+        <label for="selStyle">主题：</label>
+        <select id="selStyle" onchange="changeSkin(this.value)">
+          <option value="ext-all" selected="selected">默认主题</option>
+          <option value="xtheme-gray">银白风格</option>
+          <option value="xtheme-purple">紫色风格</option>
+          <option value="xtheme-olive">绿色风格</option>
+          <option value="xtheme-darkgray">灰色风格</option>
+          <option value="xtheme-black">黑色风格</option>
+          <option value="xtheme-slate">深蓝风格</option>
+          <option value="xtheme-vista">Vista风格</option>
+        </select>
         <span style='margin-right:15px;' id="clock"></span>
         登录用户：<span style='color:green'><%= @current_user.name %></span>，<img src="/images/icons/logout.png" /><a href='/logout'>退出</a>
       </div>

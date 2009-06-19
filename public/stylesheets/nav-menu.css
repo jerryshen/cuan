@@ -1,26 +1,23 @@
 .nav-page-list 
 {
-    text-align: center;
-    padding-bottom: 10px;
-    font-size: 12px;
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 12px;
 } 
 
 .nav-page-list li 
 {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .nav-page-list li img
 {
-    cursor: pointer;
-    display: block;
-    width: 32px;
-    height: 32px;
-    margin-left: 85px;
-    *margin-left: 0px; /*hack for ie6,ie7*/
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
 }
 
 .nav-page-list li span
 {
-    cursor: pointer;
+  cursor: pointer;
 }

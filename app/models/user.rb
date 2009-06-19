@@ -18,7 +18,8 @@ class User < ActiveRecord::Base
   has_many :retired_college_be_records
   has_many :retired_fee_cutting_records
 
-  validates_presence_of :update_password, :only => 'create'
+  #会引起update_attributes方法失败
+  #validates_presence_of :update_password, :only => 'create'
 
   before_destroy :dont_destroy_admin
   attr_accessor :update_password
@@ -37,6 +38,10 @@ class User < ActiveRecord::Base
 
   def self.login(login_id,password)
     find_by_login_id_and_password(login_id,User.encryption_password(password))
+  end
+
+  def update_theme(theme)
+    update_attributes(:theme => theme)
   end
 
   def dont_destroy_admin
