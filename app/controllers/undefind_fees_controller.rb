@@ -26,6 +26,7 @@ class UndefindFeesController < ApplicationController
   # GET /undefind_fees/new.xml
   def new
     @undefind_fee = UndefindFee.new
+    @departments = Department.all.collect { |d| [d.name, d.id] }
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,10 +43,10 @@ class UndefindFeesController < ApplicationController
   # POST /undefind_fees.xml
   def create
     @undefind_fee = UndefindFee.new(params[:undefind_fee])
+    @undefind_fee.user_id = params[:user][:id]
 
     respond_to do |format|
       if @undefind_fee.save
-        #        flash[:notice] = 'UndefindFee was successfully created.'
         format.html { redirect_to(@undefind_fee) }
         format.xml  { render :xml => @undefind_fee, :status => :created, :location => @undefind_fee }
         format.json { render :text => '{status: "success", message: "成功添加不定费用！"}'}
@@ -64,7 +65,6 @@ class UndefindFeesController < ApplicationController
 
     respond_to do |format|
       if @undefind_fee.update_attributes(params[:undefind_fee])
-        #        flash[:notice] = 'UndefindFee was successfully updated.'
         format.html { redirect_to(@undefind_fee) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功修改不定费用！"}'}
@@ -89,6 +89,11 @@ class UndefindFeesController < ApplicationController
     end
   end
 
+  def select_with_ajax
+    conditions = ["department_id = ?", params[:department_id]]
+    @users = User.find(:all, :conditions => conditions).collect { |u| [u.name, u.id] }
+  end
+  
   private
   def get_json
     pagesize = 10

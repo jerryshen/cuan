@@ -1,22 +1,18 @@
 <%= f.error_messages %>
 
 <p>
-  <%= f.label :user_id, "用户" %>
-  <%= f.select :user_id, User.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择用户..." }, :class => "required" %>
-</p>
-<p>
-  <%= f.label :subject, "名目" %><br />
+  <%= f.label :subject, "名目" %>
   <%= f.text_field :subject, :class => "required" %>
 </p>
 <p>
-  <%= f.label :fee, "金额" %><br />
+  <%= f.label :fee, "金额" %>
   <%= f.text_field :fee, :class => "required" %>
 </p>
 <p>
-  <%= f.label :date, "发放日期" %><br />
-  <%= f.datetime_select :date %>
+  <%= f.label :date, "发放日期" %>
+  <%= f.date_select :date, :start_year => 2009, :end_year => 2015, :use_month_numbers => true, :order => [:year, :month, :day] %>
 </p>
 <p>
-  <%= f.label :be_type, "类型" %><br />
+  <%= f.label :be_type, "类型" %>
   <%= f.text_field :be_type %>
 </p>

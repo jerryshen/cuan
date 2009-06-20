@@ -1,6 +1,10 @@
 <% form_for(@undefind_fee) do |f| %>
   <fieldset>
     <legend>修改不定费用</legend>
+    <p>
+      <%= f.label :user_id, "用户" %>
+      <%= f.select :user_id, User.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择用户..." }, :class => "required" %>
+    </p>
     <%= render :partial => 'form', :locals => { :f => f }  %>
     <p class="bbar">
       <%= f.submit '更新' %>
