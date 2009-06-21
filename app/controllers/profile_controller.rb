@@ -4,6 +4,24 @@ class ProfileController < ApplicationController
     #to do
   end
 
+  def ajax_total_list
+    if params[:date_month].blank?
+      conditions = ["user_id = ? and year = ?",@current_user.id, params[:date_year]]
+    else
+      conditions = ["user_id = ? and year = ? and month = ?", @current_user.id, params[:date_year], params[:date_month]]
+    end
+
+    unless @current_user.is_retired
+      @basic_salaries = BasicSalaryRecord.find(:all,:order => "id DESC", :conditions => conditions)
+      @college_benefits = CollegeBeRecord.find(:all, :order => "id DESC", :conditions => conditions)
+      @fee_cuttings = FeeCuttingRecord.find(:all, :order => "id DESC", :conditions => conditions)
+    else
+      @basic_salaries = RetiredBasicSalaryRecord.find(:all, :order => "id DESC", :conditions => conditions)
+      @college_benefits = RetiredCollegeBeRecord.find(:all, :order => "id DESC", :conditions => conditions)
+      @fee_cuttings = RetiredFeeCuttingRecord.find(:all, :order => "id DESC", :conditions => conditions)
+    end
+  end
+
   def my_profile
   end
 

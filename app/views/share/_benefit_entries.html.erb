@@ -1,0 +1,39 @@
+<fieldset>
+  <legend>紧贴明细</legend>
+  <table>
+    <thead>
+      <tr>
+        <td>序号</td>
+        <td>年度</td>
+        <td>月份</td>
+        <td>生活补贴</td>
+        <td>补贴补差</td>
+        <td>活工资补贴</td>
+        <td>电视补贴</td>
+        <td>驻蓉补贴</td>
+        <td>其他</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @college_benefits.size > 0 -%>
+        <% @college_benefits.each do |b|  %>
+          <tr>
+            <td><%=h b.id %></td>
+            <td><%=h b.year %></td>
+            <td><%=h b.month  %></td>
+            <td><%=h b.life_be  %></td>
+            <td><%=h b.diff_be  %></td>
+            <td><%=h b.livesa_be  %></td>
+            <td><%=h b.tv_be  %></td>
+            <td><%=h b.beaulty_be  %></td>
+            <td><%=h b.other_be  %></td>
+          </tr>
+        <% end %>
+      <% else -%>
+        <tr>
+          <td colspan="12">无学院补贴信息</td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+</fieldset>

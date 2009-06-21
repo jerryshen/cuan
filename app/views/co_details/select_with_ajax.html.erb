@@ -1,1 +1,7 @@
-<%= select(:user, :id, @users) %>
+<p>
+  <label for="select_user">职工</label>
+  <%= select(:user, :id, @users, { :prompt =>"请选择教职工"},{ "onchange" =>remote_function(
+        :with => "'user_id='+value+'&amp;date_year='+document.getElementById('date_year').value+'&amp;date_month='+document.getElementById('date_month').value+'&amp;department_id='+document.getElementById('department_id').value",
+        :update => 'total_list',
+        :url => { :action => :ajax_total_list } ) }) %>
+</p>

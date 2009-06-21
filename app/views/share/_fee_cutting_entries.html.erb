@@ -1,0 +1,47 @@
+<fieldset>
+  <legend>扣款明细</legend>
+  <table>
+    <thead>
+      <tr>
+        <td>序号</td>
+        <td>年度</td>
+        <td>月份</td>
+        <td>住房公积金</td>
+        <td>医疗保险</td>
+        <td>水电气费</td>
+        <td>上网费</td>
+        <td>失业保险</td>
+        <td>职工个人教育费</td>
+        <td>其他扣款一</td>
+        <td>其他扣款二</td>
+        <td>其他扣款三</td>
+        <td>个人所得税</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @fee_cuttings.size > 0 -%>
+        <% @fee_cuttings.each do |f|  %>
+          <tr>
+            <td><%=h f.id %></td>
+            <td><%=h f.year %></td>
+            <td><%=h f.month  %></td>
+            <td><%=h f.room_fee  %></td>
+            <td><%=h f.med_fee  %></td>
+            <td><%=h f.elc_fee  %></td>
+            <td><%=h f.net_fee  %></td>
+            <td><%=h f.job_fee  %></td>
+            <td><%=h f.selfedu_fee  %></td>
+            <td><%=h f.other_fee1 %></td>
+            <td><%=h f.other_fee2 %></td>
+            <td><%=h f.other_fee3 %></td>
+            <td><%=h f.self_tax %></td>
+          </tr>
+        <% end %>
+      <% else -%>
+        <tr>
+          <td colspan="12">无扣款信息</td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+</fieldset>

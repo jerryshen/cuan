@@ -1,0 +1,35 @@
+<fieldset>
+  <legend>工资明细</legend>
+  <table>
+    <thead>
+      <tr>
+        <td>序号</td>
+        <td>年度</td>
+        <td>月份</td>
+        <td>月基本退休费</td>
+        <td>工改保留补贴_93年</td>
+        <td>其他国家出台津补贴</td>
+        <td>地方出台津补贴</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @basic_salaries.size > 0 -%>
+        <% @basic_salaries.each do |s|  %>
+          <tr>
+            <td><%=h s.id %></td>
+            <td><%=h s.year %></td>
+            <td><%=h s.month  %></td>
+            <td><%=h s.basic_fee  %></td>
+            <td><%=h s.stay_be  %></td>
+            <td><%=h s.foreign_be  %></td>
+            <td><%=h s.region_be  %></td>
+          </tr>
+        <% end %>
+      <% else -%>
+        <tr>
+          <td colspan="12">无工资信息</td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+</fieldset>

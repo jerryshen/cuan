@@ -50,9 +50,18 @@ class ApplicationController < ActionController::Base
 
   protected
   #get json data
-  def render_json records,total
+  def render_json(records,total)
     json_texts = []
     records.to_a.each{ |cat| json_texts << cat.attributes.to_json }
     return "{'count':#{total},'rows':[#{json_texts.join(",")}]}"
   end
+
+  def load_page_data
+    @pagesize = 10
+    if(params[:page_size])
+      param_pagesize = params[:page_size].to_i
+      if param_pagesize > 0 then @pagesize = param_pagesize end
+    end
+  end
+
 end
