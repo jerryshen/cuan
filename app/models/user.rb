@@ -37,7 +37,11 @@ class User < ActiveRecord::Base
   end
 
   def self.login(login_id,password)
-    find_by_login_id_and_password(login_id,User.encryption_password(password))
+    unless login_id.size > 12
+      find_by_login_id_and_password(login_id,User.encryption_password(password))
+    else
+      find_by_id_card_and_password(login_id,User.encryption_password(password))
+    end
   end
 
   def update_theme(theme)

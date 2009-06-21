@@ -1,7 +1,6 @@
 class ProfileController < ApplicationController
 
   def self_salary
-    #to do
   end
 
   def ajax_total_list

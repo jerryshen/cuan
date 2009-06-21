@@ -2,20 +2,6 @@ class CoDetailsController < ApplicationController
   
   def index
     @departments = Department.all.collect { |d| [d.name, d.id] }
-<<<<<<< HEAD:app/controllers/co_details_controller.rb
-
-    conditions = ["user_id = ?", params[:user][:id]] if params[:department_id]
-    unless @current_user.is_retired
-      @self_basic_salaries = BasicSalary.find(:all, :order => "id DESC", :conditions => conditions)
-      @self_college_benefits = CollegeBenefit.find(:all, :order => "id DESC", :conditions => conditions)
-      @self_fee_cuttings = FeeCutting.find(:all, :order => "id DESC", :conditions => conditions)
-    else
-      @every_basic_salaries = RetiredBasicSalary.find(:all, :order => "id DESC", :conditions => conditions)
-      @self_college_benefits = RetiredCollegeBenefit.find(:all, :order => "id DESC", :conditions => conditions)
-      @self_fee_cuttings = RetiredFeeCutting.find(:all, :order => "id DESC", :conditions => conditions)
-    end
-=======
->>>>>>> b9406fae8189e14ea479738ed4a84b9032f92905:app/controllers/co_details_controller.rb
   end
 
 

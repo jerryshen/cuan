@@ -12,8 +12,13 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
+  #find user by session[:user_id]
   def get_current_user
-    @current_user = User.first(:conditions => {:id => session[:user_id] }) if session[:user_id]
+    unless session[:user_id]
+      @current_user = nil
+      return
+    end
+    @current_user = User.first(:conditions => {:id => session[:user_id] })
   end
 
   def is_admin?
