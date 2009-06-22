@@ -56,6 +56,10 @@
 <%= javascript_include_tag 'jquery-validate/localization/messages_cn.js' %>
 <%= javascript_include_tag 'AjaxForm.js' %>
 <script>
+  var users = <%= User.to_json%>
+  var getUserName = function(value, p, record){
+    return users[value]
+  }
   //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
   // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]}
   //框[]中的为默认值
@@ -70,9 +74,10 @@
       }, {
         header: "教职工",
         dataIndex: 'user_id',
-        sortable: true
+        sortable: true,
+        renderer: getUserName
       }, {
-        header: "年份",
+        header: "年度",
         dataIndex: 'year',
         sortable: true
       }, {

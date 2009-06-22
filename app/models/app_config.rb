@@ -1,12 +1,5 @@
 class AppConfig < ActiveRecord::Base
-
-
   #validations
-  #  ALIAS = '系统参数配置'
-  #  COLUMN_ALIASES = {
-  #    'key' => '键',
-  #    'value' => '值'
-  #  }
   validates_presence_of :key, :value
 
 

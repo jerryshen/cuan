@@ -45,14 +45,13 @@ class AppConfigsController < ApplicationController
 
     respond_to do |format|
       if @app_config.save
-#        flash[:notice] = 'AppConfig was successfully created.'
         format.html { redirect_to(@app_config) }
         format.xml  { render :xml => @app_config, :status => :created, :location => @app_config }
         format.json { render :text => '{status: "success", message: "成功添加系统配置"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @app_config.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@app_config.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@app_config.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -64,14 +63,13 @@ class AppConfigsController < ApplicationController
 
     respond_to do |format|
       if @app_config.update_attributes(params[:app_config])
-#        flash[:notice] = 'AppConfig was successfully updated.'
         format.html { redirect_to(@app_config) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功xiugai系统配置"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @app_config.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@app_config.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@app_config.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -91,16 +89,12 @@ class AppConfigsController < ApplicationController
 
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
     if(params[:search_name] && params[:search_name].to_s!='')
-      @app_configs = AppConfig.paginate(:order =>"id DESC", :conditions => ["key like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
+      @app_configs = AppConfig.paginate(:order =>"id DESC", :conditions => ["key like ?","%#{params[:search_name]}%"],:per_page=>@pagesize,:page => params[:page] || 1)
       count = AppConfig.count(:conditions =>["key like ?","%#{params[:search_name]}%"])
     else
-      @app_configs = AppConfig.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      @app_configs = AppConfig.paginate(:order =>"id DESC",:per_page=>@pagesize,:page => params[:page] || 1)
       count = AppConfig.count
     end
     return render_json(@app_configs,count)
