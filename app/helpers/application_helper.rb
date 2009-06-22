@@ -63,24 +63,4 @@ module ApplicationHelper
     end
   end
 
-  #ActiveRecord::Errors.default_error_messages = {
-  #  :inclusion => "没有包含在列表内",
-  #  :exclusion => "是保留的",
-  #  :invalid => "无效",
-  #  :confirmation => "确认不匹配",
-  #  :accepted  => "必须赋值",
-  #  :empty => "不能为空",
-  #  :blank => "不能为空",
-  #  :too_long => "太长 (最长 %d 个字符)",
-  #  :too_short => "太短 (最短 %d 个字符)",
-  #  :wrong_length => "长度错误 (必须 %d 个字符)",
-  #  :taken => "不能重复",
-  #  :not_a_number => "不是数字" ,
-  #  :must_number => "必须是数字",
-  #  #Jespers additions:
-  #  :error_translation   => "个错误",
-  #  :error_header        => "保存该%2$s时发生%1$s",
-  #  :error_subheader     => "错误字段如下："
-  #}
-
 end

@@ -63,6 +63,9 @@ class ClassBeEdusController < ApplicationController
   # PUT /class_be_edus/1.xml
   def update
     @class_be_edu = ClassBenefit.findby_id_and_user_id(params[:id],@current_user.id)
+    if is_admin?
+      @class_be_edu.user_id = @current_user.id
+    end
 
     respond_to do |format|
       if @class_be_edu.update_attributes(params[:class_be_edu])

@@ -37,8 +37,8 @@ Rails::Initializer.run do |config|
   config.time_zone = 'UTC'
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-  # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
-  # config.i18n.default_locale = :de
+#   config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
+   config.i18n.default_locale = :zh
 end
 
 require "will_paginate"
