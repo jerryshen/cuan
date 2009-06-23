@@ -6,9 +6,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   attr_accessor :current_user
-  before_filter :get_current_user , :except => [:logout,:login]
-  before_filter :authorize_session, :except => [:login,:try_to_login]
-  before_filter :authorize_permission, :except => [:login,:try_to_login]
+  except_actions = [:logout,:login,:try_to_login,:interval]
+  before_filter :get_current_user , :except => except_actions
+  before_filter :authorize_session, :except => except_actions
+  before_filter :authorize_permission, :except => except_actions
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
