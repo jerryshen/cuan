@@ -1,6 +1,11 @@
 class BasicSalaryRecord < ActiveRecord::Base
+  #mapping
   belongs_to :user
 
-  #validation
-  validates_presence_of :user_id, :message => "教职工不能为空！"
+  #validations
+  validates_presence_of :user_id, :year, :month
+  validates_numericality_of :station_sa, :position_sa
+  validates_numericality_of [:station_be, :foreign_be, :region_be, :hard_be, :stay_be],
+                             :allow_nil => true
+
 end

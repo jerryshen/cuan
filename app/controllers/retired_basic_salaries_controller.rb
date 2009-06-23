@@ -47,14 +47,13 @@ class RetiredBasicSalariesController < ApplicationController
 
     respond_to do |format|
       if @retired_basic_salary.save
-        #        flash[:notice] = 'RetiredBasicSalary was successfully created.'
         format.html { redirect_to(@retired_basic_salary) }
         format.xml  { render :xml => @retired_basic_salary, :status => :created, :location => @retired_basic_salary }
         format.json { render :text => '{status: "success",message: "成功添加离退休人员基本工资！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @retired_basic_salary.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@retired_basic_salary.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@retired_basic_salary.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -66,14 +65,13 @@ class RetiredBasicSalariesController < ApplicationController
 
     respond_to do |format|
       if @retired_basic_salary.update_attributes(params[:retired_basic_salary])
-        #        flash[:notice] = 'RetiredBasicSalary was successfully updated.'
         format.html { redirect_to(@retired_basic_salary) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success",message: "成功修改离退休人员基本工资！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @retired_basic_salary.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@retired_basic_salary.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@retired_basic_salary.errors.full_messages.to_json}}"}
       end
     end
   end

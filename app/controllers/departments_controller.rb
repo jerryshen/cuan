@@ -47,14 +47,13 @@ class DepartmentsController < ApplicationController
 
     respond_to do |format|
       if @department.save
-#        flash[:notice] = 'Department was successfully created.'
         format.html { redirect_to(@department) }
         format.xml  { render :xml => @department, :status => :created, :location => @department }
         format.json { render :text => '{status: "success", message: "成功创建部门！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @department.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@department.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@department.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -66,14 +65,13 @@ class DepartmentsController < ApplicationController
 
     respond_to do |format|
       if @department.update_attributes(params[:department])
-#        flash[:notice] = 'Department was successfully updated.'
         format.html { redirect_to(@department) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success",message: "成功更新部门！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @department.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@department.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@department.errors.full_messages.to_json}}"}
       end
     end
   end

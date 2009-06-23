@@ -47,14 +47,13 @@ class PageModulesController < ApplicationController
 
     respond_to do |format|
       if @page_module.save
-#        flash[:notice] = 'PageModule was successfully created.'
         format.html { redirect_to(@page_module) }
         format.xml  { render :xml => @page_module, :status => :created, :location => @page_module }
         format.json { render :text => '{status: "success", message: "成功创建页面模块！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @page_module.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@page_module.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@page_module.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -66,14 +65,13 @@ class PageModulesController < ApplicationController
 
     respond_to do |format|
       if @page_module.update_attributes(params[:page_module])
-#        flash[:notice] = 'PageModule was successfully updated.'
         format.html { redirect_to(@page_module) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新页面模块！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @page_module.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@page_module.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@page_module.errors.full_messages.to_json}}"}
       end
     end
   end

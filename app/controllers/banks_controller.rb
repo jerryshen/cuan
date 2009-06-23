@@ -47,14 +47,13 @@ class BanksController < ApplicationController
 
     respond_to do |format|
       if @bank.save
-        #        flash[:notice] = 'Bank was successfully created.'
         format.html { redirect_to(@bank) }
         format.xml  { render :xml => @bank, :status => :created, :location => @bank }
         format.json { render :text => '{status: "success", message: "成功创建银行！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @bank.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@bank.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@bank.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -66,14 +65,13 @@ class BanksController < ApplicationController
 
     respond_to do |format|
       if @bank.update_attributes(params[:bank])
-        #        flash[:notice] = 'Bank was successfully updated.'
         format.html { redirect_to(@bank) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新银行！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @bank.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@bank.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@bank.errors.full_messages.to_json}}"}
       end
     end
   end

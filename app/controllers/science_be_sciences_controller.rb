@@ -48,14 +48,13 @@ class ScienceBeSciencesController < ApplicationController
 
     respond_to do |format|
       if @science_be_science.save
-        #        flash[:notice] = 'ScienceBeScience was successfully created.'
         format.html { redirect_to(@science_be_science) }
         format.xml  { render :xml => @science_be_science, :status => :created, :location => @science_be_science }
         format.json { render :text => '{status: "success", message: "成功提交科研津贴申请！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @science_be_science.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@science_be_science.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@science_be_science.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -67,14 +66,13 @@ class ScienceBeSciencesController < ApplicationController
 
     respond_to do |format|
       if @science_be_science.update_attributes(params[:science_be_science])
-        #        flash[:notice] = 'ScienceBeScience was successfully updated.'
         format.html { redirect_to(@science_be_science) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功修改科研津贴！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @science_be_science.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@science_be_science.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@science_be_science.errors.full_messages.to_json}}"}
       end
     end
   end

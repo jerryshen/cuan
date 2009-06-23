@@ -51,7 +51,7 @@ class PerformanceBenefitStdsController < ApplicationController
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @performance_benefit_std.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@performance_benefit_std.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@performance_benefit_std.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -69,7 +69,7 @@ class PerformanceBenefitStdsController < ApplicationController
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @performance_benefit_std.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@performance_benefit_std.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@performance_benefit_std.errors.full_messages.to_json}}"}
       end
     end
   end

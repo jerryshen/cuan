@@ -47,14 +47,13 @@ class TitlesController < ApplicationController
 
     respond_to do |format|
       if @title.save
-#        flash[:notice] = 'Title was successfully created.'
         format.html { redirect_to(@title) }
         format.xml  { render :xml => @title, :status => :created, :location => @title }
         format.json { render :text => '{status: "success",message: "成功创建职称！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @title.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@department.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@department.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -66,14 +65,13 @@ class TitlesController < ApplicationController
 
     respond_to do |format|
       if @title.update_attributes(params[:title])
-#        flash[:notice] = 'Title was successfully updated.'
         format.html { redirect_to(@title) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success",message: "成功更新职称！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @title.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@department.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@department.errors.full_messages.to_json}}"}
       end
     end
   end

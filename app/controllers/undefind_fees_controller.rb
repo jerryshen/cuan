@@ -53,7 +53,7 @@ class UndefindFeesController < ApplicationController
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @undefind_fee.errors, :status => :unprocessable_entity }
-        c
+        format.json { render :text => "{status: 'failed', error:#{@undefind_fee.errors.to_json}}"}
       end
     end
   end

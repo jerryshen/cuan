@@ -47,14 +47,13 @@ class PageRolesController < ApplicationController
 
     respond_to do |format|
       if @page_role.save
-        #        flash[:notice] = 'PageRole was successfully created.'
         format.html { redirect_to(@page_role) }
         format.xml  { render :xml => @page_role, :status => :created, :location => @page_role }
         format.json { render :text => '{status: "success", message: "成功创建页面－角色关系！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @page_role.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@page_role.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@page_role.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -66,14 +65,13 @@ class PageRolesController < ApplicationController
 
     respond_to do |format|
       if @page_role.update_attributes(params[:page_role])
-        #        flash[:notice] = 'PageRole was successfully updated.'
         format.html { redirect_to(@page_role) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功修改页面－角色关系！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @page_role.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@page_role.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@page_role.errors.full_messages.to_json}}"}
       end
     end
   end

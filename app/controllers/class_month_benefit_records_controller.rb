@@ -1,5 +1,4 @@
 class ClassMonthBenefitRecordsController < ApplicationController
-  #月发放课时津贴记录
   # GET /class_month_benefit_records
   # GET /class_month_benefit_records.xml
   def index
@@ -46,14 +45,13 @@ class ClassMonthBenefitRecordsController < ApplicationController
 
     respond_to do |format|
       if @class_month_benefit_record.save
-        flash[:notice] = 'ClassMonthBenefitRecord was successfully created.'
         format.html { redirect_to(@class_month_benefit_record) }
         format.xml  { render :xml => @class_month_benefit_record, :status => :created, :location => @class_month_benefit_record }
         format.json { render :text => '{status: "success", message: "成功添加月发放课时津贴！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @class_month_benefit_record.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@class_month_benefit_record.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@class_month_benefit_record.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -65,14 +63,13 @@ class ClassMonthBenefitRecordsController < ApplicationController
 
     respond_to do |format|
       if @class_month_benefit_record.update_attributes(params[:class_month_benefit_record])
-        flash[:notice] = 'ClassMonthBenefitRecord was successfully updated.'
         format.html { redirect_to(@class_month_benefit_record) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功修改月发放课时津贴！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @class_month_benefit_record.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@class_month_benefit_record.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@class_month_benefit_record.errors.full_messages.to_json}}"}
       end
     end
   end

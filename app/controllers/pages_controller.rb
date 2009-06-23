@@ -47,14 +47,13 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.save
-#        flash[:notice] = 'Page was successfully created.'
         format.html { redirect_to(@page) }
         format.xml  { render :xml => @page, :status => :created, :location => @page }
         format.json { render :text => '{status: "success", message: "成功创建页面！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @page.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@page.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@page.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -66,14 +65,13 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.update_attributes(params[:page])
-#        flash[:notice] = 'Page was successfully updated.'
         format.html { redirect_to(@page) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新页面！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @page.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@page.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@page.errors.full_messages.to_json}}"}
       end
     end
   end

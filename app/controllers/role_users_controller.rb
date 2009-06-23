@@ -47,14 +47,13 @@ class RoleUsersController < ApplicationController
 
     respond_to do |format|
       if @role_user.save
-        #        flash[:notice] = 'RoleUser was successfully created.'
         format.html { redirect_to(@role_user) }
         format.xml  { render :xml => @role_user, :status => :created, :location => @role_user }
         format.json { render :text => '{status: "success",message: "成功创建角色－用户关系！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @role_user.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@role_user.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@role_user.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -66,14 +65,13 @@ class RoleUsersController < ApplicationController
 
     respond_to do |format|
       if @role_user.update_attributes(params[:role_user])
-        #        flash[:notice] = 'RoleUser was successfully updated.'
         format.html { redirect_to(@role_user) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success",message: "成功更新角色－用户关系！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @role_user.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@role_user.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@role_user.errors.full_messages.to_json}}"}
       end
     end
   end

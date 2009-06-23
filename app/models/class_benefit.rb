@@ -2,6 +2,10 @@ class ClassBenefit < ActiveRecord::Base
   #mapping
   belongs_to :user
 
+  #validations
+  validates_presence_of :user_id, :term, :month
+  validates_numericality_of :total_be
+
   before_destroy :destroyable
   before_update :re_verify
 

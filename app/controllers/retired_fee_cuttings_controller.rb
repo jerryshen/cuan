@@ -45,14 +45,13 @@ class RetiredFeeCuttingsController < ApplicationController
 
     respond_to do |format|
       if @retired_fee_cutting.save
-        #        flash[:notice] = 'RetiredFeeCutting was successfully created.'
         format.html { redirect_to(@retired_fee_cutting) }
         format.xml  { render :xml => @retired_fee_cutting, :status => :created, :location => @retired_fee_cutting }
         format.json { render :text => '{status: "success", message: "成功添加离退休人员扣款！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @retired_fee_cutting.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@retired_fee_cutting.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@retired_fee_cutting.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -64,14 +63,13 @@ class RetiredFeeCuttingsController < ApplicationController
 
     respond_to do |format|
       if @retired_fee_cutting.update_attributes(params[:retired_fee_cutting])
-        #        flash[:notice] = 'RetiredFeeCutting was successfully updated.'
         format.html { redirect_to(@retired_fee_cutting) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新离退休人员扣款！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @retired_fee_cutting.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@retired_fee_cutting.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@retired_fee_cutting.errors.full_messages.to_json}}"}
       end
     end
   end

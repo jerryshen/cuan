@@ -40,7 +40,7 @@ class ScienceBePersonnelsController < ApplicationController
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @science_be_personnel.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@science_be_personnel.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@science_be_personnel.errors.full_messages.to_json}}"}
       end
     end
   end

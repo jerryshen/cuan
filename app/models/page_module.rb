@@ -3,8 +3,10 @@ class PageModule < ActiveRecord::Base
   has_many :pages, :class_name  => 'Page'
 
   #validation
-  validates_presence_of :name, :message => "页面模块明不能为空！"
+  validates_presence_of :name
+  validates_uniqueness_of :name
 
+  #find pages belongs to a module
   def self.find_pages_by_module_id(module_id)
     self.find(module_id).pages
   end

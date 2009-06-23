@@ -48,14 +48,13 @@ class FeeCuttingRecordsController < ApplicationController
 
     respond_to do |format|
       if @fee_cutting_record.save
-        #        flash[:notice] = 'FeeCutting was successfully created.'
         format.html { redirect_to(@fee_cutting_record) }
         format.xml  { render :xml => @fee_cutting_record, :status => :created, :location => @fee_cutting_record }
         format.json { render :text => '{status: "success", message: "成功创建扣款！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @fee_cutting_record.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@fee_cutting_record.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@fee_cutting_record.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -67,14 +66,13 @@ class FeeCuttingRecordsController < ApplicationController
 
     respond_to do |format|
       if @fee_cutting_record.update_attributes(params[:fee_cutting])
-        #        flash[:notice] = 'FeeCutting was successfully updated.'
         format.html { redirect_to(@fee_cutting_record) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新扣款！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @fee_cutting_record.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@fee_cutting_record.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@fee_cutting_record.errors.full_messages.to_json}}"}
       end
     end
   end

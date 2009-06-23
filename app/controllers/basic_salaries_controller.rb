@@ -47,14 +47,13 @@ class BasicSalariesController < ApplicationController
 
     respond_to do |format|
       if @basic_salary.save
-        #        flash[:notice] = 'BasicSalary was successfully created.'
         format.html { redirect_to(@basic_salary) }
         format.xml  { render :xml => @basic_salary, :status => :created, :location => @basic_salary }
         format.json { render :text => '{status: "success", message: "成功创建基本工资！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @basic_salary.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@basic_salary.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@basic_salary.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -66,14 +65,13 @@ class BasicSalariesController < ApplicationController
 
     respond_to do |format|
       if @basic_salary.update_attributes(params[:basic_salary])
-        #        flash[:notice] = 'BasicSalary was successfully updated.'
         format.html { redirect_to(@basic_salary) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功修改基本工资！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @basic_salary.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:'#{@basic_salary.errors}'}"}
+         format.json { render :text => "{status: 'failed', error:#{@basic_salary.errors.full_messages.to_json}}"}
       end
     end
   end
