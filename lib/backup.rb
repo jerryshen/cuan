@@ -35,6 +35,22 @@ def backup(dbname,dbuser,dbkey)
   `#{cmd}`
 end
 
+def backup_win32(dbname,dbuser,dbkey)
+  now = DateTime.now
+  timestamp = now.strftime("%Y_%m_%d_%H_%M")
+  cmd = []
+  if dbkey.nil?
+    cmd << "mysqldump --databases #{dbname} >> #{timestamp}.txt"
+  else
+    cmd << "mysqldump -u #{dbuser} -p#{dbkey} --databases #{dbname} >> #{timestamp}.txt"
+  end
+  cmd << "winrar a #{dbname+"_" +timestamp} #{timestamp}.txt"
+  cmd << "del #{timestamp}.txt"
+  cmd.each do |script|
+    `#{script}`
+  end
+end
+
 def prompt_pwd(prompt='Please input database key:', mask='*')
   if methods.include?('ask')
     ask(prompt) { |q| q.echo = mask }
@@ -49,6 +65,7 @@ def main(args)
   dbname = "cuan"
   dbuser = "root"
   dbkey = nil
+  target = nil
   
   gets_pwd = false #是否需要输入密码
   opts = OptionParser.new do |opts|
@@ -68,6 +85,10 @@ def main(args)
     opts.on('-l', '--url <STRING>', "URL for geting backup interval, default is #{url}") do |string|
       url = string || ''
     end
+
+    opts.on('-t', '--target <STRING>', "backup data target path, default is current directory") do |string|
+      target = string
+    end
     
     opts.on_tail('-h', '--help', 'display this help and exit') do
       puts opts
@@ -80,9 +101,16 @@ def main(args)
     dbkey = prompt_pwd.gsub!(/\n/,'')
   end
 
+  Dir.chdir(target) if target
+
+  is_mswin = `ruby -v` =~ /mswin/
   while(true) do
-    backup(dbname,dbuser,dbkey)
-    interval = 1
+    if is_mswin
+      backup_win32(dbname,dbuser,dbkey)
+    else
+      backup(dbname,dbuser,dbkey)
+    end
+    interval = 30
     new_interval = get_interval(url)
     unless new_interval == 0
       interval = new_interval
