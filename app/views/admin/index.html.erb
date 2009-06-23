@@ -5,7 +5,9 @@
     <title>四川建筑职业技术学院个人收入管理信息系统</title>
     <%= javascript_include_tag 'ext-2.2.1/adapter/ext/ext-base.js','ext-2.2.1/ext-all.js' %>
     <link href="/javascripts/ext-2.2.1/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
-    <link id="theme" href="" media="screen" rel="stylesheet" type="text/css" />
+    <% unless @current_user.theme.nil? %>
+      <link id="theme" href="/javascripts/ext-2.2.1/resources/css/<%= h @current_user.theme %>.css" media="screen" rel="stylesheet" type="text/css" />
+    <% end %>
     <%= stylesheet_link_tag 'nav-menu.css','ext-cn.css' %>
     <script>
       function init_clock(){
