@@ -9,6 +9,7 @@ class UsersController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @users }
       format.json { render :text => get_json }
+      format.csv { export_csv(@users,{:id => "id",:name => "姓名",:login_id => "账号"},"教职工数据.csv") }
     end
   end
 

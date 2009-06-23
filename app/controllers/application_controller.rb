@@ -69,4 +69,32 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def export_csv(data,fields,filename="data.csv")
+    require 'faster_csv'
+    require 'iconv'
+    content_type = if request.user_agent =~ /windows/i
+                     'application/vnd.ms-excel'
+                   else
+                     'text/csv'
+                   end
+    csv_string = FasterCSV.generate do |csv| 
+      header = []
+      fields.each_key { |key| header << Iconv.iconv("GB2312//IGNORE","UTF-8//IGNORE", fields[key]) } 
+      csv << header.reverse
+
+      data.each do |row|
+        csv_row = []
+        fields.each_key do |key|
+          v = row[key]
+          if v.class == String
+            v = Iconv.iconv("GB2312//IGNORE","UTF-8//IGNORE", v)
+          end
+          csv_row << v
+        end
+        csv << csv_row.reverse
+      end
+    end
+    send_data csv_string, :type => content_type, :filename => filename, :disposition => 'attachment'
+  end
+
 end
