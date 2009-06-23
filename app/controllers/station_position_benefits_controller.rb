@@ -40,14 +40,13 @@ class StationPositionBenefitsController < ApplicationController
 
     respond_to do |format|
       if @station_position_benefit.save
-        #        flash[:notice] = 'Role was successfully created.'
         format.html { redirect_to(@station_position_benefit) }
         format.xml  { render :xml => @station_position_benefit, :status => :created, :location => @station_position_benefit }
         format.json { render :text => '{status: "success", message: "成功申请科研津贴！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @station_position_benefit.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@station_position_benefit.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@station_position_benefit.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -57,14 +56,13 @@ class StationPositionBenefitsController < ApplicationController
 
     respond_to do |format|
       if @station_position_benefit.update_attributes(params[:station_position_benefit])
-        #        flash[:notice] = 'Role was successfully updated.'
         format.html { redirect_to(@station_position_benefit) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新科研津贴！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @station_position_benefit.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@station_position_benefit.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@station_position_benefit.errors.full_messages.to_json}}"}
       end
     end
   end

@@ -3,8 +3,8 @@ class Department < ActiveRecord::Base
   has_many :users
 
   #validations
-  validates_presence_of :name, :message => "部门名称不能为空！"
-  validates_uniqueness_of :name, :message => "部门名称不能重复！"
+  validates_presence_of :name
+  validates_uniqueness_of :name
 
   #列表中实现ID和name的切换显示
   def self.to_json

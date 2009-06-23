@@ -1,7 +1,7 @@
 class Assistant < ActiveRecord::Base
   belongs_to :user
 
-  #validation
+  #validations
   validates_presence_of :user_id, :benefit
 
 end

@@ -45,14 +45,13 @@ class WelfareBenefitsController < ApplicationController
 
     respond_to do |format|
       if @welfare_benefit.save
-        #        flash[:notice] = 'WelfareBenefit was successfully created.'
         format.html { redirect_to(@welfare_benefit) }
         format.xml  { render :xml => @welfare_benefit, :status => :created, :location => @welfare_benefit }
         format.json { render :text => '{status: "success", message: "成功添加福利津贴！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @welfare_benefit.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@welfare_benefit.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@welfare_benefit.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -64,14 +63,13 @@ class WelfareBenefitsController < ApplicationController
 
     respond_to do |format|
       if @welfare_benefit.update_attributes(params[:welfare_benefit])
-        #        flash[:notice] = 'WelfareBenefit was successfully updated.'
         format.html { redirect_to(@welfare_benefit) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功修改福利津贴！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @welfare_benefit.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@welfare_benefit.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@welfare_benefit.errors.full_messages.to_json}}"}
       end
     end
   end

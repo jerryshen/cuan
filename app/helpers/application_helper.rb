@@ -44,23 +44,4 @@ module ApplicationHelper
       end
     end
   end
-
-  #Rewrite errors messge for
-  def error_messages_for(object_name, options = {})
-    options = options.symbolize_keys
-    object = instance_variable_get("@#{object_name}")
-    if object && !object.errors.empty?
-      content_tag("div",
-        content_tag(
-          options[:header_tag] || "h2",
-          "保存该#{object.class::ALIAS}时发生#{object.errors.count}个错误。"
-        ) +
-          content_tag("ul", object.errors.collect { |attr, msg| content_tag("li", object.class::COLUMN_ALIASES[attr] + msg) }),
-        "id" => options[:id] || "errorExplanation", "class" => options[:class] || "errorExplanation"
-      )
-    else
-      ""
-    end
-  end
-
 end

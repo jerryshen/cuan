@@ -47,14 +47,13 @@ class PositionsController < ApplicationController
 
     respond_to do |format|
       if @position.save
-#        flash[:notice] = 'Position was successfully created.'
         format.html { redirect_to(@position) }
         format.xml  { render :xml => @position, :status => :created, :location => @position }
         format.json { render :text => '{status: "success", message: "成功创建职务！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @position.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@position.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@position.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -66,14 +65,13 @@ class PositionsController < ApplicationController
 
     respond_to do |format|
       if @position.update_attributes(params[:position])
-#        flash[:notice] = 'Position was successfully updated.'
         format.html { redirect_to(@position) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新职务！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @position.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@position.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@position.errors.full_messages.to_json}}"}
       end
     end
   end

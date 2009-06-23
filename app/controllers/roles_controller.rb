@@ -47,14 +47,13 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       if @role.save
-#        flash[:notice] = 'Role was successfully created.'
         format.html { redirect_to(@role) }
         format.xml  { render :xml => @role, :status => :created, :location => @role }
         format.json { render :text => '{status: "success", message: "成功创建角色！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @role.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@role.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@role.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -66,14 +65,13 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       if @role.update_attributes(params[:role])
-#        flash[:notice] = 'Role was successfully updated.'
         format.html { redirect_to(@role) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新角色！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @role.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@role.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@role.errors.full_messages.to_json}}"}
       end
     end
   end

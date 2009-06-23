@@ -34,14 +34,13 @@ class ClassBePersonnelsController < ApplicationController
 
     respond_to do |format|
       if @class_be_personnel.update_attributes(params[:class_be_personnel])
-        #        flash[:notice] = 'ClassBePersonnel was successfully updated.'
         format.html { redirect_to(@class_be_personnel) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功修改课时津贴申请！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @class_be_personnel.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@class_be_personnel.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@class_be_personnel.errors.full_messages.to_json}}"}
       end
     end
   end

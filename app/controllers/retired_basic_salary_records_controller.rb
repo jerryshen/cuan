@@ -22,8 +22,8 @@ class RetiredBasicSalaryRecordsController < ApplicationController
     end
   end
 
-  # GET /retired_basic_salaries/new
-  # GET /retired_basic_salaries/new.xml
+  # GET /retired_basic_salary_records/new
+  # GET /retired_basic_salary_records/new.xml
   def new
     @retired_basic_salary_record = RetiredBasicSalaryRecord.new
 
@@ -33,45 +33,43 @@ class RetiredBasicSalaryRecordsController < ApplicationController
     end
   end
 
-  # GET /retired_basic_salaries/1/edit
+  # GET /retired_basic_salary_records/1/edit
   def edit
     @retired_basic_salary_record = RetiredBasicSalaryRecord.find(params[:id])
   end
 
-  # POST /retired_basic_salaries
-  # POST /retired_basic_salaries.xml
+  # POST /retired_basic_salary_records
+  # POST /retired_basic_salary_records.xml
   def create
-    @retired_basic_salary_record = RetiredBasicSalaryRecord.new(params[:retired_basic_salary])
+    @retired_basic_salary_record = RetiredBasicSalaryRecord.new(params[:retired_basic_salary_record])
 
     respond_to do |format|
       if @retired_basic_salary_record.save
-        #        flash[:notice] = 'RetiredBasicSalary was successfully created.'
         format.html { redirect_to(@retired_basic_salary_record) }
         format.xml  { render :xml => @retired_basic_salary_record, :status => :created, :location => @retired_basic_salary_record }
         format.json { render :text => '{status: "success",message: "成功添加离退休人员基本工资记录！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @retired_basic_salary_record.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@retired_basic_salary_record.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@retired_basic_salary_record.errors.full_messages.to_json}}"}
       end
     end
   end
 
-  # PUT /retired_basic_salaries/1
-  # PUT /retired_basic_salaries/1.xml
+  # PUT /retired_basic_salary_records/1
+  # PUT /retired_basic_salary_records/1.xml
   def update
     @retired_basic_salary_record = RetiredBasicSalaryRecord.find(params[:id])
 
     respond_to do |format|
-      if @retired_basic_salary_record.update_attributes(params[:retired_basic_salary])
-        #        flash[:notice] = 'RetiredBasicSalary was successfully updated.'
+      if @retired_basic_salary_record.update_attributes(params[:retired_basic_salary_record])
         format.html { redirect_to(@retired_basic_salary_record) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success",message: "成功修改离退休人员基本工资记录！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @retired_basic_salary_record.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@retired_basic_salary_record.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@retired_basic_salary_record.errors.full_messages.to_json}}"}
       end
     end
   end

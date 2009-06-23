@@ -45,14 +45,13 @@ class RetiredCollegeBeRecordsController < ApplicationController
 
     respond_to do |format|
       if @retired_college_be_record.save
-        #        flash[:notice] = 'RetiredCollegeBenefit was successfully created.'
         format.html { redirect_to(@retired_college_be_record) }
         format.xml  { render :xml => @retired_college_be_record, :status => :created, :location => @retired_college_be_record }
         format.json { render :text => '{status: "success", message: "成功创建离退休人员学院补贴记录！"}'}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @retired_college_be_record.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@retired_college_be_record.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@retired_college_be_record.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -64,14 +63,13 @@ class RetiredCollegeBeRecordsController < ApplicationController
 
     respond_to do |format|
       if @retired_college_be_record.update_attributes(params[:retired_college_benefit_record])
-        #        flash[:notice] = 'RetiredCollegeBenefit was successfully updated.'
         format.html { redirect_to(@retired_college_be_record) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功修改离退休人员学院补贴记录！"}'}
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @retired_college_be_record.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@retired_college_be_record.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@retired_college_be_record.errors.full_messages.to_json}}"}
       end
     end
   end

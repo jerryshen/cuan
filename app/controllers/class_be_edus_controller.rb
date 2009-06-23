@@ -54,7 +54,7 @@ class ClassBeEdusController < ApplicationController
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @class_be_edu.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@class_be_edu.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@class_be_edu.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -75,7 +75,7 @@ class ClassBeEdusController < ApplicationController
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @class_be_edu.errors, :status => :unprocessable_entity }
-        format.json { render :text => "{status: 'failed', error:#{@class_be_edu.errors.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@class_be_edu.errors.full_messages.to_json}}"}
       end
     end
   end
