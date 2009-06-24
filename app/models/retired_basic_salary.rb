@@ -1,4 +1,5 @@
 class RetiredBasicSalary < ActiveRecord::Base
+  #mapping
   belongs_to :user
 
   #validations

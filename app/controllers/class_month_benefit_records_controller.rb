@@ -8,6 +8,9 @@ class ClassMonthBenefitRecordsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @class_month_benefit_records }
       format.json { render :text => get_json }
+      format.csv { export_csv(@class_month_benefit_records,
+          { :id => "id", :user_id => "姓名", :fee => "金额", :month => "发放月份",
+            :date => "发放日期" }, "月发放课时津贴记录.csv") }
     end
   end
 
@@ -89,16 +92,13 @@ class ClassMonthBenefitRecordsController < ApplicationController
 
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
+
     if(params[:search_name] && params[:search_name].to_s!='')
-      @class_month_benefit_records = ClassMonthBenefitRecord.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
+      @class_month_benefit_records = ClassMonthBenefitRecord.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=> @pagesize,:page => params[:page] || 1)
       count = ClassMonthBenefitRecord.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
     else
-      @class_month_benefit_records = ClassMonthBenefitRecord.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      @class_month_benefit_records = ClassMonthBenefitRecord.paginate(:order =>"id DESC",:per_page=> @pagesize,:page => params[:page] || 1)
       count = ClassMonthBenefitRecord.count
     end
     return render_json(@class_month_benefit_records,count)

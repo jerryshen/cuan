@@ -10,6 +10,7 @@ class BanksController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @banks }
       format.json { render :text => get_json }
+      format.csv { export_csv(@banks, { :id => "id", :name => "名称" }, "银行数据.csv") }
     end
   end
 
@@ -91,16 +92,13 @@ class BanksController < ApplicationController
   
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
+
     if(params[:search_name] && params[:search_name].to_s!='')
-      @banks = Bank.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
+      @banks = Bank.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=> @pagesize,:page => params[:page] || 1)
       count = Bank.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
     else
-      @banks = Bank.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      @banks = Bank.paginate(:order =>"id DESC",:per_page=> @pagesize,:page => params[:page] || 1)
       count = Bank.count
     end
     return render_json(@banks,count)

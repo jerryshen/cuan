@@ -10,6 +10,7 @@ class PageRolesController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @page_roles }
       format.json { render :text => get_json }
+      format.csv { export_csv(@page_roles, { :id => "id", :page_id => "页面", :role_id => "角色" }, "角色权限分配数据.csv") }
     end
   end
 
@@ -91,11 +92,7 @@ class PageRolesController < ApplicationController
   
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
 
     conditions = '1=1'
     condition_values = []
@@ -111,10 +108,10 @@ class PageRolesController < ApplicationController
 
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
-      @page_roles = PageRole.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
+      @page_roles = PageRole.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=> @pagesize, :page => params[:page] || 1)
       count = PageRole.count(:conditions => option_conditions)
     else
-      @page_roles = PageRole.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
+      @page_roles = PageRole.paginate(:order =>"id DESC",:per_page=> @pagesize, :page => params[:page] || 1)
       count = PageRole.count
     end
     return render_json(@page_roles,count)

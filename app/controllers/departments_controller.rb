@@ -10,6 +10,7 @@ class DepartmentsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @departments }
       format.json { render :text => get_json }
+      format.csv { export_csv(@departments, { :id => "id", :name => "名称" }, "系部数据.csv") }
     end
   end
 
@@ -95,16 +96,12 @@ class DepartmentsController < ApplicationController
   
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
     if(params[:search_name] && params[:search_name].to_s!='')
-      @departments = Department.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
+      @departments = Department.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=> @pagesize,:page => params[:page] || 1)
       count = Department.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
     else
-      @departments = Department.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      @departments = Department.paginate(:order =>"id DESC",:per_page=> @pagesize,:page => params[:page] || 1)
       count = Department.count
     end
     return render_json(@departments,count)

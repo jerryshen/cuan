@@ -1,6 +1,6 @@
 class TitlesController < ApplicationController
-#  protect_from_forgery :except => :index
-#  skip_before_filter :verify_authenticity_token
+  #  protect_from_forgery :except => :index
+  #  skip_before_filter :verify_authenticity_token
   # GET /titles
   # GET /titles.xml
   def index
@@ -10,6 +10,7 @@ class TitlesController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @titles }
       format.json { render :text => get_json }
+      format.csv { export_csv(@titles, { :id => "id", :name => "名称" }, "职称数据.csv") }
     end
   end
 
@@ -91,16 +92,12 @@ class TitlesController < ApplicationController
   
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
     if(params[:search_name] && params[:search_name].to_s!='')
-      @titles = Title.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
+      @titles = Title.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=> @pagesize,:page => params[:page] || 1)
       count = Title.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
     else
-      @titles = Title.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      @titles = Title.paginate(:order =>"id DESC",:per_page=> @pagesize,:page => params[:page] || 1)
       count = Title.count
     end
     return render_json(@titles,count)

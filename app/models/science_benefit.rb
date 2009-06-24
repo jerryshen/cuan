@@ -2,6 +2,10 @@ class ScienceBenefit < ActiveRecord::Base
   #mapping
   belongs_to :user
 
+  #validations
+  validates_presence_of :user_id, :year, :month
+  validates_numericality_of :science_be
+
   before_destroy :destroyable
   before_update :re_verify
 

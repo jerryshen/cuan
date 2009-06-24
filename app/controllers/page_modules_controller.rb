@@ -1,6 +1,6 @@
 class PageModulesController < ApplicationController
-#  protect_from_forgery :except => :index
-#  skip_before_filter :verify_authenticity_token
+  #  protect_from_forgery :except => :index
+  #  skip_before_filter :verify_authenticity_token
   # GET /page_modules
   # GET /page_modules.xml
   def index
@@ -10,6 +10,7 @@ class PageModulesController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @page_modules }
       format.json { render :text => get_json }
+      format.csv { export_csv(@page_modules, { :id => "id", :name => "名称", :index => "显示顺序" }, "页面模块数据.csv") }
     end
   end
 
@@ -91,16 +92,12 @@ class PageModulesController < ApplicationController
   
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
     if(params[:search_name] && params[:search_name].to_s!='')
-      @page_modules = PageModule.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
+      @page_modules = PageModule.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=> @pagesize,:page => params[:page] || 1)
       count = PageModule.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
     else
-      @page_modules = PageModule.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      @page_modules = PageModule.paginate(:order =>"id DESC",:per_page=> @pagesize,:page => params[:page] || 1)
       count = PageModule.count
     end
     return render_json(@page_modules,count)

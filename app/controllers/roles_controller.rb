@@ -1,6 +1,6 @@
 class RolesController < ApplicationController
-#  protect_from_forgery :except => :index
-#  skip_before_filter :verify_authenticity_token
+  #  protect_from_forgery :except => :index
+  #  skip_before_filter :verify_authenticity_token
   # GET /roles
   # GET /roles.xml
   def index
@@ -10,6 +10,7 @@ class RolesController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @roles }
       format.json { render :text => get_json }
+      format.csv { export_csv(@roles, { :id => "id", :name => "名称" }, "角色数据.csv") }
     end
   end
 
@@ -91,16 +92,13 @@ class RolesController < ApplicationController
   
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
+
     if(params[:search_name] && params[:search_name].to_s!='')
-      @roles = Role.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
+      @roles = Role.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=> @pagesize,:page => params[:page] || 1)
       count = Role.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
     else
-      @roles = Role.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      @roles = Role.paginate(:order =>"id DESC",:per_page=> @pagesize,:page => params[:page] || 1)
       count = Role.count
     end
     return render_json(@roles,count)

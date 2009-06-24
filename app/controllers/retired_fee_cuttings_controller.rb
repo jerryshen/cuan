@@ -8,6 +8,9 @@ class RetiredFeeCuttingsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @retired_fee_cuttings }
       format.json { render :text => get_json }
+      format.csv { export_csv(@retired_fee_cuttings,
+          { :id => "id", :user_id => "姓名",
+            :other_fee1 => "其他扣款1", :other_fee2 => "其他扣款2", :other_fee3 => "其他扣款3" }, "离退休人员扣款数据.csv") }
     end
   end
 
@@ -89,11 +92,7 @@ class RetiredFeeCuttingsController < ApplicationController
 
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
 
     conditions = '1=1'
     condition_values = []
@@ -116,10 +115,10 @@ class RetiredFeeCuttingsController < ApplicationController
 
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
-      @retired_fee_cuttings = RetiredFeeCutting.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
+      @retired_fee_cuttings = RetiredFeeCutting.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=> @pagesize, :page => params[:page] || 1)
       count = RetiredFeeCutting.count(:joins => joins, :conditions => option_conditions)
     else
-      @retired_fee_cuttings = RetiredFeeCutting.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
+      @retired_fee_cuttings = RetiredFeeCutting.paginate(:order =>"id DESC",:per_page=> @pagesize, :page => params[:page] || 1)
       count = RetiredFeeCutting.count
     end
     return render_json(@retired_fee_cuttings,count)

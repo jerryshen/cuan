@@ -95,19 +95,16 @@ class ClassBeEdusController < ApplicationController
 
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
+
     if(!params[:search_verify].blank?)
       value=(params[:search_verify].to_i == 0? false : true)
       condition = ["user_id = ? and is_verified = ?", @current_user.id, value]
-      @class_be_edus = ClassBenefit.paginate(:order =>"id DESC", :conditions => condition,:per_page=>pagesize,:page => params[:page] || 1)
+      @class_be_edus = ClassBenefit.paginate(:order =>"id DESC", :conditions => condition,:per_page=> @pagesize,:page => params[:page] || 1)
       count = ClassBenefit.count(:conditions => condition)
     else
       condition = ["user_id =?", @current_user.id]
-      @class_be_edus = ClassBenefit.paginate(:order =>"id DESC",:conditions => condition ,:per_page=>pagesize,:page => params[:page] || 1)
+      @class_be_edus = ClassBenefit.paginate(:order =>"id DESC",:conditions => condition ,:per_page=> @pagesize,:page => params[:page] || 1)
       count = ClassBenefit.count(:conditions => condition)
     end
     return render_json(@class_be_edus,count)

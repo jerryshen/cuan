@@ -1,6 +1,9 @@
 class RetiredCollegeBenefit < ActiveRecord::Base
+  #mapping
   belongs_to :user
 
-  #validation
-  validates_presence_of :user_id, :message => "教职工不能为空！"
+  #validations
+  validates_presence_of :user_id
+  validates_numericality_of [:diff_be, :tv_be, :beaulty_be, :other_be1, :other_be3], :allow_nil => true
+
 end

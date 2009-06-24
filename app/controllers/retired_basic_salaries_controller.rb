@@ -10,6 +10,9 @@ class RetiredBasicSalariesController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @retired_basic_salaries }
       format.json { render :text => get_json }
+      format.csv { export_csv(@retired_basic_salaries,
+          { :id => "id", :user_id => "姓名", :basic_fee => "月基本退休费", :stay_be => "工改保留补贴_93年",
+            :foreign_be => "其他国家出台津补贴", :region_be => "地方出台津补贴" }, "离退休人员基本工资数据.csv") }
     end
   end
 
@@ -91,13 +94,9 @@ class RetiredBasicSalariesController < ApplicationController
 
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
 
-        conditions = '1=1'
+    conditions = '1=1'
     condition_values = []
     if(!params[:search_name].blank?)
       if user = User.find_by_name(params[:search_name])
@@ -118,10 +117,10 @@ class RetiredBasicSalariesController < ApplicationController
 
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
-      @retired_basic_salaries = RetiredBasicSalary.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
+      @retired_basic_salaries = RetiredBasicSalary.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=> @pagesize, :page => params[:page] || 1)
       count = RetiredBasicSalary.count(:joins => joins, :conditions => option_conditions)
     else
-      @retired_basic_salaries = RetiredBasicSalary.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
+      @retired_basic_salaries = RetiredBasicSalary.paginate(:order =>"id DESC",:per_page=> @pagesize, :page => params[:page] || 1)
       count = RetiredBasicSalary.count
     end
     return render_json(@retired_basic_salaries,count)

@@ -10,6 +10,9 @@ class BankCardsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @bank_cards }
       format.json { render :text => get_json }
+      format.csv { export_csv(@bank_cards,
+          { :id => "id", :user_id => "姓名", :bank_id => "银行", :card_number => "卡号",
+            :description => "备注" }, "银行卡数据.csv") }
     end
   end
 
@@ -91,30 +94,26 @@ class BankCardsController < ApplicationController
   
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
 
     conditions = '1=1'
     condition_values = []
     if(params[:search_name] && params[:search_name] != '')
-     if user = User.find_by_name(params[:search_name])
-       user_id = user.id
-     else
-       user_id = 0
-     end
+      if user = User.find_by_name(params[:search_name])
+        user_id = user.id
+      else
+        user_id = 0
+      end
       conditions += " AND user_id = ? "
       condition_values << user_id
     end
 
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
-      @bank_cards = BankCard.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
+      @bank_cards = BankCard.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=> @pagesize, :page => params[:page] || 1)
       count = BankCard.count(:conditions => option_conditions)
     else
-      @bank_cards = BankCard.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
+      @bank_cards = BankCard.paginate(:order =>"id DESC",:per_page=> @pagesize, :page => params[:page] || 1)
       count = BankCard.count
     end
     return render_json(@bank_cards,count)

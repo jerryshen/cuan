@@ -7,6 +7,8 @@ class StationPositionBenefitsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @station_position_benefits }
       format.json { render :text => get_json }
+      ormat.csv { export_csv(@station_position_benefits,
+          { :id => "id", :user_id => "姓名", :station_be => "岗位津贴", :position_be => "职务津贴" }, "岗位－职务津贴数据.csv") }
     end
   end
 
@@ -80,11 +82,7 @@ class StationPositionBenefitsController < ApplicationController
 
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
 
     conditions = '1=1'
     condition_values = []
@@ -107,10 +105,10 @@ class StationPositionBenefitsController < ApplicationController
 
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
-      @station_position_benefits = StationPositionBenefit.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
+      @station_position_benefits = StationPositionBenefit.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=> @pagesize, :page => params[:page] || 1)
       count = StationPositionBenefit.count(:joins => joins, :conditions => option_conditions)
     else
-      @station_position_benefits = StationPositionBenefit.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
+      @station_position_benefits = StationPositionBenefit.paginate(:order =>"id DESC",:per_page=> @pagesize, :page => params[:page] || 1)
       count = StationPositionBenefit.count
     end
     return render_json(@station_position_benefits,count)

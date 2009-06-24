@@ -8,6 +8,9 @@ class PerformanceBenefitRecordsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @performance_benefit_records }
       format.json { render :text => get_json }
+      format.csv { export_csv(@performance_benefit_records,
+          { :id => "id", :user_id => "姓名", :term => "发放学期", :fee => "金额",
+            :date => "发放日期" }, "绩效津贴记录数据.csv") }
     end
   end
 
@@ -87,11 +90,7 @@ class PerformanceBenefitRecordsController < ApplicationController
   end
 
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
 
     conditions = '1=1'
     condition_values = []
@@ -114,10 +113,10 @@ class PerformanceBenefitRecordsController < ApplicationController
 
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
-      @performance_benefit_records = PerformanceBenefitRecord.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
+      @performance_benefit_records = PerformanceBenefitRecord.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=> @pagesize, :page => params[:page] || 1)
       count = PerformanceBenefitRecord.count(:joins => joins, :conditions => option_conditions)
     else
-      @performance_benefit_records = PerformanceBenefitRecord.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
+      @performance_benefit_records = PerformanceBenefitRecord.paginate(:order =>"id DESC",:per_page=> @pagesize, :page => params[:page] || 1)
       count = PerformanceBenefitRecord.count
     end
     return render_json(@performance_benefit_records,count)

@@ -9,7 +9,11 @@ class UsersController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @users }
       format.json { render :text => get_json }
-      format.csv { export_csv(@users,{:id => "id",:name => "姓名",:login_id => "账号"},"教职工数据.csv") }
+      format.csv { export_csv(@users,
+          { :id => "id",:name => "姓名",:login_id => "账号", :department_id => "系部",
+            :td_belongs_id => "教学所属系部", :gender => "性别", :title_id => "职称",
+            :position_id => "职务", :birthday => "生日", :id_card => "身份证号",
+            :is_nature => "是否入编", :is_retired => "是否离退休" }, "教职工数据.csv") }
     end
   end
 
@@ -101,12 +105,7 @@ class UsersController < ApplicationController
 
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
-
+    load_page_data
     conditions = '1=1'
     condition_values = []
     if(!params[:search_name].blank?)
@@ -126,10 +125,10 @@ class UsersController < ApplicationController
 
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
-      @users = User.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
+      @users = User.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=> @pagesize, :page => params[:page] || 1)
       count = User.count(:conditions => option_conditions)
     else
-      @users = User.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
+      @users = User.paginate(:order =>"id DESC",:per_page=> @pagesize, :page => params[:page] || 1)
       count = User.count
     end
     return render_json(@users,count)

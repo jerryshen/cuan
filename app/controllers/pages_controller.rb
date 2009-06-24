@@ -10,6 +10,9 @@ class PagesController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @pages }
       format.json { render :text => get_json }
+      format.csv { export_csv(@pages,
+          { :id => "id", :name => "名称", :function => "功能", :url => "链接",
+            :icon => "图标", :page_module_id => "页面模块", :hidden => "是否隐藏" }, "页面数据.csv") }
     end
   end
 
@@ -100,11 +103,7 @@ class PagesController < ApplicationController
 
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
 
     conditions = '1=1'
     condition_values = []
@@ -120,10 +119,10 @@ class PagesController < ApplicationController
 
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
-      @pages = Page.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
+      @pages = Page.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=> @pagesize, :page => params[:page] || 1)
       count = Page.count(:conditions => option_conditions)
     else
-      @pages = Page.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
+      @pages = Page.paginate(:order =>"id DESC",:per_page=> @pagesize, :page => params[:page] || 1)
       count = Page.count
     end
     return render_json(@pages,count)

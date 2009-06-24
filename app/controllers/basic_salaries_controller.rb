@@ -10,6 +10,10 @@ class BasicSalariesController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @basic_salaries }
       format.json { render :text => get_json }
+      format.csv { export_csv(@basic_salaries,
+          { :id => "id", :user_id => "姓名", :station_sa => "岗位工资", :position_sa => "职务工资",
+            :station_be => "岗位津贴", :foreign_be => "其他国家出台津补贴", :region_be => "地方出台津补贴",
+            :hard_be => "艰苦边远", :stay_be => "公改保留补贴" }, "教职工基本工资数据.csv") }
     end
   end
 
@@ -71,7 +75,7 @@ class BasicSalariesController < ApplicationController
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @basic_salary.errors, :status => :unprocessable_entity }
-         format.json { render :text => "{status: 'failed', error:#{@basic_salary.errors.full_messages.to_json}}"}
+        format.json { render :text => "{status: 'failed', error:#{@basic_salary.errors.full_messages.to_json}}"}
       end
     end
   end
@@ -91,11 +95,7 @@ class BasicSalariesController < ApplicationController
 
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
 
     conditions = '1=1'
     condition_values = []
@@ -118,10 +118,10 @@ class BasicSalariesController < ApplicationController
 
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
-      @basic_salaries = BasicSalary.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
+      @basic_salaries = BasicSalary.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=> @pagesize, :page => params[:page] || 1)
       count = BasicSalary.count(:joins => joins, :conditions => option_conditions)
     else
-      @basic_salaries = BasicSalary.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
+      @basic_salaries = BasicSalary.paginate(:order =>"id DESC",:per_page=> @pagesize, :page => params[:page] || 1)
       count = BasicSalary.count
     end
     return render_json(@basic_salaries,count)

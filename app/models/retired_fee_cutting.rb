@@ -1,6 +1,8 @@
 class RetiredFeeCutting < ActiveRecord::Base
+  #mapping
   belongs_to :user
 
-  #validation
-  validates_presence_of :user_id, :message => "教职工不能为空！"
+  #validations
+  validates_presence_of :user_id
+  validates_numericality_of [:other_fee1, :other_fee2, :other_fee3], :allow_nil => true
 end

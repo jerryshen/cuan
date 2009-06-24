@@ -8,6 +8,9 @@ class UndefindFeesController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @undefind_fees }
       format.json { render :text => get_json }
+      format.csv { export_csv(@undefind_fees,
+          { :id => "id", :user_id => "姓名", :subject => "名目", :fee => "金额",
+            :date => "发放日期", :be_type => "类型" }, "不定费用发放数据.csv") }
     end
   end
 
@@ -96,16 +99,12 @@ class UndefindFeesController < ApplicationController
   
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
     if(params[:search_name] && params[:search_name].to_s!='')
-      @undefind_fees = UndefindFee.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
+      @undefind_fees = UndefindFee.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=> @pagesize,:page => params[:page] || 1)
       count = UndefindFee.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
     else
-      @undefind_fees = UndefindFee.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      @undefind_fees = UndefindFee.paginate(:order =>"id DESC",:per_page=> @pagesize,:page => params[:page] || 1)
       count = UndefindFee.count
     end
     return render_json(@undefind_fees,count)

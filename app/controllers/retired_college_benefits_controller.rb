@@ -8,6 +8,10 @@ class RetiredCollegeBenefitsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @retired_college_benefits }
       format.json { render :text => get_json }
+      format.csv { export_csv(@retired_college_benefits,
+          { :id => "id", :user_id => "姓名",
+            :diff_be => "补贴补差", :tv_be => "电视补贴", :beaulty_be  => "驻蓉补贴",
+            :other_be1 => "其他1", :other_be2 => "其他2", :other_be3 => "其他3"}, "离退休人员学院补贴数据.csv") }
     end
   end
 
@@ -89,11 +93,7 @@ class RetiredCollegeBenefitsController < ApplicationController
 
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
 
     conditions = '1=1'
     condition_values = []
@@ -116,10 +116,10 @@ class RetiredCollegeBenefitsController < ApplicationController
 
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
-      @retired_college_benefits = RetiredCollegeBenefit.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
+      @retired_college_benefits = RetiredCollegeBenefit.paginate(:order =>"id DESC", :joins => joins , :conditions => option_conditions,:per_page=> @pagesize, :page => params[:page] || 1)
       count = RetiredCollegeBenefit.count(:joins => joins, :conditions => option_conditions)
     else
-      @retired_college_benefits = RetiredCollegeBenefit.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
+      @retired_college_benefits = RetiredCollegeBenefit.paginate(:order =>"id DESC",:per_page=> @pagesize, :page => params[:page] || 1)
       count = RetiredCollegeBenefit.count
     end
     return render_json(@retired_college_benefits,count)

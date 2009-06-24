@@ -8,6 +8,8 @@ class AssistantsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @assistants }
       format.json { render :text => get_json }
+      format.csv { export_csv(@assistants,
+          { :id => "id", :user_id => "姓名", :benefit => "辅导员津贴", :other => "辅导员其他" }, "辅导员数据.csv") }
     end
   end
 

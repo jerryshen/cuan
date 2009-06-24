@@ -1,6 +1,6 @@
 class PositionsController < ApplicationController
-#  protect_from_forgery :except => :index
-#  skip_before_filter :verify_authenticity_token
+  #  protect_from_forgery :except => :index
+  #  skip_before_filter :verify_authenticity_token
   # GET /positions
   # GET /positions.xml
   def index
@@ -10,6 +10,7 @@ class PositionsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @positions }
       format.json { render :text => get_json }
+      format.csv { export_csv(@positions, { :id => "id", :name => "名称" }, "职务数据.csv") }
     end
   end
 
@@ -91,16 +92,12 @@ class PositionsController < ApplicationController
   
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
     if(params[:search_name] && params[:search_name].to_s!='')
-      @positions = Position.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=>pagesize,:page => params[:page] || 1)
+      @positions = Position.paginate(:order =>"id DESC", :conditions => ["name like ?","%#{params[:search_name]}%"],:per_page=> @pagesize,:page => params[:page] || 1)
       count = Position.count(:conditions =>["name like ?","%#{params[:search_name]}%"])
     else
-      @positions = Position.paginate(:order =>"id DESC",:per_page=>pagesize,:page => params[:page] || 1)
+      @positions = Position.paginate(:order =>"id DESC",:per_page=> @pagesize,:page => params[:page] || 1)
       count = Position.count
     end
     return render_json(@positions,count)

@@ -8,6 +8,9 @@ class ClassBePersonnelsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @class_be_personnels }
       format.json { render :text => get_json }
+      format.csv { export_csv(@class_be_personnels,
+          { :id => "id", :user_id => "姓名", :total_be => "学期总课时津贴", :term => "学期",
+            :month => "计算月", :date => "发放日期"}, "课时津贴数据.csv") }
     end
   end
 
@@ -68,11 +71,7 @@ class ClassBePersonnelsController < ApplicationController
 
   private
   def get_json
-    pagesize = 10
-    if(params[:page_size])
-      param_pagesize = params[:page_size].to_i
-      if param_pagesize > 0 then pagesize = param_pagesize end
-    end
+    load_page_data
 
     conditions = '1=1'
     condition_values = []
@@ -94,10 +93,10 @@ class ClassBePersonnelsController < ApplicationController
 
     if(conditions != '1=1')
       option_conditions = [conditions,condition_values].flatten!
-      @class_be_personnels = ClassBenefit.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=>pagesize, :page => params[:page] || 1)
+      @class_be_personnels = ClassBenefit.paginate(:order =>"id DESC", :conditions => option_conditions,:per_page=> @pagesize, :page => params[:page] || 1)
       count = ClassBenefit.count(:conditions => option_conditions)
     else
-      @class_be_personnels = ClassBenefit.paginate(:order =>"id DESC",:per_page=>pagesize, :page => params[:page] || 1)
+      @class_be_personnels = ClassBenefit.paginate(:order =>"id DESC",:per_page=> @pagesize, :page => params[:page] || 1)
       count = ClassBenefit.count
     end
     return render_json(@class_be_personnels,count)

@@ -18,6 +18,11 @@ class User < ActiveRecord::Base
   has_many :retired_college_be_records
   has_many :retired_fee_cutting_records
 
+  #validations
+  validates_presence_of :name, :department_id, :td_belongs_id, :gender, :title_id, :position_id, :id_card, :login_id
+  validates_length_of :id_card, :is => 18
+  validates_length_of :login_id, :within => 6..15
+
   #会引起update_attributes方法失败
   #validates_presence_of :update_password, :only => 'create'
 
@@ -37,7 +42,7 @@ class User < ActiveRecord::Base
   end
 
   def self.login(login_id,password)
-    unless login_id.size > 12
+    unless login_id.size > 15
       find_by_login_id_and_password(login_id,User.encryption_password(password))
     else
       find_by_id_card_and_password(login_id,User.encryption_password(password))
