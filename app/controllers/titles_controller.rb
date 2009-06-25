@@ -10,7 +10,6 @@ class TitlesController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @titles }
       format.json { render :text => get_json }
-      format.csv { export_csv(@titles, { :id => "id", :name => "名称" }, "职称数据.csv") }
     end
   end
 

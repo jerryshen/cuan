@@ -10,9 +10,6 @@ class PagesController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @pages }
       format.json { render :text => get_json }
-      format.csv { export_csv(@pages,
-          { :id => "id", :name => "名称", :function => "功能", :url => "链接",
-            :icon => "图标", :page_module_id => "页面模块", :hidden => "是否隐藏" }, "页面数据.csv") }
     end
   end
 

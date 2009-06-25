@@ -6,13 +6,13 @@
 </p>
 <p>
   <%= f.label :fee, "金额" %>
-  <%= f.text_field :fee, :class => "required" %>
+  <%= f.text_field :fee, :class => "required number" %>
 </p>
 <p>
-  <%= f.label :month, "发放月份" %><br />
+  <%= f.label :month, "发放月份" %>
   <%= select_month(Time.now.month, {:use_month_numbers => true}, :name => 'class_month_benefit_record[month]')  %>
 </p>
 <p>
-  <%= f.label :date %><br />
-  <%= select_day(Time.now.day, {}, :name => 'class_month_benefit_record[day]', :class => "required")  %>
+  <%= f.label :date %>
+  <%= select_day(Time.now.day, :name => 'class_month_benefit_record[day]', :class => "required")  %>
 </p>

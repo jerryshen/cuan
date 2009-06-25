@@ -2,6 +2,17 @@
   <fieldset>
     <legend>修改课时津贴</legend>
     <%= f.error_messages %>
+    <% if current_admin? %>
+  <p>
+    <%= f.label :user_id, "用户" %>
+    <%= f.select :user_id, User.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择用户..." }, :class => "required" %>
+  </p>
+<% else %>
+  <p>
+    <%= f.label :user_id, "用户" %>
+    <%= f.select :user_id, get_department_persons.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择用户..." }, :class => "required" %>
+  </p>
+<% end %>
     <p>
       <%= f.label :total_be, "学期总课时津贴" %>
       <%= f.text_field :total_be, :class => "required" %>

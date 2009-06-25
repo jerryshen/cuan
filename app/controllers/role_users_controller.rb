@@ -10,8 +10,6 @@ class RoleUsersController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @role_users }
       format.json { render :text => get_json }
-      format.csv { export_csv(@role_users,
-          { :id => "id", :role_id => "角色", :user_id => "用户" }, "用户角色权限分配数据.csv") }
     end
   end
 

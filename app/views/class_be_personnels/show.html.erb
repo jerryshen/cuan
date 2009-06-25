@@ -2,27 +2,27 @@
   <legend>查看课时津贴</legend>
   <p>
     <b>员工姓名:</b>
-    <%=h @class_be_edu.user.name if @class_be_edu.user %>
+    <%=h @class_be_personnel.user.name if @class_be_personnel.user %>
   </p>
 
   <p>
     <b>学期总课时津贴:</b>
-    <%=h @class_be_edu.total_be %>
+    <%=h @class_be_personnel.total_be %>
   </p>
 
   <p>
     <b>学期:</b>
-    <%=h @class_be_edu.term %>
+    <%=h @class_be_personnel.term %>
   </p>
 
   <p>
     <b>计算月:</b>
-    <%=h @class_be_edu.month %>
+    <%=h @class_be_personnel.month %>
   </p>
 
   <p>
     <b>发放日期:</b>
-    <%=h @class_be_edu.date %>
+    <%=h @class_be_personnel.date %>
   </p>
   <p class="bbar">
     <input type="button" onclick="$page.showListView()" value="返回列表" />

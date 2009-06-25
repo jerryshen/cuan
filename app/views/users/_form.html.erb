@@ -13,7 +13,7 @@
 </p>
 <p>
   <%= f.label :gender, "性别" %>
-  <%= f.select :gender, [["请选择性别..."],["男","m"],["女","f"]], :class => "required"  %>
+  <%= f.select :gender, [["请选择性别...",""],["男","m"],["女","f"]],{}, :class => "required"  %>
 </p>
 <p>
   <%= f.label :title_id, "职称" %>
@@ -33,11 +33,11 @@
 </p>
 <p>
   <%= f.label :login_id, "用户名" %>
-  <%= f.text_field :login_id, :class => "required" %>
+  <%= f.text_field :login_id, :class => "required", :minlength => 6, :maxlength => 15 %>
 </p>
 <p>
   <%= f.label :update_password, "密码" %>
-  <%= f.password_field :update_password, :class => "required" %>
+  <%= f.password_field :update_password, :class => "required", :minlength => 6 %>
 </p>
 <p>
   <%= f.label :is_nature, "是否入编" %>

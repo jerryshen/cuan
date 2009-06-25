@@ -30,7 +30,7 @@
 <%= javascript_include_tag 'AjaxForm.js' %>
 <script>
   var users = <%= User.to_json%>
-  var getUserName = function(value, p, record){
+  var getUserName = function(value){
     return users[value]
   }
 
@@ -48,11 +48,11 @@
           if(rq.responseText=="true"){
             $page.refreshGridData();
           }else{
-            Ext.MessageBox.show({msg:"您么权限删除已经通过审核的津贴",buttons: Ext.MessageBox.OK,icon:Ext.MessageBox.ERROR});
+            Ext.MessageBox.show({msg:"您么权限操作已经通过审核的津贴",buttons: Ext.MessageBox.OK,icon:Ext.MessageBox.ERROR});
           }
         },
         failure: function(){
-          Ext.MessageBox.show({msg:"您没有权限取消已经通过审核的津贴",buttons: Ext.MessageBox.OK,icon:Ext.MessageBox.WARNING});
+          Ext.MessageBox.show({msg:"您没有权限操作已经通过审核的津贴",buttons: Ext.MessageBox.OK,icon:Ext.MessageBox.WARNING});
         }
       });
     })

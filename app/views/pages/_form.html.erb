@@ -9,11 +9,11 @@
 </p>
 <p>
   <%= f.label :url, "链接" %>
-  <%= f.text_field :url %>
+  <%= f.text_field :url, :class => "required" %>
 </p>
 <p>
   <%= f.label :page_module_id, "页面模块" %>
-  <%= f.select :page_module_id, PageModule.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择页面模块..." } %>
+  <%= f.select :page_module_id, PageModule.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择页面模块..." }, :class => "required" %>
 </p>
 <p>
   <%= f.label :icon, "图标" %>

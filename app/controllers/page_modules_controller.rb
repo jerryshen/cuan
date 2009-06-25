@@ -10,7 +10,6 @@ class PageModulesController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @page_modules }
       format.json { render :text => get_json }
-      format.csv { export_csv(@page_modules, { :id => "id", :name => "名称", :index => "显示顺序" }, "页面模块数据.csv") }
     end
   end
 

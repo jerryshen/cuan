@@ -5,9 +5,4 @@ module ScienceBeSciencesHelper
     users = Department.find_by_name(department_name).users
     return users
   end
-
-  def current_admin?
-    name = "超级管理员"
-    return true if @current_user.roles.find_by_name(name)
-  end
 end

@@ -32,6 +32,20 @@ module ApplicationHelper
     gender.to_s == "m" ? "男" : "女"
   end
 
+  #get persons belongs to the same department
+  def get_department_persons
+    unless @current_user.nil?
+      User.find(:all,:conditions => ["department_id = ?",@current_user.department.id])
+    else
+      return nil
+    end
+  end
+
+  def current_admin?
+    name = "超级管理员"
+    return true if @current_user.roles.find_by_name(name)
+  end
+  
   #ajax pagination for will_paginate plugin
   def will_paginate_remote(paginator, options={})
     update = options.delete(:update)

@@ -6,11 +6,11 @@
 <p>
   <%= f.label :term, "学期" %>
   <% year = Time.now.year.to_s  %>
-  <%= f.select :term, [["请选择学期..."],[year+"年春期","1"],[year+"2009年秋期","2"]], :class => "required"  %>
+  <%= f.select :term, [["请选择学期..."],[year+"年春期","1"],[year+"年秋期","2"]], :class => "required"  %>
 </p>
 <p>
   <%= f.label :fee, "金额" %>
-  <%= f.text_field :fee, :class => "required" %>
+  <%= f.text_field :fee, :class => "number" %>
 </p>
 <p>
   <%= f.label :date, "发放日期" %>

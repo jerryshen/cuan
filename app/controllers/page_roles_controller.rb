@@ -10,7 +10,6 @@ class PageRolesController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @page_roles }
       format.json { render :text => get_json }
-      format.csv { export_csv(@page_roles, { :id => "id", :page_id => "页面", :role_id => "角色" }, "角色权限分配数据.csv") }
     end
   end
 
