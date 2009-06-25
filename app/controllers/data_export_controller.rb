@@ -17,7 +17,7 @@ class DataExportController < ApplicationController
 
     #array for benefit data collection
     @benefit_data = DataExport.get_benefit_data(year, month)
-    @benefit.each do |benefit|
+    @benefit_data.each do |benefit|
       #User.find(benefit.user_id).name to get user name
       benefit.user_id
       #total
