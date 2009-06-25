@@ -3,7 +3,7 @@ class CreateWelfareBenefits < ActiveRecord::Migration
     create_table :welfare_benefits do |t|
       t.references :user
       t.string :subject
-      t.float :fee
+      t.float :fee, :default => 0
       t.datetime :date
 
       t.timestamps

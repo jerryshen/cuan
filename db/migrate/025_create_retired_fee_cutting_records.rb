@@ -4,10 +4,10 @@ class CreateRetiredFeeCuttingRecords < ActiveRecord::Migration
       t.string :user
       t.string :year
       t.string :month
-      t.float  :elc_fee
-      t.float :other_fee1
-      t.float :other_fee2
-      t.float :other_fee3
+      t.float  :elc_fee, :default => 0
+      t.float :other_fee1, :default => 0
+      t.float :other_fee2, :default => 0
+      t.float :other_fee3, :default => 0
 
       t.timestamps
     end

@@ -22,4 +22,15 @@ class ClassBenefit < ActiveRecord::Base
   def re_verify
     raise "can't re-verify" if self.is_verified == false
   end
+
+  #find users in a same department with edu
+  def self.get_department_user_ids(user_id)
+    @user_ids = []
+    @users = User.find(user_id).department.users
+    @users.each do |u|
+      @user_ids.push(u.id)
+    end
+    return @user_ids.join(",")
+  end
+  
 end

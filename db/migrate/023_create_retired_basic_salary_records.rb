@@ -4,10 +4,10 @@ class CreateRetiredBasicSalaryRecords < ActiveRecord::Migration
       t.string :user
       t.string :year
       t.string :month
-      t.float  :basic_fee
-      t.float  :stay_be
-      t.float  :foreign_be
-      t.float  :region_be
+      t.float  :basic_fee, :default => 0
+      t.float  :stay_be, :default => 0
+      t.float  :foreign_be, :default => 0
+      t.float  :region_be, :default => 0
 
       t.timestamps
     end

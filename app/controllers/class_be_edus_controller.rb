@@ -99,11 +99,20 @@ class ClassBeEdusController < ApplicationController
 
     if(!params[:search_verify].blank?)
       value=(params[:search_verify].to_i == 0? false : true)
-      condition = ["user_id = ? and is_verified = ?", @current_user.id, value]
+      unless is_admin?
+        ids = ClassBenefit.get_department_user_ids(@current_user.id)
+        condition = ["user_id in (#{ids}) and is_verified = ?", value]
+      else
+        condition = []
+      end
       @class_be_edus = ClassBenefit.paginate(:order =>"id DESC", :conditions => condition,:per_page=> @pagesize,:page => params[:page] || 1)
       count = ClassBenefit.count(:conditions => condition)
     else
-      condition = ["user_id =?", @current_user.id]
+      unless is_admin?
+        condition = ["user_id in (#{ids})"]
+      else
+        condition = []
+      end
       @class_be_edus = ClassBenefit.paginate(:order =>"id DESC",:conditions => condition ,:per_page=> @pagesize,:page => params[:page] || 1)
       count = ClassBenefit.count(:conditions => condition)
     end

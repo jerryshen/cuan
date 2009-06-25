@@ -4,12 +4,12 @@ class CreateRetiredCollegeBeRecords < ActiveRecord::Migration
       t.string :user
       t.string :year
       t.string :month
-      t.float :diff_be
-      t.float :tv_be
-      t.float :beaulty_be
-      t.float :other_be1
-      t.float :other_be2
-      t.float :other_be3
+      t.float :diff_be, :default => 0
+      t.float :tv_be, :default => 0
+      t.float :beaulty_be, :default => 0
+      t.float :other_be1, :default => 0
+      t.float :other_be2, :default => 0
+      t.float :other_be3, :default => 0
 
 
       t.timestamps

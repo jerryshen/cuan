@@ -2,7 +2,7 @@ class CreateScienceBenefits < ActiveRecord::Migration
   def self.up
     create_table :science_benefits do |t|
       t.references :user
-      t.float :science_be
+      t.float :science_be, :default => 0
       t.string :year
       t.integer :month
       t.datetime :date

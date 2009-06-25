@@ -2,13 +2,13 @@ class CreateFeeCuttings < ActiveRecord::Migration
   def self.up
     create_table :fee_cuttings do |t|
       t.references :user
-      t.float :room_fee
-      t.float :med_fee
-      t.float :job_fee
-      t.float :selfedu_fee
-      t.float :other_fee1
-      t.float :other_fee2
-      t.float :other_fee3
+      t.float :room_fee, :default => 0
+      t.float :med_fee, :default => 0
+      t.float :job_fee, :default => 0
+      t.float :selfedu_fee, :default => 0
+      t.float :other_fee1, :default => 0
+      t.float :other_fee2, :default => 0
+      t.float :other_fee3, :default => 0
 
       t.timestamps
     end

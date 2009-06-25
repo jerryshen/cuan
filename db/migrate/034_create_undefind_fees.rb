@@ -3,7 +3,7 @@ class CreateUndefindFees < ActiveRecord::Migration
     create_table :undefind_fees do |t|
       t.references :user
       t.string :subject
-      t.float :fee
+      t.float :fee, :default => 0
       t.datetime :date
       t.string :type
 

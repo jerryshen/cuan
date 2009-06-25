@@ -2,13 +2,13 @@ class CreateBasicSalaries < ActiveRecord::Migration
   def self.up
     create_table :basic_salaries do |t|
       t.references :user
-      t.float :station_sa
-      t.float :position_sa
-      t.float :station_be
-      t.float :foreign_be
-      t.float :region_be
-      t.float :hard_be
-      t.float :stay_be
+      t.float :station_sa, :default => 0
+      t.float :position_sa, :default => 0
+      t.float :station_be, :default => 0
+      t.float :foreign_be, :default => 0
+      t.float :region_be, :default => 0
+      t.float :hard_be, :default => 0
+      t.float :stay_be, :default => 0
 
       t.timestamps
     end

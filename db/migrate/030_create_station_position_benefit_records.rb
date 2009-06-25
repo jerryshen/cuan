@@ -4,8 +4,8 @@ class CreateStationPositionBenefitRecords < ActiveRecord::Migration
       t.string :user
       t.string :year
       t.string :month
-      t.float :station_be
-      t.float :position_be
+      t.float :station_be, :default => 0
+      t.float :position_be, :default => 0
 
       t.timestamps
     end

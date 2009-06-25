@@ -3,7 +3,7 @@ class CreatePerformanceBenefitRecords < ActiveRecord::Migration
     create_table :performance_benefit_records do |t|
       t.references :user
       t.integer :term
-      t.float :fee
+      t.float :fee, :default => 0
       t.datetime :date
 
       t.timestamps

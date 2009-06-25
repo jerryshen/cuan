@@ -2,12 +2,12 @@ class CreateCollegeBenefits < ActiveRecord::Migration
   def self.up
     create_table :college_benefits do |t|
       t.references :user
-      t.float :life_be
-      t.float :diff_be
-      t.float :livesa_be
-      t.float :tv_be
-      t.float :beaulty_be
-      t.float :other_be
+      t.float :life_be, :default => 0
+      t.float :diff_be, :default => 0
+      t.float :livesa_be, :default => 0
+      t.float :tv_be, :default => 0
+      t.float :beaulty_be, :default => 0
+      t.float :other_be, :default => 0
 
       t.timestamps
     end
