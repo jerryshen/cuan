@@ -1,7 +1,7 @@
 <%= f.error_messages %>
 <p>
-  <%= f.label :user, "员工姓名" %>
-  <%= f.text_field :user, :class => "required", :size => 10 %>
+  <%= f.label :user_id, "教职工姓名" %>
+  <%= f.select :user_id, User.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择教职工..." }, :class => "required" %>
 </p>
 <p>
   <%= f.label :year, "年度" %>
@@ -46,4 +46,8 @@
 <p>
   <%= f.label :other_fee3, "其他扣款三" %>
   <%= f.text_field :other_fee3, :size => 10 %>
+</p>
+<p>
+  <%= f.label :self_tax, "个人所得税" %>
+  <%= f.text_field :self_tax, :size => 10 %>
 </p>

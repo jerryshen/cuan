@@ -50,7 +50,7 @@ class FeeCuttingRecordsController < ApplicationController
   # POST /fee_cutting_records
   # POST /fee_cutting_records.xml
   def create
-    @fee_cutting_record = FeeCuttingRecord.new(params[:fee_cutting])
+    @fee_cutting_record = FeeCuttingRecord.new(params[:fee_cutting_record])
 
     respond_to do |format|
       if @fee_cutting_record.save
@@ -71,7 +71,7 @@ class FeeCuttingRecordsController < ApplicationController
     @fee_cutting_record = FeeCuttingRecord.find(params[:id])
 
     respond_to do |format|
-      if @fee_cutting_record.update_attributes(params[:fee_cutting])
+      if @fee_cutting_record.update_attributes(params[:fee_cutting_record])
         format.html { redirect_to(@fee_cutting_record) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功更新扣款！"}'}

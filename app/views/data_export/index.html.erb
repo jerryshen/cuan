@@ -1,2 +1,43 @@
-<h1>DataExport#index</h1>
-<p>Find me in app/views/data_export/index.html.erb</p>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>数据导出</title>
+    <%= stylesheet_link_tag "form.css" %>
+  </head>
+  <body>
+
+    <% form_tag '/data_export/export' do |f| %>
+      <fieldset>
+        <legend>数据导出</legend>
+        <p>
+    <select style="margin: 0px; padding: 0px; float: none;" name="search_year" id="search_year">
+      <option value="" selected="selected">年度</option>
+      <option value="2009">2009</option>
+      <option value="2010">2010</option>
+      <option value="2011">2011</option>
+      <option value="2012">2012</option>
+    </select>
+    <select style="margin: 0px; padding: 0px; float: none;" name="search_month" id="search_month">
+      <option value="" selected="selected">月份</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+        </p>
+        <p class="bbar">
+          <input class="submit" type="submit" value="导出" />
+        </p>
+      </fieldset>
+    <% end %>
+  </body>
+</html>
