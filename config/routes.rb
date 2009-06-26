@@ -1,4 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :temp5s
+
+  map.resources :temp4s
+
+  map.resources :temp3s
+
+  map.resources :temp2s
+
+  map.resources :temp1s
+
   map.resources :performance_benefit_records
 
   map.resources :performance_benefit_stds

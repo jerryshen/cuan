@@ -1,0 +1,153 @@
+<link href="/javascripts/ext-2.2.1/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/grid.css" media="screen" rel="stylesheet" type="text/css" />
+<%= stylesheet_link_tag "form.css" %>
+<div id="list-view">
+  <form style="margin: 10px 0px;" id="search_form">
+    <label for="search_name">
+      名称：
+    </label>
+    <input type="text" value="" name="search_name" id="search_name"/>
+    <input class="button" type="button" id="btnSearch" value="搜索"/>
+    <input value="重置"class="btnreset" type="reset" />
+    <input value="刷新 " onclick="window.location.reload()" class="btnrefresh" type="button"  />
+  </form>
+  <div>
+    <div id="grid-wrap">
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag 'ext-2.2.1/adapter/jquery/jquery.js'%>
+<%= javascript_include_tag 'ext-2.2.1/adapter/jquery/ext-jquery-adapter.js'%>
+<%= javascript_include_tag 'ext-2.2.1/ext-all.js'%>
+<%= javascript_include_tag 'ExtListPage.js' %>
+<%= javascript_include_tag 'jquery-validate/lib/jquery.form.js' %>
+<%= javascript_include_tag 'jquery-validate/jquery.validate.js' %>
+<%= javascript_include_tag 'jquery-validate/localization/messages_cn.js' %>
+<%= javascript_include_tag 'AjaxForm.js' %>
+<script>
+  //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
+  // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]}
+  //框[]中的为默认值
+  Ext.onReady(function(){
+    var columns = [{
+        header: "ID",
+        dataIndex: 'id',
+        width: 30,
+        sortable: true,
+        type: "int",
+        resizable: false
+      }, {
+        header: "姓名",
+        dataIndex: 'f1',
+        sortable: true
+      }, {
+        header: "日期",
+        dataIndex: 'f2',
+        sortable: true
+      }, {
+        header: "岗位工资",
+        dataIndex: 'f3',
+        sortable: true
+      }, {
+        header: "薪级工资",
+        dataIndex: 'f4',
+        sortable: true
+      }, {
+        header: "艰苦边远地区津贴",
+        dataIndex: 'f5',
+        sortable: true
+      }, {
+        header: "工改保留补贴",
+        dataIndex: 'f6',
+        sortable: true
+      }, {
+        header: "其他国家出台津贴",
+        dataIndex: 'f7',
+        sortable: true
+      }, {
+        header: "地方出台津贴",
+        dataIndex: 'f8',
+        sortable: true
+      }, {
+        header: "扣发工资",
+        dataIndex: 'f9',
+        sortable: true
+      }, {
+        header: "补发工资",
+        dataIndex: 'f10',
+        sortable: true
+      }, {
+        header: "生活补贴",
+        dataIndex: 'f11',
+        sortable: true
+      }, {
+        header: "补贴补差",
+        dataIndex: 'f12',
+        sortable: true
+      }, {
+        header: "活工资补差",
+        dataIndex: 'f13',
+        sortable: true
+      }, {
+        header: "电视补贴",
+        dataIndex: 'f14',
+        sortable: true
+      }, {
+        header: "驻蓉补贴",
+        dataIndex: 'f15',
+        sortable: true
+      }, {
+        header: "应发工资",
+        dataIndex: 'f16',
+        sortable: true
+      }, {
+        header: "其他1",
+        dataIndex: 'f17',
+        sortable: true
+      }, {
+        header: "住房公积金",
+        dataIndex: 'f18',
+        sortable: true
+      }, {
+        header: "职工医疗保险费",
+        dataIndex: 'f19',
+        sortable: true
+      }, {
+        header: "职工个人教育费",
+        dataIndex: 'f20',
+        sortable: true
+      }, {
+        header: "个人所得税",
+        dataIndex: 'f21',
+        sortable: true
+      }, {
+        header: "扣水电费",
+        dataIndex: 'f22',
+        sortable: true
+      },{
+        header: "扣失业保险费",
+        dataIndex: 'f23',
+        sortable: true
+      }, {
+        header: "其他扣款一",
+        dataIndex: 'f24',
+        sortable: true
+      }, {
+        header: "其他扣款二",
+        dataIndex: 'f25',
+        sortable: true
+      }, {
+        header: "其他扣款三",
+        dataIndex: 'f26',
+        sortable: true
+      }]
+    var controllerName = "temp2s";
+    options = {
+      baseUrl: "http://" + window.location.host + "/" + controllerName,
+      gridTitle: "管理列表",
+      newItemLink: "newItem",
+      columns: columns
+    }
+    $page = new ExtListPage(options);
+  })
+</script>

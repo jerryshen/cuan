@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 41) do
+ActiveRecord::Schema.define(:version => 46) do
 
   create_table "app_configs", :force => true do |t|
     t.string   "key"
@@ -365,6 +365,97 @@ ActiveRecord::Schema.define(:version => 41) do
   end
 
   add_index "station_position_benefits", ["user_id"], :name => "index_station_position_benefits_on_user_id"
+
+  create_table "temp1s", :force => true do |t|
+    t.string   "f1"
+    t.string   "f2"
+    t.string   "f3"
+    t.string   "f4"
+    t.string   "f5"
+    t.string   "f6"
+    t.string   "f7"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "temp2s", :force => true do |t|
+    t.string   "f1"
+    t.string   "f2"
+    t.string   "f3"
+    t.string   "f4"
+    t.string   "f5"
+    t.string   "f6"
+    t.string   "f8"
+    t.string   "f9"
+    t.string   "f10"
+    t.string   "f11"
+    t.string   "f12"
+    t.string   "f13"
+    t.string   "f14"
+    t.string   "f15"
+    t.string   "f16"
+    t.string   "f17"
+    t.string   "f18"
+    t.string   "f19"
+    t.string   "f20"
+    t.string   "f21"
+    t.string   "f22"
+    t.string   "f23"
+    t.string   "f24"
+    t.string   "f25"
+    t.string   "f26"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "temp3s", :force => true do |t|
+    t.string   "f1"
+    t.string   "f2"
+    t.string   "f3"
+    t.string   "f4"
+    t.string   "f5"
+    t.string   "f6"
+    t.string   "f7"
+    t.string   "f8"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "temp4s", :force => true do |t|
+    t.string   "f1"
+    t.string   "f2"
+    t.string   "f3"
+    t.string   "f4"
+    t.string   "f5"
+    t.string   "f6"
+    t.string   "f7"
+    t.string   "f8"
+    t.string   "f9"
+    t.string   "f10"
+    t.string   "f11"
+    t.string   "f12"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "temp5s", :force => true do |t|
+    t.string   "f1"
+    t.string   "f2"
+    t.string   "f3"
+    t.string   "f4"
+    t.string   "f5"
+    t.string   "f6"
+    t.string   "f7"
+    t.string   "f8"
+    t.string   "f9"
+    t.string   "f10"
+    t.string   "f11"
+    t.string   "f12"
+    t.string   "f13"
+    t.string   "f14"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "titles", :force => true do |t|
     t.string   "name"
