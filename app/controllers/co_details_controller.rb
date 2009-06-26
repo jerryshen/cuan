@@ -1,9 +1,7 @@
 class CoDetailsController < ApplicationController
-  
   def index
     @departments = Department.all.collect { |d| [d.name, d.id] }
   end
-
 
   def select_with_ajax
     conditions = ["department_id = ?", params[:department_id]]
@@ -11,17 +9,18 @@ class CoDetailsController < ApplicationController
   end
 
   def ajax_total_list
-    unless params[:user_id].blank?
-      @selected_user = User.find(:first, :conditions => ["id =?",params[:user_id]]) if params[:user_id]
+    year = params[:date_year]
+    month = params[:date_month]
+    user_id = params[:user_id]
+    department_id = params[:department_id]
+
+    unless user_id.blank?
+      @selected_user = User.find(user_id)
     else
-      @selected_user = User.find(:first, :conditions => ["department_id =?", params[:department_id]])
-    end
-    if params[:date_month].blank?
-      conditions = ["user_id = ? and year = ?", params[:user_id], params[:date_year]]
-    else
-      conditions = ["user_id = ? and year = ? and month = ?", params[:user_id], params[:date_year], params[:date_month]]
+      @selected_user = User.find(:first, :conditions => ["department_id =?", department_id])
     end
 
+    conditions = CoDetail.get_conditions(user_id, year, month)
     unless @selected_user.is_retired
       @basic_salaries = BasicSalaryRecord.find(:all,:order => "id DESC", :conditions => conditions)
       @college_benefits = CollegeBeRecord.find(:all, :order => "id DESC", :conditions => conditions)
@@ -33,5 +32,4 @@ class CoDetailsController < ApplicationController
     end
   end
   
-
 end
