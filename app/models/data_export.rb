@@ -14,7 +14,9 @@ class DataExport
   #get incumbency college benefit data by year/month
   def self.get_benefit_data(year, month)
     reg = "cc.life_be + cc.diff_be + cc.livesa_be + cc.tv_be + cc.beaulty_be + cc.other_be"
-    sql = "SELECT cc.user_id, (#{reg}) benefit FROM college_be_records as cc WHERE (cc.year = #{year} and cc.month = #{month})"
+    sql = ""
+    sql << "SELECT cc.user_id, (#{reg}) benefit FROM college_be_records as cc "
+    sql << " WHERE (cc.year = #{year} and cc.month = #{month})"
     CollegeBeRecord.find_by_sql(sql)
   end
 
@@ -29,6 +31,15 @@ class DataExport
     sql << " WHERE (aa.year = #{year} and bb.year = #{year} and aa.month = #{month} and bb.month = #{month})"
     sql << "ORDER BY aa.user_id"
     RetiredBasicSalaryRecord.find_by_sql(sql)
+  end
+
+  #get retired benefit data by year/month
+  def self.get_retired_benefit_data(year, month)
+    reg = "cc.diff_be + cc.tv_be + cc.beaulty_be + cc.other_be1 + cc.other_be3"
+    sql = ""
+    sql << "SELECT cc.user_id, (#{reg}) retired_benefit FROM retired_college_be_records as cc"
+    sql << " WHERE (cc.year = #{year} and cc.month = #{month})"
+    RetiredCollegeBeRecord.find_by_sql(sql)
   end
 
 end

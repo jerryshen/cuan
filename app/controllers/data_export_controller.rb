@@ -6,7 +6,7 @@ class DataExportController < ApplicationController
   def export
     year = params[:search_year]
     month = params[:search_month]
-    #array for salry data collection
+    #salry data collection
     @salary_data = DataExport.get_salary_data(year, month)
     @salary_data.each do |salary|
       #User.find(salary.user_id).name to get user name
@@ -15,7 +15,7 @@ class DataExportController < ApplicationController
       salary.salary
     end
 
-    #array for benefit data collection
+    #benefit data collection
     @benefit_data = DataExport.get_benefit_data(year, month)
     @benefit_data.each do |benefit|
       #User.find(benefit.user_id).name to get user name
@@ -23,5 +23,20 @@ class DataExportController < ApplicationController
       #total
       benefit.benefit
     end
+
+    #retired salary data collection
+    @retired_salary_data = DataExport.get_retired_salary_data(year, month)
+    @retired_salary_data.each do |salary|
+      salary.user_id
+      salary.retired_salary
+    end
+
+    #retired benefit data collection
+    @retired_benefit_data = DataExport.get_retired_benefit_data(year, month)
+    @retired_benefit_data.each do |benefit|
+      benefit.user_id
+      benefit.retired_benefit
+    end
   end
+
 end
