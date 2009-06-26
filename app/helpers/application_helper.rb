@@ -1,5 +1,8 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  def app_name
+    return "四川建筑职业技术学院个人收入管理信息系统"
+  end
 
   #select options for index searching
   def list_departments_for_search

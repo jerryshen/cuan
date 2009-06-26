@@ -53,7 +53,7 @@ class FeeCuttingsController < ApplicationController
 
     respond_to do |format|
       if @fee_cutting.save
-        format.html { redirect_to(@fee_cutting) }
+        format.html { rendirect_to(new_fee_cutting_path) }
         format.xml  { render :xml => @fee_cutting, :status => :created, :location => @fee_cutting }
         format.json { render :text => '{status: "success", message: "成功创建扣款！"}'}
       else

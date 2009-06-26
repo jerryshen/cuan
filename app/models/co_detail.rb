@@ -78,12 +78,12 @@ class CoDetail
     conditions = "user_id = #{user_id}"
     condition_values = []
 
-    if(year.blank?)
+    if(!year.blank?)
       conditions += " AND year = ?"
       condition_values << year
     end
 
-    if(month.blank?)
+    if(!month.blank?)
       conditions += " AND month = ?"
       condition_values << month
     end

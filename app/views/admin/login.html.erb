@@ -1,78 +1,83 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <%= stylesheet_link_tag 'background-login' %>
-    <%= javascript_include_tag 'application' %>
-    <title>工资管理系统登录</title>
-    <style type="text/css">
-      <!--
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico" />
+  <title><%= app_name  %></title>
+  <%= stylesheet_link_tag "styles.css" %>		<style type="text/css">
+            img, div { behavior: url(iepngfix.htc) }
+  </style>
 
-      .STYLE1 {
-        color: #ee9128
-      }
-      -->
-    </style>
-
-    <script>
-      if(self!=top){top.location=self.location;} //防止被iframe
-      function login(){
-        var username=document.getElementById("login_id").value;
-        var password=document.getElementById("password").value;
-        if(username.length==0){
-          alert("请输入帐号!");
-          return;
-        }
-        if(password.length==0){
-          alert("请输入密码!");
-          return;
-        }
-        document.getElementById("loginForm").submit();
-      }
-
-      function enterSubmit(event)
-      {
-        if (event.keyCode == 13) //13: enter
+  <script type="text/javascript">
+    /*
+        if (document.all && document.styleSheets && document.styleSheets[0] &&
+        document.styleSheets[0].addRule)
         {
-          event.returnValue=false;
-          event.cancel = true;
-          login();
+
+        document.styleSheets[0].addRule('*', 'behavior: url(iepngfix.htc)');
         }
-      }
-    </script>
-  </head>
-  <body>
-    <div class="bg-login">
-      <div class="bg-login-title">
-        工 资 管 理 系 统
-      </div>
-      <% form_tag "/admin/try_to_login",:id=>"loginForm",:method=>"post" do |f| %>
-        <div class="bg-login-content">
-          <div class="bg-login-right">
-            <div class="bg-login-down">
-              <div class="bg-login-leftcol">
-                <div class="bg-login-name">
-                  帐号:<input name="login_id" id="login_id" type="text" class="bg-input" />
-                </div>
-                <div class="bg-login-password">
-                  密码:<input name="password" id="password" type="password" class="bg-input2" />
-                </div>
-                <div class="forget-password"><%= flash[:notice] %></div>
-                <div class="bg-login-password">
-                  <%#=  captcha %>
-                </div>
-              </div>
-            </div>
-            <div class="bg-log">
-              <a href="#" onclick="login()">Login</a>
-            </div>
-            <div class="bg-cancel">
-              <a href="#">Cancel</a>
-            </div>
-            <!--div class="login-forget"-->
-          </div>
-        </div>
-      <% end %>
+     */
+  </script>
+</head>
+
+<body id="login">
+<div id="wrappertop"></div>
+<div id="wrapper">
+  <div id="content">
+    <div id="header">
+      <h1></h1>
     </div>
-  </body>
-</html>
+    <div id="darkbanner" class="banner320">
+      <h2>个人收入管理信息系统</h2>
+
+    </div>
+    <div id="darkbannerwrap">
+    </div>
+    <% form_tag "/admin/try_to_login",:id=>"loginForm",:method=>"post" do |f| %>
+      <fieldset class="form">
+        <%= flash[:notice] %>
+        <p>
+          <label for="login_id">用户名:</label>
+          <input name="login_id" id="login_id" type="text" value="" />
+
+        </p>
+        <p>
+          <label for="password">密码:</label>
+          <input name="password" id="password" type="password" />
+        </p>
+        <button type="submit" onclick="login()" class="positive" name="Submit">
+        <img src="images/key.png" alt="系统"/>登录</button>
+      </fieldset>
+    <% end %>
+
+
+  </div>
+</div>
+<script>
+  if(self!=top){top.location=self.location;} //防止被iframe
+  function login(){
+    var username=document.getElementById("login_id").value;
+    var password=document.getElementById("password").value;
+    if(username.length==0){
+      alert("请输入帐号!");
+      return;
+    }
+    if(password.length==0){
+      alert("请输入密码!");
+      return;
+    }
+    document.getElementById("loginForm").submit();
+  }
+
+  function enterSubmit(event)
+  {
+    if (event.keyCode == 13) //13: enter
+    {
+      event.returnValue=false;
+      event.cancel = true;
+      login();
+    }
+  }
+</script>
+
+<div id="wrapperbottom_branding"><div id="wrapperbottom_branding_text">版权所有 <a href="#" style='text-decoration:none'>四川建筑职业技术学院</a>. <a href="#" style='text-decoration:none'>个人收入管理信息系统</a></div></div>
