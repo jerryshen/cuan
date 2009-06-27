@@ -1,0 +1,18 @@
+<p><label for="total">财政支出:</label>
+  <%= @fee  %>
+</p>
+<p><label for="total">财政支出的人数（入编）:</label>
+  <%= @nums  %>
+</p>
+<p><label for="total">财政平均:</label>
+  <%= @avg  %>
+</p>
+<p><label for="total">财政支出最高:</label>
+  <%= User.find(@top.user_id).name %>
+  <%= @top.counting  %>
+</p>
+<p><label for="total">财政支出最低:</label>
+  <%= User.find(@top.user_id) %>
+  <%= @top.counting %>
+</p>
+无学院支出

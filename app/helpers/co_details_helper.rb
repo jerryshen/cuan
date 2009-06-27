@@ -1,4 +1,12 @@
 module CoDetailsHelper
+
+  #get counting title
+  def content_title(year, month, department_id)
+    department_name = department_id.blank? ? "全校" : Department.find(department_id).name
+    content_title = year.to_s + "年度" + month.to_s + "月份" + department_name.to_s + "收入统计信息"
+    return content_title
+  end
+
   def check_user_for_salary
     unless @selected_user.is_retired
       render :partial => 'share/salary_entries'

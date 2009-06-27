@@ -25,7 +25,7 @@
 </p>
 <p>
   <%= f.label :birthday, "生日" %>
-  <%= f.date_select :birthday, :start_year => 1950, :end_year => 2000, :order => [:year, :month, :day], :class => "required" %>
+  <%= f.date_select :birthday, {:start_year => 1950, :end_year => 2000, :order => [:year, :month, :day],:use_month_numbers => true}, :class => "required" %>
 </p>
 <p>
   <%= f.label :id_card, "身份证" %>
