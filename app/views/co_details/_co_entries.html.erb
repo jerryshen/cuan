@@ -1,0 +1,52 @@
+<p><label for="total">总支出:</label>
+  <%= @fee  %>
+</p>
+<p><label for="total">员工总:</label>
+  <%= @nums  %>
+</p>
+<p><label for="total">总平均:</label>
+  <%= @avg  %>
+</p>
+<p><label for="total">最高:</label>
+  <%= User.find(@top.user_id).name %>
+  <%= @top.counting  %>
+</p>
+<p><label for="total">最低:</label>
+  <%= User.find(@bot.user_id).name %>
+  <%= @bot.counting  %>
+</p>
+<p><label for="total">其中财政支出:</label>
+  <%= @inc_fee  %>
+</p>
+<p><label for="total">财政支出的人数（入编）:</label>
+  <%= @inc_num  %>
+</p>
+<p><label for="total">财政平均:</label>
+  <%= @inc_avg  %>
+</p>
+<p><label for="total">财政支出最高:</label>
+  <%= User.find(@inc_top.user_id).name %>
+  <%= @inc_top.counting  %>
+</p>
+<p><label for="total">财政支出最低:</label>
+  <%= User.find(@inc_top.user_id) %>
+  <%= @inc_top.counting %>
+</p>
+
+<p><label for="total">学院支出:</label>
+  <%= @ret_fee  %>
+</p>
+<p><label for="total">学院支出的人数（非入编）:</label>
+  <%= @ret_num  %>
+</p>
+<p><label for="total">学院平均:</label>
+  <%= @ret_avg  %>
+</p>
+<p><label for="total">学院支出最高:</label>
+  <%= User.find(@ret_top.user_id)  %>
+  <%= @ret_top.counting  %>
+</p>
+<p><label for="total">学院支出最低:</label>
+  <%= User.find(@ret_bot.user_id)  %>
+  <%= @ret_bot.counting  %>
+</p>

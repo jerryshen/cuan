@@ -1,4 +1,5 @@
 class AdminController < ApplicationController
+  protect_from_forgery :only => :index
   def index
   end
 

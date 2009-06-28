@@ -1,0 +1,14 @@
+<%= stylesheet_link_tag "form.css" %>
+<fieldset>
+  <legend><%= content_title(@year, @month, @department_id)%></legend>
+  <% if @inc_total.blank? && @ret_total.blank? %>
+    没有记录！
+      <% elsif !@inc_total.blank? && @ret_total.blank?  %>
+        <%= render :partial => 'inc_co_entries' %>
+        <% else %>
+          <%= render :partial => 'co_entries'  %>
+        <% end %>
+  <p class="bbar">
+
+  </p>
+</fieldset>

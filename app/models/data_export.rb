@@ -32,7 +32,7 @@ class DataExport
     sql << "ORDER BY aa.user_id"
     RetiredBasicSalaryRecord.find_by_sql(sql)
   end
-
+  
   #get retired benefit data by year/month
   def self.get_retired_benefit_data(year, month)
     reg = "cc.diff_be + cc.tv_be + cc.beaulty_be + cc.other_be1 + cc.other_be3"

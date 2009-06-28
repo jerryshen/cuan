@@ -1,24 +1,16 @@
 class ProfileController < ApplicationController
+  protect_from_forgery :except => :ajax_total_list
 
   def self_salary
   end
 
   def ajax_total_list
-    if params[:date_month].blank?
-      conditions = ["user_id = ? and year = ?",@current_user.id, params[:date_year]]
-    else
-      conditions = ["user_id = ? and year = ? and month = ?", @current_user.id, params[:date_year], params[:date_month]]
-    end
-
-    unless @current_user.is_retired
-      @basic_salaries = BasicSalaryRecord.find(:all,:order => "id DESC", :conditions => conditions)
-      @college_benefits = CollegeBeRecord.find(:all, :order => "id DESC", :conditions => conditions)
-      @fee_cuttings = FeeCuttingRecord.find(:all, :order => "id DESC", :conditions => conditions)
-    else
-      @basic_salaries = RetiredBasicSalaryRecord.find(:all, :order => "id DESC", :conditions => conditions)
-      @college_benefits = RetiredCollegeBeRecord.find(:all, :order => "id DESC", :conditions => conditions)
-      @fee_cuttings = RetiredFeeCuttingRecord.find(:all, :order => "id DESC", :conditions => conditions)
-    end
+    year = params[:date_year]
+    month = params[:date_month]
+    user_id = @current_user.id
+    @basic_salaries = Profile.get_salary_data(year, month, user_id, @current_user.is_retired)
+    @fee_cuttings = Profile.get_fee_cutting_data(year, month, user_id, @current_user.is_retired)
+    @college_benefits = Profile.get_benefit_data(year, month, user_id, @current_user.is_retired)
   end
 
   def my_profile
