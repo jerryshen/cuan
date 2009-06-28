@@ -3,7 +3,8 @@
     <legend>添加岗位－职务津贴记录</legend>
     <%= render :partial => 'form', :locals => {:f =>f}  %>
     <p class="bbar">
-      <%= f.submit '保存' %>
+    <input type="button" value='保存并新增' id ="save_and_new"  />
+    <%= f.submit '保存', :id => "save" %>
       <input type="button" onclick="$page.showListView()" value="取消" />
     </p>
   </fieldset>

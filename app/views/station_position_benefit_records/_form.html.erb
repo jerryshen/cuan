@@ -1,15 +1,12 @@
 <%= f.error_messages %>
-<p>
-  <%= f.label :user_id, "教职工" %>
-  <%= f.select :user_id, User.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择教职工..." }, :class => "required" %>
-</p>
+<%= select_user "station_position_benefit_record[user_id]" %>
 <p>
   <%= f.label :year, "年度" %>
   <%= select_year(Time.now.year, {:start_year => 2009, :end_year => 2015}, :name => 'station_position_benefit_record[year]') %>
 </p>
 <p>
   <%= f.label :month, "月份" %><br />
-  <%= select_month(Time.now.month, {:use_month_numbers => true}, :name => 'retired_fee_cutting_record[month]')  %>
+  <%= select_month(Time.now.month, {:use_month_numbers => true}, :name => 'station_position_benefit_record[month]')  %>
 </p>
 <p>
   <%= f.label :station_be, "岗位津贴" %>
@@ -19,3 +16,4 @@
   <%= f.label :position_be, "职务津贴" %>
   <%= f.text_field :position_be, :class => "required number" %>
 </p>
+

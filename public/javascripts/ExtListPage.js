@@ -524,8 +524,10 @@ var ExtListPage = function(options){
                 currView.innerHTML = '';
             
             var toView = document.getElementById(showViewId);
-            if (data) 
-                toView.innerHTML = data;
+            if (data){ 
+                Ext.get(toView).update(data,true); //load script
+                /*toView.innerHTML = data;*/
+            }
             toView.style.display = "block";
             
             currViewId = showViewId;

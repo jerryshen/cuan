@@ -15,6 +15,13 @@ class Department < ActiveRecord::Base
     return hash
   end
 
+  def users_to_json
+    ar_users = users.collect do |row|
+      {:id => row.id, :name => row.name}
+    end
+    ar_users.to_json
+  end
+
   def self.to_hash
     hash = {}
     find_by_sql("select id,name from departments").each do |row|

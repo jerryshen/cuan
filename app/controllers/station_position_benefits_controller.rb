@@ -7,7 +7,7 @@ class StationPositionBenefitsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @station_position_benefits }
       format.json { render :text => get_json }
-      ormat.csv { export_csv(@station_position_benefits,
+      format.csv { export_csv(@station_position_benefits,
           { :id => "id", :user_id => "姓名", :station_be => "岗位津贴", :position_be => "职务津贴" }, "岗位－职务津贴数据.csv") }
     end
   end

@@ -1,5 +1,5 @@
 class DepartmentsController < ApplicationController
-	#protect_from_forgery :except => :index
+  protect_from_forgery :except => [:users_to_json]
   #skip_before_filter :verify_authenticity_token
   # GET /departments
   # GET /departments.xml
@@ -90,8 +90,13 @@ class DepartmentsController < ApplicationController
     end
   end
 
-  def test
-    
+  def users_to_json
+    if request.post?
+      department = Department.find(params[:id])
+      if(department)
+        render :text => department.users_to_json
+      end
+    end
   end
   
   private

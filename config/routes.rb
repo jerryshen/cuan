@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.connect '/departments/users_to_json', :controller => "departments", :action => "users_to_json"
+
   map.resources :temp5s
 
   map.resources :temp4s
@@ -71,7 +73,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :titles
 
-  map.resources :departments
+  map.resources :departments do |departments|
+    departments.resources :users
+  end
 
   map.resources :page_roles
 
