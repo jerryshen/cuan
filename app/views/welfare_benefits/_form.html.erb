@@ -1,8 +1,5 @@
 <%= f.error_messages %>
-<p>
-  <%= f.label :user_id, "教职工" %>
-  <%= f.select :user_id, User.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择教职工..." }, :class => "required" %>
-</p>
+<%= select_user "welfare_benefit[user_id]" %>
 <p>
   <%= f.label :subject, "福利津贴名目" %>
   <%= f.text_field :subject %>

@@ -1,10 +1,6 @@
 <%= f.error_messages %>
-
 <% if current_admin? %>
-  <p>
-    <%= f.label :user_id, "用户" %>
-    <%= f.select :user_id, User.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择用户..." }, :class => "required" %>
-  </p>
+  <%= select_user "class_be_edu[user_id]" %>
 <% else %>
   <p>
     <%= f.label :user_id, "用户" %>

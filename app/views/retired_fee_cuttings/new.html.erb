@@ -3,8 +3,9 @@
     <legend>添加离退休人员扣款</legend>
     <%= render :partial => 'form', :locals => {:f =>f}  %>
     <p class="bbar">
-      <%= f.submit '保存' %>
-      <input type="button" onclick="$page.showListView()" value="取消" />
+      <input type="button" value='保存并新增' id ="save_and_new"  />
+      <%= f.submit '保存并返回' %>
+      <input type="button" onclick="$page.showListView()" value="返回列表" />
     </p>
   </fieldset>
 <% end %>

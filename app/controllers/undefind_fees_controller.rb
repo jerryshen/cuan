@@ -91,11 +91,6 @@ class UndefindFeesController < ApplicationController
       format.json { render :text => '{status: "success"}'}
     end
   end
-
-  def select_with_ajax
-    conditions = ["department_id = ?", params[:department_id]]
-    @users = User.find(:all, :conditions => conditions).collect { |u| [u.name, u.id] }
-  end
   
   private
   def get_json

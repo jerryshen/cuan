@@ -1,17 +1,14 @@
 <%= f.error_messages %>
-<p>
-  <%= f.label :user_id, "教职工" %>
-  <%= f.select :user_id, User.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择教职工..." }, :class => "required" %>
-</p>
+<%= select_user "bank_card[user_id]" %>
 <p>
   <%= f.label :bank_id, "银行" %>
   <%= f.select :bank_id, Bank.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择发卡银行..." }, :class => "required" %>
 </p>
 <p>
   <%= f.label :card_number, "银行卡号" %>
-  <%= f.text_field :card_number, :class => "creditcard"%>
+  <%= f.text_field :card_number, :class => "creditcard required"%>
 </p>
 <p>
   <%= f.label :description, "备注" %>
-  <%= f.text_area :description %>
+  <%= f.text_area :description, :rows => 10 %>
 </p>

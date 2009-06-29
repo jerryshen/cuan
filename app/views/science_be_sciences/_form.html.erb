@@ -1,10 +1,7 @@
 <%= f.error_messages %>
 
 <% if current_admin? %>
-  <p>
-    <%= f.label :user_id, "用户" %>
-    <%= f.select :user_id, get_science_staffs.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择用户..." }, :class => "required" %>
-  </p>
+<%= select_user "science_be_science[user_id]" %>
 <% else %>
 <% end %>
 <p>

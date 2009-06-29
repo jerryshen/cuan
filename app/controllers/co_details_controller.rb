@@ -1,11 +1,5 @@
 class CoDetailsController < ApplicationController
   def index
-    @departments = Department.all.collect { |d| [d.name, d.id] }
-  end
-
-  def select_with_ajax
-    conditions = ["department_id = ?", params[:department_id]]
-    @users = User.find(:all, :conditions => conditions).collect { |u| [u.name, u.id] }
   end
 
   def ajax_total_list

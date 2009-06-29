@@ -1,8 +1,6 @@
 <%= f.error_messages %>
-<p>
-  <%= f.label :user_id, "教职工姓名" %>
-  <%= f.select :user_id, User.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择教职工..." }, :class => "required" %>
-</p>
+
+<%= select_user "fee_cutting_record[user_id]" %>
 <p>
   <%= f.label :year, "年度" %>
   <%= select_year(Time.now.year, {:start_year => 2009, :end_year => 2015}, :name => 'fee_cutting_record[year]') %>

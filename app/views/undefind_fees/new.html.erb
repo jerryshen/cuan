@@ -1,16 +1,11 @@
 <% form_for(@undefind_fee) do |f| %>
   <fieldset>
     <legend>添加不定费用</legend>
-    <p><label for="ajax_form">部门</label>
-    <%= select(:department, :id, @departments, {:prompt => "请选择员工隶属的部门"}, { "onchange" => remote_function(
-          :with => "'department_id='+value",
-          :update => 'next_select',
-          :url => { :action => :select_with_ajax } ) })%></p>
-    <span id='next_select'></span>
     <%= render :partial => 'form', :locals => { :f => f }  %>
     <p class="bbar">
-      <%= f.submit '保存' %>
-      <input type="button" onclick="$page.showListView()" value="取消" />
+      <input type="button" value='保存并新增' id ="save_and_new"  />
+      <%= f.submit '保存并返回' %>
+      <input type="button" onclick="$page.showListView()" value="返回列表" />
     </p>
   </fieldset>
 <% end %>

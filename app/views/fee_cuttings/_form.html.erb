@@ -1,8 +1,6 @@
 <%= f.error_messages %>
-<p>
-  <%= f.label :user_id, "教职工姓名" %>
-  <%= f.select :user_id, User.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择教职工..." }, :class => "required" %>
-</p>
+
+<%= select_user "fee_cutting[user_id]" %>
 <p>
   <%= f.label :room_fee, "住房公积金" %>
   <%= f.text_field :room_fee, :size => 10, :class => "number" %>

@@ -1,8 +1,5 @@
 <%= f.error_messages %>
-<p>
-  <%= f.label :user_id, "离退休人员" %><br />
-  <%= f.select :user_id, get_retired_staffs.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择离退休人员..." }, :class => "required" %>
-</p>
+<%= select_user "retired_basic_salary[user_id]" %>
 <p>
   <%= f.label :basic_fee, "月基本退休费" %><br />
   <%= f.text_field :basic_fee, :class => "required number" %>

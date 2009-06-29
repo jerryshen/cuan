@@ -4,28 +4,22 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>员工月工资明细</title>
     <%= stylesheet_link_tag "form.css" %>
-    <%= javascript_include_tag "prototype" %>
+    <%= javascript_include_tag 'ext-2.2.1/adapter/jquery/jquery.js'%>
+    <%= javascript_include_tag 'ext-2.2.1/adapter/jquery/ext-jquery-adapter.js'%>
+    <%= javascript_include_tag 'ext-2.2.1/ext-all.js'%>
   </head>
   <body>
     <form style="margin: 10px 0px;" id="search_form">
       <fieldset>
         <legend>员工月工资明细</legend>
-        <p><label for="select_department">部门</label>
-          <%= select(:department, :id, @departments, {:prompt => "请选择员工隶属的部门"}, { "onchange" => remote_function(
-                :with => "'department_id='+value",
-                :update => 'next_select',
-                :url => { :action => :select_with_ajax } ) })%></p>
+
+        <%= select_user "retired_fee_cutting[user_id]" %>
+
         <span id='next_select'></span>
         <p><label for="select_year">年度</label>
-          <%= select_year(Time.now.year, {:start_year => 2009, :end_year => 2012},{ "onchange" => remote_function(
-                :with => "'date_year='+value+'&amp;user_id='+document.getElementById('user_id').value+'&amp;date_month='+document.getElementById('date_month').value",
-                :update => 'total_list',
-                :url => { :action => :ajax_total_list } ) }) %>
+          <%= select_year(Time.now.year, {:start_year => 2009, :end_year => 2012}) %>
           <label for="select_month">月份</label>
-          <%= select_month(Time.now.month, {:use_month_numbers => true,:prompt => "全年度",:selected => ""},{ "onchange" => remote_function(
-                :with => "'date_month='+value+'&amp;user_id='+document.getElementById('user_id').value+'&amp;date_year='+document.getElementById('date_year').value",
-                :update => 'total_list',
-                :url => { :action => :ajax_total_list } ) })  %>
+          <%= select_month(Time.now.month, {:use_month_numbers => true,:prompt => "全年度",:selected => ""})  %>
         </p>
         <p><span id='total_list'></span></p>
       </fieldset>

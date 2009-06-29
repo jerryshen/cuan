@@ -1,8 +1,6 @@
 <%= f.error_messages %>
-<p>
-  <%= f.label :user_id, "教职工姓名" %>
-  <%= f.select :user_id, User.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择教职工..." }, :class => "required" %>
-</p>
+
+<%= select_user "performance_benefit_std[user_id]" %>
 <p>
   <%= f.label :std_fee, "绩效津贴标准金额" %>
   <%= f.text_field :std_fee, :class => "required number" %>

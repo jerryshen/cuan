@@ -1,18 +1,16 @@
 <%= f.error_messages %>
-<p>
-  <%= f.label :user_id, "教职工姓名" %>
-  <%= f.select :user_id, User.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择教职工..." }, :class => "required" %>
-</p>
+
+<%= select_user "performance_benefit_record[user_id]" %>
 <p>
   <%= f.label :term, "学期" %>
   <% year = Time.now.year.to_s  %>
-  <%= f.select :term, [["请选择学期..."],[year+"年春期","1"],[year+"年秋期","2"]], :class => "required"  %>
+  <%= f.select :term, [["请选择学期..."],[year+"年春期","1"],[year+"年秋期","2"]], {:class => "required"}  %>
 </p>
 <p>
   <%= f.label :fee, "金额" %>
-  <%= f.text_field :fee, :class => "number" %>
+  <%= f.text_field :fee, :class => "required number" %>
 </p>
 <p>
   <%= f.label :date, "发放日期" %>
-  <%= f.datetime_select :date %>
+  <%= f.date_select :date, {:start_year => 2000, :end_year => 2010, :order => [:year, :month, :day],:use_month_numbers => true}, :class => "required" %>
 </p>
