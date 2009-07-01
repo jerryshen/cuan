@@ -62,7 +62,8 @@ module ApplicationHelper
     end
   end
 
-  def select_user(name="user_id")
+  #on 是否已退休
+  def select_user(on,name="user_id")
     options = Department.all.collect{|x| "<option value='#{x.id}' >#{x.name}</option>"}.join('')
     html = %q{
       <p>
@@ -91,7 +92,7 @@ module ApplicationHelper
           if(v){
             jQuery.ajax({
               url: "/departments/users_to_json",
-              data: {id: v},
+              data: {id: v, on:<on>},
               type: "POST",
               success: function(data){
                 var users = Ext.util.JSON.decode(data); 
@@ -111,7 +112,7 @@ module ApplicationHelper
         })
       </script>
     }
-    html.sub!("<options>",options).sub!("<name>",name)
+    html.sub!("<options>",options).sub!("<name>",name).sub!("<on>",on)
   end
 
 end

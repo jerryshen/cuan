@@ -15,8 +15,16 @@ class Department < ActiveRecord::Base
     return hash
   end
 
-  def users_to_json
-    ar_users = users.collect do |row|
+  #on="all"所有人
+  #on="on" 在职
+  #on="off"退休
+  def users_to_json(on="all")
+    dep_users = self.users
+    if on == "on" || on == "off"
+      is_retired = on == "on"
+      dep_users.delete_if{ |x| x.is_retired == is_retired}
+    end
+    ar_users = dep_users.collect do |row|
       {:id => row.id, :name => row.name}
     end
     ar_users.to_json

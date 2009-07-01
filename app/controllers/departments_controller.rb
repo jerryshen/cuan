@@ -92,8 +92,9 @@ class DepartmentsController < ApplicationController
   def users_to_json
     if request.post?
       department = Department.find(params[:id])
+      on = params[:on] #是否已退休
       if(department)
-        render :text => department.users_to_json
+        render :text => department.users_to_json(on)
       end
     end
   end
