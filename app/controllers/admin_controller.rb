@@ -24,7 +24,7 @@ class AdminController < ApplicationController
         session[:last_request_time] = Time.now
         redirect_to :action => 'index'
       else
-        flash.now[:notice] = "Invalid user/password combination"
+        flash.now[:notice] = "用户名／密码不匹配!"
         render :action => 'login'
       end
     end

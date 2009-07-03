@@ -3,16 +3,13 @@ class CoDetailsController < ApplicationController
   end
 
   def ajax_total_list
+    if request.post?
     year = params[:date_year]
     month = params[:date_month]
-    user_id = params[:user_id]
-    department_id = params[:department_id]
+    user_id = params[:co][:user_id]
+    department_id = params[:sect_department_id]
 
-    unless user_id.blank?
-      @selected_user = User.find(user_id)
-    else
-      @selected_user = User.find(:first, :conditions => ["department_id =?", department_id])
-    end
+    @selected_user = User.find(user_id)
 
     conditions = CoDetail.get_conditions(@selected_user.id, year, month)
     unless @selected_user.is_retired
@@ -23,6 +20,7 @@ class CoDetailsController < ApplicationController
       @basic_salaries = RetiredBasicSalaryRecord.find(:all, :order => "id DESC", :conditions => conditions)
       @college_benefits = RetiredCollegeBeRecord.find(:all, :order => "id DESC", :conditions => conditions)
       @fee_cuttings = RetiredFeeCuttingRecord.find(:all, :order => "id DESC", :conditions => conditions)
+    end
     end
   end
 

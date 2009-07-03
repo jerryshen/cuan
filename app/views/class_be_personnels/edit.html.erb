@@ -3,7 +3,7 @@
     <legend>修改课时津贴</legend>
     <%= f.error_messages %>
     <% if current_admin? %>
-      <%= select_user "class_be_personnel[user_id]" %>
+      <%= select_user("on", "class_be_personnel[user_id]") %>
     <% else %>
       <p>
         <%= f.label :user_id, "用户" %>

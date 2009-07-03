@@ -92,7 +92,7 @@ module ApplicationHelper
           if(v){
             jQuery.ajax({
               url: "/departments/users_to_json",
-              data: {id: v, on:<on>},
+              data: {id: v, on:'<on>'},
               type: "POST",
               success: function(data){
                 var users = Ext.util.JSON.decode(data); 

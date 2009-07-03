@@ -1,5 +1,5 @@
 <%= f.error_messages %>
-<%= select_user "retired_basic_salary[user_id]" %>
+<%= select_user("off", "retired_basic_salary[user_id]") %>
 <p>
   <%= f.label :basic_fee, "月基本退休费" %><br />
   <%= f.text_field :basic_fee, :class => "required number" %>

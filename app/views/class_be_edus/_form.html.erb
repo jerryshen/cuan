@@ -1,6 +1,6 @@
 <%= f.error_messages %>
 <% if current_admin? %>
-  <%= select_user "class_be_edu[user_id]" %>
+  <%= select_user("on", "class_be_edu[user_id]") %>
 <% else %>
   <p>
     <%= f.label :user_id, "用户" %>

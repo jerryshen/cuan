@@ -1,6 +1,6 @@
 <%= f.error_messages %>
 
-<%= select_user "performance_benefit_std[user_id]" %>
+<%= select_user("on","performance_benefit_std[user_id]") %>
 <p>
   <%= f.label :std_fee, "绩效津贴标准金额" %>
   <%= f.text_field :std_fee, :class => "required number" %>

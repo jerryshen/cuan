@@ -9,20 +9,18 @@
     <%= javascript_include_tag 'ext-2.2.1/ext-all.js'%>
   </head>
   <body>
-    <form style="margin: 10px 0px;" id="search_form">
+    <% form_tag "/co_details/ajax_total_list",:id=>"countingForm",:method=>"post" do %>
       <fieldset>
         <legend>员工月工资明细</legend>
 
-        <%= select_user "retired_fee_cutting[user_id]" %>
-
-        <span id='next_select'></span>
+        <%= select_user("all", "co[user_id]") %>
         <p><label for="select_year">年度</label>
           <%= select_year(Time.now.year, {:start_year => 2009, :end_year => 2012}) %>
           <label for="select_month">月份</label>
           <%= select_month(Time.now.month, {:use_month_numbers => true,:prompt => "全年度",:selected => ""})  %>
         </p>
-        <p><span id='total_list'></span></p>
+        <%= submit_tag "查询" %>
       </fieldset>
-    </form>
+    <% end %>
   </body>
 </html>
