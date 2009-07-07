@@ -387,6 +387,7 @@ ActiveRecord::Schema.define(:version => 46) do
     t.string   "f4"
     t.string   "f5"
     t.string   "f6"
+    t.string   "f7"
     t.string   "f8"
     t.string   "f9"
     t.string   "f10"
