@@ -8,6 +8,8 @@ class CreateTemp1s < ActiveRecord::Migration
       t.string :f5
       t.string :f6
       t.string :f7
+      t.integer :year
+      t.integer :month
 
       t.timestamps
     end

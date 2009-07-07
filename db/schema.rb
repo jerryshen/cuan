@@ -374,6 +374,8 @@ ActiveRecord::Schema.define(:version => 46) do
     t.string   "f5"
     t.string   "f6"
     t.string   "f7"
+    t.integer  "year"
+    t.integer  "month"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -404,6 +406,8 @@ ActiveRecord::Schema.define(:version => 46) do
     t.string   "f24"
     t.string   "f25"
     t.string   "f26"
+    t.integer  "year"
+    t.integer  "month"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -417,6 +421,8 @@ ActiveRecord::Schema.define(:version => 46) do
     t.string   "f6"
     t.string   "f7"
     t.string   "f8"
+    t.integer  "year"
+    t.integer  "month"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -434,6 +440,8 @@ ActiveRecord::Schema.define(:version => 46) do
     t.string   "f10"
     t.string   "f11"
     t.string   "f12"
+    t.integer  "year"
+    t.integer  "month"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -453,6 +461,8 @@ ActiveRecord::Schema.define(:version => 46) do
     t.string   "f12"
     t.string   "f13"
     t.string   "f14"
+    t.integer  "year"
+    t.integer  "month"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

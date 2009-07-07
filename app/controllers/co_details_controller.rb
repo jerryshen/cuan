@@ -4,10 +4,9 @@ class CoDetailsController < ApplicationController
 
   def ajax_total_list
     if request.post?
-    year = params[:date_year]
-    month = params[:date_month]
+    year = params[:date][:year]
+    month = params[:date][:month]
     user_id = params[:co][:user_id]
-    department_id = params[:sect_department_id]
 
     @selected_user = User.find(user_id)
 

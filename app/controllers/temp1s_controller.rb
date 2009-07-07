@@ -10,7 +10,27 @@ class Temp1sController < ApplicationController
     end
   end
 
-    private
+  def show
+    @temp1 = Temp1.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @temp1 }
+    end
+  end
+
+  def destroy
+    @temp1 = Temp1.find(params[:id])
+    @temp1.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(temp1s_url) }
+      format.xml  { head :ok }
+      format.json { render :text => '{status: "success"}'}
+    end
+  end
+
+  private
   def get_json
     load_page_data
     @temp1s = Temp1.paginate(:order =>"id DESC",:per_page=> @pagesize,:page => params[:page] || 1)

@@ -15,6 +15,8 @@ class CreateTemp5s < ActiveRecord::Migration
       t.string :f12
       t.string :f13
       t.string :f14
+      t.integer :year
+      t.integer :month
 
       t.timestamps
     end

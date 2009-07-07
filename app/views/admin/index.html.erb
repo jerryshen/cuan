@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>四川建筑职业技术学院个人收入管理信息系统</title>
+    <title><%= app_name  %></title>
     <%= javascript_include_tag 'ext-2.2.1/adapter/ext/ext-base.js','ext-2.2.1/ext-all.js' %>
     <link href="/javascripts/ext-2.2.1/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
     <% unless @current_user.theme.nil? %>
@@ -202,7 +202,7 @@
   <body>
     <div id="header" style='padding: 0px 10px 0px 50px;margin-top:10px;'>
       <div style='float:left;'>
-        <h3>网站管理系统</h3>
+        <h3><%= app_name  %></h3>
       </div>
       <div style='float:right;'>
         <label for="selStyle">主题：</label>
