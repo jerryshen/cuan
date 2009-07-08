@@ -21,6 +21,33 @@
 <%= javascript_include_tag 'jquery-validate/localization/messages_cn.js' %>
 <%= javascript_include_tag 'AjaxForm.js' %>
 <script>
+  var makeAsImportLink = function(value, p, record){
+    var data = record.data;
+    return String.format("<a href='javascript:void(0)' action ='import' title='导入' class='gridButton' year='{0}' month='{1}' url='/temp1s/import/{2}'>导入</a>",data.year, data.month, data.id);
+  }
+
+  var bind_import_link_click = function(alink){
+    var url = alink.getAttribute("url");
+    var year = alink.getAttribute("year");
+    var month = alink.getAttribute("month");
+    Ext.get(alink).on("click",function(){
+      Ext.Ajax.request({
+        url: url,
+        params: {month: month, year: year},
+        success: function(rq,params){ //rq:请求的响应，params请求时的参数（此处为｛url,success,failure｝)
+          if(rq.responseText=="true"){
+            $page.refreshGridData();
+          }else{
+            Ext.MessageBox.show({msg:"导入失败",buttons: Ext.MessageBox.OK,icon:Ext.MessageBox.ERROR});
+          }
+        },
+        failure: function(){
+          Ext.MessageBox.show({msg:"导入失败",buttons: Ext.MessageBox.OK,icon:Ext.MessageBox.WARNING});
+        }
+      });
+    })
+  }
+
   //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
   // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]}
   //框[]中的为默认值
@@ -68,13 +95,21 @@
         header: "扣水费",
         dataIndex: 'f7',
         sortable: true
+      },{
+        header: "导入",
+        dataIndex: 'id',
+        sortable: false,
+        renderer: makeAsImportLink
       }]
     var controllerName = "temp1s";
     options = {
       baseUrl: "http://" + window.location.host + "/" + controllerName,
       gridTitle: "管理列表",
       newItemLink: "newItem",
-      columns: columns
+      columns: columns,
+      bindlinks: {
+        "import": bind_import_link_click
+      }
     }
     $page = new ExtListPage(options);
   })
