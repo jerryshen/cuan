@@ -4,12 +4,42 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>数据导入</title>
     <%= stylesheet_link_tag "form.css" %>
+	<style>
+		option{
+			padding-left: 10px;
+		}
+	</style>
   </head>
   <body>
 
     <% form_tag('/data_import/import', :multipart => true) do |f| %>
       <fieldset>
         <legend>数据导入</legend>
+		<p>
+			<label >年月：</label>
+		    <select style="margin: 0px; padding: 0px; float: none; width: 100px;" name="year" id="search_year">
+		      <option value="" selected="selected" >选择年份...</option>
+		      <option value="2009">2009年</option>
+		      <option value="2010">2010年</option>
+		      <option value="2011">2011年</option>
+		      <option value="2012">2012年</option>
+		    </select>
+		    <select style="margin: 0px; padding: 0px; float: none; width: 100px;" name="month" id="search_month">
+		      <option value="" selected="selected">选择月份...</option>
+		      <option value="1">1月</option>
+		      <option value="2">2月</option>
+		      <option value="3">3月</option>
+		      <option value="4">4月</option>
+		      <option value="5">5月</option>
+		      <option value="6">6月</option>
+		      <option value="7">7月</option>
+		      <option value="8">8月</option>
+		      <option value="9">9月</option>
+		      <option value="10">10月</option>
+		      <option value="11">11月</option>
+		      <option value="12">12月</option>
+		    </select>
+        </p>
         <p>
           <label for="import_file">导入文件</label><input class="file" id="import_file" type="file" name="excel_file" />
         </p>
@@ -24,9 +54,42 @@
           </ul>
         </p>
         <p class="bbar">
-          <input class="submit" type="submit" value="导入" />
+          <input class="submit" type="submit" onclick="return check()" value="导入" />
         </p>
       </fieldset>
     <% end %>
+	<script>
+		function check(){
+			if(document.getElementById("search_year").value == ''){
+				alert("请选择导入数据的年份");
+				return false;
+			}
+			if(document.getElementById("search_month").value == ''){
+				alert("请选择导入数据的月份");
+				return false;
+			}	
+			if(document.getElementById("import_file").value == ''){
+				alert("请选择导入文件");
+				return false;
+			}	
+			if(document.getElementById("import_file").value.indexOf(".xls") == -1){
+				alert("请选择扩展名为.xls的Excel文件导入");
+				return false;
+			}	
+			var categories = document.getElementsByName("category");
+			var value = '';
+			for(var i=0,l=categories.length; i<l; i++){
+				if(categories[i].checked){
+					value = categories[i];
+					break;
+				}
+			}
+			if(value==''){
+				alert('请选择导入文件的数据类别');
+				return false;
+			}				
+			return true;
+		}
+	</script>
   </body>
 </html>
