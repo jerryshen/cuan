@@ -29,6 +29,12 @@ class Temp2sController < ApplicationController
     end
   end
 
+  def data_ipmort
+    year  = params[:year]
+    month = params[:month]
+    Temp2.import(year, month)
+  end
+
   private
   def get_json
     load_page_data
