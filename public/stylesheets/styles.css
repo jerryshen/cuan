@@ -699,6 +699,7 @@ a {
       margin: 0 30px;
       position: relative;
       top: -15px;
+      *top: 0px;
       z-index: 101; }
       .frame .frame_top .inner h2 {
         padding-top: 45px;
