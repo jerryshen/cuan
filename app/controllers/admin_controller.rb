@@ -9,13 +9,6 @@ class AdminController < ApplicationController
     end
   end
 
-  #  def check_captcha
-  #    if !Captcha.is_valid(params[:captcha_key].upcase, params[:captcha_digest])
-  #      return false
-  #    end
-  #    return true
-  #  end
-
   def try_to_login
     if request.post?
       if(user = User.login(params[:login_id],params[:password]))

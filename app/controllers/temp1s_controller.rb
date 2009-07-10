@@ -31,9 +31,7 @@ class Temp1sController < ApplicationController
   end
 
   def data_ipmort
-    year  = params[:year]
-    month = params[:month]
-    Temp1.import(year, month)
+    Temp1.import
   end
 
   private
