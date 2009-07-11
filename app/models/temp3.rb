@@ -2,7 +2,7 @@ class Temp3 < ActiveRecord::Base
 
   #data about retired basic salary and retired fee cutting 退休人员工资  // all retired college benefit
   def import_data
-    data = Temp3.find(:all)
+    data = Temp3.all
     if data
       data.each do |d|
         user_id = User.find(:first, :conditions => ["name =? AND is_retired =?",d.f1,true]).id
@@ -28,6 +28,16 @@ class Temp3 < ActiveRecord::Base
       end
     else
       return "无数据"
+    end
+  end
+
+  #import users
+  def import_users
+    data = Tepm3.all
+    if data
+      data.each do |d|
+        execute "INSERT INTO 'users' ('name', 'is_retired') VALUES('#{d.f1}', 't')"
+      end
     end
   end
 end

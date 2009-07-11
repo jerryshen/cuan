@@ -45,4 +45,11 @@
     <b>是否离退休:</b>
     <%=h @current_user.is_retired.to_s == "true" ? "是" : "否" %>
   </p>
+  <% unless @current_user.bank_cards.blank? %>
+    <p>
+    <b>银行卡号:</b>
+    <%=h @current_user.bank_cards.first.bank.name %> : <%=h @current_user.bank_cards.first.card_number %>
+    <%=h @current_user.bank_cards.last.bank.name %> : <%=h @current_user.bank_cards.last.card_number %>
+  </p>
+  <% end %>
 </fieldset>

@@ -45,4 +45,14 @@ class Temp2 < ActiveRecord::Base
       return "无数据"
     end
   end
+
+    #import users
+  def import_users
+    data = Tepm2.all
+    if data
+      data.each do |d|
+        execute "INSERT INTO 'users' ('name', 'is_retired', 'is_nature') VALUES('#{d.f1}', 'f', 'f')"
+      end
+    end
+  end
 end

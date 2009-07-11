@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 46) do
+ActiveRecord::Schema.define(:version => 47) do
 
   create_table "app_configs", :force => true do |t|
     t.string   "key"
@@ -467,6 +467,18 @@ ActiveRecord::Schema.define(:version => 46) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "tips", :force => true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.text     "content"
+    t.boolean  "top"
+    t.boolean  "hidden"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tips", ["user_id"], :name => "index_tips_on_user_id"
 
   create_table "titles", :force => true do |t|
     t.string   "name"

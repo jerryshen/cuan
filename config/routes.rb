@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :tips
+
   map.connect '/departments/users_to_json', :controller => "departments", :action => "users_to_json"
 
   map.resources :temp5s
