@@ -39,7 +39,7 @@ module ExcelRill
           begin
             hashRow[key] = Iconv.iconv("UTF-8//IGNORE","GBK//IGNORE",dataRow[col].to_s)[0]
           rescue 
-            hashRow[key] = ""
+            hashRow[key] = dataRow[col].to_s
           end
         else
           raise "第#{col}列的key不存在"

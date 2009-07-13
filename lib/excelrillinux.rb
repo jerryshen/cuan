@@ -40,9 +40,9 @@ module ExcelRill
 		  dataRow.each_index do |col|
         if key = keys[col]
 	  begin
-		hashRow[key] = Iconv.iconv("UTF-8//IGNORE","GBK//IGNORE",dataRow[col].to_s)[0]
+      hashRow[key] = Iconv.iconv("UTF-8//IGNORE","GBK//IGNORE",dataRow[col].to_s)[0]
 	  rescue
-		hashRow[key] = dataRow[col].to_s
+      hashRow[key] = dataRow[col].to_s
 	  end
           #hashRow[key] =dataRow[col].to_s
         else
