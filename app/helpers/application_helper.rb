@@ -63,7 +63,7 @@ module ApplicationHelper
   end
 
   #on 是否已退休
-  def select_user(on,name="user_id")
+  def select_user(on,name,user_id)
     options = Department.all.collect{|x| "<option value='#{x.id}' >#{x.name}</option>"}.join('')
     html = %q{
       <p>
@@ -77,6 +77,7 @@ module ApplicationHelper
         <label for="select_user_id">教职工</label>
         <select id="select_user_id" disabled="disabled" name="<name>" class="required">
           <option value='' >选择教职工...</option>
+          <user_options>
         </select>
       </p>
       <script>
@@ -109,10 +110,23 @@ module ApplicationHelper
           }else{
             select.disabled = true;
           }
-        })
+        });
+        <set_user_id>
       </script>
     }
     html.sub!("<options>",options).sub!("<name>",name).sub!("<on>",on)
+    if user_id
+      user = User.find(user_id)
+      sel_user_options = user.department.users.collect{|x| "<option value='#{x.id}' >#{x.name}</option>"}.join('')
+      set = "var sel_user = document.getElementById('select_user_id');"
+      set << "sel_user.value = '#{user.id}';"
+      set << "sel_user.disabled = false;"
+      set << "document.getElementById('select_department_id').value = '#{user.department_id}';"
+      html.sub!("<user_options>",sel_user_options).sub!("<set_user_id>",set)
+    else
+      html.sub!("<user_options>",'').sub!("<set_user_id>",'')
+    end
+    return html
   end
 
 end

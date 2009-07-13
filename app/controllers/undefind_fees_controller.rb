@@ -1,4 +1,5 @@
 class UndefindFeesController < ApplicationController
+  protect_from_forgery :except => [:prev, :next, :last]
   # GET /undefind_fees
   # GET /undefind_fees.xml
   def index
@@ -42,11 +43,37 @@ class UndefindFeesController < ApplicationController
     @undefind_fee = UndefindFee.find(params[:id])
   end
 
+  def prev
+    @undefind_fee = UndefindFee.find(:last, :conditions => ["id < ?", params[:id]], :order => "id ASC")
+    if @undefind_fee
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
+  end
+
+  def next
+    @undefind_fee =  UndefindFee.find(:first, :conditions => ["id > ?", params[:id]], :order => "id ASC")
+    if @undefind_fee
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
+  end
+
+  def last
+    @undefind_fee =  UndefindFee.last
+    if @undefind_fee
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
+  end
+
   # POST /undefind_fees
   # POST /undefind_fees.xml
   def create
     @undefind_fee = UndefindFee.new(params[:undefind_fee])
-    @undefind_fee.user_id = params[:user][:id]
 
     respond_to do |format|
       if @undefind_fee.save

@@ -501,9 +501,9 @@ var ExtListPage = function(options){
     
     //-------------------视图切换--------------------------->
     //创建视图
-    var $SHOW_VIEW = "show-view" + genRandom();
-    var $EDIT_VIEW = "edit-view" + genRandom();
-    var $NEW_VIEW = "new-view" + genRandom();
+    var $SHOW_VIEW = "show-view";
+    var $EDIT_VIEW = "edit-view";
+    var $NEW_VIEW = "new-view";
     var createView = function(id){
         var div = document.createElement("div");
         div.id = id;
@@ -516,29 +516,30 @@ var ExtListPage = function(options){
     //显示某个视图
     var currViewId = $LIST_VIEW;
     this.getCurrViewId = function(){return currViewId};
+
+    var _fun = function(showViewId, data){
+      var currView = document.getElementById(currViewId);
+      currView.style.display = "none";
+      if (currViewId != $LIST_VIEW) 
+      currView.innerHTML = '';
+
+      var toView = document.getElementById(showViewId);
+      if (data){ 
+        Ext.get(toView).update(data,true); //load script
+        /*toView.innerHTML = data;*/
+      }
+      toView.style.display = "block";
+
+      currViewId = showViewId;
+    }
+
     var showView = function(showViewId, url, callback){
-        var _fun = function(data){
-            var currView = document.getElementById(currViewId);
-            currView.style.display = "none";
-            if (currViewId != $LIST_VIEW) 
-                currView.innerHTML = '';
-            
-            var toView = document.getElementById(showViewId);
-            if (data){ 
-                Ext.get(toView).update(data,true); //load script
-                /*toView.innerHTML = data;*/
-            }
-            toView.style.display = "block";
-            
-            currViewId = showViewId;
-        }
-        
         if (url) {
             Ext.Ajax.request({
                 url: url,
                 method: "GET",
                 success: function(rq, rqopt){
-                    _fun(rq.responseText);
+                    _fun(showViewId, rq.responseText);
                     initAjaxForm();
                     if (callback) 
                         callback();
@@ -546,7 +547,7 @@ var ExtListPage = function(options){
             });
         }
         else {
-            _fun();
+            _fun(showViewId);
         }
     }
     
@@ -576,6 +577,10 @@ var ExtListPage = function(options){
 
     this.showNewView = function(){
       showView($NEW_VIEW,$BASE_URL + '/new?layout=none');
+    }
+
+    this.showEditView = function(data){
+      _fun($EDIT_VIEW, data)
     }
 }
 
