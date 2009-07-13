@@ -19,6 +19,26 @@ class Temp5sController < ApplicationController
     end
   end
 
+  def edit
+    @temp5 = Temp5.find(params[:id])
+  end
+
+  def update
+    @temp5 = Temp5.find(params[:id])
+
+    respond_to do |format|
+      if @temp5.update_attributes(params[:temp5])
+        format.html { redirect_to(@temp5) }
+        format.xml  { head :ok }
+        format.json { render :text => '{status: "success", message: "成功更新记录"}'}
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @temp5.errors, :status => :unprocessable_entity }
+        format.json { render :text => "{status: 'failed', error:#{@temp5.errors.full_messages.to_json}}"}
+      end
+    end
+  end
+
   def destroy
     @temp5 = Temp5.find(params[:id])
     @temp5.destroy
@@ -29,6 +49,7 @@ class Temp5sController < ApplicationController
       format.json { render :text => '{status: "success"}'}
     end
   end
+
 
   def data_ipmort
     year  = params[:year]

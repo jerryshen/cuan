@@ -18,6 +18,26 @@ class Temp2sController < ApplicationController
     end
   end
 
+  def edit
+    @temp2 = Temp2.find(params[:id])
+  end
+
+  def update
+    @temp2 = Temp2.find(params[:id])
+
+    respond_to do |format|
+      if @temp2.update_attributes(params[:temp2])
+        format.html { redirect_to(@temp2) }
+        format.xml  { head :ok }
+        format.json { render :text => '{status: "success", message: "成功更新记录"}'}
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @temp2.errors, :status => :unprocessable_entity }
+        format.json { render :text => "{status: 'failed', error:#{@temp2.errors.full_messages.to_json}}"}
+      end
+    end
+  end
+
   def destroy
     @temp2 = Temp2.find(params[:id])
     @temp2.destroy

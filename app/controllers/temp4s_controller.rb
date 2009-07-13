@@ -19,6 +19,26 @@ class Temp4sController < ApplicationController
     end
   end
 
+  def edit
+    @temp4 = Temp4.find(params[:id])
+  end
+
+  def update
+    @temp4 = Temp4.find(params[:id])
+
+    respond_to do |format|
+      if @temp4.update_attributes(params[:temp4])
+        format.html { redirect_to(@temp4) }
+        format.xml  { head :ok }
+        format.json { render :text => '{status: "success", message: "成功更新记录"}'}
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @temp4.errors, :status => :unprocessable_entity }
+        format.json { render :text => "{status: 'failed', error:#{@temp4.errors.full_messages.to_json}}"}
+      end
+    end
+  end
+
   def destroy
     @temp4 = Temp4.find(params[:id])
     @temp4.destroy

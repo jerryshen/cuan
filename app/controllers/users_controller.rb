@@ -93,7 +93,7 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
-
+    @user.update_password = params[:user][:id_card]
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(@user) }

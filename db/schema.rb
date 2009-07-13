@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 47) do
+ActiveRecord::Schema.define(:version => 48) do
 
   create_table "app_configs", :force => true do |t|
     t.string   "key"
@@ -378,6 +378,7 @@ ActiveRecord::Schema.define(:version => 47) do
     t.integer  "month"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "number"
   end
 
   create_table "temp2s", :force => true do |t|
@@ -411,6 +412,7 @@ ActiveRecord::Schema.define(:version => 47) do
     t.integer  "month"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "number"
   end
 
   create_table "temp3s", :force => true do |t|
@@ -426,6 +428,7 @@ ActiveRecord::Schema.define(:version => 47) do
     t.integer  "month"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "number"
   end
 
   create_table "temp4s", :force => true do |t|
@@ -445,6 +448,7 @@ ActiveRecord::Schema.define(:version => 47) do
     t.integer  "month"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "number"
   end
 
   create_table "temp5s", :force => true do |t|
@@ -466,6 +470,7 @@ ActiveRecord::Schema.define(:version => 47) do
     t.integer  "month"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "number"
   end
 
   create_table "tips", :force => true do |t|
@@ -514,6 +519,7 @@ ActiveRecord::Schema.define(:version => 47) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "theme"
+    t.string   "number"
   end
 
   add_index "users", ["department_id"], :name => "index_users_on_department_id"

@@ -13,7 +13,7 @@
       <fieldset>
         <legend>员工月工资明细</legend>
 
-        <%= select_user("all", "co[user_id]") %>
+        <%= view_user_detail("all", "user_id") %>
         <p><label for="select_year">年度</label>
           <%= select_year(Time.now.year, {:start_year => 2009, :end_year => 2012}) %>
           <label for="select_month">月份</label>

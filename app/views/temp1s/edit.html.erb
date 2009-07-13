@@ -1,0 +1,14 @@
+<% form_for(@temp1) do |f| %>
+  <fieldset>
+    <legend>修改重名教职工</legend>
+    <p>如有重复姓名 请改为 张三1 张三2<p>
+    <p>
+      <%=  f.label :f1, "姓名" %>
+      <%=  f.text_field :f1 %>
+    </p>
+    <p class="bbar">
+      <%= f.submit '更新' %>
+      <input type="button" onclick="$page.showListView()" value="取消" />
+    </p>
+  </fieldset>
+<% end %>
