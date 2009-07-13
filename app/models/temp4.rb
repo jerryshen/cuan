@@ -1,7 +1,7 @@
 class Temp4 < ActiveRecord::Base
 
   #data about retired college benefit and retired fee cutting 退休人员学院工资 // all retired basic salary 0
-  def import
+  def self.import_data
     data = Temp4.all
     if data
       data.each do |d|
@@ -24,7 +24,7 @@ class Temp4 < ActiveRecord::Base
           :elc_fee     => d.f9,
           :other_fee1  => d.f10,
           :other_fee2  => d.f11,
-          :other_fee   => d.f12)
+          :other_fee3   => d.f12)
         RetiredBasicSalaryRecord.create(
           :user_id     => user_id,
           :year        => d.year,
@@ -36,11 +36,11 @@ class Temp4 < ActiveRecord::Base
   end
 
   #import users
-  def import_users
-    data = Tepm4.all
+  def self.import_users
+    data = Temp4.all
     if data
       data.each do |d|
-        execute "INSERT INTO 'users' ('name', 'is_retired', 'is_nature') VALUES('#{d.f1}', 't', 'f')"
+        Temp4.find_by_sql("INSERT INTO 'users' ('name', 'is_retired', 'is_nature') VALUES('#{d.f1}', 't', 'f')")
       end
     end
   end

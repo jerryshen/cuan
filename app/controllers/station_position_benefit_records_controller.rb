@@ -1,4 +1,5 @@
 class StationPositionBenefitRecordsController < ApplicationController
+  protect_from_forgery :except => [:prev, :next, :last]
   # GET /station_position_benefit_records
   # GET /station_position_benefit_records.xml
   def index
@@ -36,6 +37,33 @@ class StationPositionBenefitRecordsController < ApplicationController
 
   def edit
     @station_position_benefit_record = StationPositionBenefitRecord.find(params[:id])
+  end
+
+  def prev
+    @station_position_benefit_record = StationPositionBenefitRecord.find(:last, :conditions => ["id < ?", params[:id]], :order => "id ASC")
+    if @station_position_benefit_record
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
+  end
+
+  def next
+    @station_position_benefit_record =  StationPositionBenefitRecord.find(:first, :conditions => ["id > ?", params[:id]], :order => "id ASC")
+    if @station_position_benefit_record
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
+  end
+
+  def last
+    @station_position_benefit_record =  StationPositionBenefitRecord.last
+    if @station_position_benefit_record
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
   end
 
   def create

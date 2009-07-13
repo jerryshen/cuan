@@ -1,6 +1,6 @@
 <%= f.error_messages %>
 
-<%= select_user("on", "fee_cutting[user_id]") %>
+<%= select_user("on", "fee_cutting[user_id]", @fee_cutting.user_id) %>
 <p>
   <%= f.label :room_fee, "住房公积金" %>
   <%= f.text_field :room_fee, :size => 10, :class => "number" %>

@@ -1,5 +1,5 @@
 <%= f.error_messages %>
-<%= select_user("on", "college_benefit[user_id]") %>
+<%= select_user("on", "college_benefit[user_id]", @college_benefit.user_id) %>
 <p>
   <%= f.label :life_be, "生活补贴"%>
   <%= f.text_field :life_be, :size => 10, :class => "number"  %>

@@ -3,9 +3,11 @@
     <legend>添加教职工</legend>
     <%= render :partial => 'form', :locals => {:f =>f}  %>
     <p class="bbar">
+      <input type="button" value="上一条" id="btnLast" />
       <input type="button" value='保存并新增' id ="save_and_new"  />
       <%= f.submit '保存并返回' %>
-      <input type="button" onclick="$page.showListView()" value="返回列表" />
+      <input type="button" onclick="$page.showListView('reloadData')" value="返回列表" />
+      <input type="button" value="下一条"  disabled="disabled" />
     </p>
   </fieldset>
 <% end %>

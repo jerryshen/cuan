@@ -1,4 +1,5 @@
 class StationPositionBenefitsController < ApplicationController
+  protect_from_forgery :except => [:prev, :next, :last]
 
   def index
     @station_position_benefits = StationPositionBenefit.all
@@ -35,6 +36,33 @@ class StationPositionBenefitsController < ApplicationController
 
   def edit
     @station_position_benefit = StationPositionBenefit.find(params[:id])
+  end
+
+  def prev
+    @station_position_benefit = StationPositionBenefit.find(:last, :conditions => ["id < ?", params[:id]], :order => "id ASC")
+    if @station_position_benefit
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
+  end
+
+  def next
+    @station_position_benefit =  StationPositionBenefit.find(:first, :conditions => ["id > ?", params[:id]], :order => "id ASC")
+    if @station_position_benefit
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
+  end
+
+  def last
+    @station_position_benefit =  StationPositionBenefit.last
+    if @station_position_benefit
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
   end
 
   def create

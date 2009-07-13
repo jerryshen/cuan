@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(:version => 47) do
 
   create_table "assistants", :force => true do |t|
     t.integer  "user_id"
-    t.float    "benefit"
-    t.float    "other"
+    t.float    "benefit",    :default => 0.0
+    t.float    "other",      :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,13 +48,13 @@ ActiveRecord::Schema.define(:version => 47) do
 
   create_table "basic_salaries", :force => true do |t|
     t.integer  "user_id"
-    t.float    "station_sa"
-    t.float    "position_sa"
-    t.float    "station_be"
-    t.float    "foreign_be"
-    t.float    "region_be"
-    t.float    "hard_be"
-    t.float    "stay_be"
+    t.float    "station_sa",  :default => 0.0
+    t.float    "position_sa", :default => 0.0
+    t.float    "station_be",  :default => 0.0
+    t.float    "foreign_be",  :default => 0.0
+    t.float    "region_be",   :default => 0.0
+    t.float    "hard_be",     :default => 0.0
+    t.float    "stay_be",     :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -65,14 +65,14 @@ ActiveRecord::Schema.define(:version => 47) do
     t.integer  "user_id",     :limit => 255
     t.string   "year"
     t.string   "month"
-    t.float    "station_sa"
-    t.float    "position_sa"
-    t.float    "station_be"
-    t.float    "foreign_be"
-    t.float    "region_be"
-    t.float    "add_sa"
-    t.float    "hard_be"
-    t.float    "stay_be"
+    t.float    "station_sa",                 :default => 0.0
+    t.float    "position_sa",                :default => 0.0
+    t.float    "station_be",                 :default => 0.0
+    t.float    "foreign_be",                 :default => 0.0
+    t.float    "region_be",                  :default => 0.0
+    t.float    "add_sa",                     :default => 0.0
+    t.float    "hard_be",                    :default => 0.0
+    t.float    "stay_be",                    :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(:version => 47) do
 
   create_table "class_benefits", :force => true do |t|
     t.integer  "user_id"
-    t.float    "total_be"
+    t.float    "total_be",    :default => 0.0
     t.string   "term"
     t.integer  "month"
     t.datetime "date"
@@ -107,12 +107,12 @@ ActiveRecord::Schema.define(:version => 47) do
     t.integer  "user_id",    :limit => 255
     t.string   "year"
     t.string   "month"
-    t.float    "life_be"
-    t.float    "diff_be"
-    t.float    "livesa_be"
-    t.float    "tv_be"
-    t.float    "beaulty_be"
-    t.float    "other_be"
+    t.float    "life_be",                   :default => 0.0
+    t.float    "diff_be",                   :default => 0.0
+    t.float    "livesa_be",                 :default => 0.0
+    t.float    "tv_be",                     :default => 0.0
+    t.float    "beaulty_be",                :default => 0.0
+    t.float    "other_be",                  :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -121,12 +121,12 @@ ActiveRecord::Schema.define(:version => 47) do
 
   create_table "college_benefits", :force => true do |t|
     t.integer  "user_id"
-    t.float    "life_be"
-    t.float    "diff_be"
-    t.float    "livesa_be"
-    t.float    "tv_be"
-    t.float    "beaulty_be"
-    t.float    "other_be"
+    t.float    "life_be",    :default => 0.0
+    t.float    "diff_be",    :default => 0.0
+    t.float    "livesa_be",  :default => 0.0
+    t.float    "tv_be",      :default => 0.0
+    t.float    "beaulty_be", :default => 0.0
+    t.float    "other_be",   :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -143,35 +143,35 @@ ActiveRecord::Schema.define(:version => 47) do
     t.integer  "user_id",     :limit => 255
     t.string   "year"
     t.string   "month"
-    t.float    "room_fee"
-    t.float    "med_fee"
-    t.float    "elc_fee"
-    t.float    "job_fee"
-    t.float    "selfedu_fee"
-    t.float    "other_fee1"
-    t.float    "other_fee2"
-    t.float    "other_fee3"
-    t.float    "self_tax"
+    t.float    "room_fee",                   :default => 0.0
+    t.float    "med_fee",                    :default => 0.0
+    t.float    "elc_fee",                    :default => 0.0
+    t.float    "job_fee",                    :default => 0.0
+    t.float    "selfedu_fee",                :default => 0.0
+    t.float    "other_fee1",                 :default => 0.0
+    t.float    "other_fee2",                 :default => 0.0
+    t.float    "other_fee3",                 :default => 0.0
+    t.float    "self_tax",                   :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "net_fee"
+    t.float    "net_fee",                    :default => 0.0
   end
 
   add_index "fee_cutting_records", ["user_id"], :name => "index_fee_cutting_records_on_user_id"
 
   create_table "fee_cuttings", :force => true do |t|
     t.integer  "user_id"
-    t.float    "room_fee"
-    t.float    "med_fee"
-    t.float    "job_fee"
-    t.float    "selfedu_fee"
-    t.float    "other_fee1"
-    t.float    "other_fee2"
-    t.float    "other_fee3"
+    t.float    "room_fee",    :default => 0.0
+    t.float    "med_fee",     :default => 0.0
+    t.float    "job_fee",     :default => 0.0
+    t.float    "selfedu_fee", :default => 0.0
+    t.float    "other_fee1",  :default => 0.0
+    t.float    "other_fee2",  :default => 0.0
+    t.float    "other_fee3",  :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "net_fee"
-    t.float    "elc_fee"
+    t.float    "net_fee",     :default => 0.0
+    t.float    "elc_fee",     :default => 0.0
   end
 
   add_index "fee_cuttings", ["user_id"], :name => "index_fee_cuttings_on_user_id"
@@ -211,7 +211,7 @@ ActiveRecord::Schema.define(:version => 47) do
   create_table "performance_benefit_records", :force => true do |t|
     t.integer  "user_id"
     t.integer  "term"
-    t.float    "fee"
+    t.float    "fee",        :default => 0.0
     t.datetime "date"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -221,7 +221,7 @@ ActiveRecord::Schema.define(:version => 47) do
 
   create_table "performance_benefit_stds", :force => true do |t|
     t.integer  "user_id"
-    t.float    "std_fee"
+    t.float    "std_fee",    :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -236,10 +236,10 @@ ActiveRecord::Schema.define(:version => 47) do
 
   create_table "retired_basic_salaries", :force => true do |t|
     t.integer  "user_id"
-    t.float    "basic_fee"
-    t.float    "stay_be"
-    t.float    "foreign_be"
-    t.float    "region_be"
+    t.float    "basic_fee",  :default => 0.0
+    t.float    "stay_be",    :default => 0.0
+    t.float    "foreign_be", :default => 0.0
+    t.float    "region_be",  :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -250,10 +250,10 @@ ActiveRecord::Schema.define(:version => 47) do
     t.integer  "user_id",    :limit => 255
     t.string   "year"
     t.string   "month"
-    t.float    "basic_fee"
-    t.float    "stay_be"
-    t.float    "foreign_be"
-    t.float    "region_be"
+    t.float    "basic_fee",                 :default => 0.0
+    t.float    "stay_be",                   :default => 0.0
+    t.float    "foreign_be",                :default => 0.0
+    t.float    "region_be",                 :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -264,12 +264,12 @@ ActiveRecord::Schema.define(:version => 47) do
     t.integer  "user_id",    :limit => 255
     t.string   "year"
     t.string   "month"
-    t.float    "diff_be"
-    t.float    "tv_be"
-    t.float    "beaulty_be"
-    t.float    "other_be1"
-    t.float    "other_be2"
-    t.float    "other_be3"
+    t.float    "diff_be",                   :default => 0.0
+    t.float    "tv_be",                     :default => 0.0
+    t.float    "beaulty_be",                :default => 0.0
+    t.float    "other_be1",                 :default => 0.0
+    t.float    "other_be2",                 :default => 0.0
+    t.float    "other_be3",                 :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -278,12 +278,12 @@ ActiveRecord::Schema.define(:version => 47) do
 
   create_table "retired_college_benefits", :force => true do |t|
     t.integer  "user_id"
-    t.float    "diff_be"
-    t.float    "tv_be"
-    t.float    "beaulty_be"
-    t.float    "other_be1"
-    t.float    "other_be2"
-    t.float    "other_be3"
+    t.float    "diff_be",    :default => 0.0
+    t.float    "tv_be",      :default => 0.0
+    t.float    "beaulty_be", :default => 0.0
+    t.float    "other_be1",  :default => 0.0
+    t.float    "other_be2",  :default => 0.0
+    t.float    "other_be3",  :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -294,10 +294,10 @@ ActiveRecord::Schema.define(:version => 47) do
     t.integer  "user_id",    :limit => 255
     t.string   "year"
     t.string   "month"
-    t.float    "elc_fee"
-    t.float    "other_fee1"
-    t.float    "other_fee2"
-    t.float    "other_fee3"
+    t.float    "elc_fee",                   :default => 0.0
+    t.float    "other_fee1",                :default => 0.0
+    t.float    "other_fee2",                :default => 0.0
+    t.float    "other_fee3",                :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -306,9 +306,9 @@ ActiveRecord::Schema.define(:version => 47) do
 
   create_table "retired_fee_cuttings", :force => true do |t|
     t.integer  "user_id"
-    t.float    "other_fee1"
-    t.float    "other_fee2"
-    t.float    "other_fee3"
+    t.float    "other_fee1", :default => 0.0
+    t.float    "other_fee2", :default => 0.0
+    t.float    "other_fee3", :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -333,7 +333,7 @@ ActiveRecord::Schema.define(:version => 47) do
 
   create_table "science_benefits", :force => true do |t|
     t.integer  "user_id"
-    t.float    "science_be"
+    t.float    "science_be",  :default => 0.0
     t.string   "year"
     t.integer  "month"
     t.datetime "date"
@@ -348,8 +348,8 @@ ActiveRecord::Schema.define(:version => 47) do
     t.integer  "user_id",     :limit => 255
     t.string   "year"
     t.string   "month"
-    t.float    "station_be"
-    t.float    "position_be"
+    t.float    "station_be",                 :default => 0.0
+    t.float    "position_be",                :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -358,8 +358,8 @@ ActiveRecord::Schema.define(:version => 47) do
 
   create_table "station_position_benefits", :force => true do |t|
     t.integer  "user_id"
-    t.float    "station_be"
-    t.float    "position_be"
+    t.float    "station_be",  :default => 0.0
+    t.float    "position_be", :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -489,7 +489,7 @@ ActiveRecord::Schema.define(:version => 47) do
   create_table "undefind_fees", :force => true do |t|
     t.integer  "user_id"
     t.string   "subject"
-    t.float    "fee"
+    t.float    "fee",        :default => 0.0
     t.datetime "date"
     t.string   "be_type"
     t.datetime "created_at"
@@ -524,7 +524,7 @@ ActiveRecord::Schema.define(:version => 47) do
   create_table "welfare_benefits", :force => true do |t|
     t.integer  "user_id"
     t.string   "subject"
-    t.float    "fee"
+    t.float    "fee",        :default => 0.0
     t.datetime "date"
     t.datetime "created_at"
     t.datetime "updated_at"

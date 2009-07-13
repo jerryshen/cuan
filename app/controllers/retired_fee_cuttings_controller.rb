@@ -1,4 +1,5 @@
 class RetiredFeeCuttingsController < ApplicationController
+  protect_from_forgery :except => [:prev, :next, :last]
   # GET /retired_fee_cuttings
   # GET /retired_fee_cuttings.xml
   def index
@@ -41,6 +42,32 @@ class RetiredFeeCuttingsController < ApplicationController
     @retired_fee_cutting = RetiredFeeCutting.find(params[:id])
   end
 
+  def prev
+    @retired_fee_cutting = RetiredFeeCutting.find(:last, :conditions => ["id < ?", params[:id]], :order => "id ASC")
+    if @retired_fee_cutting
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
+  end
+
+  def next
+    @retired_fee_cutting =  RetiredFeeCutting.find(:first, :conditions => ["id > ?", params[:id]], :order => "id ASC")
+    if @retired_fee_cutting
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
+  end
+
+  def last
+    @retired_fee_cutting =  RetiredFeeCutting.last
+    if @retired_fee_cutting
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
+  end
   # POST /retired_fee_cuttings
   # POST /retired_fee_cuttings.xml
   def create

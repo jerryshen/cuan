@@ -1,7 +1,7 @@
 class Temp2 < ActiveRecord::Base
 
   #data about basic salary and fee cutting and college benefit 在职员工学院工资（在职非入编员工）
-  def import_data
+  def self.import_data
     data = Temp2.all
     if data
       data.each do |d|
@@ -47,11 +47,11 @@ class Temp2 < ActiveRecord::Base
   end
 
     #import users
-  def import_users
-    data = Tepm2.all
+  def self.import_users
+    data = Temp2.all
     if data
       data.each do |d|
-        execute "INSERT INTO 'users' ('name', 'is_retired', 'is_nature') VALUES('#{d.f1}', 'f', 'f')"
+        Temp2.find_by_sql("INSERT INTO 'users' ('name', 'is_retired', 'is_nature') VALUES('#{d.f1}', 'f', 'f')")
       end
     end
   end

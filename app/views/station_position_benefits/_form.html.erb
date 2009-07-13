@@ -1,5 +1,5 @@
 <%= f.error_messages %>
-<%= select_user("all", "station_position_benefit[user_id]") %>
+<%= select_user("all", "station_position_benefit[user_id]", @station_position_benefit.user_id) %>
 <p>
   <%= f.label :station_be, "岗位津贴" %>
   <%= f.text_field :station_be, :class => 'required number' %>

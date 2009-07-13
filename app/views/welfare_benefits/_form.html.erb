@@ -1,5 +1,5 @@
 <%= f.error_messages %>
-<%= select_user("all", "welfare_benefit[user_id]") %>
+<%= select_user("all", "welfare_benefit[user_id]", @welfare_benefit.user_id) %>
 <p>
   <%= f.label :subject, "福利津贴名目" %>
   <%= f.text_field :subject %>

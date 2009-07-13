@@ -81,38 +81,30 @@
       }, {
         header: "系部",
         dataIndex: 'department_id',
-        sortable: true,
-        renderer: getDepartmentName
+        sortable: true
       }, {
         header: "教学所属系部",
         dataIndex: 'td_belongs_id',
-        sortable: true,
-        renderer: getDepartmentName
+        sortable: true
       }, {
         header: "性别",
         dataIndex: 'gender',
         width: 50,
-        sortable: true,
-        renderer: function(value, p, record){
-          return value.toString()=="m" ? "男" : "女"
-        }
+        sortable: true
       }, {
         header: "职称",
         dataIndex: 'title_id',
         width: 80,
-        sortable: true,
-        renderer: getTitleName
+        sortable: true
       }, {
         header: "职务",
         dataIndex: 'position_id',
-        sortable: true,
-        renderer: getPositionName
+        sortable: true
       }, {
         header: "生日",
         dataIndex: 'birthday',
         sortable: true,
-        hidden: true,
-        renderer: function(value, p, record){return value.substr(0,10)}
+        hidden: true
       }, {
         header: "身份证号",
         dataIndex: 'id_card',
@@ -128,8 +120,7 @@
         dataIndex: 'is_nature',
         type : 'bool',
         width: 80,
-        sortable: true,
-        renderer: function(value, p, record){return value ? "入编" : "非入编"}
+        sortable: true
       }, {
         header: "是否离退休",
         dataIndex: 'is_retired',

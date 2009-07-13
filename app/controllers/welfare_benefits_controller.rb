@@ -1,4 +1,5 @@
 class WelfareBenefitsController < ApplicationController
+  protect_from_forgery :except => [:prev, :next, :last]
   # GET /welfare_benefits
   # GET /welfare_benefits.xml
   def index
@@ -38,6 +39,33 @@ class WelfareBenefitsController < ApplicationController
   # GET /welfare_benefits/1/edit
   def edit
     @welfare_benefit = WelfareBenefit.find(params[:id])
+  end
+
+  def prev
+    @welfare_benefit = WelfareBenefit.find(:last, :conditions => ["id < ?", params[:id]], :order => "id ASC")
+    if @welfare_benefit
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
+  end
+
+  def next
+    @welfare_benefit =  WelfareBenefit.find(:first, :conditions => ["id > ?", params[:id]], :order => "id ASC")
+    if @welfare_benefit
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
+  end
+
+  def last
+    @welfare_benefit =  WelfareBenefit.last
+    if @welfare_benefit
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
   end
 
   # POST /welfare_benefits

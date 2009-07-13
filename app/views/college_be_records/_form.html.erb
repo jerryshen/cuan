@@ -1,5 +1,5 @@
 <%= f.error_messages %>
-<%= select_user("on", "college_be_record[user_id]") %>
+<%= select_user("on", "college_be_record[user_id]", @college_be_record.user_id) %>
 <p>
   <%= f.label :year, "年度" %>
   <%= select_year(Time.now.year, {:start_year => 2009, :end_year => 2015}, :name => 'college_be_record[year]') %>

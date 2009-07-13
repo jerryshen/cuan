@@ -1,5 +1,5 @@
 <%= f.error_messages %>
-<%= select_user("all", "bank_card[user_id]") %>
+<%= select_user("all", "bank_card[user_id]", @bank_card.user_id) %>
 <p>
   <%= f.label :bank_id, "银行" %>
   <%= f.select :bank_id, Bank.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择发卡银行..." }, :class => "required" %>

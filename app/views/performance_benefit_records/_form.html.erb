@@ -1,6 +1,6 @@
 <%= f.error_messages %>
 
-<%= select_user("on", "performance_benefit_record[user_id]") %>
+<%= select_user("on", "performance_benefit_record[user_id]", @performance_benefit_record.user_id) %>
 <p>
   <%= f.label :term, "学期" %>
   <% year = Time.now.year.to_s  %>

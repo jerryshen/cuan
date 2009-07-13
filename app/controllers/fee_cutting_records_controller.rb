@@ -1,6 +1,5 @@
 class FeeCuttingRecordsController < ApplicationController
-  #  protect_from_forgery :except => :index
-  #  skip_before_filter :verify_authenticity_token
+  protect_from_forgery :except => [:prev, :next, :last]
   # GET /fee_cutting_records
   # GET /fee_cutting_records.xml
   def index
@@ -45,6 +44,33 @@ class FeeCuttingRecordsController < ApplicationController
   # GET /fee_cutting_records/1/edit
   def edit
     @fee_cutting_record = FeeCuttingRecord.find(params[:id])
+  end
+
+  def prev
+    @fee_cutting_record = FeeCuttingRecord.find(:last, :conditions => ["id < ?", params[:id]], :order => "id ASC")
+    if @fee_cutting_record
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
+  end
+
+  def next
+    @fee_cutting_record =  FeeCuttingRecord.find(:first, :conditions => ["id > ?", params[:id]], :order => "id ASC")
+    if @fee_cutting_record
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
+  end
+
+  def last
+    @fee_cutting_record =  FeeCuttingRecord.last
+    if @fee_cutting_record
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
   end
 
   # POST /fee_cutting_records

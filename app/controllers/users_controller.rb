@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  protect_from_forgery :except => [:update_theme]
+  protect_from_forgery :except => [:update_theme, :prev, :next, :last]
   # GET /users
   # GET /users.xml
   def index
@@ -42,6 +42,33 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+  end
+
+  def prev
+    @user = User.find(:last, :conditions => ["id < ?", params[:id]], :order => "id ASC")
+    if @user
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
+  end
+
+  def next
+    @user =  User.find(:first, :conditions => ["id > ?", params[:id]], :order => "id ASC")
+    if @user
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
+  end
+
+  def last
+    @user =  User.last
+    if @user
+      render :action => "edit"
+    else
+      render :text => "nodata"
+    end
   end
 
   # POST /users

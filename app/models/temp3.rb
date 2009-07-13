@@ -1,7 +1,7 @@
 class Temp3 < ActiveRecord::Base
 
   #data about retired basic salary and retired fee cutting 退休人员工资  // all retired college benefit
-  def import_data
+  def self.import_data
     data = Temp3.all
     if data
       data.each do |d|
@@ -32,11 +32,11 @@ class Temp3 < ActiveRecord::Base
   end
 
   #import users
-  def import_users
-    data = Tepm3.all
+  def self.import_users
+    data = Temp3.all
     if data
       data.each do |d|
-        execute "INSERT INTO 'users' ('name', 'is_retired') VALUES('#{d.f1}', 't')"
+        Temp3.find_by_sql("INSERT INTO 'users' ('name', 'is_retired') VALUES('#{d.f1}', 't')")
       end
     end
   end

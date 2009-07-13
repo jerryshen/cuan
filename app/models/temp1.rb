@@ -30,11 +30,11 @@ class Temp1 < ActiveRecord::Base
   end
 
   #import users
-  def import_users
-    data = Tepm1.all
+  def self.import_users
+    data = Temp1.all
     if data
       data.each do |d|
-        execute "INSERT INTO 'users' ('name', 'is_retired') VALUES('#{d.f1}', 't')"
+        Temp1.find_by_sql("INSERT INTO 'users' ('name', 'is_retired') VALUES('#{d.f1}', 't')")
       end
     end
   end
