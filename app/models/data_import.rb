@@ -1,5 +1,5 @@
-require 'excelrill'
-#require 'excelrillinux' #winOLE less
+#require 'excelrill'
+require 'excelrillinux' #winOLE less
 require 'file_upload_util'
 class DataImport
   def self.collet_excel_data(file, category, year, month)
@@ -59,6 +59,7 @@ class DataImport
       end
       procs << get_salary_detail
 
+=begin
       if option[:month_cell]
         year_month = ''
         get_year_month = lambda do |sheet|
@@ -67,10 +68,12 @@ class DataImport
         end
         procs << get_year_month
       end
+=end
       ExcelRill.parse_sheet(workbook,option[:sheet_index],procs)
 
       hash_data = ExcelRill.convert_to_hash(row_data,option[:keys])
 
+=begin
       if option[:month_cell] && !year_month.empty?
         year_month = year_month[-7..-1]
         unless year_month.nil?
@@ -85,6 +88,7 @@ class DataImport
           end
         end
       end
+=end
 
     end
     ExcelRill.parse_excel(file_path,[proc_workbook],option[:encoding])

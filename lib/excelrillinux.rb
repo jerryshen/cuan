@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'spreadsheet'
 require 'iconv'
 module ExcelRill
@@ -5,25 +6,27 @@ module ExcelRill
 		rows = sheet.row_count
 		cols = sheet.column_count
 
-		default = {:start_row => 1,:start_column=> 1, :end_row => -1, :end_column => -1}
+		default = {:start_row => 0,:start_column=> 0, :end_row => -1, :end_column => -1}
 		option = default.merge!(option)
 
-    raise "Êý¾ÝÇøÓò·¶Î§´íÎó£º¿ªÊ¼ÐÐºÅ±ØÐë´óÓÚµÈÓÚ0" unless option[:start_row] >= 0
-    raise "Êý¾ÝÇøÓò·¶Î§´íÎó£º¿ªÊ¼ÁÐºÅ±ØÐë´óÓÚµÈÓÚ0" unless option[:start_column] >= 0
+		    raise "æ•°æ®åŒºåŸŸèŒƒå›´é”™è¯¯ï¼šå¼€å§‹è¡Œå·å¿…é¡»å¤§äºŽç­‰äºŽ0" unless option[:start_row] >= 0
+		    raise "æ•°æ®åŒºåŸŸèŒƒå›´é”™è¯¯ï¼šå¼€å§‹åˆ—å·å¿…é¡»å¤§äºŽç­‰äºŽ0" unless option[:start_column] >= 0
 
 		startRow = option[:start_row] 
 		startCol = option[:start_column] 
-		endRow = rows + option[:end_row] + 1 
-		endCol = cols + option[:end_column] + 1
+		endRow = rows + option[:end_row] 
+		endCol = cols + option[:end_column]
 
-    raise "Êý¾ÝÇøÓò·¶Î§´íÎó£º½áÊøÐÐºÅ#{endROw}´óÓÚÆðÊ¼ÐÐºÅ#{startRow}" unless endRow >= startRow
-    raise "Êý¾ÝÇøÓò·¶Î§´íÎó£º½áÊøÁÐºÅ#{endCol}´óÓÚÆðÊ¼ÁÐºÅ#{startCol}" unless endCol >= startCol
+		    raise "æ•°æ®åŒºåŸŸèŒƒå›´é”™è¯¯ï¼šç»“æŸè¡Œå·#{endROw}å¤§äºŽèµ·å§‹è¡Œå·#{startRow}" unless endRow >= startRow
+		    raise "æ•°æ®åŒºåŸŸèŒƒå›´é”™è¯¯ï¼šç»“æŸåˆ—å·#{endCol}å¤§äºŽèµ·å§‹åˆ—å·#{startCol}" unless endCol >= startCol
 
 		data = []
 		for row in startRow..endRow
 		  row_data = data[data.length] = []      
-		  for col in startCol..endCol 
-        row_data << sheet.row(row)[col]
+		  #puts "row: #{row}"
+		  for col in startCol..endCol
+			#puts "col: #{col} => #{self.get_cell_value(sheet, row, col)}"
+			row_data << self.get_cell_value(sheet, row, col)
 		  end
 		end
 		return data
@@ -36,25 +39,29 @@ module ExcelRill
 		  dataRow = data[row]
 		  dataRow.each_index do |col|
         if key = keys[col]
-          #hashRow[key] = Iconv.iconv("UTF-8//IGNORE","GB2312//IGNORE",dataRow[col].to_s)
-          hashRow[key] = dataRow[col].to_s
+	  begin
+		hashRow[key] = Iconv.iconv("UTF-8//IGNORE","GBK//IGNORE",dataRow[col].to_s)[0]
+	  rescue
+		hashRow[key] = dataRow[col].to_s
+	  end
+          #hashRow[key] =dataRow[col].to_s
         else
-          key = "µÚ#{col}ÁÐ"
+          key = "ç¬¬#{col}åˆ—"
           hashRow[key] = dataRow[col].to_s
-          #raise "µÚ#{col}ÁÐµÄkey²»´æÔÚ"
+          #raise "ç¬¬#{col}åˆ—çš„keyä¸å­˜åœ¨"
         end
 		  end
 		end
 		return hashdata
 	end
 
-  #»ñÈ¡Ä³¸öµ¥Ôª¸ñµÄÖµ
+  #èŽ·å–æŸä¸ªå•å…ƒæ ¼çš„å€¼
   def self.get_cell_value(sheet,row,col)
     return sheet.row(row)[col]
   end
 
   def self.parse_excel(file_path,blocks,*encoding)
-    raise "ÎÄ¼þ²»´æÔÚ" unless File.exist?(file_path)
+    raise "æ–‡ä»¶ä¸å­˜åœ¨" unless File.exist?(file_path)
 		workbook = Spreadsheet.open(file_path)
     unless(encoding.length > 0)
       Spreadsheet.client_encoding = encoding[0]
@@ -75,3 +82,54 @@ module ExcelRill
     sheet = nil
   end
 end
+
+=begin
+
+def import_salary(file_path,option)
+    default = {:encoding => 'GBK',:sheet_index => 1,:keys=> [], :month_cell => {:row => 1,:col => 1}}
+    option = default.merge(option)
+    raise "å·¥ä½œè¡¨å·å¿…é¡»å¤§äºŽç­‰äºŽ0" unless option[:sheet_index] >= 0
+
+    hash_data = []
+    proc_workbook = lambda do |workbook|
+      row_data = []
+      procs = []
+      get_salary_detail = lambda  do |sheet|
+        row_data = ExcelRill.get_area_data(sheet,option[:data_area])
+      end
+      procs << get_salary_detail
+
+      ExcelRill.parse_sheet(workbook,option[:sheet_index],procs)
+
+      hash_data = ExcelRill.convert_to_hash(row_data,option[:keys])
+    end
+    ExcelRill.parse_excel(file_path,[proc_workbook],option[:encoding])
+    return hash_data
+  end
+
+  def print_data(data)
+    as = []
+    data.each_index do |i|
+      as << "----ç¬¬#{i+1}æ¡æ•°æ®----"
+      data[i].each_key do |key|
+        as << "#{key}: #{data[i][key]}"
+      end
+    end
+    return as.join("\n")
+  end
+
+def import_lx_ry(path, year, month)
+    option = {:data_area=>{:start_row => 4,:start_column => 1, :end_column => -4}}
+    option[:sheet_index] = 1
+    option[:keys] =          %w(f1	    f2          	f3	              f4	                f5	            f6	      f7)
+    data = import_salary(path,option)
+    data.delete_if{ |row| row["f1"].to_i > 0 }
+    data.each do |row|
+      row["year"] = year
+      row["month"] = month
+    end
+    puts print_data(data)
+  end
+
+import_lx_ry("5y.xls", 2009, 5)
+=end

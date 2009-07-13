@@ -5,19 +5,19 @@ module ExcelRill
 		rows = sheet.UsedRange.Rows.count
 		cols = sheet.UsedRange.columns.count
 
-		default = {:start_row => 1,:start_column=> 1, :end_row => -1, :end_column => -1}
+		default = {:start_row => 0,:start_column=> 0, :end_row => -1, :end_column => -1}
 		option = default.merge!(option)
 
-    raise "Êı¾İÇøÓò·¶Î§´íÎó£º¿ªÊ¼ĞĞºÅ±ØĞë´óÓÚµÈÓÚ0" unless option[:start_row] >= 0
-    raise "Êı¾İÇøÓò·¶Î§´íÎó£º¿ªÊ¼ÁĞºÅ±ØĞë´óÓÚµÈÓÚ0" unless option[:start_column] >= 0
+    raise "æ•°æ®åŒºåŸŸèŒƒå›´é”™è¯¯ï¼šå¼€å§‹è¡Œå·å¿…é¡»å¤§äºç­‰äº0" unless option[:start_row] >= 0
+    raise "æ•°æ®åŒºåŸŸèŒƒå›´é”™è¯¯ï¼šå¼€å§‹åˆ—å·å¿…é¡»å¤§äºç­‰äº0" unless option[:start_column] >= 0
 
 		startRow = option[:start_row] 
 		startCol = option[:start_column] 
 		endRow = rows + option[:end_row] 
 		endCol = cols + option[:end_column]
 
-    raise "Êı¾İÇøÓò·¶Î§´íÎó£º½áÊøĞĞºÅ#{endROw}´óÓÚÆğÊ¼ĞĞºÅ#{startRow}" unless endRow >= startRow
-    raise "Êı¾İÇøÓò·¶Î§´íÎó£º½áÊøÁĞºÅ#{endCol}´óÓÚÆğÊ¼ÁĞºÅ#{startCol}" unless endCol >= startCol
+    raise "æ•°æ®åŒºåŸŸèŒƒå›´é”™è¯¯ï¼šç»“æŸè¡Œå·#{endROw}å¤§äºèµ·å§‹è¡Œå·#{startRow}" unless endRow >= startRow
+    raise "æ•°æ®åŒºåŸŸèŒƒå›´é”™è¯¯ï¼šç»“æŸåˆ—å·#{endCol}å¤§äºèµ·å§‹åˆ—å·#{startCol}" unless endCol >= startCol
 
 		data = []
 		for row in startRow..endRow
@@ -42,20 +42,20 @@ module ExcelRill
             hashRow[key] = ""
           end
         else
-          raise "µÚ#{col}ÁĞµÄkey²»´æÔÚ"
+          raise "ç¬¬#{col}åˆ—çš„keyä¸å­˜åœ¨"
         end
 		  end
 		end
 		return hashdata
 	end
 
-  #»ñÈ¡Ä³¸öµ¥Ôª¸ñµÄÖµ
+  #è·å–æŸä¸ªå•å…ƒæ ¼çš„å€¼
   def self.get_cell_value(sheet,row,col)
     return sheet.Cells(row+1,col+1).value
   end
 
-  def self.parse_excel(file_path,blocks,*encoding) #µÚÈı¸ö²ÎÊıÖ»ÊÇÎªÁËÓëexcelrillinux½Ó¿ÚÒ»ÖÂ
-    raise "ÎÄ¼ş²»´æÔÚ" unless File.exist?(file_path)
+  def self.parse_excel(file_path,blocks,*encoding) #ç¬¬ä¸‰ä¸ªå‚æ•°åªæ˜¯ä¸ºäº†ä¸excelrillinuxæ¥å£ä¸€è‡´
+    raise "æ–‡ä»¶ä¸å­˜åœ¨" unless File.exist?(file_path)
     excel = WIN32OLE::new('excel.Application')
 		excel.visible = false     # in case you want to see what happens 
 		excel.Application.DisplayAlerts = false
