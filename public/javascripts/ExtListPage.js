@@ -128,10 +128,12 @@ var ExtListPage = function(options){
         store: [[5, 5], [10, 10], [15, 15], [20, 20]],
         mode: 'local',
         triggerAction: 'all',
+        editable: false,
         width: 60,
         value: 10,
         readOnly: true,
         fieldLabel: "Per-Size",
+        selectOnFocus: false,
         id: $PAGE_SIZE_CMP
     });
     
@@ -588,7 +590,7 @@ function changeSkin(value){
   Ext.util.CSS.swapStyleSheet('theme', '/javascripts/ext-2.2.1/resources/css/' + value + '.css');
 };
 
-Ext.onReady(function(){
+/*Ext.onReady(function(){*/
   /*alert(window.parent.$CURR_STYLE);*/
   /*changeSkin(window.parent.$CURR_STYLE);*/
-})
+  /*})*/
