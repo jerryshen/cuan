@@ -32,14 +32,14 @@ fieldset pre,p {
   margin:4px;
 }
 
-fieldset input, select, textarea {
+fieldset input, fieldset select, fieldset textarea {
   padding:3px;
   margin:2px;
   font-size:12px;
   float: left;
 }
 
-fieldset input.button, input.submit{
+fieldset input.button, fieldset input.submit{
   width: 80px;
 }
 
@@ -87,7 +87,7 @@ fieldset input.error, fieldset textarea.error{
   border: 1px solid red;
 }
 
-fieldset input.text,input.password, fieldset textarea, fieldset select{
+fieldset input.text,fieldset input.password, fieldset textarea, fieldset select{
   width: 200px;
 }
 

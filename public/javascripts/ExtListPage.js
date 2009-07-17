@@ -203,7 +203,7 @@ var ExtListPage = function(options){
     var makeStoreFields = function(columns){
         var fields = [];
         for (var i = 0, l = columns.length; i < l; i++) {
-            column = columns[i];
+            var column = columns[i];
             var field = {}
             if (column.type) {
                 field.type = column.type;
@@ -227,7 +227,7 @@ var ExtListPage = function(options){
   //------------------------初始化表--------------------------->
     var eachColumns = function(columns, funs){
         for (var i = 0, l = columns.length; i < l; i++) {
-            column = columns[i];
+            var column = columns[i];
             for (var j = 0, k = funs.length; j < k; j++) {
                 funs[j](column);
             }
@@ -235,7 +235,7 @@ var ExtListPage = function(options){
     }
     
     //设置表的列标题(仅对英文版有用)
-    var setColumnHeader = function(columns){
+    var setColumnHeader = function(column){
         if (!column.header) {
             var field = column.dataIndex;
             column.header = field.replace(/^./, field.substr(0, 1).toUpperCase()).replace(/_id$/, '');
@@ -266,13 +266,15 @@ var ExtListPage = function(options){
         return String.format(show + edit + destroy, value);
     }
     
-    var operateColumn = {
-        header: "操作栏",
-        dataIndex: 'id',
-        width: 130,
-        sortable: false,
-        menuDisabled: false,
-        renderer: mackBasicButtons
+    if(!options.disableOprateColumn){
+      var operateColumn = {
+          header: "操作栏",
+          dataIndex: 'id',
+          width: 130,
+          sortable: false,
+          menuDisabled: false,
+          renderer: mackBasicButtons
+      }
     }
     
     var gridWidth = 0;
@@ -290,13 +292,16 @@ var ExtListPage = function(options){
     
     eachColumns($COLUMNS, [disableMenu, cal_grid_width]);
     $COLUMNS[0].menuDisabled = false; //为第一列开启menu
-    gridWidth += operateColumn.width; //add operate column width
-    $COLUMNS.push(operateColumn);
+
+    if(!options.disableOprateColumn){
+      gridWidth += operateColumn.width; //add operate column width
+      $COLUMNS.push(operateColumn);
+    }
 
     if (gridWidth < 600) {
       var o = gridWidth;
       gridWidth = 600;
-      operateColumn.width = 600 - o + 100;
+      if(!options.disableOprateColumn)operateColumn.width = 600 - o + 100;
     }
     
     var grid = new Ext.grid.GridPanel({
@@ -340,32 +345,14 @@ var ExtListPage = function(options){
         return Ext.get($PAGE_SIZE_CMP).getValue();
     }
     
+    var controls = Ext.query("#" + $SEARCH_FORM + " input[type=text]," 
+                               + "#" + $SEARCH_FORM + " select"); 
     //获取搜索条件
     var getSearchParams = function(){
         var params = {};
-        var form = document.getElementById($SEARCH_FORM);
-        var accept_tagNames = {
-            "input": true,
-            "select": true
-        };
-        var accept_input_type = {
-            "text": true,
-            "hidden": true
-        };
-        for (var i = 0, l = form.childNodes.length; i < l; i++) {
-            var childNode = form.childNodes[i];
-            if (childNode.nodeType != 1) 
-                continue;
-            var tagName = childNode.tagName.toLowerCase();
-            if (accept_tagNames[tagName]) {
-                if (childNode.name != "" && accept_input_type[childNode.type.toLowerCase()]) {
-                    params[childNode.name] = childNode.value;
-                }
-                else 
-                    if (childNode.tagName.toLowerCase() == "select") {
-                        params[childNode.name] = childNode.value;
-                    }
-            }
+        for(var i = 0, l = controls.length; i < l; i++) {
+          var acontrol = controls[i];
+          params[acontrol.name] = acontrol.value;
         }
         return params;
     }
@@ -403,7 +390,7 @@ var ExtListPage = function(options){
     }
     
 	//刷新表格数据
-    refreshGridData = function(){
+  var refreshGridData = function(){
         thisObj.loadGridData(getPageIndex(), getPageSize(), getSearchParams());
     }
 	this.refreshGridData = refreshGridData;
@@ -484,13 +471,10 @@ var ExtListPage = function(options){
 	
     //渲染表格并载入第一页数据
     grid.render();
-    store.load({
-        params: {
-            search_name: "",
-            page: "1",
-            page_size: "10"
-        }
-    })
+    var first_load_params = getSearchParams();
+    first_load_params.page = "1";
+    first_load_params.page_size = "10";
+    store.load({params:first_load_params});
     
     
     //------------------------为外部定义控件绑定事件响应方法---------------------------------->
