@@ -19,11 +19,6 @@
   <%= f.label :position_id, "职务" %>
   <%= f.select :position_id, Position.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择职务..." }, :class => "required" %>
 </p>
-  <p>
-    <label>性别</label>
-    <label for="gender_m"><input id="gender_m" type="radio" name="user[gender]" value="m" />男</label>
-    <label for="gender_f"><input id="gender_f" type="radio" name="user[gender]" value="f" />女</label>
-  </p>
 <p>
   <%= f.label :birthday, "生日" %>
   <%= f.date_select :birthday, {:start_year => 1950, :end_year => 2000, :order => [:year, :month, :day],:use_month_numbers => true}, {:class => "required", :style => "width:80px" }%>
@@ -33,10 +28,17 @@
   <%= f.text_field :id_card, :class =>"required" %>
 </p>
 <p>
-  <%= f.label :is_nature, "是否入编" %>
-  <%= f.check_box :is_nature %>
+  <label>性别</label>
+  <label for="gender"><%= f.radio_button :gender, "m"  %>男</label>
+  <label for="gender"><%= f.radio_button :gender, "f"  %>女</label>
 </p>
 <p>
-  <%= f.label :is_retired, "是否离退休" %>
-  <%= f.check_box :is_retired %>
+  <label>入编状态</label>
+  <label for="retired"><%= f.radio_button :is_nature, true   %>入编</label>
+  <label for="retired"><%= f.radio_button :is_nature, false  %>非入编</label>
+</p>
+<p>
+  <label>工作状态</label>
+  <label for="retired"><%= f.radio_button :is_retired, false  %>在职</label>
+  <label for="retired"><%= f.radio_button :is_retired, true   %>离退休</label>
 </p>

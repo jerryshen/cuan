@@ -8,12 +8,13 @@
   </p>
 <% end %>
 <p>
-  <%= f.label :total_be, "学期总课时津贴" %>
-  <%= f.text_field :total_be, :class => "required" %>
+  <label>学期</label>
+  <label for="term"><%= f.radio_button :term, "1"  %>第一学期</label>
+  <label for="term"><%= f.radio_button :term, "2"  %>第二学期</label>
 </p>
 <p>
-  <%= f.label :term, "学期" %>
-  <%= f.select :term, [[ '选择学期', ''], [ '第一学期', '1' ], [ '第二学期', '2' ], [ '第三学期', '3' ]], {:class => "required"} %>
+  <%= f.label :total_be, "学期总课时津贴" %>
+  <%= f.text_field :total_be, :class => "required" %>
 </p>
 <p>
   <%= f.label :month, "计算月" %>
