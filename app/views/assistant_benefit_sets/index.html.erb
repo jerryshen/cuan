@@ -6,11 +6,21 @@
 <%= stylesheet_link_tag "form.css" %>
 <div id="list-view">
   <form style="margin: 10px 0px;" id="search_form">
-    <label for="search_name">名称:</label>
+    <label for="search_department_id">系部:</label>
+    <% list_departments_for_search %>
+    <select style="margin:0px;padding:0px;float:none;" id="search_department_id" name="search_department_id">
+      <% @options.each do |option| %>
+        <option value="<%= option[1] %>"><%= option[0] %></option>
+      <% end %>
+    </select>
+    <label for="search_verify">是否审核：</label>
+    <select style="margin: 0px; padding: 0px; float: none;" name="search_verify" id="search_verify">
+      <option value="" selected="selected">请选择</option>
+      <option value="0">未审核</option>
+      <option value="1">已审核</option>
+    </select>
+    <label for="search_name">姓名：</label>
     <input type="text" value="" size="15" name="search_name" id="search_name"/>
-    <label for="search_major">专业：
-      <%= select_tag('search_department', options_for_select([["选择系部..." , ""]] + Department.all.collect{|x| [x.name, x.id] },@search_department),{:name => "search_department"}) %>
-    </label>
     <input class="button" type="button" id="btnSearch" value="搜索"/>
     <input value="重置"class="btnreset" type="reset" />
     <input value="刷新 " onclick="window.location.reload()" class="btnrefresh" type="button"  />
@@ -31,11 +41,19 @@
 <%= javascript_include_tag 'jquery-validate/jquery.validate.js' %>
 <%= javascript_include_tag 'jquery-validate/localization/messages_cn.js' %>
 <%= javascript_include_tag 'AjaxForm.js' %>
-<%= javascript_include_tag 'prototype' %>
 <script>
+  var assistants = <%= Assistant.to_json%>
+  var getAssistantName = function(value){
+    return assistants[value]
+  }
+
   var users = <%= User.to_json%>
-  var getUserName = function(value, p, record){
+  var getUserName = function(value){
     return users[value]
+  }
+
+  var formatBool = function(value){
+    return value.toString()=="false" ? "未审核" : "已审核"
   }
   //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
   // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]}
@@ -48,32 +66,30 @@
         sortable: true,
         type: "int",
         resizable: false
-      }, {
+      },{
         header: "姓名",
-        dataIndex: 'user_id',
+        dataIndex: 'assistant_id',
         sortable: true,
-        renderer: getUserName
-      }, {
-        header: "名目",
-        dataIndex: 'subject',
+        renderer: getAssistantName
+      },{
+        header: "津贴",
+        dataIndex: 'benefit',
         sortable: true
-      }, {
-        header: "金额",
-        dataIndex: 'fee',
+      },{
+        header: "其他",
+        dataIndex: 'other',
         sortable: true
-      }, {
-        header: "发放日期",
-        dataIndex: 'date',
-        sortable: true
-      }, {
-        header: "类型",
-        dataIndex: 'be_type',
-        sortable: true
+      },{
+        header: "审核情况",
+        dataIndex: 'is_verified',
+        sortable: true,
+        type: 'boolean',
+        renderer: formatBool
       }]
-    var controllerName = "undefind_fees";
+    var controllerName = "assistant_benefit_sets";
     options = {
       baseUrl: "http://" + window.location.host + "/" + controllerName,
-      gridTitle: "不定费用发放管理列表",
+      gridTitle: "辅导员津贴设置列表",
       newItemLink: "newItem",
       columns: columns
     }

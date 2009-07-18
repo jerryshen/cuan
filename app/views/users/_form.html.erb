@@ -4,6 +4,10 @@
   <%= f.text_field :name, :class => "required" %>
 </p>
 <p>
+  <%= f.label :id_card, "身份证" %>
+  <%= f.text_field :id_card, :class =>"required" %>
+</p>
+<p>
   <%= f.label :department_id, "系部"%>
   <%= f.select :department_id, Department.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择系部..." }, :class => "required" %>
 </p>
@@ -24,8 +28,16 @@
   <%= f.date_select :birthday, {:start_year => 1950, :end_year => 2000, :order => [:year, :month, :day],:use_month_numbers => true}, {:class => "required", :style => "width:80px" }%>
 </p>
 <p>
-  <%= f.label :id_card, "身份证" %>
-  <%= f.text_field :id_card, :class =>"required" %>
+  <%= f.label :contract_number, "合同号" %>
+  <%= f.text_field :contract_number %>
+</p>
+<p>
+  <%= f.label :valid_from, "签订时间" %>
+  <%= f.date_select :valid_from, {:start_year => 2000, :end_year => 2050, :order => [:year, :month, :day],:use_month_numbers => true}, {:style => "width:80px" }%>
+</p>
+<p>
+  <%= f.label :valid_end, "到期时间" %>
+  <%= f.date_select :valid_end, {:start_year => 2000, :end_year => 2050, :order => [:year, :month, :day],:use_month_numbers => true}, {:style => "width:80px" }%>
 </p>
 <p>
   <label>性别</label>

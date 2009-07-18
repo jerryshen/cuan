@@ -1,0 +1,2 @@
+module AssistantBenefitConfirmsHelper
+end

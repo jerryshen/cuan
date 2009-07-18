@@ -13,6 +13,12 @@
         <option value="<%= option[1] %>"><%= option[0] %></option>
       <% end %>
     </select>
+    <label for="search_verify">是否审核：</label>
+    <select style="margin: 0px; padding: 0px; float: none;" name="search_verify" id="search_verify">
+      <option value="" selected="selected">请选择</option>
+      <option value="0">未审核</option>
+      <option value="1">已审核</option>
+    </select>
     <label for="search_name">姓名：</label>
     <input type="text" value="" size="15" name="search_name" id="search_name"/>
     <input class="button" type="button" id="btnSearch" value="搜索"/>
@@ -20,9 +26,6 @@
     <input value="刷新 " onclick="window.location.reload()" class="btnrefresh" type="button"  />
   </form>
   <div>
-    <div class="nav">
-      <span class="button" id="newItem" onclick="$page.showNewView()"><img  src="/images/icons/new.png"/>设置辅导员</span>
-    </div>
     <div id="grid-wrap">
     </div>
   </div>
@@ -36,14 +39,33 @@
 <%= javascript_include_tag 'jquery-validate/localization/messages_cn.js' %>
 <%= javascript_include_tag 'AjaxForm.js' %>
 <script>
-  var users = <%= User.to_json%>
-  var getUserName = function(value){
-    return users[value]
+  var assistants = <%= Assistant.to_json%>
+  var getAssistantName = function(value){
+    return assistants[value]
   }
 
-    var departments = <%= Department.to_json%>
-  var getDepartmentName = function(value){
-    return departments[value]
+  var makeAsVerifyLink = function(value, p, record){
+    var text = value.toString()=="true" ? "已经通过审核" : "未审核（点击通过审核）";
+    return String.format("<a href='#' action ='verify' title='审核' class='gridButton' url='/assistant_benefit_comfirms/verify/{0}'>{1}</a>",record.data.id,text);
+  }
+
+  var bind_verify_link_click = function(alink){
+    var url = alink.getAttribute("url");
+    Ext.get(alink).on("click",function(){
+      Ext.Ajax.request({
+        url: url,
+        success: function(rq,params){ //rq:请求的响应，params请求时的参数（此处为｛url,success,failure｝)
+          if(rq.responseText=="true"){
+            $page.refreshGridData();
+          }else{
+            Ext.MessageBox.show({msg:"您么权限操作已经通过审核的津贴",buttons: Ext.MessageBox.OK,icon:Ext.MessageBox.ERROR});
+          }
+        },
+        failure: function(){
+          Ext.MessageBox.show({msg:"您没有权限操作已经通过审核的津贴",buttons: Ext.MessageBox.OK,icon:Ext.MessageBox.WARNING});
+        }
+      });
+    })
   }
   //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
   // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]}
@@ -57,22 +79,38 @@
         type: "int",
         resizable: false
       },{
-        header: "专业",
-        dataIndex: 'department_id',
-        sortable: true,
-        renderer: getDepartmentName
-      },{
         header: "姓名",
-        dataIndex: 'user_id',
+        dataIndex: 'assistant_id',
         sortable: true,
-        renderer: getUserName
+        renderer: getAssistantName
+      },{
+        header: "津贴",
+        dataIndex: 'benefit',
+        sortable: true
+      },{
+        header: "其他",
+        dataIndex: 'other',
+        sortable: true
+      },{
+        header: "审核情况",
+        dataIndex: 'is_verified',
+        sortable: true,
+        type: 'boolean',
+        render: makeAsVerifyLink
+      },{
+        header: "发放日期",
+        dataIndex: 'date',
+        sortable: true
       }]
-    var controllerName = "assistants";
+    var controllerName = "assistant_benefit_confirms";
     options = {
       baseUrl: "http://" + window.location.host + "/" + controllerName,
-      gridTitle: "辅导员名单维护列表",
+      gridTitle: "辅导员津贴审核列表",
       newItemLink: "newItem",
-      columns: columns
+      columns: columns,
+      bindlinks: {
+        "verify": bind_verify_link_click
+      }
     }
     $page = new ExtListPage(options);
   })

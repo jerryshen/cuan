@@ -1,0 +1,22 @@
+<%= f.error_messages %>
+<p>
+  <%= f.label :assistant_id, "辅导员" %>
+  <%= f.select :assistant_id, Assistant.all.collect {|p| [ p.user.name, p.id ] }, {:include_blank => "请选择辅导员..." }, :class => "required" %>
+</p>
+<p>
+  <%= f.label :benefit, "津贴" %>
+  <%= f.text_field :benefit, :class => "creditcard required"%>
+</p>
+<p>
+  <%= f.label :other, "其他" %>
+  <%= f.text_field :other, :class => "creditcard required"%>
+</p>
+<p>
+  <label>审核</label>
+  <label for="verify"><%= f.radio_button :is_verified, true  %>审核</label>
+  <label for="verify"><%= f.radio_button :is_verified, false  %>不审核</label>
+</p>
+<p>
+  <%= f.label :date, "发放日期" %>
+  <%= f.date_select :date, {:start_year => Time.now.year, :end_year => Time.now.year, :order => [:year, :month, :day],:use_month_numbers => true}, {:style => "width:80px" }%>
+</p>

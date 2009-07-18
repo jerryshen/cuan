@@ -1,6 +1,7 @@
 class Department < ActiveRecord::Base
   #mapping
   has_many :users
+  has_many :assistants
 
   #validations
   validates_presence_of :name

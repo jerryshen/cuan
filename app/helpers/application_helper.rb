@@ -68,7 +68,7 @@ module ApplicationHelper
     html = %q{
       <p>
         <label for="select_department_id">部门</label>
-        <select id="select_department_id" class="required">
+        <select id="select_department_id" class="required" name="department_id">
           <option value='' >选择部门...</option>
           <options>
         </select>

@@ -1,7 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :tips
+  map.resources :assistant_benefit_confirms
 
-  map.connect '/departments/users_to_json', :controller => "departments", :action => "users_to_json"
+  map.resources :assistant_benefit_sets
+
+  map.resources :assistant_benefits
+
+  map.resources :tips
 
   map.resources :temp5s
 
@@ -21,7 +25,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :class_month_benefit_records
 
-  map.resources :undefind_fees
+  map.resources :undefind_fees, :collection => {:deliver => :get}
 
   map.resources :app_configs
 
@@ -128,7 +132,9 @@ ActionController::Routing::Routes.draw do |map|
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
   map.root :controller => 'admin', :action => 'index'
+  map.connect '/departments/users_to_json', :controller => "departments", :action => "users_to_json"
   map.connect ':controller/:action', :controller => ["admin,data_import,data_backup,profile,temp1s"]
+  map.connect '/change_info', :controller => 'profile', :action => 'change_info'
   map.connect '/logout', :controller => 'admin', :action => 'logout'
   map.connect '/signin', :controller => 'admin', :action => 'login'
   map.connect ':controller/:action/:id'

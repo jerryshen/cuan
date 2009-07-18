@@ -8,8 +8,6 @@ class AssistantsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @assistants }
       format.json { render :text => get_json }
-      format.csv { export_csv(@assistants,
-          { :id => "id", :user_id => "姓名", :benefit => "辅导员津贴", :other => "辅导员其他" }, "辅导员数据.csv") }
     end
   end
 
@@ -44,6 +42,7 @@ class AssistantsController < ApplicationController
   # POST /assistants.xml
   def create
     @assistant = Assistant.new(params[:assistant])
+    @assistant.department_id = params[:department_id]
 
     respond_to do |format|
       if @assistant.save
@@ -64,7 +63,7 @@ class AssistantsController < ApplicationController
     @assistant = Assistant.find(params[:id])
 
     respond_to do |format|
-      if @assistant.update_attributes(params[:assistant])
+      if @assistant.update_attributes(:department_id => params[:department_id], :user_id => params[:assistant][:user_id])
         format.html { redirect_to(@assistant) }
         format.xml  { head :ok }
         format.json { render :text => '{status: "success", message: "成功修改辅导员！"}'}

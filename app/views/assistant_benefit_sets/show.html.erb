@@ -1,0 +1,18 @@
+<fieldset>
+  <legend>查看辅导员津贴</legend>
+  <p>
+    <b>辅导员姓名:</b>
+    <%=h @assistant_benefit_set.user.name %>
+  </p>
+    <p>
+    <b>津贴:</b>
+    <%=h @assistant_benefit_set.benefit %>
+  </p>
+    <p>
+    <b>其他:</b>
+    <%=h @assistant_benefit_set.other %>
+  </p>
+  <p class="bbar">
+    <input type="button" onclick="$page.showListView()" value="返回列表" />
+  </p>
+</fieldset>

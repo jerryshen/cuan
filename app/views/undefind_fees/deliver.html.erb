@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>不定费用批量发放</title>
+  </head>
+  <body>
+    <h3>不定费用批量发放</h3>
+    <%= javascript_include_tag 'ext-2.2.1/adapter/jquery/jquery.js'%>
+    <%= javascript_include_tag 'jquery-validate/lib/jquery.form.js' %>
+    <%= javascript_include_tag 'jquery-validate/jquery.validate.js' %>
+    <%= javascript_include_tag 'jquery-validate/localization/messages_cn.js' %>
+    <fieldset>
+      <legend>不定费用批量发放</legend>
+      <% form_tag 'do_deliver', :method => 'post' do  %>
+        <p>
+          <label for="department">系部:</label>
+          <%= select_tag('department_id', options_for_select([["请选择系部..." , ""]] + Department.all.collect{|x| [x.name, x.id] }),{:name => "department_id", :size => 5}) %>
+        </p>
+        <p>
+          <label for="title">职称</label>
+          <%= select_tag('title_id', options_for_select([["请选择职称..." , ""]] + Title.all.collect{|x| [x.name, x.id] }),{:name => "title_id", :size => 5}) %>
+        </p>
+        <p>
+          <label for="subject">名目:</label>
+          <input type="text" value="" size="30" name="subject" id="subject" class="required"/>
+        </p>
+        <p>
+          <label for="fee">金额:</label>
+          <input type="text" value="" size="30" name="fee" id="fee" class="required number"/>
+        </p>
+        <input type="submit" value="批量发放" />
+      <% end %>
+    </fieldset>
+  </body>
+</html>

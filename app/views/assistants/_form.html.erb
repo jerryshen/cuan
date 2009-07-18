@@ -1,10 +1,2 @@
 <%= f.error_messages %>
 <%= select_user("on", "assistant[user_id]", @assistant.user_id) %>
-<p>
-  <%= f.label :benefit, "辅导员津贴" %>
-  <%= f.text_field :benefit, :class => "required number" %>
-</p>
-<p>
-  <%= f.label :other, "辅导员其他" %>
-  <%= f.text_area :other, :rows => 10 %>
-</p>

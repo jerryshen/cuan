@@ -1,0 +1,13 @@
+<%= f.error_messages %>
+<p>
+  <%= f.label :assistant_id, "辅导员" %>
+  <%= f.select :assistant_id, Assistant.all.collect {|p| [ p.user.name, p.id ] }, {:include_blank => "请选择辅导员..." }, :class => "required" %>
+</p>
+<p>
+  <%= f.label :benefit, "津贴" %>
+  <%= f.text_field :benefit, :class => "number required"%>
+</p>
+<p>
+  <%= f.label :other, "其他" %>
+  <%= f.text_field :other, :class => "number"%>
+</p>

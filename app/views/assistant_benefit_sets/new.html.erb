@@ -1,6 +1,6 @@
-<% form_for (@assistant) do |f| %>
+<% form_for :assistant_benefit_set, :url => { :action => 'create'} do |f| %>
   <fieldset>
-    <legend>添加辅导员</legend>
+    <legend>设置辅导员津贴</legend>
     <%= render :partial => 'form', :locals => {:f =>f}  %>
     <p class="bbar">
       <input type="button" value='保存并新增' id ="save_and_new"  />

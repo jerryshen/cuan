@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 48) do
+ActiveRecord::Schema.define(:version => 50) do
 
   create_table "app_configs", :force => true do |t|
     t.string   "key"
@@ -18,14 +18,26 @@ ActiveRecord::Schema.define(:version => 48) do
     t.datetime "updated_at"
   end
 
-  create_table "assistants", :force => true do |t|
-    t.integer  "user_id"
-    t.float    "benefit",    :default => 0.0
-    t.float    "other",      :default => 0.0
+  create_table "assistant_benefits", :force => true do |t|
+    t.integer  "assistant_id"
+    t.float    "benefit",      :default => 0.0
+    t.float    "other",        :default => 0.0
+    t.boolean  "is_verified",  :default => false
+    t.datetime "date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "assistant_benefits", ["assistant_id"], :name => "index_assistant_benefits_on_assistant_id"
+
+  create_table "assistants", :force => true do |t|
+    t.integer  "department_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assistants", ["department_id"], :name => "index_assistants_on_department_id"
   add_index "assistants", ["user_id"], :name => "index_assistants_on_user_id"
 
   create_table "bank_cards", :force => true do |t|
@@ -520,6 +532,9 @@ ActiveRecord::Schema.define(:version => 48) do
     t.datetime "updated_at"
     t.string   "theme"
     t.string   "number"
+    t.string   "contract_number"
+    t.datetime "valid_from"
+    t.datetime "valid_end"
   end
 
   add_index "users", ["department_id"], :name => "index_users_on_department_id"
