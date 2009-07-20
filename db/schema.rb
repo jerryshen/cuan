@@ -489,8 +489,8 @@ ActiveRecord::Schema.define(:version => 50) do
     t.string   "title"
     t.integer  "user_id"
     t.text     "content"
-    t.boolean  "top"
-    t.boolean  "hidden"
+    t.boolean  "top",        :default => false
+    t.boolean  "hidden",     :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

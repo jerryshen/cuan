@@ -133,8 +133,7 @@ ActionController::Routing::Routes.draw do |map|
   # consider removing the them or commenting them out if you're using named routes and resources.
   map.root :controller => 'admin', :action => 'index'
   map.connect '/departments/users_to_json', :controller => "departments", :action => "users_to_json"
-  map.connect ':controller/:action', :controller => ["admin,data_import,data_backup,profile,temp1s"]
-  map.connect '/change_info', :controller => 'profile', :action => 'change_info'
+  map.connect ':controller/:action', :controller => ["admin,data_import,data_backup,profile,temp1s,welcome"]
   map.connect '/logout', :controller => 'admin', :action => 'logout'
   map.connect '/signin', :controller => 'admin', :action => 'login'
   map.connect ':controller/:action/:id'
