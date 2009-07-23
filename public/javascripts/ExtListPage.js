@@ -251,19 +251,35 @@ var ExtListPage = function(options){
     //增加一个操作列：包含编辑、查看、删除按钮
     var mackBasicButtons = function(value, p, record){
 		var show=edit=destroy = '';
+		var htmls = [];
         if (!$DISABLE_DESTROY) {
 			var action = $MOCK_DESTROY ? "hide" : "destroy";
-            var destroy = '<img url="' + $BASE_URL + '/' + action + '/{0}.json" action="destroy" title="删除" style="margin-left:10px;" class="gridButton"  src="/images/icons/delete.png" />'
+            var destroy = '<img url="' + $BASE_URL + '/' + action + '/{0}.json" action="destroy" title="删除" style="margin-left:10px;" class="gridButton"  src="/images/icons/delete.png" />';
+			htmls.push(destroy);
         }
         
         if (!$DISABLE_SHOW) {
-            var show = '<img url="' + $BASE_URL + '/show/{0}?layout=none" action="show" title="查看" style="margin-left:10px;" class="gridButton" src="/images/icons/show.png" />'
+            var show = '<img url="' + $BASE_URL + '/show/{0}?layout=none" action="show" title="查看" style="margin-left:10px;" class="gridButton" src="/images/icons/show.png" />';
+			htmls.push(show);
         }
         
         if (!$DISABLE_EDIT) {
-            var edit = '<img url="' + $BASE_URL + '/edit/{0}?layout=none" action="edit" title="编辑" style="margin-left:10px;" class="gridButton" src="/images/icons/edit.png" />'
+            var edit = '<img url="' + $BASE_URL + '/edit/{0}?layout=none" action="edit" title="编辑" style="margin-left:10px;" class="gridButton" src="/images/icons/edit.png" />';
+			htmls.push(edit);
         }
-        return String.format(show + edit + destroy, value);
+		
+		var default_buttons = String.format(htmls.join(''), value);
+		var customer_buttons = []
+		if(options.oprateBarButtons){
+			var btns = options.oprateBarButtons;
+			for(var i=0, l=btns.length; i<l; i++){
+				var btn = btns[i];
+				if(typeof(btn)=="function"){
+					customer_buttons.push(btn(value, p, record));
+				}
+			}
+		}
+        return default_buttons + customer_buttons.join('');
     }
     
     if(!options.disableOprateColumn){
