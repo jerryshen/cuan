@@ -1,5 +1,5 @@
 class Temp1sController < ApplicationController
-
+ require 'fastercsv'
   def index
     @temp1s = Temp1.all
 
@@ -51,7 +51,21 @@ class Temp1sController < ApplicationController
   end
 
   def data_ipmort
-    Temp1.import
+  end
+
+  def import
+    n=0
+    FasterCSV.parse(params[:myform][:file])do |row|
+
+      user = User.new
+      user.id_card = row[0]
+      user.name = row[1].strip
+      user.save!
+      n=n+1
+      GC.start if n%50==0
+
+      flash.now[:notice]="CSV Import Successful, #{n} new records added to data base"
+    end
   end
 
   private

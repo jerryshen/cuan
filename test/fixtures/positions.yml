@@ -1,0 +1,29 @@
+--- 
+positions_002: 
+  name: !binary |
+    5Ymv5pWZ5o6I
+
+  created_at: 2009-06-02 01:35:09
+  updated_at: 2009-06-02 01:35:09
+  id: "2"
+positions_003: 
+  name: !binary |
+    6K6y5biI
+
+  created_at: 2009-06-02 01:35:18
+  updated_at: 2009-06-02 01:35:18
+  id: "3"
+positions_004: 
+  name: !binary |
+    5Yqp5pWZ
+
+  created_at: 2009-06-02 01:35:32
+  updated_at: 2009-06-02 01:35:32
+  id: "4"
+positions_001: 
+  name: !binary |
+    5pWZ5o6I
+
+  created_at: 2009-06-02 01:34:58
+  updated_at: 2009-06-02 01:34:58
+  id: "1"

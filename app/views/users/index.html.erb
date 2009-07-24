@@ -79,6 +79,11 @@
         width: 70,
         sortable: true
       }, {
+        header: "身份证号",
+        dataIndex: 'id_card',
+        sortable: true,
+        width: 130
+      }, {
         header: "系部",
         dataIndex: 'department_id',
         sortable: true
@@ -106,12 +111,6 @@
         sortable: true,
         hidden: true
       }, {
-        header: "身份证号",
-        dataIndex: 'id_card',
-        sortable: true,
-        width: 130,
-        hidden: true
-      }, {
         header: "用户名",
         dataIndex: 'login_id',
         sortable: true
@@ -126,9 +125,7 @@
         dataIndex: 'is_retired',
         width: 80,
         type : 'bool',
-        sortable: true,
-        renderer: function(value, p, record){return value ? "离退休" : "在职"}
-
+        sortable: true
       }]
     var controllerName = "users";
     options = {

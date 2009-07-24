@@ -1,0 +1,757 @@
+--- 
+pages_052: 
+  name: !binary |
+    6L6F5a+85ZGY5rSl6LS05a6h5qC4
+
+  created_at: 2009-07-18 01:09:52
+  updated_at: 2009-07-18 08:02:34
+  url: /assistant_benefit_confirms
+  id: "57"
+  icon: confirm.png
+  function: !binary |
+    6L6F5a+85ZGY5rSl6LS05a6h5qC4
+
+  page_module_id: "8"
+  hidden: f
+pages_041: 
+  name: !binary |
+    56aP5Yip5rSl6LS06K6w5b2V
+
+  created_at: 2009-06-19 05:06:58
+  updated_at: 2009-07-16 13:43:45
+  url: /welfare_benefits
+  id: "46"
+  icon: welfare.png
+  function: !binary |
+    56aP5Yip5rSl6LS06K6w5b2V
+
+  page_module_id: "8"
+  hidden: f
+pages_030: 
+  name: !binary |
+    5bKX5L2N6IGM5Yqh5rSl6LS06K6w5b2V
+
+  created_at: 2009-06-16 07:24:27
+  updated_at: 2009-07-17 09:28:42
+  url: /station_position_benefit_records
+  id: "35"
+  icon: sta_pos.png
+  function: !binary |
+    5bKX5L2N6IGM5Yqh5rSl6LS06K6w5b2V
+
+  page_module_id: "8"
+  hidden: f
+pages_019: 
+  name: !binary |
+    56a76YCA5LyR5bel6LWE6K6w5b2V
+
+  created_at: 2009-06-09 03:35:20
+  updated_at: 2009-07-17 09:29:36
+  url: /retired_basic_salary_records
+  id: "23"
+  icon: staff.png
+  function: !binary |
+    56a76YCA5LyR5bel6LWE6K6w5b2V
+
+  page_module_id: "12"
+  hidden: f
+pages_008: 
+  name: !binary |
+    5Yqf6IO9
+
+  created_at: 2009-06-09 03:25:44
+  updated_at: 2009-06-09 16:59:13
+  url: /pages
+  id: "12"
+  icon: page.png
+  function: !binary |
+    6aG16Z2i566h55CG
+
+  page_module_id: "1"
+  hidden: f
+pages_053: 
+  name: !binary |
+    5LiN5a6a6LS555So5om56YeP5Y+R5pS+
+
+  created_at: 2009-07-18 06:09:19
+  updated_at: 2009-07-18 08:08:26
+  url: /undefind_fees/deliver
+  id: "58"
+  icon: send.png
+  function: !binary |
+    5LiN5a6a6LS555So5om56YeP5Y+R5pS+
+
+  page_module_id: "8"
+  hidden: f
+pages_042: 
+  name: !binary |
+    57up5pWI5rSl6LS05qCH5YeG
+
+  created_at: 2009-06-19 05:08:22
+  updated_at: 2009-07-16 13:35:07
+  url: /performance_benefit_stds
+  id: "47"
+  icon: std.png
+  function: !binary |
+    57up5pWI5rSl6LS05qCH5YeG6K6+5a6a
+
+  page_module_id: "8"
+  hidden: f
+pages_031: 
+  name: !binary |
+    56eR56CU5rSl6LS05a6h5qC4
+
+  created_at: 2009-06-16 07:25:20
+  updated_at: 2009-07-16 13:37:31
+  url: /science_be_personnels
+  id: "36"
+  icon: confirm.png
+  function: !binary |
+    56eR56CU5rSl6LS05a6h5qC4
+
+  page_module_id: "8"
+  hidden: f
+pages_020: 
+  name: !binary |
+    56a76YCA5LyR5a2m6Zmi6KGl6LS0
+
+  created_at: 2009-06-09 03:35:59
+  updated_at: 2009-07-18 08:10:44
+  url: /retired_college_benefits
+  id: "24"
+  icon: cobe.png
+  function: !binary |
+    56a76YCA5LyR5Lq65ZGY5a2m6Zmi6KGl6LS0
+
+  page_module_id: "12"
+  hidden: f
+pages_009: 
+  name: !binary |
+    6KeS6Imy
+
+  created_at: 2009-06-09 03:26:12
+  updated_at: 2009-06-09 17:04:40
+  url: /roles
+  id: "13"
+  icon: role.png
+  function: !binary |
+    6KeS6Imy566h55CG
+
+  page_module_id: "1"
+  hidden: f
+pages_054: 
+  name: !binary |
+    6YCa55+l566h55CG
+
+  created_at: 2009-07-20 03:53:47
+  updated_at: 2009-07-20 03:53:47
+  url: /tips
+  id: "59"
+  icon: tip.png
+  function: !binary |
+    6YCa55+l566h55CG
+
+  page_module_id: "4"
+  hidden: f
+pages_043: 
+  name: !binary |
+    57up5pWI5rSl6LS06K6w5b2V
+
+  created_at: 2009-06-19 05:09:18
+  updated_at: 2009-07-16 13:39:50
+  url: /performance_benefit_records
+  id: "48"
+  icon: performance.png
+  function: !binary |
+    57up5pWI5rSl6LS06K6w5b2V
+
+  page_module_id: "8"
+  hidden: f
+pages_032: 
+  name: !binary |
+    6K++5pe25rSl6LS05a6h5qC4
+
+  created_at: 2009-06-16 07:25:53
+  updated_at: 2009-07-16 13:37:14
+  url: /class_be_personnels
+  id: "37"
+  icon: confirm.png
+  function: !binary |
+    6K++5pe25rSl6LS05a6h5qC4
+
+  page_module_id: "8"
+  hidden: f
+pages_021: 
+  name: !binary |
+    56a76YCA5LyR5a2m6Zmi6KGl6LS06K6w5b2V
+
+  created_at: 2009-06-09 03:36:49
+  updated_at: 2009-07-17 09:29:51
+  url: /retired_college_be_records
+  id: "25"
+  icon: record1.png
+  function: !binary |
+    56a76YCA5LyR5Lq65ZGY5a2m6Zmi6KGl6LS06K6w5b2V
+
+  page_module_id: "12"
+  hidden: f
+pages_010: 
+  name: !binary |
+    6KeS6Imy5p2D6ZmQ5YiG6YWN
+
+  created_at: 2009-06-09 03:26:39
+  updated_at: 2009-06-09 16:58:30
+  url: /page_roles
+  id: "14"
+  icon: range.png
+  function: !binary |
+    6aG16Z2i77yN6KeS6Imy566h55CG
+
+  page_module_id: "1"
+  hidden: f
+pages_044: 
+  name: !binary |
+    5pyI5Y+R5pS+6K++5pe25rSl6LS06K6w5b2V
+
+  created_at: 2009-06-25 02:40:40
+  updated_at: 2009-07-16 13:34:15
+  url: /class_month_benefit_records
+  id: "49"
+  icon: month_rec.png
+  function: !binary |
+    5pyI5Y+R5pS+6K++5pe25rSl6LS06K6w5b2V
+
+  page_module_id: "8"
+  hidden: f
+pages_033: 
+  name: !binary |
+    6K++5pe25rSl6LS06K6+572u
+
+  created_at: 2009-06-16 07:30:10
+  updated_at: 2009-07-16 13:33:39
+  url: /class_be_edus
+  id: "38"
+  icon: class_be.png
+  function: !binary |
+    6K++5pe25rSl6LS06K6+572u
+
+  page_module_id: "10"
+  hidden: f
+pages_022: 
+  name: !binary |
+    56a76YCA5LyR5omj5qy+
+
+  created_at: 2009-06-09 03:44:02
+  updated_at: 2009-07-17 09:29:56
+  url: /retired_fee_cuttings
+  id: "26"
+  icon: cut.png
+  function: !binary |
+    56a76YCA5LyR5omj5qy+
+
+  page_module_id: "12"
+  hidden: f
+pages_011: 
+  name: !binary |
+    55So5oi36KeS6Imy6K6+5a6a
+
+  created_at: 2009-06-09 03:27:25
+  updated_at: 2009-06-09 16:58:46
+  url: /role_users
+  id: "15"
+  icon: user-role.png
+  function: !binary |
+    6KeS6Imy77yN55So5oi3566h55CG
+
+  page_module_id: "1"
+  hidden: f
+pages_045: 
+  name: !binary |
+    56a75LyR5bel6LWE5Li05pe25pWw5o2u
+
+  created_at: 2009-06-26 03:46:21
+  updated_at: 2009-07-17 09:28:01
+  url: /temp1s
+  id: "50"
+  icon: temp.png
+  function: !binary |
+    56a75LyR5Lq65ZGY5bel6LWE5Li05pe25pWw5o2udGVtcDE=
+
+  page_module_id: "7"
+  hidden: f
+pages_034: 
+  name: !binary |
+    56eR56CU5rSl6LS06K6+572u
+
+  created_at: 2009-06-16 07:32:04
+  updated_at: 2009-07-16 13:33:56
+  url: /science_be_sciences
+  id: "39"
+  icon: sc_be.png
+  function: !binary |
+    56eR56CU5rSl6LS06K6+572u
+
+  page_module_id: "10"
+  hidden: f
+pages_023: 
+  name: !binary |
+    57O757uf5Y+C5pWw6YWN572u
+
+  created_at: 2009-06-14 08:41:20
+  updated_at: 2009-06-16 09:14:56
+  url: /app_configs
+  id: "28"
+  icon: syssetting.png
+  function: !binary |
+    57O757uf5Y+C5pWw6YWN572u
+
+  page_module_id: "4"
+  hidden: f
+pages_012: 
+  name: !binary |
+    5pWZ6IGM5bel5Z+65pys5bel6LWE
+
+  created_at: 2009-06-09 03:28:59
+  updated_at: 2009-06-23 16:21:24
+  url: /basic_salaries
+  id: "16"
+  icon: salary.png
+  function: !binary |
+    5pWZ6IGM5bel5Z+65pys5bel6LWE
+
+  page_module_id: "11"
+  hidden: f
+pages_001: 
+  name: !binary |
+    5pWZ6IGM5ZGY5bel5L+h5oGv
+
+  created_at: 2009-06-02 03:46:41
+  updated_at: 2009-06-09 17:03:02
+  url: /users
+  id: "1"
+  icon: userinfo.png
+  function: !binary |
+    5rWL6K+VIOaVmeiBjOW3peWfuuacrOS/oeaBr+euoeeQhg==
+
+  page_module_id: "2"
+  hidden: f
+pages_046: 
+  name: !binary |
+    dGVtcDLlnKjogYzlrabpmaLlt6XotYQ=
+
+  created_at: 2009-06-26 03:46:45
+  updated_at: 2009-07-16 13:35:40
+  url: /temp2s
+  id: "51"
+  icon: temp.png
+  function: !binary |
+    dGVtcDLlnKjogYzlrabpmaLlt6XotYQ=
+
+  page_module_id: "7"
+  hidden: f
+pages_035: 
+  name: !binary |
+    56a76YCA5LyR5omj5qy+6K6w5b2V
+
+  created_at: 2009-06-16 07:41:48
+  updated_at: 2009-07-17 09:30:04
+  url: /retired_fee_cutting_records
+  id: "40"
+  icon: cut_rec.png
+  function: !binary |
+    56a76YCA5LyR5ZGY5bel5omj5qy+6K6w5b2V
+
+  page_module_id: "12"
+  hidden: f
+pages_024: 
+  name: !binary |
+    5L+u5pS55a+G56CB
+
+  created_at: 2009-06-16 06:53:13
+  updated_at: 2009-07-18 05:28:14
+  url: /profile/change_my_password
+  id: "29"
+  icon: key.png
+  function: !binary |
+    5L+u5pS55a+G56CB
+
+  page_module_id: "6"
+  hidden: f
+pages_013: 
+  name: !binary |
+    5pWZ6IGM5bel5Z+65pys5bel6LWE6K6w5b2V
+
+  created_at: 2009-06-09 03:29:29
+  updated_at: 2009-07-16 13:45:38
+  url: /basic_salary_records
+  id: "17"
+  icon: staff.png
+  function: !binary |
+    5pWZ6IGM5bel5Z+65pys5bel6LWE6K6w5b2V
+
+  page_module_id: "11"
+  hidden: f
+pages_002: 
+  name: !binary |
+    6Zmi57O75Y+K6YOo6Zeo
+
+  created_at: 2009-06-02 03:57:51
+  updated_at: 2009-06-09 17:02:36
+  url: /departments
+  id: "2"
+  icon: department.png
+  function: !binary |
+    5rWL6K+VIOezu+mDqOWfuuacrOS/oeaBr+euoeeQhg==
+
+  page_module_id: "2"
+  hidden: f
+pages_047: 
+  name: !binary |
+    dGVtcDPpgIDkvJHkurrlkZjlt6XotYQ=
+
+  created_at: 2009-06-26 03:47:14
+  updated_at: 2009-07-16 13:35:35
+  url: /temp3s
+  id: "52"
+  icon: temp.png
+  function: !binary |
+    dGVtcDPpgIDkvJHkurrlkZjlt6XotYQ=
+
+  page_module_id: "7"
+  hidden: f
+pages_036: 
+  name: !binary |
+    5Liq5Lq65pS25YWl6K+m57uG
+
+  created_at: 2009-06-16 07:51:32
+  updated_at: 2009-07-16 12:52:02
+  url: /co_details/index
+  id: "41"
+  icon: self_sa.png
+  function: !binary |
+    5Liq5Lq65pS25YWl6K+m57uG
+
+  page_module_id: "13"
+  hidden: f
+pages_025: 
+  name: !binary |
+    5p+l55yL5Liq5Lq65L+h5oGv
+
+  created_at: 2009-06-16 06:56:30
+  updated_at: 2009-06-16 09:05:24
+  url: /profile/my_profile
+  id: "30"
+  icon: userinfo.png
+  function: !binary |
+    5p+l55yL5Liq5Lq65L+h5oGv
+
+  page_module_id: "6"
+  hidden: f
+pages_014: 
+  name: !binary |
+    5omj5qy+
+
+  created_at: 2009-06-09 03:30:57
+  updated_at: 2009-07-16 13:54:58
+  url: /fee_cuttings
+  id: "18"
+  icon: cut.png
+  function: !binary |
+    5omj5qy+
+
+  page_module_id: "11"
+  hidden: f
+pages_003: 
+  name: !binary |
+    6IGM56ew
+
+  created_at: 2009-06-02 07:42:21
+  updated_at: 2009-06-09 17:02:11
+  url: /titles
+  id: "3"
+  icon: title.png
+  function: !binary |
+    5rWL6K+VIOiBjOensOWfuuacrOS/oeaBr+euoeeQhg==
+
+  page_module_id: "2"
+  hidden: f
+pages_048: 
+  name: !binary |
+    dGVtcDTpgIDkvJHkurrlkZjlrabpmaLlt6XotYQ=
+
+  created_at: 2009-06-26 03:47:32
+  updated_at: 2009-07-16 13:35:27
+  url: /temp4s
+  id: "53"
+  icon: temp.png
+  function: !binary |
+    dGVtcDTpgIDkvJHkurrlkZjlrabpmaLlt6XotYQ=
+
+  page_module_id: "7"
+  hidden: f
+pages_037: 
+  name: !binary |
+    6L6F5a+85ZGY5ZCN5Y2V57u05oqk
+
+  created_at: 2009-06-17 06:57:15
+  updated_at: 2009-07-18 08:08:06
+  url: /assistants
+  id: "42"
+  icon: assistant.png
+  function: !binary |
+    6L6F5a+85ZGY5ZCN5Y2V57u05oqk
+
+  page_module_id: "2"
+  hidden: f
+pages_026: 
+  name: !binary |
+    5Liq5Lq65bm05pyI5bel6LWE5YiX6KGo
+
+  created_at: 2009-06-16 06:57:35
+  updated_at: 2009-06-16 07:14:07
+  url: /profile/self_salary
+  id: "31"
+  icon: ""
+  function: !binary |
+    5Liq5Lq65bm05pyI5bel6LWE5YiX6KGo
+
+  page_module_id: "6"
+  hidden: f
+pages_015: 
+  name: !binary |
+    5omj5qy+6K6w5b2V
+
+  created_at: 2009-06-09 03:31:32
+  updated_at: 2009-07-16 13:51:16
+  url: /fee_cutting_records
+  id: "19"
+  icon: cut_rec.png
+  function: !binary |
+    5omj5qy+6K6w5b2V
+
+  page_module_id: "11"
+  hidden: f
+pages_004: 
+  name: !binary |
+    6IGM5Yqh
+
+  created_at: 2009-06-02 07:46:31
+  updated_at: 2009-06-09 17:01:59
+  url: /positions
+  id: "4"
+  icon: position.png
+  function: !binary |
+    5rWL6K+VIOiBjOWKoeWfuuacrOS/oeaBr+euoeeQhjEx
+
+  page_module_id: "2"
+  hidden: f
+pages_049: 
+  name: !binary |
+    dGVtcDXotKLmlL/lnKjogYzlt6XotYQ=
+
+  created_at: 2009-06-26 03:47:52
+  updated_at: 2009-07-16 13:35:31
+  url: /temp5s
+  id: "54"
+  icon: temp.png
+  function: !binary |
+    dGVtcDXotKLmlL/lnKjogYzlt6XotYQ=
+
+  page_module_id: "7"
+  hidden: f
+pages_038: 
+  name: !binary |
+    5LiN5a6a6LS555So5Y+R5pS+6K6w5b2V
+
+  created_at: 2009-06-17 06:58:38
+  updated_at: 2009-07-16 13:36:56
+  url: /undefind_fees
+  id: "43"
+  icon: undefined.png
+  function: !binary |
+    5LiN5a6a6LS555So5Y+R5pS+6K6w5b2V
+
+  page_module_id: "8"
+  hidden: f
+pages_027: 
+  name: !binary |
+    5pWw5o2u5a+85YWl
+
+  created_at: 2009-06-16 07:04:11
+  updated_at: 2009-06-16 08:55:37
+  url: /data_import
+  id: "32"
+  icon: import.png
+  function: !binary |
+    5pWw5o2u5a+85YWl
+
+  page_module_id: "7"
+  hidden: f
+pages_016: 
+  name: !binary |
+    5a2m6Zmi6KGl6LS0
+
+  created_at: 2009-06-09 03:33:18
+  updated_at: 2009-07-18 08:10:26
+  url: /college_benefits
+  id: "20"
+  icon: cobe.png
+  function: !binary |
+    5a2m6Zmi6KGl6LS0
+
+  page_module_id: "11"
+  hidden: f
+pages_005: 
+  name: !binary |
+    6ZO26KGM
+
+  created_at: 2009-06-09 03:23:18
+  updated_at: 2009-06-09 17:01:14
+  url: /banks
+  id: "9"
+  icon: bank.png
+  function: !binary |
+    5Y+R5Y2h6ZO26KGM5Z+65pys5L+h5oGv566h55CG
+
+  page_module_id: "2"
+  hidden: f
+pages_050: 
+  name: !binary |
+    57uf6K6h5L+h5oGv
+
+  created_at: 2009-06-27 04:48:04
+  updated_at: 2009-07-17 09:28:13
+  url: /co_details/total_counting
+  id: "55"
+  icon: report.png
+  function: !binary |
+    57uf6K6h5L+h5oGv
+
+  page_module_id: "13"
+  hidden: f
+pages_039: 
+  name: !binary |
+    5pWw5o2u5aSH5Lu9
+
+  created_at: 2009-06-17 09:49:17
+  updated_at: 2009-07-16 12:33:07
+  url: /data_backup/backup
+  id: "44"
+  icon: backup.png
+  function: !binary |
+    5pWw5o2u5aSH5Lu9
+
+  page_module_id: "4"
+  hidden: f
+pages_028: 
+  name: !binary |
+    5pWw5o2u5a+85Ye6
+
+  created_at: 2009-06-16 07:04:48
+  updated_at: 2009-06-16 09:02:48
+  url: /data_export
+  id: "33"
+  icon: export.png
+  function: !binary |
+    5pWw5o2u5a+85Ye6
+
+  page_module_id: "7"
+  hidden: f
+pages_017: 
+  name: !binary |
+    5a2m6Zmi6KGl6LS06K6w5b2V
+
+  created_at: 2009-06-09 03:33:51
+  updated_at: 2009-06-23 16:01:21
+  url: /college_be_records
+  id: "21"
+  icon: record1.png
+  function: !binary |
+    5a2m6Zmi6KGl6LS06K6w5b2V
+
+  page_module_id: "11"
+  hidden: f
+pages_006: 
+  name: !binary |
+    5ZGY5bel6ZO26KGM5Y2h
+
+  created_at: 2009-06-09 03:24:02
+  updated_at: 2009-06-17 01:29:20
+  url: /bank_cards
+  id: "10"
+  icon: card.png
+  function: !binary |
+    6ZO26KGM5Y2h5Z+65pys5L+h5oGv566h55CG
+
+  page_module_id: "2"
+  hidden: f
+pages_051: 
+  name: !binary |
+    6L6F5a+85ZGY5rSl6LS06K6+572u
+
+  created_at: 2009-07-18 01:09:16
+  updated_at: 2009-07-18 08:06:17
+  url: /assistant_benefit_sets
+  id: "56"
+  icon: assistant-subsidy.png
+  function: !binary |
+    6L6F5a+85ZGY5rSl6LS06K6+572u
+
+  page_module_id: "10"
+  hidden: f
+pages_040: 
+  name: !binary |
+    5pWw5o2u5oGi5aSN
+
+  created_at: 2009-06-17 09:49:54
+  updated_at: 2009-06-17 09:49:54
+  url: /data_backup/restore
+  id: "45"
+  icon: restore.png
+  function: !binary |
+    5pWw5o2u5oGi5aSN
+
+  page_module_id: "4"
+  hidden: f
+pages_029: 
+  name: !binary |
+    5bKX5L2N6IGM5Yqh5rSl6LS0
+
+  created_at: 2009-06-16 07:23:23
+  updated_at: 2009-07-17 09:28:37
+  url: /station_position_benefits
+  id: "34"
+  icon: position-subsidy.png
+  function: !binary |
+    5bKX5L2N6IGM5Yqh5rSl6LS0
+
+  page_module_id: "8"
+  hidden: f
+pages_018: 
+  name: !binary |
+    56a76YCA5LyR5Z+65pys5bel6LWE
+
+  created_at: 2009-06-09 03:34:33
+  updated_at: 2009-07-17 09:29:22
+  url: /retired_basic_salaries
+  id: "22"
+  icon: salary.png
+  function: !binary |
+    56a76YCA5LyR5Z+65pys5bel6LWE
+
+  page_module_id: "12"
+  hidden: f
+pages_007: 
+  name: !binary |
+    5qih5Z2X
+
+  created_at: 2009-06-09 03:25:05
+  updated_at: 2009-06-09 16:59:03
+  url: /page_modules
+  id: "11"
+  icon: module.png
+  function: !binary |
+    6aG16Z2i5qih5Z2X566h55CG
+
+  page_module_id: "1"
+  hidden: f

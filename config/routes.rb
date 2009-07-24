@@ -15,7 +15,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :temp2s
 
-  map.resources :temp1s
+  map.resources :temp1s, :collection => { :data_import => :get }
 
   map.resources :performance_benefit_records
 
