@@ -32,10 +32,10 @@ namespace :db do
       end
     end
 
-    task :dumpusers => :environment do
+    task :dumpcards => :environment do
       sql  = "SELECT * FROM %s"
       ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
-      ["users"].each do |table_name|
+      ["bank_cards"].each do |table_name|
         i = "000"
         File.open("#{RAILS_ROOT}/test/fixtures/#{table_name}.yml", 'w') do |file|
           data = ActiveRecord::Base.connection.select_all(sql % table_name)

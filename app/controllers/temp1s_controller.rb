@@ -57,10 +57,11 @@ class Temp1sController < ApplicationController
     n=0
     FasterCSV.parse(params[:myform][:file])do |row|
 
-      user = User.new
-      user.id_card = row[0]
-      user.name = row[1].strip
-      user.save!
+      card = BankCard.new
+      card.bank_id = 2
+      card.card_number = row[0]
+      card.user_id = User.find_by_name(row[1].strip).blank? ? 1 : User.find_by_name(row[1].strip).id
+      card.save!
       n=n+1
       GC.start if n%50==0
 
