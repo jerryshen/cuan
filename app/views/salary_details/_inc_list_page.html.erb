@@ -1,0 +1,139 @@
+<script>
+  var users = <%= User.to_json%>
+  var getUserName = function(value){
+    return users[value]
+  }
+
+    var deps = <%= Department. to_json %>
+  var getDepName = function(value){
+    return deps[value]
+  }
+
+  Ext.onReady(function(){
+    var columns = [ {
+        header: '部门',
+        dataIndex: 'dep_id',
+        renderer: getDepName
+      },{
+        header: '姓名',
+        dataIndex: 'user_id',
+        renderer: getUserName
+      },{
+        header: '年度',
+        dataIndex: 'year'
+      }, {
+        header: "月份",
+        dataIndex: 'month'
+      }, {
+        header: "基本工资",
+        dataIndex: 'basic'
+      }, {
+        header: "扣款",
+        dataIndex: 'fee_cut'
+      }, {
+        header: "补贴",
+        dataIndex: 'benefit'
+      }, {
+        header: "岗位工资",
+        dataIndex: 's1',
+        hidden: true
+      }, {
+        header: "职务工资",
+        dataIndex: 's2',
+        hidden: true
+      }, {
+        header: "岗位津贴",
+        dataIndex: 's3',
+        hidden: true
+      }, {
+        header: "其他国家出台津补贴",
+        dataIndex: 's4',
+        hidden: true
+      }, {
+        header: "地方出台津补贴",
+        dataIndex: 's5',
+        hidden: true
+      }, {
+        header: "艰苦边远",
+        dataIndex: 's6',
+        hidden: true
+      }, {
+        header: "公改保留补贴",
+        dataIndex: 's7',
+        hidden: true
+      }, {
+        header: "住房公积金",
+        dataIndex: 'f1',
+        hidden: true
+      }, {
+        header: "医疗保险",
+        dataIndex: 'f2',
+        hidden: true
+      }, {
+        header: "水电气费",
+        dataIndex: 'f3',
+        hidden: true
+      }, {
+        header: "上网费",
+        dataIndex: 'f4',
+        hidden: true
+      }, {
+        header: "失业保险",
+        dataIndex: 'f5',
+        hidden: true
+      }, {
+        header: "职工个人教育费",
+        dataIndex: 'f6',
+        hidden: true
+      }, {
+        header: "其他扣款一",
+        dataIndex: 'f7',
+        hidden: true
+      }, {
+        header: "其他扣款二",
+        dataIndex: 'f8',
+        hidden: true
+      }, {
+        header: "其他扣款三",
+        dataIndex: 'f9',
+        hidden: true
+      }, {
+        header: "个人所得税",
+        dataIndex: 'f10',
+        hidden: true
+      }, {
+        header: "生活补贴",
+        dataIndex: 'b1',
+        hidden: true
+      }, {
+        header: "补贴补差",
+        dataIndex: 'b2',
+        hidden: true
+      }, {
+        header: "活工资补贴",
+        dataIndex: 'b3',
+        hidden: true
+      }, {
+        header: "电视补贴",
+        dataIndex: 'b4',
+        hidden: true
+      }, {
+        header: "驻蓉补贴",
+        dataIndex: 'b5',
+        hidden: true
+      }, {
+        header: "其他",
+        dataIndex: 'b6',
+        hidden: true
+      }]
+    var controllerName = "salary_details";
+    options = {
+      baseUrl: "http://" + window.location.host + "/" + controllerName,
+      gridTitle: "在职员工工资详细",
+      newItemLink: "newItem",
+      columns: columns,
+      disableOprateColumn: true
+    }
+    $page = new ExtListPage(options);
+  })
+</script>

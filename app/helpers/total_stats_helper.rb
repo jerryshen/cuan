@@ -1,0 +1,2 @@
+module TotalStatsHelper
+end

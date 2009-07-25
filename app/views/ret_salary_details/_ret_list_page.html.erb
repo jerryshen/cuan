@@ -1,0 +1,81 @@
+<script>
+  Ext.onReady(function(){
+    var columns = [ {
+        header: '年度',
+        dataIndex: 'year'
+      }, {
+        header: "月份",
+        dataIndex: 'month'
+      }, {
+        header: "基本工资",
+        dataIndex: 'basic'
+      }, {
+        header: "扣款",
+        dataIndex: 'fee_cut'
+      }, {
+        header: "补贴",
+        dataIndex: 'benefit'
+      }, {
+        header: "月基本退休费",
+        dataIndex: 's1',
+        hidden: true
+      }, {
+        header: "工改保留补贴_93年",
+        dataIndex: 's2',
+        hidden: true
+      }, {
+        header: "其他国家出台津补贴",
+        dataIndex: 's3',
+        hidden: true
+      }, {
+        header: "地方出台津补贴",
+        dataIndex: 's4',
+        hidden: true
+      }, {
+        header: "其他扣款1",
+        dataIndex: 'f1',
+        hidden: true
+      }, {
+        header: "其他扣款2",
+        dataIndex: 'f2',
+        hidden: true
+      }, {
+        header: "其他扣款3",
+        dataIndex: 'f3',
+        hidden: true
+      }, {
+        header: "补贴补差",
+        dataIndex: 'b1',
+        hidden: true
+      }, {
+        header: "电视补贴",
+        dataIndex: 'b2',
+        hidden: true
+      }, {
+        header: "驻蓉补贴",
+        dataIndex: 'b3',
+        hidden: true
+      }, {
+        header: "其他1",
+        dataIndex: 'b4',
+        hidden: true
+      }, {
+        header: "其他2",
+        dataIndex: 'b5',
+        hidden: true
+      }, {
+        header: "其他3",
+        dataIndex: 'b6',
+        hidden: true
+      }]
+    var controllerName = "profiles";
+    options = {
+      baseUrl: "http://" + window.location.host + "/" + controllerName,
+      gridTitle: "个人工资详细",
+      newItemLink: "newItem",
+      columns: columns,
+      disableOprateColumn: true
+    }
+    $page = new ExtListPage(options);
+  })
+</script>

@@ -1,0 +1,18 @@
+<h1>Listing total_stats</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% @total_stats.each do |total_stat| %>
+  <tr>
+    <td><%= link_to 'Show', total_stat %></td>
+    <td><%= link_to 'Edit', edit_total_stat_path(total_stat) %></td>
+    <td><%= link_to 'Destroy', total_stat, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New total_stat', new_total_stat_path %>

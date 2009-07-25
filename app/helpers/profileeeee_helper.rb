@@ -1,4 +1,4 @@
-module ProfileHelper
+module ProfileeeeeHelper
   def check_user_for_salary
     unless @current_user.is_retired
       render :partial => 'share/salary_entries'
