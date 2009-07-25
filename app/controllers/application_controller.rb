@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
   def session_timeout
-    return  30 * 60  #30 minutes
+    return  120 * 60  #30 minutes
   end
 
   def session_overtime?
@@ -62,6 +62,13 @@ class ApplicationController < ActionController::Base
     return "{'count':#{total},'rows':[#{json_texts.join(",")}]}"
   end
 
+  #hash to json
+  def hash_to_json(records,total)
+    json_texts = []
+    records.to_a.each{ |cat| json_texts << cat.to_json }
+    return "{'count':#{total},'rows':[#{json_texts.join(",")}]}"
+  end
+
   def load_page_data
     @pagesize = 10
     if(params[:page_size])
@@ -74,10 +81,10 @@ class ApplicationController < ActionController::Base
     require 'faster_csv'
     require 'iconv'
     content_type = if request.user_agent =~ /windows/i
-                     'application/vnd.ms-excel'
-                   else
-                     'text/csv'
-                   end
+      'application/vnd.ms-excel'
+    else
+      'text/csv'
+    end
     csv_string = FasterCSV.generate do |csv| 
       header = []
       fields.each_key { |key| header << Iconv.iconv("GB2312//IGNORE","UTF-8//IGNORE", fields[key]) } 

@@ -1,0 +1,49 @@
+<link href="/javascripts/ext-2.2.1/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/grid.css" media="screen" rel="stylesheet" type="text/css" />
+<% unless @current_user.theme.nil? %>
+  <link id="theme" href="/javascripts/ext-2.2.1/resources/css/<%= h @current_user.theme %>.css" media="screen" rel="stylesheet" type="text/css" />
+<% end %>
+<%= stylesheet_link_tag "form.css" %>
+<div id="list-view">
+  <form style="margin: 10px 0px;" id="search_form">
+    <label for="search_year_month">年月:</label>
+    <select style="margin: 0px; padding: 0px; float: none;" name="search_year" id="search_year">
+      <option value="" selected="selected">年度</option>
+      <option value="2009">2009</option>
+      <option value="2010">2010</option>
+      <option value="2011">2011</option>
+      <option value="2012">2012</option>
+    </select>
+    <select style="margin: 0px; padding: 0px; float: none;" name="search_month" id="search_month">
+      <option value="" selected="selected">月份</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+    <input class="button" type="button" id="btnSearch" value="搜索"/>
+    <input value="重置"class="btnreset" type="reset" />
+    <input value="刷新 " onclick="window.location.reload()" class="btnrefresh" type="button"  />
+  </form>
+  <div>
+    <div id="grid-wrap">
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag 'ext-2.2.1/adapter/jquery/jquery.js'%>
+<%= javascript_include_tag 'ext-2.2.1/adapter/jquery/ext-jquery-adapter.js'%>
+<%= javascript_include_tag 'ext-2.2.1/ext-all.js'%>
+<%= javascript_include_tag 'ExtListPage.js' %>
+<% if @current_user.is_retired %>
+  <%= render :partial => 'inc_list_page'  %>
+<% else %>
+  <%= render :partial => 'ret_list_page'  %>
+<% end %>

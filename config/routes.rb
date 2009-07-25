@@ -1,4 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :ret_salary_details
+
+  map.resources :profiles, :collection => { :change_my_password => :get, :my_profile => :get}
+
+  map.resources :total_stats
+
+  map.resources :salary_details
+
   map.resources :assistant_benefit_confirms
 
   map.resources :assistant_benefit_sets
@@ -133,7 +141,7 @@ ActionController::Routing::Routes.draw do |map|
   # consider removing the them or commenting them out if you're using named routes and resources.
   map.root :controller => 'admin', :action => 'index'
   map.connect '/departments/users_to_json', :controller => "departments", :action => "users_to_json"
-  map.connect ':controller/:action', :controller => ["admin,data_import,data_backup,profile,temp1s,welcome"]
+  map.connect ':controller/:action', :controller => ["admin,data_import,data_backup,temp1s,welcome"]
   map.connect '/logout', :controller => 'admin', :action => 'logout'
   map.connect '/signin', :controller => 'admin', :action => 'login'
   map.connect ':controller/:action/:id'
