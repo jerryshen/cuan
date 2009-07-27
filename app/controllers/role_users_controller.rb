@@ -4,8 +4,6 @@ class RoleUsersController < ApplicationController
   # GET /role_users
   # GET /role_users.xml
   def index
-    @role_users = RoleUser.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @role_users }

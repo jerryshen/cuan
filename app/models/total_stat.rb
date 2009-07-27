@@ -79,4 +79,65 @@ class TotalStat
       return arr
     end
   end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  def self.test
+    arr = []
+    arr << {"year" => 2009, "month" => 6, "user_id" => 1, "total" => 2000}
+    arr << {"year" => 2009, "month" => 6, "user_id" => 2, "total" => 2000}
+    arr << {"year" => 2009, "month" => 6, "user_id" => 3, "total" => 2000}
+    arr << {"year" => 2009, "month" => 6, "user_id" => 4, "total" => 2000}
+    arr << {"year" => 2009, "month" => 6, "user_id" => 5, "total" => 2000}
+    arr << {"year" => 2009, "month" => 6, "user_id" => 6, "total" => 2000}
+    arr << {"year" => 2009, "month" => 7, "user_id" => 1, "total" => 2000}
+    arr << {"year" => 2009, "month" => 7, "user_id" => 2, "total" => 2000}
+    arr << {"year" => 2009, "month" => 7, "user_id" => 3, "total" => 2000}
+    arr << {"year" => 2009, "month" => 7, "user_id" => 4, "total" => 2000}
+    arr << {"year" => 2009, "month" => 7, "user_id" => 5, "total" => 2000}
+    arr << {"year" => 2009, "month" => 7, "user_id" => 6, "total" => 2000}
+
+    return arr
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

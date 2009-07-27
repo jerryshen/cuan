@@ -3,7 +3,6 @@ class UndefindFeesController < ApplicationController
   # GET /undefind_fees
   # GET /undefind_fees.xml
   def index
-    @undefind_fees = UndefindFee.all
     @search_department = ''
 
     respond_to do |format|

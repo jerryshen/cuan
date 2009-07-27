@@ -1,11 +1,7 @@
 class BanksController < ApplicationController
-  #  protect_from_forgery :except => :index
-  #  skip_before_filter :verify_authenticity_token
   # GET /banks
   # GET /banks.xml
   def index
-    @banks = Bank.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @banks }

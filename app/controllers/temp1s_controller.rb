@@ -1,8 +1,6 @@
 class Temp1sController < ApplicationController
  require 'fastercsv'
   def index
-    @temp1s = Temp1.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @temp1s }

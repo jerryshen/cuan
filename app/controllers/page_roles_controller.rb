@@ -1,11 +1,7 @@
 class PageRolesController < ApplicationController
-  #	protect_from_forgery :except => :index
-  #  skip_before_filter :verify_authenticity_token
   # GET /page_roles
   # GET /page_roles.xml
   def index
-    @page_roles = PageRole.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @page_roles }

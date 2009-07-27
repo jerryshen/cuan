@@ -2,8 +2,6 @@ class AssistantsController < ApplicationController
   # GET /assistants
   # GET /assistants.xml
   def index
-    @assistants = Assistant.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @assistants }

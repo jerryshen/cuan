@@ -3,8 +3,6 @@ class FeeCuttingsController < ApplicationController
   # GET /fee_cuttings
   # GET /fee_cuttings.xml
   def index
-    @fee_cuttings = FeeCutting.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @fee_cuttings }

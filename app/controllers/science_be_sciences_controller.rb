@@ -2,8 +2,6 @@ class ScienceBeSciencesController < ApplicationController
   # GET /science_be_sciences
   # GET /science_be_sciences.xml
   def index
-    @science_be_sciences = ScienceBenefit.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @science_be_sciences }

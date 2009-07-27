@@ -3,8 +3,6 @@ class StationPositionBenefitRecordsController < ApplicationController
   # GET /station_position_benefit_records
   # GET /station_position_benefit_records.xml
   def index
-    @station_position_benefit_records = StationPositionBenefitRecord.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @station_position_benefit_records }

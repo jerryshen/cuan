@@ -2,8 +2,6 @@ class RetiredBasicSalaryRecordsController < ApplicationController
   # GET /retired_basic_salary_records
   # GET /retired_basic_salary_records.xml
   def index
-    @retired_basic_salary_records = RetiredBasicSalaryRecord.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @retired_basic_salary_records }

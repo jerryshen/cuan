@@ -4,8 +4,6 @@ class BankCardsController < ApplicationController
   # GET /bank_cards
   # GET /bank_cards.xml
   def index
-    @bank_cards = BankCard.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @bank_cards }

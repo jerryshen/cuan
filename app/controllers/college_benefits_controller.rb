@@ -4,8 +4,6 @@ class CollegeBenefitsController < ApplicationController
   # GET /college_benefits
   # GET /college_benefits.xml
   def index
-    @college_benefits = CollegeBenefit.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @college_benefits }

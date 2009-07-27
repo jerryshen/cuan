@@ -2,8 +2,6 @@ class PerformanceBenefitStdsController < ApplicationController
   # GET /performance_benefit_stds
   # GET /performance_benefit_stds.xml
   def index
-    @performance_benefit_stds = PerformanceBenefitStd.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @performance_benefit_stds }

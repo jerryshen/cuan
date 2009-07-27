@@ -2,8 +2,6 @@ class RetiredFeeCuttingRecordsController < ApplicationController
   # GET /retired_fee_cutting_records
   # GET /retired_fee_cutting_records.xml
   def index
-    @retired_fee_cutting_records = RetiredFeeCuttingRecord.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @retired_fee_cutting_records }

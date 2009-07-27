@@ -2,8 +2,6 @@ class ClassBePersonnelsController < ApplicationController
   # GET /class_be_personnels
   # GET /class_be_personnels.xml
   def index
-    @class_be_personnels = ClassBenefit.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @class_be_personnels }

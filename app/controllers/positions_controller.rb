@@ -4,8 +4,6 @@ class PositionsController < ApplicationController
   # GET /positions
   # GET /positions.xml
   def index
-    @positions = Position.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @positions }

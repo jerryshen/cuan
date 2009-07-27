@@ -2,8 +2,6 @@ class ClassMonthBenefitRecordsController < ApplicationController
   # GET /class_month_benefit_records
   # GET /class_month_benefit_records.xml
   def index
-    @class_month_benefit_records = ClassMonthBenefitRecord.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @class_month_benefit_records }

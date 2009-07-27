@@ -1,11 +1,7 @@
 class RetiredBasicSalariesController < ApplicationController
-  #  protect_from_forgery :except => :index
-  #  skip_before_filter :verify_authenticity_token
   # GET /retired_basic_salaries
   # GET /retired_basic_salaries.xml
   def index
-    @retired_basic_salaries = RetiredBasicSalary.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @retired_basic_salaries }

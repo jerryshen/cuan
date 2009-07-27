@@ -2,8 +2,6 @@ class AssistantBenefitSetsController < ApplicationController
   # GET /assistant_benefit_sets
   # GET /assistant_benefit_sets.xml
   def index
-    @assistant_benefit_sets = AssistantBenefit.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @assistant_benefit_sets }

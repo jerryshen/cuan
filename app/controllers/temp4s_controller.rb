@@ -1,8 +1,6 @@
 class Temp4sController < ApplicationController
 
   def index
-    @temp4s = Temp4.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @temp4s }

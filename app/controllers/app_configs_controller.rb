@@ -2,8 +2,6 @@ class AppConfigsController < ApplicationController
   # GET /app_configs
   # GET /app_configs.xml
   def index
-    @app_configs = AppConfig.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @app_configs }

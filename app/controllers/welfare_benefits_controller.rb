@@ -3,8 +3,6 @@ class WelfareBenefitsController < ApplicationController
   # GET /welfare_benefits
   # GET /welfare_benefits.xml
   def index
-    @welfare_benefits = WelfareBenefit.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @welfare_benefits }

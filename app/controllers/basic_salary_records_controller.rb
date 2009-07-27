@@ -1,11 +1,7 @@
 class BasicSalaryRecordsController < ApplicationController
-  #  protect_from_forgery :except => :index
-  #  skip_before_filter :verify_authenticity_token
   # GET /basic_salary_records
   # GET /basic_salary_records.xml
   def index
-    @basic_salary_records = BasicSalaryRecord.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @basic_salary_records }

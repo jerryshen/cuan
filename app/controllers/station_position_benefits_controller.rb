@@ -2,8 +2,6 @@ class StationPositionBenefitsController < ApplicationController
   protect_from_forgery :except => [:prev, :next, :last]
 
   def index
-    @station_position_benefits = StationPositionBenefit.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @station_position_benefits }

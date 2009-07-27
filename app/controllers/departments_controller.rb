@@ -4,8 +4,6 @@ class DepartmentsController < ApplicationController
   # GET /departments
   # GET /departments.xml
   def index
-    @departments = Department.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @departments }
