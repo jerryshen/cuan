@@ -1,5 +1,9 @@
 <%= f.error_messages %>
 <p>
+  <%= f.label :user_number, "员工号" %>
+  <%= f.text_field :user_number %>
+</p>
+<p>
   <%= f.label :name, "姓名" %>
   <%= f.text_field :name, :class => "required" %>
 </p>
@@ -24,20 +28,53 @@
   <%= f.select :position_id, Position.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择职务..." }, :class => "required" %>
 </p>
 <p>
+  <%= f.label :station_id, "岗位" %>
+  <%= f.select :station_id, Station.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择岗位..." } %>
+</p>
+<p>
+  <%= f.label :education_id, "学历" %>
+  <%= f.select :education_id, Education.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择学历..." } %>
+</p>
+<p>
+  <%= f.label :degree_id, "学位" %>
+  <%= f.select :degree_id, Degree.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择学位..." } %>
+</p>
+<p>
+  <%= f.label :status_id, "身份" %>
+  <%= f.select :status_id, Status.all.collect {|p| [ p.name, p.id ] }, {:include_blank => "请选择身份..." }%>
+</p>
+<p>
   <%= f.label :birthday, "生日" %>
   <%= f.date_select :birthday, {:start_year => 1950, :end_year => 2000, :order => [:year, :month, :day],:use_month_numbers => true}, {:class => "required", :style => "width:80px" }%>
 </p>
 <p>
+  <%= f.label :job_date, "参加工作时间" %>
+  <%= f.date_select :job_date, {:start_year => 1920, :end_year => 2050, :order => [:year, :month, :day],:use_month_numbers => true}, {:style => "width:80px" }%>
+</p>
+<p>
+  <%= f.label :ensch_date, "进校工作时间" %>
+  <%= f.date_select :ensch_date, {:start_year => 1920, :end_year => 2050, :order => [:year, :month, :day],:use_month_numbers => true}, {:style => "width:80px" }%>
+</p>
+<p>
+  <%= f.label :gra_school, "毕业院校" %>
+  <%= f.text_field :gra_school %>
+</p>
+<p>
+  <label>是否签约</label>
+  <label for="sign"><%= f.radio_button :is_signned, true , :onclick => "enable()" %>已签约</label>
+  <label for="sign"><%= f.radio_button :is_signned, false, :onclick => "disable()"  %>未签约</label>
+</p>
+<p>
   <%= f.label :contract_number, "合同号" %>
-  <%= f.text_field :contract_number %>
+  <%= f.text_field :contract_number, :disabled => true %>
 </p>
 <p>
   <%= f.label :valid_from, "签订时间" %>
-  <%= f.date_select :valid_from, {:start_year => 2000, :end_year => 2050, :order => [:year, :month, :day],:use_month_numbers => true}, {:style => "width:80px" }%>
+  <%= f.date_select :valid_from, {:start_year => 2000, :end_year => 2050, :order => [:year, :month, :day],:use_month_numbers => true, :prompt => {:year => "年度", :month => "月份", :day => "日期"}}, {:style => "width:80px" , :disabled => true}%>
 </p>
 <p>
   <%= f.label :valid_end, "到期时间" %>
-  <%= f.date_select :valid_end, {:start_year => 2000, :end_year => 2050, :order => [:year, :month, :day],:use_month_numbers => true}, {:style => "width:80px" }%>
+  <%= f.date_select :valid_end, {:start_year => 2000, :end_year => 2050, :order => [:year, :month, :day],:use_month_numbers => true, :prompt => {:year => "年度", :month => "月份", :day => "日期"}}, {:style => "width:80px" , :disabled => true}%>
 </p>
 <p>
   <label>性别</label>
@@ -54,3 +91,24 @@
   <label for="retired"><%= f.radio_button :is_retired, false  %>在职</label>
   <label for="retired"><%= f.radio_button :is_retired, true   %>离退休</label>
 </p>
+
+<script>
+  function enable(){
+    document.getElementById('user_contract_number').disabled=false;
+    document.getElementById('user_valid_from_1i').disabled=false;
+    document.getElementById('user_valid_from_2i').disabled=false;
+    document.getElementById('user_valid_from_3i').disabled=false;
+    document.getElementById('user_valid_end_1i').disabled=false;
+    document.getElementById('user_valid_end_2i').disabled=false;
+    document.getElementById('user_valid_end_3i').disabled=false
+  }
+    function disable(){
+    document.getElementById('user_contract_number').disabled=true;
+    document.getElementById('user_valid_from_1i').disabled=true;
+    document.getElementById('user_valid_from_2i').disabled=true;
+    document.getElementById('user_valid_from_3i').disabled=true;
+    document.getElementById('user_valid_end_1i').disabled=true;
+    document.getElementById('user_valid_end_2i').disabled=true;
+    document.getElementById('user_valid_end_3i').disabled=true
+  }
+</script>

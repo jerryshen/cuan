@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 50) do
+ActiveRecord::Schema.define(:version => 56) do
 
   create_table "app_configs", :force => true do |t|
     t.string   "key"
@@ -145,7 +145,19 @@ ActiveRecord::Schema.define(:version => 50) do
 
   add_index "college_benefits", ["user_id"], :name => "index_college_benefits_on_user_id"
 
+  create_table "degrees", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "departments", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "educations", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -216,6 +228,7 @@ ActiveRecord::Schema.define(:version => 50) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "icon"
+    t.integer  "index",          :default => 0
   end
 
   add_index "pages", ["page_module_id"], :name => "index_pages_on_page_module_id"
@@ -378,6 +391,18 @@ ActiveRecord::Schema.define(:version => 50) do
 
   add_index "station_position_benefits", ["user_id"], :name => "index_station_position_benefits_on_user_id"
 
+  create_table "stations", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "statuses", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "temp1s", :force => true do |t|
     t.string   "f1"
     t.string   "f2"
@@ -535,10 +560,23 @@ ActiveRecord::Schema.define(:version => 50) do
     t.string   "contract_number"
     t.datetime "valid_from"
     t.datetime "valid_end"
+    t.string   "user_number"
+    t.datetime "job_date"
+    t.datetime "ensch_date"
+    t.string   "gra_school"
+    t.boolean  "is_signned",      :default => false
+    t.integer  "station_id"
+    t.integer  "education_id"
+    t.integer  "degree_id"
+    t.integer  "status_id"
   end
 
+  add_index "users", ["degree_id"], :name => "index_users_on_degree_id"
   add_index "users", ["department_id"], :name => "index_users_on_department_id"
+  add_index "users", ["education_id"], :name => "index_users_on_education_id"
   add_index "users", ["position_id"], :name => "index_users_on_position_id"
+  add_index "users", ["station_id"], :name => "index_users_on_station_id"
+  add_index "users", ["status_id"], :name => "index_users_on_status_id"
   add_index "users", ["td_belongs_id"], :name => "index_users_on_td_belongs_id"
   add_index "users", ["title_id"], :name => "index_users_on_title_id"
 

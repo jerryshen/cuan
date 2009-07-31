@@ -2,6 +2,10 @@
   <fieldset>
     <legend>修改教职工</legend>
     <%= render :partial => 'form', :locals => {:f =>f}  %>
+    <p><label for change_password>修改密码</label>
+    <input type="button" onclick="document.getElementById('user_update_password').disabled=false" value="启用密码修改" width="110" /></p>
+    <p><label for change_password></label>
+      <%= f.password_field :update_password, :disabled => true  %>
     <p class="bbar">
       <input type="button" value="上一条" id="btnPrev" />
       <input type="button" value='保存' id ="update"  />

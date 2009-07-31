@@ -1,4 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :statuses
+
+  map.resources :degrees
+
+  map.resources :educations
+
+  map.resources :stations
+
   map.resources :ret_salary_details
 
   map.resources :profiles, :collection => { :change_my_password => :get, :my_profile => :get}

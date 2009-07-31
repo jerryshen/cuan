@@ -73,6 +73,9 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     @user = User.new(params[:user])
+    @user.contract_number = params[:user][:contract_number] unless params[:user][:contract_number].blank?
+    @user.valid_from = params[:user][:valid_from] unless params[:user][:valid_from].blank?
+    @user.valid_end = params[:user][:valid_end] unless params[:user][:valid_end].blank?
 
     respond_to do |format|
       if @user.save
@@ -91,7 +94,10 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
-    @user.update_password = params[:user][:id_card]
+    @user.contract_number = params[:user][:contract_number] unless params[:user][:contract_number].blank?
+    @user.valid_from = params[:user][:valid_from] unless params[:user][:valid_from].blank?
+    @user.valid_end = params[:user][:valid_end] unless params[:user][:valid_end].blank?
+    @user.update_password = params[:user][:update_password].strip unless params[:user][:update_password].blank?
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(@user) }
@@ -125,6 +131,15 @@ class UsersController < ApplicationController
       else
         render :text => "false"
       end
+    end
+  end
+
+  def reset_password
+    @user = User.find(params[:id])
+    if @user.update_attributes(:update_password => @user.id_card)
+      render :text =>"true"
+    else
+      render :text =>"false"
     end
   end
 

@@ -5,6 +5,10 @@ class User < ActiveRecord::Base
   belongs_to :td_belongs, :class_name => 'Department', :foreign_key => 'department_id'
   belongs_to :title, :class_name => 'Title', :foreign_key =>'title_id'
   belongs_to :position, :class_name => 'Position', :foreign_key => 'position_id'
+  belongs_to :station
+  belongs_to :education
+  belongs_to :degree
+  belongs_to :status
 
   has_many :role_users
   has_many :roles, :through => :role_users, :class_name => 'Role', :foreign_key => 'role_id'
@@ -101,7 +105,7 @@ class User < ActiveRecord::Base
   def accessable_pages
     pages = []
     self.roles.each{ |r| pages += r.pages }
-    return pages 
+    return pages.sort!{|x,y| x.index <=> y.index}
   end
 
   #用户的菜单列表
