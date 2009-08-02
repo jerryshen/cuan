@@ -93,14 +93,18 @@ class RetiredFeeCuttingRecordsController < ApplicationController
     conditions = '1=1'
     condition_values = []
     if(!params[:search_name].blank?)
-      if user = User.find_by_name(params[:search_name])
-        user_id = user.id
+      users = User.find(:all, :conditions => ["name like ? AND is_retired = ?", "%#{params[:search_name]}%", true])
+      unless users.blank?
+        ids = []
+        users.each do |u|
+          ids.push(u.id)
+        end
       else
-        user_id = 0
+        ids = []
       end
-      joins = ""
-      conditions += " AND user_id = ?"
-      condition_values << user_id
+      idss = ids.join(",")
+      conditions += " AND user_id in (#{idss})"
+      condition_values << []
     end
 
     if(!params[:search_year].blank?)

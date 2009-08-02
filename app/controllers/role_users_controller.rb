@@ -93,17 +93,22 @@ class RoleUsersController < ApplicationController
 
     conditions = '1=1'
     condition_values = []
-    if(params[:search_name] && params[:search_name] != '')
-      if user = User.find_by_name(params[:search_name])
-        user_id = user.id
+    if(!params[:search_name].blank?)
+      users = User.find(:all, :conditions => ["name like ?", "%#{params[:search_name]}%"])
+      unless users.blank?
+        ids = []
+        users.each do |u|
+          ids.push(u.id)
+        end
       else
-        user_id = 0
+        ids = []
       end
-      conditions += " AND user_id = ? "
-      condition_values << user_id
+      idss = ids.join(",")
+      conditions += " AND user_id in (#{idss})"
+      condition_values << []
     end
 
-    if(params[:search_role_id] && params[:search_role_id] != '')
+    unless params[:search_role_id].blank?
       conditions += " AND role_id = ? "
       condition_values << params[:search_role_id]
     end

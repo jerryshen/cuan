@@ -1,6 +1,4 @@
 class CollegeBenefitsController < ApplicationController
-  #  protect_from_forgery :except => :index
-  #  skip_before_filter :verify_authenticity_token
   # GET /college_benefits
   # GET /college_benefits.xml
   def index
@@ -98,14 +96,18 @@ class CollegeBenefitsController < ApplicationController
     conditions = '1=1'
     condition_values = []
     if(!params[:search_name].blank?)
-      if user = User.find_by_name(params[:search_name])
-        user_id = user.id
+      users = User.find(:all, :conditions => ["name like ?", "%#{params[:search_name]}%"])
+      unless users.blank?
+        ids = []
+        users.each do |u|
+          ids.push(u.id)
+        end
       else
-        user_id = 0
+        ids = []
       end
-      joins = ""
-      conditions += " AND user_id = ?"
-      condition_values << user_id
+      idss = ids.join(",")
+      conditions += " AND user_id in (#{idss})"
+      condition_values << []
     end
 
     if(!params[:search_department_id].blank?)
