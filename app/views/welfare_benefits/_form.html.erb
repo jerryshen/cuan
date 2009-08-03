@@ -10,5 +10,5 @@
 </p>
 <p>
   <%= f.label :date, "发放时间"%>
-  <%= f.datetime_select :date %>
+  <%= f.date_select :date, {:start_year => 2009, :end_year => 2015, :order => [:year, :month, :day],:use_month_numbers => true}, {:class => "required", :style => "width:80px" }%>
 </p>
