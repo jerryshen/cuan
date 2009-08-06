@@ -1,0 +1,88 @@
+<script>
+  var users = <%= User.to_json%>
+  var getUserName = function(value, p, record){
+    return users[value]
+  }
+  var makeAsConfirmLink = function(value, p, record){
+    var text = value.toString()=="true" ? "已经通过审核" : "未审核（点击通过审核）";
+    return String.format("<a href='#' action ='confirm' title='审核' class='gridButton' url='/retired_basic_salary_records/confirm/{0}'>{1}</a>",record.data.id,text);
+  }
+
+  var bind_confirm_link_click = function(alink){
+    var url = alink.getAttribute("url");
+    Ext.get(alink).on("click",function(){
+      Ext.Ajax.request({
+        url: url,
+        success: function(rq,params){ //rq:请求的响应，params请求时的参数（此处为｛url,success,failure｝)
+          if(rq.responseText=="true"){
+            $page.refreshGridData();
+          }else{
+            Ext.MessageBox.show({msg:"您么权限操作已经通过审核的津贴",buttons: Ext.MessageBox.OK,icon:Ext.MessageBox.ERROR});
+          }
+        },
+        failure: function(){
+          Ext.MessageBox.show({msg:"您没有权限操作已经通过审核的津贴",buttons: Ext.MessageBox.OK,icon:Ext.MessageBox.WARNING});
+        }
+      });
+    })
+  }
+  Ext.onReady(function(){
+    var columns = [{
+        header: "序号",
+        dataIndex: 'id',
+        width: 40,
+        sortable: true,
+        type: "int",
+        resizable: false
+      }, {
+        header: "教职工",
+        dataIndex: 'user_id',
+        sortable: true,
+        renderer: getUserName
+      }, {
+        header: "年度",
+        dataIndex: 'year',
+        sortable: true
+      }, {
+        header: "月份",
+        dataIndex: 'month',
+        sortable: true
+      }, {
+        header: "月基本退休费",
+        dataIndex: 'basic_fee',
+        sortable: true
+      }, {
+        header: "工改保留补贴_93年",
+        dataIndex: 'stay_be',
+        width : 150,
+        sortable: true
+      }, {
+        header: "其他国家出台津补贴",
+        dataIndex: 'foreign_be',
+        width : 150,
+        sortable: true
+      }, {
+        header: "地方出台津补贴",
+        dataIndex: 'region_be',
+        sortable: true
+      }, {
+        header: "审核",
+        dataIndex: 'confirm',
+        sortable: true,
+        width: 150,
+        type: 'boolean',
+        renderer: makeAsConfirmLink
+      }]
+    var controllerName = "retired_basic_salary_records";
+    options = {
+      baseUrl: "http://" + window.location.host + "/" + controllerName,
+      gridTitle: "离退休人员基本工资记录管理列表",
+      newItemLink: "newItem",
+      columns: columns,
+      bindlinks: {
+        "confirm": bind_confirm_link_click
+      }
+    }
+    $page = new ExtListPage(options);
+  })
+</script>

@@ -4,6 +4,18 @@ module ApplicationHelper
     return "四川建筑职业技术学院个人收入管理信息系统"
   end
 
+  def finance_policy(roles)
+    arr_roles = []
+    roles.each do |role|
+      arr_roles.push(role.name)
+    end
+    arr_roles.join(",")
+    if arr_roles.include? "财务人员"
+      render :partial => "make"
+    else
+      render :partial => "confirm"
+    end
+  end
   #select options for index searching
   def list_departments_for_search
     @options = [["所有",""]]

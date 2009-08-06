@@ -120,6 +120,15 @@ class FeeCuttingRecordsController < ApplicationController
     end
   end
 
+  def confirm
+    @fee_cutting_record = FeeCuttingRecord.find(params[:id])
+    if @fee_cutting_record.update_attributes(:confirm => !@fee_cutting_record.confirm)
+      render :text =>"true"
+    else
+      render :text =>"false"
+    end
+  end
+
   private
   def get_json
     load_page_data

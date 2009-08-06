@@ -1,0 +1,66 @@
+<script>
+  var users = <%= User.to_json%>
+  var getUserName = function(value, p, record){
+    return users[value]
+  }
+  Ext.onReady(function(){
+    var columns = [{
+        header: "ID",
+        dataIndex: 'id',
+        width: 30,
+        sortable: true,
+        type: "int",
+        resizable: false
+      }, {
+        header: "教职工",
+        dataIndex: 'user_id',
+        sortable: true,
+        renderer: getUserName
+      }, {
+        header: "年度",
+        dataIndex: 'year',
+        sortable: true
+      }, {
+        header: "月份",
+        dataIndex: 'month',
+        sortable: true
+      }, {
+        header: "岗位工资",
+        dataIndex: 'station_sa',
+        sortable: true
+      }, {
+        header: "职务工资",
+        dataIndex: 'position_sa',
+        sortable: true
+      }, {
+        header: "岗位津贴",
+        dataIndex: 'station_be',
+        sortable: true
+      }, {
+        header: "其他国家出台津补贴",
+        dataIndex: 'foreign_be',
+        width : 150,
+        sortable: true
+      }, {
+        header: "地方出台津补贴",
+        dataIndex: 'region_be',
+        sortable: true
+      }, {
+        header: "艰苦边远",
+        dataIndex: 'hard_be',
+        sortable: true
+      }, {
+        header: "公改保留补贴",
+        dataIndex: 'stay_be',
+        sortable: true
+      }]
+    var controllerName = "basic_salary_records";
+    options = {
+      baseUrl: "http://" + window.location.host + "/" + controllerName,
+      gridTitle: "教职工基本工资记录信息列表",
+      newItemLink: "newItem",
+      columns: columns
+    }
+    $page = new ExtListPage(options);
+  })
+</script>

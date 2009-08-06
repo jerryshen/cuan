@@ -90,6 +90,15 @@ class BasicSalaryRecordsController < ApplicationController
     end
   end
 
+  def confirm
+    @basic_salary_record = BasicSalaryRecord.find(params[:id])
+    if @basic_salary_record.update_attributes(:confirm => !@basic_salary_record.confirm)
+      render :text =>"true"
+    else
+      render :text =>"false"
+    end
+  end
+
   private
   def get_json
     load_page_data

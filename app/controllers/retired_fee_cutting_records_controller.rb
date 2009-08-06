@@ -86,6 +86,15 @@ class RetiredFeeCuttingRecordsController < ApplicationController
     end
   end
 
+  def confirm
+    @retired_fee_cutting_record = RetiredFeeCuttingRecord.find(params[:id])
+    if @retired_fee_cutting_record.update_attributes(:confirm => !@retired_fee_cutting_record.confirm)
+      render :text =>"true"
+    else
+      render :text =>"false"
+    end
+  end
+
   private
   def get_json
     load_page_data
