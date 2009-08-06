@@ -5,7 +5,7 @@
 <% end %>
 <%= stylesheet_link_tag "form.css" %>
 <div id="list-view">
-<form style="margin: 10px 0px;" id="search_form">
+  <form style="margin: 10px 0px;" id="search_form">
     <label for="search_department_id">系部:</label>
     <% list_departments_for_search %>
     <select style="margin:0px;padding:0px;float:none;" id="search_department_id" name="search_department_id">
@@ -38,19 +38,19 @@
       <option value="11">11</option>
       <option value="12">12</option>
     </select>
-  <input class="button" type="button" id="btnSearch" value="搜索"/>
-  <input value="重置"class="btnreset" type="reset" />
-  <input value="刷新 " onclick="window.location.reload()" class="btnrefresh" type="button"  />
-</form>
-<div>
+    <input class="button" type="button" id="btnSearch" value="搜索"/>
+    <input value="重置"class="btnreset" type="reset" />
+    <input value="刷新 " onclick="window.location.reload()" class="btnrefresh" type="button"  />
+  </form>
   <div>
-    <div class="nav">
-      <span class="button" id="newItem" onclick="$page.showNewView()"><img  src="/images/icons/new.png"/>新建</span>
-    </div>
-    <div id="grid-wrap">
+    <div>
+      <div class="nav">
+        <span class="button" id="newItem" onclick="$page.showNewView()"><img  src="/images/icons/new.png"/>新建</span>
+      </div>
+      <div id="grid-wrap">
+      </div>
     </div>
   </div>
-</div>
 </div>
 <%= javascript_include_tag 'ext-2.2.1/adapter/jquery/jquery.js'%>
 <%= javascript_include_tag 'ext-2.2.1/adapter/jquery/ext-jquery-adapter.js'%>
@@ -60,61 +60,4 @@
 <%= javascript_include_tag 'jquery-validate/jquery.validate.js' %>
 <%= javascript_include_tag 'jquery-validate/localization/messages_cn.js' %>
 <%= javascript_include_tag 'AjaxForm.js' %>
-<script>
-    var users = <%= User.to_json%>
-  var getUserName = function(value, p, record){
-    return users[value]
-  }
-  //{header: [dataIndex(首字母大写)], renderer: money(Function),menuDisabled: [true],
-  // dataIndex: "fieldName" ,width: 100, sortable: [false], resizable: [false]}
-  //框[]中的为默认值
-  Ext.onReady(function(){
-    var columns = [{
-        header: "ID",
-        dataIndex: 'id',
-        width: 30,
-        sortable: true,
-        type: "int",
-        resizable: false
-      }, {
-        header: "教职工",
-        dataIndex: 'user_id',
-        sortable: true,
-        renderer: getUserName
-      }, {
-        header: "年度",
-        dataIndex: 'year',
-        sortable: true
-      }, {
-        header: "月份",
-        dataIndex: 'month',
-        sortable: true
-      }, {
-        header: "月基本退休费",
-        dataIndex: 'basic_fee',
-        sortable: true
-      }, {
-        header: "工改保留补贴_93年",
-        dataIndex: 'stay_be',
-        width : 150,
-        sortable: true
-      }, {
-        header: "其他国家出台津补贴",
-        dataIndex: 'foreign_be',
-        width : 150,
-        sortable: true
-      }, {
-        header: "地方出台津补贴",
-        dataIndex: 'region_be',
-        sortable: true
-      }]
-    var controllerName = "retired_basic_salary_records";
-    options = {
-      baseUrl: "http://" + window.location.host + "/" + controllerName,
-      gridTitle: "离退休人员基本工资记录管理列表",
-      newItemLink: "newItem",
-      columns: columns
-    }
-    $page = new ExtListPage(options);
-  })
-</script>
+<%= finance_policy(@current_user.roles)  %>

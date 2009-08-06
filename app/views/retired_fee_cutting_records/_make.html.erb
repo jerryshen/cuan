@@ -1,0 +1,49 @@
+<script>
+  var users = <%= User.to_json%>
+  var getUserName = function(value, p, record){
+    return users[value]
+  }
+  Ext.onReady(function(){
+    var columns = [{
+        header: "序号",
+        dataIndex: 'id',
+        width: 40,
+        sortable: true,
+        type: "int",
+        resizable: false
+      }, {
+        header: "姓名",
+        dataIndex: 'user_id',
+        sortable: true,
+        renderer: getUserName
+      }, {
+        header: "年度",
+        dataIndex: 'year',
+        sortable: true
+      }, {
+        header: "月份",
+        dataIndex: 'month',
+        sortable: true
+      }, {
+        header: "其他扣款1",
+        dataIndex: 'other_fee1',
+        sortable: true
+      }, {
+        header: "其他扣款2",
+        dataIndex: 'other_fee2',
+        sortable: true
+      }, {
+        header: "其他扣款3",
+        dataIndex: 'other_fee3',
+        sortable: true
+      }]
+    var controllerName = "retired_fee_cutting_records";
+    options = {
+      baseUrl: "http://" + window.location.host + "/" + controllerName,
+      gridTitle: "离退休人员扣款记录管理列表",
+      newItemLink: "newItem",
+      columns: columns
+    }
+    $page = new ExtListPage(options);
+  })
+</script>

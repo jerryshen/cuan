@@ -1,6 +1,4 @@
 class CollegeBeRecordsController < ApplicationController
-  #  protect_from_forgery :except => :index
-  #  skip_before_filter :verify_authenticity_token
   # GET /college_be_records
   # GET /college_be_records.xml
   def index
@@ -88,6 +86,15 @@ class CollegeBeRecordsController < ApplicationController
       format.html { redirect_to(college_be_records_url) }
       format.xml  { head :ok }
       format.json { render :text => '{status: "success"}'}
+    end
+  end
+
+  def confirm
+    @college_be_record = CollegeBeRecord.find(params[:id])
+    if @college_be_record.update_attributes(:confirm => !@college_be_record.confirm)
+      render :text =>"true"
+    else
+      render :text =>"false"
     end
   end
 

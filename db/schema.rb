@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 56) do
+ActiveRecord::Schema.define(:version => 57) do
 
   create_table "app_configs", :force => true do |t|
     t.string   "key"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(:version => 56) do
     t.float    "stay_be",                    :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "confirm",                    :default => false
   end
 
   add_index "basic_salary_records", ["user_id"], :name => "index_basic_salary_records_on_user_id"
@@ -127,6 +128,7 @@ ActiveRecord::Schema.define(:version => 56) do
     t.float    "other_be",                  :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "confirm",                   :default => false
   end
 
   add_index "college_be_records", ["user_id"], :name => "index_college_be_records_on_user_id"
@@ -179,6 +181,7 @@ ActiveRecord::Schema.define(:version => 56) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "net_fee",                    :default => 0.0
+    t.boolean  "confirm",                    :default => false
   end
 
   add_index "fee_cutting_records", ["user_id"], :name => "index_fee_cutting_records_on_user_id"
@@ -281,6 +284,7 @@ ActiveRecord::Schema.define(:version => 56) do
     t.float    "region_be",                 :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "confirm",                   :default => false
   end
 
   add_index "retired_basic_salary_records", ["user_id"], :name => "index_retired_basic_salary_records_on_user_id"
@@ -297,6 +301,7 @@ ActiveRecord::Schema.define(:version => 56) do
     t.float    "other_be3",                 :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "confirm",                   :default => false
   end
 
   add_index "retired_college_be_records", ["user_id"], :name => "index_retired_college_be_records_on_user_id"
@@ -325,6 +330,7 @@ ActiveRecord::Schema.define(:version => 56) do
     t.float    "other_fee3",                :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "confirm",                   :default => false
   end
 
   add_index "retired_fee_cutting_records", ["user_id"], :name => "index_retired_fee_cutting_records_on_user_id"

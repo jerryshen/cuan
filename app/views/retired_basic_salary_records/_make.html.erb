@@ -1,0 +1,55 @@
+<script>
+    var users = <%= User.to_json%>
+  var getUserName = function(value, p, record){
+    return users[value]
+  }
+  Ext.onReady(function(){
+    var columns = [{
+        header: "序号",
+        dataIndex: 'id',
+        width: 40,
+        sortable: true,
+        type: "int",
+        resizable: false
+      }, {
+        header: "教职工",
+        dataIndex: 'user_id',
+        sortable: true,
+        renderer: getUserName
+      }, {
+        header: "年度",
+        dataIndex: 'year',
+        sortable: true
+      }, {
+        header: "月份",
+        dataIndex: 'month',
+        sortable: true
+      }, {
+        header: "月基本退休费",
+        dataIndex: 'basic_fee',
+        sortable: true
+      }, {
+        header: "工改保留补贴_93年",
+        dataIndex: 'stay_be',
+        width : 150,
+        sortable: true
+      }, {
+        header: "其他国家出台津补贴",
+        dataIndex: 'foreign_be',
+        width : 150,
+        sortable: true
+      }, {
+        header: "地方出台津补贴",
+        dataIndex: 'region_be',
+        sortable: true
+      }]
+    var controllerName = "retired_basic_salary_records";
+    options = {
+      baseUrl: "http://" + window.location.host + "/" + controllerName,
+      gridTitle: "离退休人员基本工资记录管理列表",
+      newItemLink: "newItem",
+      columns: columns
+    }
+    $page = new ExtListPage(options);
+  })
+</script>

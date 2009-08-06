@@ -89,6 +89,15 @@ class RetiredCollegeBeRecordsController < ApplicationController
     end
   end
 
+  def confirm
+    @retired_college_be_record = RetiredCollegeBeRecord.find(params[:id])
+    if @retired_college_be_record.update_attributes(:confirm => !@retired_college_be_record.confirm)
+      render :text =>"true"
+    else
+      render :text =>"false"
+    end
+  end
+
   private
   def get_json
     load_page_data
