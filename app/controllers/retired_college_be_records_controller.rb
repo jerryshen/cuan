@@ -131,6 +131,12 @@ class RetiredCollegeBeRecordsController < ApplicationController
       condition_values << params[:search_month]
     end
 
+    if(!params[:search_confirm].blank?)
+      value=(params[:search_confirm].to_i ==0? false : true)
+      conditions += " AND confirm = ? "
+      condition_values << value
+    end
+
     if(!params[:search_department_id].blank?)
       joins = "INNER JOIN users p ON retired_college_be_records.user_id=p.id"
       conditions += " AND p.department_id = ? "
