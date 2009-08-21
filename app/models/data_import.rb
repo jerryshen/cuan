@@ -110,8 +110,8 @@ class DataImport
   def self.import_lx_ry(path, year, month)
     option = {:data_area=>{:start_row => 4,:start_column => 1, :end_column => -4}}
     option[:sheet_index] = 1
-    option[:keys] =          %w(f1	    f2          	f3	              f4	                f5	            f6	      f7)
-    #option[:keys] =         %w(姓名	月基本离休费	工改保留补贴_93年	其他国家出台津补贴	地方出台津补贴	补发工资	扣水费)
+    option[:keys] =          %w(f1	    f2          	f3	              f4	                f5	            f6	      f7	    f8)
+    #option[:keys] =         %w(姓名	身份证号	月基本离休费	工改保留补贴_93年	其他国家出台津补贴	地方出台津补贴	补发工资	扣水费)
 #RetiredBasicSalaryRecord   user_id basic_fee     stay_be           foreign_be          region_be        null     null
     data = import_salary(path,option)
     data.delete_if{ |row| row["f1"].to_i > 0 } #f1 => 姓名
@@ -146,8 +146,8 @@ class DataImport
   def self.import_tx_ry(path, year, month)
     option = {:data_area=>{:start_row => 4,:start_column => 1, :end_column => -4}}
     option[:sheet_index] = 1
-    option[:keys] =         %w(f1   f2            f3                f4                  f5              f6      f7          f8)
-    #option[:keys] =        %w(姓名	月基本退休费	工改保留补贴_93年	其他国家出台津补贴	地方出台津补贴  $扣水费	其他扣款二	其他扣款三)
+    option[:keys] =         %w(f1   f2           f3              f4                  f5                 f6              f7      f8        f9)
+    #option[:keys] =        %w(姓名	身份证号	月基本退休费	工改保留补贴_93年	其他国家出台津补贴	地方出台津补贴  $扣水费	其他扣款二	其他扣款三)
 #RetiredBasicSalaryRecord  user_id  basic_fee     stay_be           foreign_be          region_be       null 
 #RetiredFeeCuttingRecord                                                                                        other_fee2  other_fee3 
     data=import_salary(path,option)
@@ -181,8 +181,8 @@ class DataImport
   def self.import_cz_zz(path, year, month)
     option = {:data_area=>{:start_row=>4,:start_column => 1, :end_column => -4}}
     option[:sheet_index] = 1
-    option[:keys]=   %w(f1    f2        f3                    f4        f5                  f6              f7        f8            f9                f10     f11         f12         f13         f14)
-    #option[:keys] = %w(姓名	岗位工资	技术等级（职务）工资	岗位津贴	其他国家出台津补贴	地方出台津补贴	补发工资	扣住房公积金	扣职工医疗保险费	扣水费	扣失业保险	其他扣款一	其他扣款二	其他扣款三)
+    option[:keys]=   %w(f1      f2      f3          f4                      f5          f6                  f7              f8          f9              f10                 f11     f12         f13         f14         f15)
+    #option[:keys] = %w(姓名	身份证	岗位工资	技术等级（职务）工资	岗位津贴	其他国家出台津补贴	地方出台津补贴	补发工资	扣住房公积金	扣职工医疗保险费	扣水费	扣失业保险	其他扣款一	其他扣款二	其他扣款三)
 #BasicSalaryRecord  user_id station_sa position_sa        station_sa  foreign_be         region_be        add_sa	
 #FeeCuttingRecord                                                                                                   room_fee      med_fee           elc_fee job_fee     other_fee1 other_fee2  other_fee3
     data = import_salary(path,option)
