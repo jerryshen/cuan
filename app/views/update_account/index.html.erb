@@ -1,0 +1,19 @@
+<h1>修改登陆名</h1>
+<p style="color:red"><%= flash[:msg] %></p>
+<p>现登陆名：<%= @current_user.login_id %></p>
+<% form_tag '/update_account/update' do -%>
+<label>新登陆名</label>
+<input type="text" value="" name="login_id" />
+<input type="submit" value="更新"  onclick="return check_input()" /> 
+<% end -%>
+<script>
+function check_input(){
+	var login_id = document.getElementsByName("login_id")[0].value;
+	if(!login_id){
+		alert("请输入新登陆名");	
+		document.getElementsByName("login_id")[0].focus();
+		return false;
+	}
+	return true;
+}
+</script>
