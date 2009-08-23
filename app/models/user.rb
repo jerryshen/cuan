@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
 #  validates_presence_of :name, :department_id, :td_belongs_id, :gender, :title_id, :position_id, :id_card, :login_id
 #  validates_length_of :id_card, :is => 18
 #  validates_length_of :login_id, :within => 6..15
+   validates_uniqueness_of :login_id, :name
 
   #会引起update_attributes方法失败
   #validates_presence_of :update_password, :only => 'create'
