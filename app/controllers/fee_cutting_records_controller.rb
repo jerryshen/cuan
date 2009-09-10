@@ -1,5 +1,5 @@
 class FeeCuttingRecordsController < ApplicationController
-  protect_from_forgery :except => [:prev, :next, :last]
+  protect_from_forgery :except => [:prev, :next, :last, :generate_fee_cutting]
   # GET /fee_cutting_records
   # GET /fee_cutting_records.xml
   def index
@@ -126,6 +126,31 @@ class FeeCuttingRecordsController < ApplicationController
       render :text =>"true"
     else
       render :text =>"false"
+    end
+  end
+
+  def generate_fee_cutting
+    fee_cut_stds = FeeCutting.all
+    if fee_cut_stds.blank?
+      render :json => {:status => "fail",:msg => "无扣款标准数据，操作失败！"}
+    else
+      fee_cut_records = FeeCuttingRecord.all
+      year_month = []
+      fee_cut_records.each do |d|
+        year_month.push(d.year.to_s + "-" + d.month.to_s)
+      end
+
+      if year_month.uniq.include? Time.now.year.to_s + "-" + Time.now.month.to_i.to_s
+        render :json => {:status => "fail", :msg=>"已存在当月工资数据！"}
+      else
+        begin
+          count = FeeCuttingRecord.count
+          FeeCuttingRecord.generate_fee_cutting(fee_cut_stds)
+          render :json => {:status => "success", :msg=>"成功生成#{count}个员工的基本扣款！"}
+        rescue
+          render :json => {:status => "fail",:msg => "操作失败"}
+        end
+      end
     end
   end
 

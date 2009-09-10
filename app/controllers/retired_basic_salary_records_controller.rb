@@ -1,6 +1,6 @@
 class RetiredBasicSalaryRecordsController < ApplicationController
-  # GET /retired_basic_salary_records
-  # GET /retired_basic_salary_records.xml
+protect_from_forgery :except => [:generate_retired_salaries]
+
   def index
     respond_to do |format|
       format.html # index.html.erb
@@ -94,6 +94,31 @@ class RetiredBasicSalaryRecordsController < ApplicationController
       render :text =>"true"
     else
       render :text =>"false"
+    end
+  end
+
+  def generate_reitred_salaries
+    salary_stds = RetiredBasicSalary.all
+    if salary_stds.blank?
+      render :json => {:status => "fail",:msg => "无工资标准数据，操作失败！"}
+    else
+      salary_records = RetiredBasicSalaryRecord.all
+      year_month = []
+      salary_records.each do |d|
+        year_month.push(d.year.to_s + "-" + d.month.to_s)
+      end
+
+      if year_month.uniq.include? Time.now.year.to_s + "-" + Time.now.month.to_i.to_s
+        render :json => {:status => "fail", :msg=>"已存在当月工资数据！"}
+      else
+        begin
+          count = RetiredBasicSalary.count
+          RetiredBasicSalaryRecord.generate_retired_salaries(salary_stds)
+          render :json => {:status => "success", :msg=>"成功生成#{count}个员工的基本工资！"}
+        rescue
+          render :json => {:status => "fail",:msg => "操作失败"}
+        end
+      end
     end
   end
 

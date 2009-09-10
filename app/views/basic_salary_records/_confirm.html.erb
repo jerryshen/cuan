@@ -4,6 +4,13 @@
     return users[value]
   }
 
+  var yearFormat = function(value){
+    return value.toString() + "年"
+  }
+
+  var monthFormat = function(value){
+    return value.toString() + "月"
+  }
   var makeAsConfirmLink = function(value, p, record){
     var text = value.toString()=="true" ? "已经通过审核" : "未审核（点击通过审核）";
     return String.format("<a href='#' action ='confirm' title='审核' class='gridButton' url='/basic_salary_records/confirm/{0}'>{1}</a>",record.data.id,text);
@@ -43,11 +50,15 @@
       }, {
         header: "年度",
         dataIndex: 'year',
-        sortable: true
+        width: 60,
+        sortable: true,
+        renderer: yearFormat
       }, {
         header: "月份",
         dataIndex: 'month',
-        sortable: true
+        width: 50,
+        sortable: true,
+        renderer: monthFormat
       }, {
         header: "岗位工资",
         dataIndex: 'station_sa',
@@ -81,7 +92,6 @@
         header: "审核",
         dataIndex: 'confirm',
         sortable: true,
-        width: 150,
         type: 'boolean',
         renderer: makeAsConfirmLink
       }]

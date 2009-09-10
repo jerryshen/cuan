@@ -1,6 +1,6 @@
 class RetiredFeeCuttingRecordsController < ApplicationController
-  # GET /retired_fee_cutting_records
-  # GET /retired_fee_cutting_records.xml
+  protect_from_forgery :except => [:generate_retired_fee_cuttings]
+
   def index
     respond_to do |format|
       format.html # index.html.erb
@@ -92,6 +92,31 @@ class RetiredFeeCuttingRecordsController < ApplicationController
       render :text =>"true"
     else
       render :text =>"false"
+    end
+  end
+
+  def generate_retired_fee_cuttings
+    fee_cutting_stds = RetiredFeeCutting.all
+    if fee_cutting_stds.blank?
+      render :json => {:status => "fail",:msg => "无扣款标准数据，操作失败！"}
+    else
+      fee_cutting_records = RetiredFeeCuttingRecord.all
+      year_month = []
+      fee_cutting_records.each do |d|
+        year_month.push(d.year.to_s + "-" + d.month.to_s)
+      end
+
+      if year_month.uniq.include? Time.now.year.to_s + "-" + Time.now.month.to_i.to_s
+        render :json => {:status => "fail", :msg=>"已存在当月扣款数据！"}
+      else
+        begin
+          count = RetiredFeeCutting.count
+          RetiredFeeCuttingRecord.generate_retired_fee_cutting(fee_cutting_stds)
+          render :json => {:status => "success", :msg=>"成功生成#{count}个员工的基本工资！"}
+        rescue
+          render :json => {:status => "fail",:msg => "操作失败"}
+        end
+      end
     end
   end
 

@@ -1,6 +1,6 @@
 class CollegeBeRecordsController < ApplicationController
-  # GET /college_be_records
-  # GET /college_be_records.xml
+  protect_from_forgery :except => [:generate_benefits]
+  
   def index
     respond_to do |format|
       format.html # index.html.erb
@@ -95,6 +95,31 @@ class CollegeBeRecordsController < ApplicationController
       render :text =>"true"
     else
       render :text =>"false"
+    end
+  end
+
+  def generate_benefits
+    benefit_stds = CollegeBenefit.all
+    if benefit_stds.blank?
+      render :json => {:status => "fail",:msg => "无学院补贴标准数据，操作失败！"}
+    else
+      benefit_records = CollegeBeRecord.all
+      year_month = []
+      benefit_records.each do |d|
+        year_month.push(d.year.to_s + "-" + d.month.to_s)
+      end
+
+      if year_month.uniq.include? Time.now.year.to_s + "-" + Time.now.month.to_i.to_s
+        render :json => {:status => "fail", :msg=>"已存在当月学院补贴数据！"}
+      else
+        begin
+          count = CollegeBenefit.count
+          CollegeBeRecord.generate_benefits(benefit_stds)
+          render :json => {:status => "success", :msg=>"成功生成#{count}个员工的基本学院补贴！"}
+        rescue
+          render :json => {:status => "fail",:msg => "操作失败"}
+        end
+      end
     end
   end
 
