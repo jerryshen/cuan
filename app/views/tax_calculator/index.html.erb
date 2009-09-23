@@ -1,0 +1,222 @@
+<table width="100%" border="0">
+<tbody><tr>
+<td>
+<table width="100%" cellspacing="4" cellpadding="0" border="0" align="center">
+<tbody>
+<tr>
+<td align="right"><b>收入金额:</b></td>
+<td>
+<input size="10" name="income_amount" id="income_amount" class="txt" onchange="check_float(this.value,'收入金额')"/>
+元
+</td>
+</tr>
+<tr>
+<td align="right">
+<div id="gongzi1"><b>社保费用:</b></div>
+</td>
+<td>
+<div id="gongzi1_2"><input value="0" size="10" name="insurance_fee" id="insurance_fee"  onchange="check_float(this.value,'社保费用')" class="txt"/>
+</div>
+</td>
+</tr><tr>
+<td align="right">
+<div id="gongzi2"><b>起征额:</b></div>
+</td>
+<td>
+<div id="gongzi2_2"><input value="2000" size="10" name="start_amount" id="start_amount" onchange="check_float(this.value,'起征额')" class="txt"/>
+</div>
+</td>
+</tr>
+<tr>
+<td align="right" ><b>5个月津贴总额:</b></td>
+<td><input size="10" name="income_jt_amount" id="income_jt_amount" value='0' class="txt" onchange="reset_5()" />元</td>
+</tr>
+<tr><td align="right">月份1津贴:</td><td><input size="10" value='0' name="income_jt1" id="income_jt1" class="txt" onchange="reset_5()" />元</td></tr>
+<tr><td align="right">月份2津贴:</td><td><input size="10" value='0' name="income_jt2" id="income_jt2" class="txt" onchange="reset_5()"/>元<br/></td></tr>
+<tr><td align="right">月份3津贴:</td><td><input size="10" value='0' name="income_jt3" id="income_jt3" class="txt" onchange="reset_5()"/>元<br/></td></tr>
+<tr><td align="right">月份4津贴:</td><td><input size="10" value='0' name="income_jt4" id="income_jt4" class="txt" onchange="reset_5()"/>元<br/></td></tr>
+<tr><td align="right">月份5津贴:</td><td><input size="10" value='0' name="income_jt5" id="income_jt5" class="txt" readonly="true" disabled="disabled"/>元</td></tr>
+</tbody></table>
+</td>
+</tr><tr>
+<td class="gg-scnd">
+根据税收规定，个人所得税起征点为2000元。
+</td>
+</tr><tr>
+<td height="40" align="center">
+<input type="button" value="开始计算" onclick="calculate();"/>
+<input type="button" value="清空" onclick="formReset();"/>
+</td>
+</tr>
+<tr valign="top" align="center">
+<td>
+<div style="display: none;" id="tax_result">
+<hr class="gg-hr gg-hr-fixed"/>
+<table cellspacing="0" cellpadding="0" border="0" align="center" class="txt">
+<tbody><tr>
+<td align="right">您应交纳的个人所得税为: </td>
+<td>
+<div style="margin-bottom: 3px;" id="tax_fee">
+</div>
+</td>
+</tr></tbody></table>
+</div>
+</td>
+</tr></tbody></table>
+<script type="text/javascript"> 
+function check_float(value,name){
+	var msg = validates_float(value,name);
+	if(msg)alert(msg);
+}
+
+function formReset(){
+	document.getElementById("income_amount").value = '';
+	document.getElementById("insurance_fee").value = '';
+	document.getElementById("income_jt1").value = '';
+	document.getElementById("income_jt2").value = '';
+	document.getElementById("income_jt3").value = '';
+	document.getElementById("income_jt4").value = '';
+	document.getElementById("income_jt5").value = '';
+	document.getElementById("income_jt_amount").value = '';
+	document.getElementById("tax_result").style.display = "none";
+}
+
+function reset_5(){
+	var jt1 = document.getElementById("income_jt1").value;
+	var jt2 = document.getElementById("income_jt2").value;
+	var jt3 = document.getElementById("income_jt3").value;
+	var jt4 = document.getElementById("income_jt4").value;
+	var jtAll = document.getElementById("income_jt_amount").value;
+	if(jt1 == '') jt1 = 0;
+	if(jt2 == '') jt2 = 0;
+	if(jt3 == '') jt3 = 0;
+	if(jt4 == '') jt4 = 0;
+	if(jtAll == '') jtAll = 0;
+	var er = [];
+	er.push(validates_float(jt1,"月份1津贴"));
+	er.push(validates_float(jt2,"月份2津贴"));
+	er.push(validates_float(jt3,"月份3津贴"));
+	er.push(validates_float(jt4,"月份4津贴"));
+	er.push(validates_float(jtAll,"津贴总额"));
+	if(er.join('')){
+		document.getElementById("income_jt5").value = '';
+		return alert(er.join(''));
+	}
+	var jt5=parseFloat(jtAll) - parseFloat(jt1) -parseFloat(jt2) -parseFloat(jt3) -parseFloat(jt4);
+	if(jt5 < 0){
+		document.getElementById("income_jt5").value = '';
+		return alert("超出津贴总额");
+	}
+	document.getElementById("income_jt5").value = jt5;
+}
+
+function validates_float(value, name){
+	var ermsg = "";
+	if(value == "")return ermsg;
+	value = parseFloat(value);
+	if(isNaN(value)){
+		ermsg = name + "格式错误" + "\n"; 
+	}else if(value < 0){
+		ermsg = name + "不能为负数" + "\n";
+	}
+	return ermsg;
+}
+
+function calculate(){
+ 	var income_amount = document.getElementById("income_amount").value;  //总收入
+ 	var start_amount = document.getElementById("start_amount").value;  //起征额
+	var insurance_fee = document.getElementById("insurance_fee").value; //社保
+	var jt1 = document.getElementById("income_jt1").value;
+	var jt2 = document.getElementById("income_jt2").value;
+	var jt3 = document.getElementById("income_jt3").value;
+	var jt4 = document.getElementById("income_jt4").value;
+	var jtAll = document.getElementById("income_jt_amount").value;
+	
+	var er = [];
+	if(income_amount == '')er.push("请输入收入金额!\n");
+	if(start_amount == '')er.push('请输入起征额!\n');
+	if(insurance_fee == '')er.push("请输入社保费用!\n");
+	
+	if(jt1 == '')er.push("请输入月份1津贴!\n");
+	if(jt2 == '')er.push("请输入月津2津贴!\n");
+	if(jt3 == '')er.push("请输入月份3津贴!\n");
+	if(jt4 == '')er.push("请输入月份4津贴!\n");
+	if(jtAll == '')er.push("请输入津贴总额!\n");
+	
+	er.push(validates_float(income_amount,"收入金额"));
+	er.push(validates_float(start_amount,"起征额"));
+	er.push(validates_float(insurance_fee,"社保费用"));
+	er.push(validates_float(jt1,"月份1津贴"));
+	er.push(validates_float(jt2,"月份2津贴"));
+	er.push(validates_float(jt3,"月份3津贴"));
+	er.push(validates_float(jt4,"月份4津贴"));
+	er.push(validates_float(jtAll,"津贴总额"));
+	
+	if(er.join(''))return alert(er.join(''));
+	var jt5=parseFloat(jtAll) - parseFloat(jt1) -parseFloat(jt2) -parseFloat(jt3) -parseFloat(jt4);
+	if(jt5 < 0){
+		return alert("超出津贴总额!");
+	}	
+	
+	var pure_income = parseFloat(income_amount) - parseFloat(start_amount) - parseFloat(insurance_fee);
+	var tax1 = (pure_income + parseFloat(jt1) <= 0) ? 0 : Rate1(pure_income + parseFloat(jt1));
+	var tax2 = (pure_income + parseFloat(jt2) <= 0) ? 0 : Rate1(pure_income + parseFloat(jt2));
+	var tax3 = (pure_income + parseFloat(jt3) <= 0) ? 0 : Rate1(pure_income + parseFloat(jt3));
+	var tax4 = (pure_income + parseFloat(jt4) <= 0) ? 0 : Rate1(pure_income + parseFloat(jt4));
+	var tax5 = (pure_income + parseFloat(jt5) <= 0) ? 0 : Rate1(pure_income + parseFloat(jt5));
+	var tax_amount = Math.round((tax1 + tax2 + tax3 + tax4 + tax5) * 100) / 100;
+	var taxes = [tax1,tax2,tax3,tax4,tax5];
+	for(var i=0,l=taxes.length; i<l; i++){
+		taxes[i] = "月份" + (i + 1) + ":  " + taxes[i] + "元";
+	}
+	var htmls = "个税总额:  " + tax_amount + "元<br />" + taxes.join("<br />");
+	document.getElementById("tax_fee").innerHTML = htmls;
+	document.getElementById("tax_result").style.display = "block";
+}
+function Rate1(XSum) {
+    var Rate;
+    var Balan;
+    var TSum;
+    if (XSum <= 500) {
+        Rate = 5;
+        Balan = 0;
+    }
+    if (500 < XSum && XSum <= 2000) {
+        Rate = 10;
+        Balan = 25;
+    }
+    if (2000 < XSum && XSum <= 5000) {
+        Rate = 15;
+        Balan = 125;
+    }
+    if (5000 < XSum && XSum <= 20000) {
+        Rate = 20;
+        Balan = 375;
+    }
+    if (20000 < XSum && XSum <= 40000) {
+        Rate = 25;
+        Balan = 1375;
+    }
+    if (40000 < XSum && XSum <= 60000) {
+        Rate = 30;
+        Balan = 3375;
+    }
+    if (60000 < XSum && XSum <= 80000) {
+        Rate = 35;
+        Balan = 6375;
+    }
+    if (80000 < XSum && XSum <= 100000) {
+        Rate = 40;
+        Balan = 10375;
+    }
+    if (XSum > 100000) {
+        Rate = 45;
+        Balan = 15375;
+    }
+    TSum = XSum * Rate / 100 - Balan; 
+	if (TSum < 0) { 
+		TSum = 0; 
+	} 
+	return Math.round(TSum * 100) / 100; 
+}
+</script>
