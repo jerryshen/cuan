@@ -21,6 +21,8 @@ schema_migrations_012:
   version: "26"
 schema_migrations_001: 
   version: "25"
+schema_migrations_057: 
+  version: "57"
 schema_migrations_046: 
   version: "42"
 schema_migrations_035: 
@@ -31,6 +33,8 @@ schema_migrations_013:
   version: "2"
 schema_migrations_002: 
   version: "37"
+schema_migrations_058: 
+  version: "58"
 schema_migrations_047: 
   version: "22"
 schema_migrations_036: 
@@ -41,6 +45,8 @@ schema_migrations_014:
   version: "43"
 schema_migrations_003: 
   version: "9"
+schema_migrations_059: 
+  version: "59"
 schema_migrations_048: 
   version: "8"
 schema_migrations_037: 

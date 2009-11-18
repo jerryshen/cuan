@@ -14,8 +14,6 @@ class BasicSalaryRecordsController < ApplicationController
     end
   end
 
-  # GET /basic_salary_records/1
-  # GET /basic_salary_records/1.xml
   def show
     @basic_salary_record = BasicSalaryRecord.find(params[:id])
 
@@ -25,8 +23,6 @@ class BasicSalaryRecordsController < ApplicationController
     end
   end
 
-  # GET /basic_salary_records/new
-  # GET /basic_salary_records/new.xml
   def new
     @basic_salary_record = BasicSalaryRecord.new
 
@@ -36,13 +32,10 @@ class BasicSalaryRecordsController < ApplicationController
     end
   end
 
-  # GET /basic_salary_records/1/edit
   def edit
     @basic_salary_record = BasicSalaryRecord.find(params[:id])
   end
 
-  # POST /basic_salaries
-  # POST /basic_salaries.xml
   def create
     @basic_salary_record = BasicSalaryRecord.new(params[:basic_salary_record])
 
@@ -59,8 +52,6 @@ class BasicSalaryRecordsController < ApplicationController
     end
   end
 
-  # PUT /basic_salary_records/1
-  # PUT /basic_salary_records/1.xml
   def update
     @basic_salary_record = BasicSalaryRecord.find(params[:id])
 
@@ -77,8 +68,6 @@ class BasicSalaryRecordsController < ApplicationController
     end
   end
 
-  # DELETE /basic_salary_records/1
-  # DELETE /basic_salary_records/1.xml
   def destroy
     @basic_salary_record = BasicSalaryRecord.find(params[:id])
     @basic_salary_record.destroy

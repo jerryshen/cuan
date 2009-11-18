@@ -37,6 +37,42 @@
     <b>登录用户名:</b>
     <%=h @current_user.login_id %>
   </p>
+   <p>
+    <b>学历:</b>
+    <%=h @current_user.education.name if @current_user.education %>
+  </p>
+  <p>
+    <b>学位:</b>
+    <%=h @current_user.degree.name if @current_user.degree %>
+  </p>
+  <p>
+    <b>身份:</b>
+    <%=h @current_user.status.name if @current_user.status %>
+  </p>
+  <p>
+    <b>参加工作时间:</b>
+    <%=h fuzzy_time(@current_user.job_date) %>
+  </p>
+  <p>
+    <b>入校工作时间:</b>
+    <%=h fuzzy_time(@current_user.ensch_date) %>
+  </p>
+  <p>
+    <b>合同号:</b>
+    <%=h @current_user.contract_number %>
+  </p>
+  <p>
+    <b>签订时间:</b>
+    <%=h fuzzy_time(@current_user.valid_from) %>
+  </p>
+  <p>
+    <b>到期时间:</b>
+    <%=h fuzzy_time(@current_user.valid_end) %>
+  </p>
+  <p>
+    <b>毕业学校:</b>
+    <%=h @current_user.gra_school %>
+  </p>
   <p>
     <b>是否入编:</b>
     <%=h @current_user.is_nature.to_s == "true" ? "是" : "否" %>

@@ -1,16 +1,14 @@
 class AssistantBenefitSetsController < ApplicationController
-  # GET /assistant_benefit_sets
-  # GET /assistant_benefit_sets.xml
+  protect_from_forgery :except => [:generate_assistant_benefits]
+
   def index
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.xml  { render :xml => @assistant_benefit_sets }
       format.json { render :text => get_json }
     end
   end
 
-  # GET /assistant_benefit_sets/1
-  # GET /assistant_benefit_sets/1.xml
   def show
     @assistant_benefit_set = AssistantBenefit.find(params[:id])
 
@@ -20,8 +18,7 @@ class AssistantBenefitSetsController < ApplicationController
     end
   end
 
-  # GET /assistant_benefit_sets/new
-  # GET /assistant_benefit_sets/new.xml
+
   def new
     @assistant_benefit_set = AssistantBenefit.new
 
@@ -31,13 +28,11 @@ class AssistantBenefitSetsController < ApplicationController
     end
   end
 
-  # GET /assistant_benefit_sets/1/edit
   def edit
     @assistant_benefit_set = AssistantBenefit.find(params[:id])
   end
 
-  # POST /assistant_benefit_sets
-  # POST /assistant_benefit_sets.xml
+
   def create
     @assistant_benefit_set = AssistantBenefit.new(params[:assistant_benefit_set])
 
@@ -54,8 +49,6 @@ class AssistantBenefitSetsController < ApplicationController
     end
   end
 
-  # PUT /assistant_benefit_sets/1
-  # PUT /assistant_benefit_sets/1.xml
   def update
     @assistant_benefit_set = AssistantBenefit.find(params[:id])
 
@@ -72,8 +65,6 @@ class AssistantBenefitSetsController < ApplicationController
     end
   end
 
-  # DELETE /assistant_benefit_sets/1
-  # DELETE /assistant_benefit_sets/1.xml
   def destroy
     @assistant_benefit_set = AssistantBenefit.find(params[:id])
     @assistant_benefit_set.destroy
@@ -82,6 +73,42 @@ class AssistantBenefitSetsController < ApplicationController
       format.html { redirect_to(assistant_benefit_sets_url) }
       format.xml  { head :ok }
       format.json { render :text => '{status: "success"}'}
+    end
+  end
+
+  def generate_assistant_benefits
+    assistant_benefit_stds = AssistantBenefitStandard.all
+    if assistant_benefit_stds.blank?
+      render :json => {:status => "fail",:msg => "无辅导员津贴标准数据，操作失败！"}
+    else
+      assistant_benefit_records = AssistantBenefit.all
+      year_month = []
+      unless assistant_benefit_records.blank?
+        assistant_benefit_records.each do |d|
+          year_month.push(d.year.to_s + "-" + d.month.to_s)
+        end
+      
+        if year_month.uniq.include? Time.now.year.to_s + "-" + Time.now.month.to_i.to_s
+          render :json => {:status => "fail", :msg=>"已存在当月辅导员津贴数据！"}
+        else
+          begin
+            count = AssistantBenefitStandard.count
+            AssistantBenefitStandard.generate_assistant_benefit(assistant_benefit_stds)
+            render :json => {:status => "success", :msg=>"成功生成#{count}个辅导员的基本津贴！"}
+          rescue
+            render :json => {:status => "fail",:msg => "操作失败"}
+          end
+        end
+      else
+        begin
+          count = AssistantBenefitStandard.count
+          AssistantBenefitStandard.generate_assistant_benefit(assistant_benefit_stds)
+          render :json => {:status => "success", :msg=>"成功生成#{count}个辅导员的基本津贴！"}
+        rescue
+          render :json => {:status => "fail",:msg => "操作失败"}
+        end
+
+      end
     end
   end
 

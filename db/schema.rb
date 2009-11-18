@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 57) do
+ActiveRecord::Schema.define(:version => 59) do
 
   create_table "app_configs", :force => true do |t|
     t.string   "key"
@@ -17,6 +17,16 @@ ActiveRecord::Schema.define(:version => 57) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "assistant_benefit_standards", :force => true do |t|
+    t.integer  "assistant_id"
+    t.float    "benefit"
+    t.float    "other"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assistant_benefit_standards", ["assistant_id"], :name => "index_assistant_benefit_standards_on_assistant_id"
 
   create_table "assistant_benefits", :force => true do |t|
     t.integer  "assistant_id"
@@ -26,6 +36,8 @@ ActiveRecord::Schema.define(:version => 57) do
     t.datetime "date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "year"
+    t.integer  "month"
   end
 
   add_index "assistant_benefits", ["assistant_id"], :name => "index_assistant_benefits_on_assistant_id"
@@ -74,20 +86,20 @@ ActiveRecord::Schema.define(:version => 57) do
   add_index "basic_salaries", ["user_id"], :name => "index_basic_salaries_on_user_id"
 
   create_table "basic_salary_records", :force => true do |t|
-    t.integer  "user_id",     :limit => 255
+    t.integer  "user_id"
     t.string   "year"
     t.string   "month"
-    t.float    "station_sa",                 :default => 0.0
-    t.float    "position_sa",                :default => 0.0
-    t.float    "station_be",                 :default => 0.0
-    t.float    "foreign_be",                 :default => 0.0
-    t.float    "region_be",                  :default => 0.0
-    t.float    "add_sa",                     :default => 0.0
-    t.float    "hard_be",                    :default => 0.0
-    t.float    "stay_be",                    :default => 0.0
+    t.float    "station_sa",  :default => 0.0
+    t.float    "position_sa", :default => 0.0
+    t.float    "station_be",  :default => 0.0
+    t.float    "foreign_be",  :default => 0.0
+    t.float    "region_be",   :default => 0.0
+    t.float    "add_sa",      :default => 0.0
+    t.float    "hard_be",     :default => 0.0
+    t.float    "stay_be",     :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "confirm",                    :default => false
+    t.boolean  "confirm",     :default => false
   end
 
   add_index "basic_salary_records", ["user_id"], :name => "index_basic_salary_records_on_user_id"
@@ -117,18 +129,18 @@ ActiveRecord::Schema.define(:version => 57) do
   add_index "class_month_benefit_records", ["user_id"], :name => "index_class_month_benefit_records_on_user_id"
 
   create_table "college_be_records", :force => true do |t|
-    t.integer  "user_id",    :limit => 255
+    t.integer  "user_id"
     t.string   "year"
     t.string   "month"
-    t.float    "life_be",                   :default => 0.0
-    t.float    "diff_be",                   :default => 0.0
-    t.float    "livesa_be",                 :default => 0.0
-    t.float    "tv_be",                     :default => 0.0
-    t.float    "beaulty_be",                :default => 0.0
-    t.float    "other_be",                  :default => 0.0
+    t.float    "life_be",    :default => 0.0
+    t.float    "diff_be",    :default => 0.0
+    t.float    "livesa_be",  :default => 0.0
+    t.float    "tv_be",      :default => 0.0
+    t.float    "beaulty_be", :default => 0.0
+    t.float    "other_be",   :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "confirm",                   :default => false
+    t.boolean  "confirm",    :default => false
   end
 
   add_index "college_be_records", ["user_id"], :name => "index_college_be_records_on_user_id"
@@ -166,22 +178,22 @@ ActiveRecord::Schema.define(:version => 57) do
   end
 
   create_table "fee_cutting_records", :force => true do |t|
-    t.integer  "user_id",     :limit => 255
+    t.integer  "user_id"
     t.string   "year"
     t.string   "month"
-    t.float    "room_fee",                   :default => 0.0
-    t.float    "med_fee",                    :default => 0.0
-    t.float    "elc_fee",                    :default => 0.0
-    t.float    "job_fee",                    :default => 0.0
-    t.float    "selfedu_fee",                :default => 0.0
-    t.float    "other_fee1",                 :default => 0.0
-    t.float    "other_fee2",                 :default => 0.0
-    t.float    "other_fee3",                 :default => 0.0
-    t.float    "self_tax",                   :default => 0.0
+    t.float    "room_fee",    :default => 0.0
+    t.float    "med_fee",     :default => 0.0
+    t.float    "elc_fee",     :default => 0.0
+    t.float    "job_fee",     :default => 0.0
+    t.float    "selfedu_fee", :default => 0.0
+    t.float    "other_fee1",  :default => 0.0
+    t.float    "other_fee2",  :default => 0.0
+    t.float    "other_fee3",  :default => 0.0
+    t.float    "self_tax",    :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "net_fee",                    :default => 0.0
-    t.boolean  "confirm",                    :default => false
+    t.float    "net_fee",     :default => 0.0
+    t.boolean  "confirm",     :default => false
   end
 
   add_index "fee_cutting_records", ["user_id"], :name => "index_fee_cutting_records_on_user_id"
@@ -275,33 +287,33 @@ ActiveRecord::Schema.define(:version => 57) do
   add_index "retired_basic_salaries", ["user_id"], :name => "index_retired_basic_salaries_on_user_id"
 
   create_table "retired_basic_salary_records", :force => true do |t|
-    t.integer  "user_id",    :limit => 255
+    t.integer  "user_id"
     t.string   "year"
     t.string   "month"
-    t.float    "basic_fee",                 :default => 0.0
-    t.float    "stay_be",                   :default => 0.0
-    t.float    "foreign_be",                :default => 0.0
-    t.float    "region_be",                 :default => 0.0
+    t.float    "basic_fee",  :default => 0.0
+    t.float    "stay_be",    :default => 0.0
+    t.float    "foreign_be", :default => 0.0
+    t.float    "region_be",  :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "confirm",                   :default => false
+    t.boolean  "confirm",    :default => false
   end
 
   add_index "retired_basic_salary_records", ["user_id"], :name => "index_retired_basic_salary_records_on_user_id"
 
   create_table "retired_college_be_records", :force => true do |t|
-    t.integer  "user_id",    :limit => 255
+    t.integer  "user_id"
     t.string   "year"
     t.string   "month"
-    t.float    "diff_be",                   :default => 0.0
-    t.float    "tv_be",                     :default => 0.0
-    t.float    "beaulty_be",                :default => 0.0
-    t.float    "other_be1",                 :default => 0.0
-    t.float    "other_be2",                 :default => 0.0
-    t.float    "other_be3",                 :default => 0.0
+    t.float    "diff_be",    :default => 0.0
+    t.float    "tv_be",      :default => 0.0
+    t.float    "beaulty_be", :default => 0.0
+    t.float    "other_be1",  :default => 0.0
+    t.float    "other_be2",  :default => 0.0
+    t.float    "other_be3",  :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "confirm",                   :default => false
+    t.boolean  "confirm",    :default => false
   end
 
   add_index "retired_college_be_records", ["user_id"], :name => "index_retired_college_be_records_on_user_id"
@@ -321,16 +333,16 @@ ActiveRecord::Schema.define(:version => 57) do
   add_index "retired_college_benefits", ["user_id"], :name => "index_retired_college_benefits_on_user_id"
 
   create_table "retired_fee_cutting_records", :force => true do |t|
-    t.integer  "user_id",    :limit => 255
+    t.integer  "user_id"
     t.string   "year"
     t.string   "month"
-    t.float    "elc_fee",                   :default => 0.0
-    t.float    "other_fee1",                :default => 0.0
-    t.float    "other_fee2",                :default => 0.0
-    t.float    "other_fee3",                :default => 0.0
+    t.float    "elc_fee",    :default => 0.0
+    t.float    "other_fee1", :default => 0.0
+    t.float    "other_fee2", :default => 0.0
+    t.float    "other_fee3", :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "confirm",                   :default => false
+    t.boolean  "confirm",    :default => false
   end
 
   add_index "retired_fee_cutting_records", ["user_id"], :name => "index_retired_fee_cutting_records_on_user_id"
@@ -376,11 +388,11 @@ ActiveRecord::Schema.define(:version => 57) do
   add_index "science_benefits", ["user_id"], :name => "index_science_benefits_on_user_id"
 
   create_table "station_position_benefit_records", :force => true do |t|
-    t.integer  "user_id",     :limit => 255
+    t.integer  "user_id"
     t.string   "year"
     t.string   "month"
-    t.float    "station_be",                 :default => 0.0
-    t.float    "position_be",                :default => 0.0
+    t.float    "station_be",  :default => 0.0
+    t.float    "position_be", :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -404,6 +404,17 @@ undefind_fees_043:
   date: 2009-07-30 01:25:47
   user_id: "221"
   fee: "500.0"
+undefind_fees_086: 
+  created_at: 2009-08-04 15:02:55
+  be_type: ""
+  updated_at: 2009-08-04 15:02:55
+  id: "86"
+  subject: !binary |
+    5Y+R5aWW6YeR
+
+  date: 2009-08-04 00:00:00
+  user_id: "273"
+  fee: "10000000.0"
 undefind_fees_002: 
   created_at: 2009-07-18 07:42:29
   be_type: 

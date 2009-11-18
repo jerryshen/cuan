@@ -1,2 +1,134 @@
---- {}
+--- 
+stations_015: 
+  name: !binary |
+    5oqA5biI
 
+  created_at: 2009-07-31 11:28:11
+  updated_at: 2009-07-31 11:29:07
+  id: "15"
+stations_004: 
+  name: !binary |
+    5q2j6auY5Zub57qn
+
+  created_at: 2009-07-31 11:18:16
+  updated_at: 2009-07-31 11:26:14
+  id: "4"
+stations_016: 
+  name: !binary |
+    6auY57qn5bel
+
+  created_at: 2009-07-31 11:28:21
+  updated_at: 2009-07-31 11:29:15
+  id: "16"
+stations_005: 
+  name: !binary |
+    5Ymv6auY5LqU57qn
+
+  created_at: 2009-07-31 11:18:29
+  updated_at: 2009-07-31 11:26:26
+  id: "5"
+stations_017: 
+  name: !binary |
+    5Lit57qn5bel
+
+  created_at: 2009-07-31 11:28:26
+  updated_at: 2009-07-31 11:29:23
+  id: "17"
+stations_006: 
+  name: !binary |
+    5Ymv6auY5YWt57qn
+
+  created_at: 2009-07-31 11:18:38
+  updated_at: 2009-07-31 11:26:36
+  id: "6"
+stations_018: 
+  name: !binary |
+    5Yid57qn5bel
+
+  created_at: 2009-07-31 11:28:35
+  updated_at: 2009-07-31 11:29:31
+  id: "18"
+stations_007: 
+  name: !binary |
+    5Ymv6auY5LiD57qn
+
+  created_at: 2009-07-31 11:26:52
+  updated_at: 2009-07-31 11:26:52
+  id: "7"
+stations_019: 
+  name: !binary |
+    5pmu6YCa5bel
+
+  created_at: 2009-07-31 11:29:38
+  updated_at: 2009-07-31 11:29:38
+  id: "19"
+stations_008: 
+  name: !binary |
+    5Lit57qn5YWr57qn
+
+  created_at: 2009-07-31 11:27:03
+  updated_at: 2009-07-31 11:27:03
+  id: "8"
+stations_009: 
+  name: !binary |
+    5Lit57qn5Lmd57qn
+
+  created_at: 2009-07-31 11:27:11
+  updated_at: 2009-07-31 11:27:11
+  id: "9"
+stations_010: 
+  name: !binary |
+    5Lit57qn5Y2B57qn
+
+  created_at: 2009-07-31 11:27:22
+  updated_at: 2009-07-31 11:27:22
+  id: "10"
+stations_011: 
+  name: !binary |
+    5Yid57qn5Y2B5LiA57qn
+
+  created_at: 2009-07-31 11:27:40
+  updated_at: 2009-07-31 11:27:40
+  id: "11"
+stations_012: 
+  name: !binary |
+    5Yid57qn5Y2B5LqM57qn
+
+  created_at: 2009-07-31 11:27:46
+  updated_at: 2009-07-31 11:27:46
+  id: "12"
+stations_001: 
+  name: !binary |
+    5q2j6auY5LiA57qn
+
+  created_at: 2009-07-31 11:17:05
+  updated_at: 2009-07-31 11:25:47
+  id: "1"
+stations_013: 
+  name: !binary |
+    5Yid57qn5Y2B5LiJ57qn
+
+  created_at: 2009-07-31 11:27:54
+  updated_at: 2009-07-31 11:27:54
+  id: "13"
+stations_002: 
+  name: !binary |
+    5q2j6auY5LqM57qn
+
+  created_at: 2009-07-31 11:17:13
+  updated_at: 2009-07-31 11:25:56
+  id: "2"
+stations_014: 
+  name: !binary |
+    6auY57qn5oqA5biI
+
+  created_at: 2009-07-31 11:28:06
+  updated_at: 2009-07-31 11:28:06
+  id: "14"
+stations_003: 
+  name: !binary |
+    5q2j6auY5LiJ57qn
+
+  created_at: 2009-07-31 11:17:59
+  updated_at: 2009-07-31 11:26:05
+  id: "3"

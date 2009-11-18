@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :assistant_benefit_standards
+
   map.resources :statuses
 
   map.resources :degrees

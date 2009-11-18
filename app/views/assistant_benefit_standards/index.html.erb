@@ -27,9 +27,7 @@
   </form>
   <div>
     <div class="nav">
-      <span class="button" id="newItem" onclick="$page.showNewView()"><img  src="/images/icons/new.png"/>单个添加津贴</span>
-      <input type="button" class="button" onclick="generate()" style="width:150px" value="批量生成当月辅导员津贴" />
-      <span style="color:blue">*辅导员津贴批量生成前，请先确保有津贴标准数据！</span>
+      <span class="button" id="newItem" onclick="$page.showNewView()"><img  src="/images/icons/new.png"/>新建</span>
     </div>
     <div id="grid-wrap">
     </div>
@@ -54,14 +52,11 @@
     return users[value]
   }
 
-  var formatBool = function(value){
-    return value.toString()=="false" ? "未审核" : "已审核"
-  }
   Ext.onReady(function(){
     var columns = [{
-        header: "序号",
+        header: "ID",
         dataIndex: 'id',
-        width: 40,
+        width: 30,
         sortable: true,
         type: "int",
         resizable: false
@@ -71,14 +66,6 @@
         sortable: true,
         renderer: getAssistantName
       },{
-        header: "年度",
-        dataIndex: 'year',
-        sortable: true
-      },{
-        header: "月份",
-        dataIndex: 'month',
-        sortable: true
-      },{
         header: "津贴",
         dataIndex: 'benefit',
         sortable: true
@@ -86,39 +73,14 @@
         header: "其他",
         dataIndex: 'other',
         sortable: true
-      },{
-        header: "审核情况",
-        dataIndex: 'is_verified',
-        sortable: true,
-        type: 'boolean',
-        renderer: formatBool
       }]
-    var controllerName = "assistant_benefit_sets";
+    var controllerName = "assistant_benefit_standards";
     options = {
       baseUrl: "http://" + window.location.host + "/" + controllerName,
-      gridTitle: "辅导员津贴设置列表",
+      gridTitle: "辅导员津贴标准设置列表",
       newItemLink: "newItem",
       columns: columns
     }
     $page = new ExtListPage(options);
   })
-
-    function generate(){
-    var waitBox = Ext.Msg.show({
-      wait: true,
-      progress: true,
-      msg: '操作时间较长，请耐心等候...',
-      closeable: false
-    });
-    try{
-      $.post("/assistant_benefit_sets/generate_assistant_benefits",  function(data){
-        var json = eval("(function(){return " + data + "})()");
-        waitBox.hide();
-        $page.refreshGridData();
-        if(json.msg)alert(json.msg);
-      })
-    }catch(e){
-      waitBox.hide();
-    }
-  }
 </script>

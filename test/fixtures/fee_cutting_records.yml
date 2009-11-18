@@ -3,7 +3,8 @@ fee_cutting_records_001:
   med_fee: "200.0"
   created_at: 2009-07-25 05:50:34
   month: "7"
-  updated_at: 2009-07-25 05:50:34
+  confirm: f
+  updated_at: 2009-08-06 06:39:59
   room_fee: "200.0"
   other_fee1: "10.0"
   self_tax: "20.0"
@@ -20,7 +21,8 @@ fee_cutting_records_002:
   med_fee: "100.0"
   created_at: 2009-07-25 06:02:42
   month: "6"
-  updated_at: 2009-07-25 06:02:42
+  confirm: f
+  updated_at: 2009-08-06 06:39:58
   room_fee: "200.0"
   other_fee1: "299.0"
   self_tax: "100.0"

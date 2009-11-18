@@ -37,8 +37,40 @@
     <%=h @user.login_id %>
   </p>
   <p>
-    <b>密码:</b>
-    <%=h @user.password %>
+    <b>学历:</b>
+    <%=h @user.education.name if @user.education %>
+  </p>
+  <p>
+    <b>学位:</b>
+    <%=h @user.degree.name if @user.degree %>
+  </p>
+  <p>
+    <b>身份:</b>
+    <%=h @user.status.name if @user.status %>
+  </p>
+  <p>
+    <b>参加工作时间:</b>
+    <%=h fuzzy_time(@user.job_date) %>
+  </p>
+  <p>
+    <b>入校工作时间:</b>
+    <%=h fuzzy_time(@user.ensch_date) %>
+  </p>
+  <p>
+    <b>合同号:</b>
+    <%=h @user.contract_number %>
+  </p>
+  <p>
+    <b>签订时间:</b>
+    <%=h fuzzy_time(@user.valid_from) %>
+  </p>
+  <p>
+    <b>到期时间:</b>
+    <%=h fuzzy_time(@user.valid_end) %>
+  </p>
+  <p>
+    <b>毕业学校:</b>
+    <%=h @user.gra_school %>
   </p>
   <p>
     <b>是否入编:</b>

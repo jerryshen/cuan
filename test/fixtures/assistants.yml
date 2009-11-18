@@ -1,0 +1,13 @@
+--- 
+assistants_001: 
+  created_at: 2009-10-16 06:36:45
+  updated_at: 2009-10-16 06:36:45
+  id: "2"
+  user_id: "472"
+  department_id: "17"
+assistants_002: 
+  created_at: 2009-10-30 16:02:34
+  updated_at: 2009-10-30 16:02:34
+  id: "3"
+  user_id: "473"
+  department_id: "17"

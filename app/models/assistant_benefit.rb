@@ -1,6 +1,8 @@
 class AssistantBenefit < ActiveRecord::Base
   belongs_to :assistant
 
+  validates_presence_of :assistant_id, :year, :month
+
   before_destroy :destroyable
   before_update :re_verify
 

@@ -1,2 +1,64 @@
---- {}
+--- 
+educations_003: 
+  name: !binary |
+    6auY5Lit
 
+  created_at: 2009-07-31 11:15:53
+  updated_at: 2009-07-31 11:15:53
+  id: "3"
+educations_004: 
+  name: !binary |
+    5Lit5LiT
+
+  created_at: 2009-07-31 11:16:00
+  updated_at: 2009-07-31 11:16:00
+  id: "4"
+educations_005: 
+  name: !binary |
+    5LiT56eR
+
+  created_at: 2009-07-31 11:16:04
+  updated_at: 2009-07-31 11:16:04
+  id: "5"
+educations_006: 
+  name: !binary |
+    5aSn5a2m5pys56eR
+
+  created_at: 2009-07-31 11:16:12
+  updated_at: 2009-07-31 11:16:12
+  id: "6"
+educations_007: 
+  name: !binary |
+    56GV5aOr56CU56m255Sf
+
+  created_at: 2009-07-31 11:16:27
+  updated_at: 2009-07-31 11:16:27
+  id: "7"
+educations_008: 
+  name: !binary |
+    5Y2a5aOr56CU56m255Sf
+
+  created_at: 2009-07-31 11:16:34
+  updated_at: 2009-07-31 11:16:34
+  id: "8"
+educations_009: 
+  name: !binary |
+    5Y2a5aOr5ZCO
+
+  created_at: 2009-07-31 11:16:41
+  updated_at: 2009-07-31 11:16:41
+  id: "9"
+educations_001: 
+  name: !binary |
+    5bCP5a2m
+
+  created_at: 2009-07-31 11:15:43
+  updated_at: 2009-07-31 11:15:43
+  id: "1"
+educations_002: 
+  name: !binary |
+    5Yid5Lit
+
+  created_at: 2009-07-31 11:15:48
+  updated_at: 2009-07-31 11:15:48
+  id: "2"

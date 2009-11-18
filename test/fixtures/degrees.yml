@@ -1,2 +1,120 @@
---- {}
+--- 
+degrees_007: 
+  name: !binary |
+    5bel5a2m5a2m5aOr
 
+  created_at: 2009-07-31 11:12:45
+  updated_at: 2009-07-31 11:12:45
+  id: "7"
+degrees_008: 
+  name: !binary |
+    5Yy75a2m5a2m5aOr
+
+  created_at: 2009-07-31 11:12:53
+  updated_at: 2009-07-31 11:12:53
+  id: "8"
+degrees_010: 
+  name: !binary |
+    5rOV5a2m5a2m5aOr
+
+  created_at: 2009-07-31 11:13:23
+  updated_at: 2009-07-31 11:13:23
+  id: "10"
+degrees_009: 
+  name: !binary |
+    57uP5rWO5a2m5a2m5aOr
+
+  created_at: 2009-07-31 11:13:11
+  updated_at: 2009-07-31 11:13:11
+  id: "9"
+degrees_011: 
+  name: !binary |
+    5pWZ6IKy5a2m5a2m5aOr
+
+  created_at: 2009-07-31 11:13:34
+  updated_at: 2009-07-31 11:13:34
+  id: "11"
+degrees_012: 
+  name: !binary |
+    5Y6G5Y+y5a2m5a2m5aOr
+
+  created_at: 2009-07-31 11:13:47
+  updated_at: 2009-07-31 11:13:47
+  id: "12"
+degrees_001: 
+  name: !binary |
+    5a2m5aOr
+
+  created_at: 2009-07-31 11:12:05
+  updated_at: 2009-07-31 11:12:05
+  id: "1"
+degrees_013: 
+  name: !binary |
+    5Yac5a2m5a2m5aOr
+
+  created_at: 2009-07-31 11:14:02
+  updated_at: 2009-07-31 11:14:02
+  id: "13"
+degrees_002: 
+  name: !binary |
+    56GV5aOr
+
+  created_at: 2009-07-31 11:12:10
+  updated_at: 2009-07-31 11:12:10
+  id: "2"
+degrees_014: 
+  name: !binary |
+    5Yab5LqL5a2m5a2m5aOr
+
+  created_at: 2009-07-31 11:14:14
+  updated_at: 2009-07-31 11:14:14
+  id: "14"
+degrees_003: 
+  name: !binary |
+    5Y2a5aOr
+
+  created_at: 2009-07-31 11:12:16
+  updated_at: 2009-07-31 11:12:16
+  id: "3"
+degrees_015: 
+  name: !binary |
+    566h55CG5a2m5a2m5aOr
+
+  created_at: 2009-07-31 11:14:26
+  updated_at: 2009-07-31 11:14:26
+  id: "15"
+degrees_004: 
+  name: !binary |
+    5peg5a2m5L2N
+
+  created_at: 2009-07-31 11:12:24
+  updated_at: 2009-07-31 11:15:09
+  id: "4"
+degrees_016: 
+  name: !binary |
+    5bu6562R5a2m5a2m5aOr
+
+  created_at: 2009-07-31 11:14:32
+  updated_at: 2009-07-31 11:14:32
+  id: "16"
+degrees_005: 
+  name: !binary |
+    5ZOy5a2m5a2m5aOr
+
+  created_at: 2009-07-31 11:12:32
+  updated_at: 2009-07-31 11:12:32
+  id: "5"
+degrees_017: 
+  name: !binary |
+    5paH5a2m5a2m5aOr
+
+  created_at: 2009-07-31 11:15:22
+  updated_at: 2009-07-31 11:15:22
+  id: "17"
+degrees_006: 
+  name: !binary |
+    55CG5a2m5a2m5aOr
+
+  created_at: 2009-07-31 11:12:38
+  updated_at: 2009-07-31 11:12:38
+  id: "6"

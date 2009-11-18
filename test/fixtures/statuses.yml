@@ -1,2 +1,57 @@
---- {}
+--- 
+statuses_003: 
+  name: !binary |
+    5LiT5Lia5oqA5pyv5Lq65ZGY5Yy755Sf
 
+  created_at: 2009-07-31 11:19:49
+  updated_at: 2009-07-31 11:30:30
+  id: "3"
+statuses_004: 
+  name: !binary |
+    5LiT5Lia5oqA5pyv5Lq65ZGY5bel56iL5biI
+
+  created_at: 2009-07-31 11:19:59
+  updated_at: 2009-07-31 11:30:38
+  id: "4"
+statuses_005: 
+  name: !binary |
+    5LiT5Lia5oqA5pyv5Lq65ZGY5Zu+5Lmm6aaG6aaG5ZGY
+
+  created_at: 2009-07-31 11:20:16
+  updated_at: 2009-07-31 11:30:45
+  id: "5"
+statuses_006: 
+  name: !binary |
+    5LiT5Lia5oqA5pyv5Lq65ZGY57yW5a6h
+
+  created_at: 2009-07-31 11:20:27
+  updated_at: 2009-07-31 11:30:52
+  id: "6"
+statuses_007: 
+  name: !binary |
+    5LiT5Lia5oqA5pyv5Lq65ZGY5Lya6K6h
+
+  created_at: 2009-07-31 11:20:38
+  updated_at: 2009-07-31 11:20:38
+  id: "7"
+statuses_008: 
+  name: !binary |
+    5LiT5Lia5oqA5pyv5Lq65ZGY57uP5rWO5biI
+
+  created_at: 2009-07-31 11:20:54
+  updated_at: 2009-07-31 11:20:54
+  id: "8"
+statuses_001: 
+  name: !binary |
+    6KGM5pS/566h55CG5Lq65ZGY
+
+  created_at: 2009-07-31 11:19:31
+  updated_at: 2009-07-31 11:19:31
+  id: "1"
+statuses_002: 
+  name: !binary |
+    5LiT5Lu75pWZ5biI
+
+  created_at: 2009-07-31 11:19:41
+  updated_at: 2009-07-31 11:19:41
+  id: "2"

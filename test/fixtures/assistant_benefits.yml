@@ -1,0 +1,12 @@
+--- 
+assistant_benefits_001: 
+  created_at: 2009-10-22 04:03:43
+  month: "10"
+  benefit: "111.0"
+  updated_at: 2009-10-22 04:03:43
+  id: "2"
+  date: 
+  other: "2222.0"
+  is_verified: f
+  year: "2009"
+  assistant_id: "2"

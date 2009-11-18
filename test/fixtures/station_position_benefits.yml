@@ -1,2 +1,1443 @@
---- {}
-
+--- 
+station_position_benefits_198: 
+  created_at: 2009-10-19 09:19:00
+  updated_at: 2009-10-19 09:19:00
+  id: "199"
+  position_be: "280.0"
+  user_id: "491"
+  station_be: "0.0"
+station_position_benefits_084: 
+  created_at: 2009-10-19 08:20:18
+  updated_at: 2009-10-19 08:20:18
+  id: "84"
+  position_be: "280.0"
+  user_id: "536"
+  station_be: "940.0"
+station_position_benefits_056: 
+  created_at: 2009-10-19 08:00:21
+  updated_at: 2009-10-19 08:00:21
+  id: "56"
+  position_be: "280.0"
+  user_id: "666"
+  station_be: "940.0"
+station_position_benefits_111: 
+  created_at: 2009-10-19 08:29:18
+  updated_at: 2009-10-19 08:29:18
+  id: "111"
+  position_be: "420.0"
+  user_id: "206"
+  station_be: "1500.0"
+station_position_benefits_028: 
+  created_at: 2009-10-16 08:26:31
+  updated_at: 2009-10-16 08:26:31
+  id: "28"
+  position_be: "280.0"
+  user_id: "737"
+  station_be: "940.0"
+station_position_benefits_199: 
+  created_at: 2009-10-19 09:19:18
+  updated_at: 2009-10-19 09:19:18
+  id: "200"
+  position_be: "280.0"
+  user_id: "680"
+  station_be: "0.0"
+station_position_benefits_140: 
+  created_at: 2009-10-19 08:48:44
+  updated_at: 2009-10-19 08:48:44
+  id: "141"
+  position_be: "320.0"
+  user_id: "172"
+  station_be: "1130.0"
+station_position_benefits_057: 
+  created_at: 2009-10-19 08:01:35
+  updated_at: 2009-10-19 08:01:35
+  id: "57"
+  position_be: "310.0"
+  user_id: "41"
+  station_be: "1130.0"
+station_position_benefits_112: 
+  created_at: 2009-10-19 08:29:34
+  updated_at: 2009-10-19 08:29:34
+  id: "112"
+  position_be: "280.0"
+  user_id: "456"
+  station_be: "940.0"
+station_position_benefits_029: 
+  created_at: 2009-10-16 08:29:01
+  updated_at: 2009-10-16 08:29:01
+  id: "29"
+  position_be: "460.0"
+  user_id: "290"
+  station_be: "1800.0"
+station_position_benefits_085: 
+  created_at: 2009-10-19 08:20:36
+  updated_at: 2009-10-19 08:20:36
+  id: "85"
+  position_be: "320.0"
+  user_id: "554"
+  station_be: "1130.0"
+station_position_benefits_141: 
+  created_at: 2009-10-19 08:48:58
+  updated_at: 2009-10-19 08:48:58
+  id: "142"
+  position_be: "320.0"
+  user_id: "173"
+  station_be: "0.0"
+station_position_benefits_058: 
+  created_at: 2009-10-19 08:01:54
+  updated_at: 2009-10-19 08:01:54
+  id: "58"
+  position_be: "320.0"
+  user_id: "113"
+  station_be: "1130.0"
+station_position_benefits_113: 
+  created_at: 2009-10-19 08:29:51
+  updated_at: 2009-10-19 08:29:51
+  id: "113"
+  position_be: "310.0"
+  user_id: "565"
+  station_be: "1130.0"
+station_position_benefits_086: 
+  created_at: 2009-10-19 08:20:58
+  updated_at: 2009-10-19 08:20:58
+  id: "86"
+  position_be: "280.0"
+  user_id: "638"
+  station_be: "940.0"
+station_position_benefits_170: 
+  created_at: 2009-10-19 09:03:57
+  updated_at: 2009-10-19 09:03:57
+  id: "171"
+  position_be: "280.0"
+  user_id: "626"
+  station_be: "0.0"
+station_position_benefits_142: 
+  created_at: 2009-10-19 08:49:24
+  updated_at: 2009-10-19 08:49:24
+  id: "143"
+  position_be: "320.0"
+  user_id: "174"
+  station_be: "170.0"
+station_position_benefits_059: 
+  created_at: 2009-10-19 08:02:12
+  updated_at: 2009-10-19 08:02:12
+  id: "59"
+  position_be: "460.0"
+  user_id: "192"
+  station_be: "1800.0"
+station_position_benefits_114: 
+  created_at: 2009-10-19 08:31:00
+  updated_at: 2009-10-19 08:31:00
+  id: "114"
+  position_be: "350.0"
+  user_id: "691"
+  station_be: "1100.0"
+station_position_benefits_087: 
+  created_at: 2009-10-19 08:21:32
+  updated_at: 2009-10-19 08:21:32
+  id: "87"
+  position_be: "280.0"
+  user_id: "25"
+  station_be: "940.0"
+station_position_benefits_171: 
+  created_at: 2009-10-19 09:04:24
+  updated_at: 2009-10-19 09:04:24
+  id: "172"
+  position_be: "280.0"
+  user_id: "738"
+  station_be: "0.0"
+station_position_benefits_143: 
+  created_at: 2009-10-19 08:49:53
+  updated_at: 2009-10-19 08:49:53
+  id: "144"
+  position_be: "320.0"
+  user_id: "175"
+  station_be: "170.0"
+station_position_benefits_115: 
+  created_at: 2009-10-19 08:31:16
+  updated_at: 2009-10-19 08:31:16
+  id: "115"
+  position_be: "460.0"
+  user_id: "359"
+  station_be: "1800.0"
+station_position_benefits_088: 
+  created_at: 2009-10-19 08:21:51
+  updated_at: 2009-10-19 08:21:51
+  id: "88"
+  position_be: "280.0"
+  user_id: "43"
+  station_be: "940.0"
+station_position_benefits_001: 
+  created_at: 2009-10-16 08:10:15
+  updated_at: 2009-10-16 08:10:15
+  id: "1"
+  position_be: "460.0"
+  user_id: "87"
+  station_be: "1800.0"
+station_position_benefits_172: 
+  created_at: 2009-10-19 09:04:48
+  updated_at: 2009-10-19 09:04:48
+  id: "173"
+  position_be: "280.0"
+  user_id: "672"
+  station_be: "0.0"
+station_position_benefits_144: 
+  created_at: 2009-10-19 08:50:36
+  updated_at: 2009-10-19 08:50:36
+  id: "145"
+  position_be: "460.0"
+  user_id: "177"
+  station_be: "170.0"
+station_position_benefits_116: 
+  created_at: 2009-10-19 08:31:29
+  updated_at: 2009-10-19 08:31:29
+  id: "116"
+  position_be: "380.0"
+  user_id: "434"
+  station_be: "1500.0"
+station_position_benefits_030: 
+  created_at: 2009-10-16 08:29:16
+  updated_at: 2009-10-16 08:29:16
+  id: "30"
+  position_be: "320.0"
+  user_id: "445"
+  station_be: "1100.0"
+station_position_benefits_089: 
+  created_at: 2009-10-19 08:22:12
+  updated_at: 2009-10-19 08:22:12
+  id: "89"
+  position_be: "280.0"
+  user_id: "80"
+  station_be: "940.0"
+station_position_benefits_002: 
+  created_at: 2009-10-16 08:13:50
+  updated_at: 2009-10-16 08:13:50
+  id: "2"
+  position_be: "280.0"
+  user_id: "90"
+  station_be: "960.0"
+station_position_benefits_200: 
+  created_at: 2009-10-19 09:19:37
+  updated_at: 2009-10-19 09:19:37
+  id: "201"
+  position_be: "280.0"
+  user_id: "572"
+  station_be: "0.0"
+station_position_benefits_173: 
+  created_at: 2009-10-19 09:05:05
+  updated_at: 2009-10-19 09:05:05
+  id: "174"
+  position_be: "320.0"
+  user_id: "568"
+  station_be: "0.0"
+station_position_benefits_145: 
+  created_at: 2009-10-19 08:51:01
+  updated_at: 2009-10-19 08:51:01
+  id: "146"
+  position_be: "320.0"
+  user_id: "183"
+  station_be: "170.0"
+station_position_benefits_117: 
+  created_at: 2009-10-19 08:31:44
+  updated_at: 2009-10-19 08:31:44
+  id: "117"
+  position_be: "280.0"
+  user_id: "675"
+  station_be: "960.0"
+station_position_benefits_031: 
+  created_at: 2009-10-16 08:29:34
+  updated_at: 2009-10-16 08:29:34
+  id: "31"
+  position_be: "280.0"
+  user_id: "714"
+  station_be: "940.0"
+station_position_benefits_003: 
+  created_at: 2009-10-16 08:14:10
+  updated_at: 2009-10-16 08:14:10
+  id: "3"
+  position_be: "320.0"
+  user_id: "91"
+  station_be: "1100.0"
+station_position_benefits_201: 
+  created_at: 2009-10-19 09:20:24
+  updated_at: 2009-10-19 09:20:24
+  id: "202"
+  position_be: "280.0"
+  user_id: "517"
+  station_be: "0.0"
+station_position_benefits_174: 
+  created_at: 2009-10-19 09:05:38
+  updated_at: 2009-10-19 09:05:38
+  id: "175"
+  position_be: "280.0"
+  user_id: "636"
+  station_be: "0.0"
+station_position_benefits_146: 
+  created_at: 2009-10-19 08:51:23
+  updated_at: 2009-10-19 08:51:23
+  id: "147"
+  position_be: "460.0"
+  user_id: "305"
+  station_be: "1800.0"
+station_position_benefits_060: 
+  created_at: 2009-10-19 08:02:28
+  updated_at: 2009-10-19 08:02:28
+  id: "60"
+  position_be: "320.0"
+  user_id: "295"
+  station_be: "1130.0"
+station_position_benefits_032: 
+  created_at: 2009-10-16 08:30:16
+  updated_at: 2009-10-16 08:30:16
+  id: "32"
+  position_be: "420.0"
+  user_id: "22"
+  station_be: "1500.0"
+station_position_benefits_004: 
+  created_at: 2009-10-16 08:14:34
+  updated_at: 2009-10-16 08:14:34
+  id: "4"
+  position_be: "310.0"
+  user_id: "285"
+  station_be: "1130.0"
+station_position_benefits_202: 
+  created_at: 2009-10-19 09:20:51
+  updated_at: 2009-10-19 09:20:51
+  id: "203"
+  position_be: "420.0"
+  user_id: "160"
+  station_be: "160.0"
+station_position_benefits_175: 
+  created_at: 2009-10-19 09:07:04
+  updated_at: 2009-10-19 09:07:04
+  id: "176"
+  position_be: "280.0"
+  user_id: "623"
+  station_be: "0.0"
+station_position_benefits_147: 
+  created_at: 2009-10-19 08:52:25
+  updated_at: 2009-10-19 08:52:25
+  id: "148"
+  position_be: "460.0"
+  user_id: "386"
+  station_be: "1800.0"
+station_position_benefits_118: 
+  created_at: 2009-10-19 08:32:25
+  updated_at: 2009-10-19 08:32:25
+  id: "118"
+  position_be: "230.0"
+  user_id: "725"
+  station_be: "820.0"
+station_position_benefits_061: 
+  created_at: 2009-10-19 08:02:51
+  updated_at: 2009-10-19 08:02:51
+  id: "61"
+  position_be: "320.0"
+  user_id: "537"
+  station_be: "1100.0"
+station_position_benefits_033: 
+  created_at: 2009-10-16 08:31:02
+  updated_at: 2009-10-16 08:31:02
+  id: "33"
+  position_be: "320.0"
+  user_id: "59"
+  station_be: "1130.0"
+station_position_benefits_005: 
+  created_at: 2009-10-16 08:14:53
+  updated_at: 2009-10-16 08:14:53
+  id: "5"
+  position_be: "380.0"
+  user_id: "452"
+  station_be: "1500.0"
+station_position_benefits_203: 
+  created_at: 2009-10-19 09:21:17
+  updated_at: 2009-10-19 09:21:17
+  id: "204"
+  position_be: "280.0"
+  user_id: "756"
+  station_be: "0.0"
+station_position_benefits_176: 
+  created_at: 2009-10-19 09:07:35
+  updated_at: 2009-10-19 09:07:35
+  id: "177"
+  position_be: "320.0"
+  user_id: "598"
+  station_be: "0.0"
+station_position_benefits_148: 
+  created_at: 2009-10-19 08:52:49
+  updated_at: 2009-10-19 08:52:49
+  id: "149"
+  position_be: "280.0"
+  user_id: "392"
+  station_be: "0.0"
+station_position_benefits_119: 
+  created_at: 2009-10-19 08:37:00
+  updated_at: 2009-10-19 08:37:00
+  id: "119"
+  position_be: "320.0"
+  user_id: "16"
+  station_be: "1100.0"
+station_position_benefits_062: 
+  created_at: 2009-10-19 08:03:11
+  updated_at: 2009-10-19 08:03:11
+  id: "62"
+  position_be: "280.0"
+  user_id: "726"
+  station_be: "940.0"
+station_position_benefits_034: 
+  created_at: 2009-10-16 08:31:33
+  updated_at: 2009-10-16 08:31:33
+  id: "34"
+  position_be: "650.0"
+  user_id: "66"
+  station_be: "3300.0"
+station_position_benefits_006: 
+  created_at: 2009-10-16 08:15:10
+  updated_at: 2009-10-16 08:15:10
+  id: "6"
+  position_be: "280.0"
+  user_id: "586"
+  station_be: "940.0"
+station_position_benefits_090: 
+  created_at: 2009-10-19 08:22:31
+  updated_at: 2009-10-19 08:22:31
+  id: "90"
+  position_be: "310.0"
+  user_id: "119"
+  station_be: "1130.0"
+station_position_benefits_204: 
+  created_at: 2009-10-19 09:21:38
+  updated_at: 2009-10-19 09:21:38
+  id: "205"
+  position_be: "320.0"
+  user_id: "18"
+  station_be: "160.0"
+station_position_benefits_177: 
+  created_at: 2009-10-19 09:08:44
+  updated_at: 2009-10-19 09:08:44
+  id: "178"
+  position_be: "320.0"
+  user_id: "511"
+  station_be: "1100.0"
+station_position_benefits_149: 
+  created_at: 2009-10-19 08:53:06
+  updated_at: 2009-10-19 08:53:06
+  id: "150"
+  position_be: "320.0"
+  user_id: "400"
+  station_be: "0.0"
+station_position_benefits_063: 
+  created_at: 2009-10-19 08:03:29
+  updated_at: 2009-10-19 08:03:29
+  id: "63"
+  position_be: "310.0"
+  user_id: "298"
+  station_be: "1130.0"
+station_position_benefits_035: 
+  created_at: 2009-10-16 08:31:50
+  updated_at: 2009-10-16 08:31:50
+  id: "35"
+  position_be: "550.0"
+  user_id: "68"
+  station_be: "2800.0"
+station_position_benefits_007: 
+  created_at: 2009-10-16 08:15:25
+  updated_at: 2009-10-16 08:15:25
+  id: "7"
+  position_be: "280.0"
+  user_id: "606"
+  station_be: "940.0"
+station_position_benefits_091: 
+  created_at: 2009-10-19 08:22:50
+  updated_at: 2009-10-19 08:22:50
+  id: "91"
+  position_be: "270.0"
+  user_id: "120"
+  station_be: "960.0"
+station_position_benefits_205: 
+  created_at: 2009-10-19 09:22:02
+  updated_at: 2009-10-19 09:22:02
+  id: "206"
+  position_be: "320.0"
+  user_id: "54"
+  station_be: "0.0"
+station_position_benefits_178: 
+  created_at: 2009-10-19 09:09:16
+  updated_at: 2009-10-19 09:09:16
+  id: "179"
+  position_be: "280.0"
+  user_id: "710"
+  station_be: "0.0"
+station_position_benefits_036: 
+  created_at: 2009-10-16 08:32:22
+  updated_at: 2009-10-16 08:32:22
+  id: "36"
+  position_be: "550.0"
+  user_id: "69"
+  station_be: "2800.0"
+station_position_benefits_092: 
+  created_at: 2009-10-19 08:23:07
+  updated_at: 2009-10-19 08:23:07
+  id: "92"
+  position_be: "320.0"
+  user_id: "122"
+  station_be: "1100.0"
+station_position_benefits_064: 
+  created_at: 2009-10-19 08:03:53
+  updated_at: 2009-10-19 08:03:53
+  id: "64"
+  position_be: "280.0"
+  user_id: "453"
+  station_be: "940.0"
+station_position_benefits_179: 
+  created_at: 2009-10-19 09:09:34
+  updated_at: 2009-10-19 09:09:34
+  id: "180"
+  position_be: "280.0"
+  user_id: "625"
+  station_be: "0.0"
+station_position_benefits_120: 
+  created_at: 2009-10-19 08:37:28
+  updated_at: 2009-10-19 08:37:28
+  id: "120"
+  position_be: "270.0"
+  user_id: "89"
+  station_be: "960.0"
+station_position_benefits_037: 
+  created_at: 2009-10-16 08:37:30
+  updated_at: 2009-10-16 08:37:30
+  id: "37"
+  position_be: "460.0"
+  user_id: "74"
+  station_be: "1800.0"
+station_position_benefits_008: 
+  created_at: 2009-10-16 08:15:45
+  updated_at: 2009-10-16 08:16:24
+  id: "8"
+  position_be: "280.0"
+  user_id: "619"
+  station_be: "940.0"
+station_position_benefits_093: 
+  created_at: 2009-10-19 08:23:28
+  updated_at: 2009-10-19 08:23:28
+  id: "93"
+  position_be: "320.0"
+  user_id: "364"
+  station_be: "1130.0"
+station_position_benefits_065: 
+  created_at: 2009-10-19 08:04:30
+  updated_at: 2009-10-19 08:04:30
+  id: "65"
+  position_be: "280.0"
+  user_id: "711"
+  station_be: "940.0"
+station_position_benefits_206: 
+  created_at: 2009-10-19 09:22:19
+  updated_at: 2009-10-19 09:22:19
+  id: "207"
+  position_be: "320.0"
+  user_id: "132"
+  station_be: "0.0"
+station_position_benefits_121: 
+  created_at: 2009-10-19 08:37:49
+  updated_at: 2009-10-19 08:37:49
+  id: "121"
+  position_be: "280.0"
+  user_id: "92"
+  station_be: "940.0"
+station_position_benefits_038: 
+  created_at: 2009-10-16 08:37:56
+  updated_at: 2009-10-16 08:37:56
+  id: "38"
+  position_be: "550.0"
+  user_id: "104"
+  station_be: "2800.0"
+station_position_benefits_009: 
+  created_at: 2009-10-16 08:16:01
+  updated_at: 2009-10-16 08:16:01
+  id: "9"
+  position_be: "280.0"
+  user_id: "734"
+  station_be: "940.0"
+station_position_benefits_094: 
+  created_at: 2009-10-19 08:23:51
+  updated_at: 2009-10-19 08:23:51
+  id: "94"
+  position_be: "420.0"
+  user_id: "406"
+  station_be: "1500.0"
+station_position_benefits_066: 
+  created_at: 2009-10-19 08:13:21
+  updated_at: 2009-10-19 08:13:21
+  id: "66"
+  position_be: "280.0"
+  user_id: "304"
+  station_be: "940.0"
+station_position_benefits_150: 
+  created_at: 2009-10-19 08:53:27
+  updated_at: 2009-10-19 08:53:27
+  id: "151"
+  position_be: "320.0"
+  user_id: "405"
+  station_be: "0.0"
+station_position_benefits_122: 
+  created_at: 2009-10-19 08:38:12
+  updated_at: 2009-10-19 08:38:12
+  id: "122"
+  position_be: "310.0"
+  user_id: "114"
+  station_be: "1130.0"
+station_position_benefits_039: 
+  created_at: 2009-10-16 08:38:11
+  updated_at: 2009-10-16 08:38:11
+  id: "39"
+  position_be: "550.0"
+  user_id: "116"
+  station_be: "2800.0"
+station_position_benefits_095: 
+  created_at: 2009-10-19 08:24:07
+  updated_at: 2009-10-19 08:24:07
+  id: "95"
+  position_be: "320.0"
+  user_id: "417"
+  station_be: "1130.0"
+station_position_benefits_067: 
+  created_at: 2009-10-19 08:13:34
+  updated_at: 2009-10-19 08:13:34
+  id: "67"
+  position_be: "280.0"
+  user_id: "300"
+  station_be: "940.0"
+station_position_benefits_151: 
+  created_at: 2009-10-19 08:53:57
+  updated_at: 2009-10-19 08:53:57
+  id: "152"
+  position_be: "320.0"
+  user_id: "425"
+  station_be: "0.0"
+station_position_benefits_123: 
+  created_at: 2009-10-19 08:38:30
+  updated_at: 2009-10-19 08:38:30
+  id: "123"
+  position_be: "420.0"
+  user_id: "123"
+  station_be: "1290.0"
+station_position_benefits_096: 
+  created_at: 2009-10-19 08:24:22
+  updated_at: 2009-10-19 08:24:22
+  id: "96"
+  position_be: "320.0"
+  user_id: "430"
+  station_be: "1100.0"
+station_position_benefits_068: 
+  created_at: 2009-10-19 08:13:49
+  updated_at: 2009-10-19 08:13:49
+  id: "68"
+  position_be: "280.0"
+  user_id: "302"
+  station_be: "940.0"
+station_position_benefits_180: 
+  created_at: 2009-10-19 09:09:55
+  updated_at: 2009-10-19 09:09:55
+  id: "181"
+  position_be: "280.0"
+  user_id: "747"
+  station_be: "0.0"
+station_position_benefits_152: 
+  created_at: 2009-10-19 08:54:21
+  updated_at: 2009-10-19 08:54:21
+  id: "153"
+  position_be: "280.0"
+  user_id: "426"
+  station_be: "0.0"
+station_position_benefits_124: 
+  created_at: 2009-10-19 08:38:46
+  updated_at: 2009-10-19 08:38:46
+  id: "124"
+  position_be: "420.0"
+  user_id: "125"
+  station_be: "1500.0"
+station_position_benefits_097: 
+  created_at: 2009-10-19 08:24:43
+  updated_at: 2009-10-19 08:24:43
+  id: "97"
+  position_be: "320.0"
+  user_id: "433"
+  station_be: "1130.0"
+station_position_benefits_010: 
+  created_at: 2009-10-16 08:18:50
+  updated_at: 2009-10-16 08:18:50
+  id: "10"
+  position_be: "310.0"
+  user_id: "86"
+  station_be: "1130.0"
+station_position_benefits_069: 
+  created_at: 2009-10-19 08:14:37
+  updated_at: 2009-10-19 08:14:37
+  id: "69"
+  position_be: "460.0"
+  user_id: "145"
+  station_be: "1800.0"
+station_position_benefits_181: 
+  created_at: 2009-10-19 09:10:19
+  updated_at: 2009-10-19 09:10:19
+  id: "182"
+  position_be: "320.0"
+  user_id: "569"
+  station_be: "0.0"
+station_position_benefits_153: 
+  created_at: 2009-10-19 08:54:46
+  updated_at: 2009-10-19 08:54:46
+  id: "154"
+  position_be: "320.0"
+  user_id: "429"
+  station_be: "1100.0"
+station_position_benefits_125: 
+  created_at: 2009-10-19 08:39:07
+  updated_at: 2009-10-19 08:39:07
+  id: "125"
+  position_be: "280.0"
+  user_id: "126"
+  station_be: "940.0"
+station_position_benefits_098: 
+  created_at: 2009-10-19 08:24:59
+  updated_at: 2009-10-19 08:24:59
+  id: "98"
+  position_be: "320.0"
+  user_id: "483"
+  station_be: "1100.0"
+station_position_benefits_011: 
+  created_at: 2009-10-16 08:19:04
+  updated_at: 2009-10-16 08:19:04
+  id: "11"
+  position_be: "460.0"
+  user_id: "134"
+  station_be: "1800.0"
+station_position_benefits_182: 
+  created_at: 2009-10-19 09:11:14
+  updated_at: 2009-10-19 09:11:14
+  id: "183"
+  position_be: "280.0"
+  user_id: "627"
+  station_be: "0.0"
+station_position_benefits_154: 
+  created_at: 2009-10-19 08:57:11
+  updated_at: 2009-10-19 08:57:11
+  id: "155"
+  position_be: "280.0"
+  user_id: "447"
+  station_be: "0.0"
+station_position_benefits_126: 
+  created_at: 2009-10-19 08:39:35
+  updated_at: 2009-10-19 08:39:35
+  id: "126"
+  position_be: "320.0"
+  user_id: "127"
+  station_be: "1100.0"
+station_position_benefits_040: 
+  created_at: 2009-10-19 07:49:05
+  updated_at: 2009-10-19 07:49:05
+  id: "40"
+  position_be: "280.0"
+  user_id: "654"
+  station_be: "940.0"
+station_position_benefits_099: 
+  created_at: 2009-10-19 08:25:18
+  updated_at: 2009-10-19 08:25:18
+  id: "99"
+  position_be: "320.0"
+  user_id: "604"
+  station_be: "1130.0"
+station_position_benefits_012: 
+  created_at: 2009-10-16 08:19:23
+  updated_at: 2009-10-16 08:19:23
+  id: "12"
+  position_be: "320.0"
+  user_id: "450"
+  station_be: "1100.0"
+station_position_benefits_183: 
+  created_at: 2009-10-19 09:13:34
+  updated_at: 2009-10-19 09:13:34
+  id: "184"
+  position_be: "550.0"
+  user_id: "385"
+  station_be: "1800.0"
+station_position_benefits_155: 
+  created_at: 2009-10-19 08:57:30
+  updated_at: 2009-10-19 08:57:30
+  id: "156"
+  position_be: "320.0"
+  user_id: "449"
+  station_be: "0.0"
+station_position_benefits_127: 
+  created_at: 2009-10-19 08:39:54
+  updated_at: 2009-10-19 08:39:54
+  id: "127"
+  position_be: "280.0"
+  user_id: "129"
+  station_be: "940.0"
+station_position_benefits_041: 
+  created_at: 2009-10-19 07:49:26
+  updated_at: 2009-10-19 07:49:26
+  id: "41"
+  position_be: "280.0"
+  user_id: "741"
+  station_be: "940.0"
+station_position_benefits_013: 
+  created_at: 2009-10-16 08:19:51
+  updated_at: 2009-10-16 08:19:51
+  id: "13"
+  position_be: "280.0"
+  user_id: "524"
+  station_be: "940.0"
+station_position_benefits_184: 
+  created_at: 2009-10-19 09:13:49
+  updated_at: 2009-10-19 09:13:49
+  id: "185"
+  position_be: "420.0"
+  user_id: "167"
+  station_be: "1500.0"
+station_position_benefits_156: 
+  created_at: 2009-10-19 08:57:50
+  updated_at: 2009-10-19 08:57:50
+  id: "157"
+  position_be: "280.0"
+  user_id: "463"
+  station_be: "0.0"
+station_position_benefits_128: 
+  created_at: 2009-10-19 08:40:15
+  updated_at: 2009-10-19 08:40:15
+  id: "128"
+  position_be: "280.0"
+  user_id: "131"
+  station_be: "940.0"
+station_position_benefits_042: 
+  created_at: 2009-10-19 07:49:42
+  updated_at: 2009-10-19 07:49:42
+  id: "42"
+  position_be: "280.0"
+  user_id: "82"
+  station_be: "940.0"
+station_position_benefits_014: 
+  created_at: 2009-10-16 08:20:08
+  updated_at: 2009-10-16 08:20:08
+  id: "14"
+  position_be: "320.0"
+  user_id: "523"
+  station_be: "1100.0"
+station_position_benefits_070: 
+  created_at: 2009-10-19 08:15:26
+  updated_at: 2009-10-19 08:15:26
+  id: "70"
+  position_be: "280.0"
+  user_id: "557"
+  station_be: "940.0"
+station_position_benefits_185: 
+  created_at: 2009-10-19 09:14:09
+  updated_at: 2009-10-19 09:14:09
+  id: "186"
+  position_be: "380.0"
+  user_id: "439"
+  station_be: "1500.0"
+station_position_benefits_157: 
+  created_at: 2009-10-19 08:58:10
+  updated_at: 2009-10-19 08:58:10
+  id: "158"
+  position_be: "280.0"
+  user_id: "469"
+  station_be: "0.0"
+station_position_benefits_015: 
+  created_at: 2009-10-16 08:21:01
+  updated_at: 2009-10-16 08:21:01
+  id: "15"
+  position_be: "270.0"
+  user_id: "40"
+  station_be: "960.0"
+station_position_benefits_071: 
+  created_at: 2009-10-19 08:15:45
+  updated_at: 2009-10-19 08:15:45
+  id: "71"
+  position_be: "550.0"
+  user_id: "70"
+  station_be: "2300.0"
+station_position_benefits_043: 
+  created_at: 2009-10-19 07:50:01
+  updated_at: 2009-10-19 07:50:01
+  id: "43"
+  position_be: "280.0"
+  user_id: "78"
+  station_be: "940.0"
+station_position_benefits_186: 
+  created_at: 2009-10-19 09:14:27
+  updated_at: 2009-10-19 09:14:27
+  id: "187"
+  position_be: "310.0"
+  user_id: "621"
+  station_be: "1130.0"
+station_position_benefits_158: 
+  created_at: 2009-10-19 08:58:27
+  updated_at: 2009-10-19 08:58:27
+  id: "159"
+  position_be: "280.0"
+  user_id: "471"
+  station_be: "0.0"
+station_position_benefits_129: 
+  created_at: 2009-10-19 08:40:30
+  updated_at: 2009-10-19 08:40:30
+  id: "129"
+  position_be: "460.0"
+  user_id: "146"
+  station_be: "1800.0"
+station_position_benefits_016: 
+  created_at: 2009-10-16 08:21:35
+  updated_at: 2009-10-16 08:21:35
+  id: "16"
+  position_be: "460.0"
+  user_id: "105"
+  station_be: "1800.0"
+station_position_benefits_072: 
+  created_at: 2009-10-19 08:16:15
+  updated_at: 2009-10-19 08:16:15
+  id: "72"
+  position_be: "320.0"
+  user_id: "12"
+  station_be: "1100.0"
+station_position_benefits_044: 
+  created_at: 2009-10-19 07:50:20
+  updated_at: 2009-10-19 07:50:20
+  id: "44"
+  position_be: "270.0"
+  user_id: "83"
+  station_be: "960.0"
+station_position_benefits_187: 
+  created_at: 2009-10-19 09:15:02
+  updated_at: 2009-10-19 09:15:02
+  id: "188"
+  position_be: "280.0"
+  user_id: "555"
+  station_be: "960.0"
+station_position_benefits_159: 
+  created_at: 2009-10-19 08:58:45
+  updated_at: 2009-10-19 08:58:45
+  id: "160"
+  position_be: "320.0"
+  user_id: "479"
+  station_be: "0.0"
+station_position_benefits_017: 
+  created_at: 2009-10-16 08:21:49
+  updated_at: 2009-10-16 08:21:49
+  id: "17"
+  position_be: "280.0"
+  user_id: "379"
+  station_be: "940.0"
+station_position_benefits_073: 
+  created_at: 2009-10-19 08:16:32
+  updated_at: 2009-10-19 08:16:32
+  id: "73"
+  position_be: "420.0"
+  user_id: "138"
+  station_be: "1290.0"
+station_position_benefits_045: 
+  created_at: 2009-10-19 07:50:44
+  updated_at: 2009-10-19 07:50:44
+  id: "45"
+  position_be: "280.0"
+  user_id: "362"
+  station_be: "940.0"
+station_position_benefits_100: 
+  created_at: 2009-10-19 08:25:48
+  updated_at: 2009-10-19 08:25:48
+  id: "100"
+  position_be: "310.0"
+  user_id: "660"
+  station_be: "1130.0"
+station_position_benefits_188: 
+  created_at: 2009-10-19 09:15:25
+  updated_at: 2009-10-19 09:15:25
+  id: "189"
+  position_be: "280.0"
+  user_id: "707"
+  station_be: "960.0"
+station_position_benefits_018: 
+  created_at: 2009-10-16 08:22:18
+  updated_at: 2009-10-16 08:22:18
+  id: "18"
+  position_be: "420.0"
+  user_id: "296"
+  station_be: "1650.0"
+station_position_benefits_074: 
+  created_at: 2009-10-19 08:16:53
+  updated_at: 2009-10-19 08:16:53
+  id: "74"
+  position_be: "550.0"
+  user_id: "151"
+  station_be: "1800.0"
+station_position_benefits_046: 
+  created_at: 2009-10-19 07:51:04
+  updated_at: 2009-10-19 07:51:04
+  id: "46"
+  position_be: "320.0"
+  user_id: "288"
+  station_be: "1100.0"
+station_position_benefits_101: 
+  created_at: 2009-10-19 08:26:05
+  updated_at: 2009-10-19 08:26:05
+  id: "101"
+  position_be: "280.0"
+  user_id: "702"
+  station_be: "940.0"
+station_position_benefits_189: 
+  created_at: 2009-10-19 09:15:46
+  updated_at: 2009-10-19 09:15:46
+  id: "190"
+  position_be: "280.0"
+  user_id: "752"
+  station_be: "940.0"
+station_position_benefits_130: 
+  created_at: 2009-10-19 08:40:56
+  updated_at: 2009-10-19 08:40:56
+  id: "130"
+  position_be: "420.0"
+  user_id: "273"
+  station_be: "1290.0"
+station_position_benefits_075: 
+  created_at: 2009-10-19 08:17:12
+  updated_at: 2009-10-19 08:17:12
+  id: "75"
+  position_be: "420.0"
+  user_id: "180"
+  station_be: "1500.0"
+station_position_benefits_047: 
+  created_at: 2009-10-19 07:51:24
+  updated_at: 2009-10-19 07:51:24
+  id: "47"
+  position_be: "320.0"
+  user_id: "84"
+  station_be: "1100.0"
+station_position_benefits_102: 
+  created_at: 2009-10-19 08:26:20
+  updated_at: 2009-10-19 08:26:20
+  id: "102"
+  position_be: "280.0"
+  user_id: "708"
+  station_be: "940.0"
+station_position_benefits_131: 
+  created_at: 2009-10-19 08:41:11
+  updated_at: 2009-10-19 08:41:11
+  id: "131"
+  position_be: "280.0"
+  user_id: "365"
+  station_be: "940.0"
+station_position_benefits_019: 
+  created_at: 2009-10-16 08:22:36
+  updated_at: 2009-10-16 08:22:36
+  id: "19"
+  position_be: "280.0"
+  user_id: "648"
+  station_be: "940.0"
+station_position_benefits_076: 
+  created_at: 2009-10-19 08:17:28
+  updated_at: 2009-10-19 08:17:28
+  id: "76"
+  position_be: "320.0"
+  user_id: "376"
+  station_be: "1100.0"
+station_position_benefits_048: 
+  created_at: 2009-10-19 07:51:41
+  updated_at: 2009-10-19 07:51:41
+  id: "48"
+  position_be: "200.0"
+  user_id: "578"
+  station_be: "780.0"
+station_position_benefits_103: 
+  created_at: 2009-10-19 08:26:34
+  updated_at: 2009-10-19 08:26:34
+  id: "103"
+  position_be: "280.0"
+  user_id: "754"
+  station_be: "940.0"
+station_position_benefits_160: 
+  created_at: 2009-10-19 08:59:08
+  updated_at: 2009-10-19 08:59:08
+  id: "161"
+  position_be: "320.0"
+  user_id: "493"
+  station_be: "170.0"
+station_position_benefits_132: 
+  created_at: 2009-10-19 08:42:05
+  updated_at: 2009-10-19 08:42:05
+  id: "132"
+  position_be: "280.0"
+  user_id: "441"
+  station_be: "940.0"
+station_position_benefits_077: 
+  created_at: 2009-10-19 08:17:44
+  updated_at: 2009-10-19 08:17:44
+  id: "77"
+  position_be: "420.0"
+  user_id: "207"
+  station_be: "1290.0"
+station_position_benefits_049: 
+  created_at: 2009-10-19 07:53:00
+  updated_at: 2009-10-19 07:53:00
+  id: "49"
+  position_be: "460.0"
+  user_id: "421"
+  station_be: "1800.0"
+station_position_benefits_104: 
+  created_at: 2009-10-19 08:27:16
+  updated_at: 2009-10-19 08:27:16
+  id: "104"
+  position_be: "460.0"
+  user_id: "196"
+  station_be: "1800.0"
+station_position_benefits_161: 
+  created_at: 2009-10-19 08:59:29
+  updated_at: 2009-10-19 08:59:29
+  id: "162"
+  position_be: "280.0"
+  user_id: "494"
+  station_be: "0.0"
+station_position_benefits_133: 
+  created_at: 2009-10-19 08:42:36
+  updated_at: 2009-10-19 08:42:36
+  id: "133"
+  position_be: "270.0"
+  user_id: "448"
+  station_be: "960.0"
+station_position_benefits_078: 
+  created_at: 2009-10-19 08:18:19
+  updated_at: 2009-10-19 08:18:19
+  id: "78"
+  position_be: "280.0"
+  user_id: "739"
+  station_be: "940.0"
+station_position_benefits_105: 
+  created_at: 2009-10-19 08:27:34
+  updated_at: 2009-10-19 08:27:34
+  id: "105"
+  position_be: "310.0"
+  user_id: "95"
+  station_be: "1130.0"
+station_position_benefits_190: 
+  created_at: 2009-10-19 09:16:08
+  updated_at: 2009-10-19 09:16:08
+  id: "191"
+  position_be: "280.0"
+  user_id: "735"
+  station_be: "940.0"
+station_position_benefits_162: 
+  created_at: 2009-10-19 09:00:04
+  updated_at: 2009-10-19 09:00:04
+  id: "163"
+  position_be: "280.0"
+  user_id: "629"
+  station_be: "0.0"
+station_position_benefits_134: 
+  created_at: 2009-10-19 08:42:59
+  updated_at: 2009-10-19 08:42:59
+  id: "134"
+  position_be: "280.0"
+  user_id: "730"
+  station_be: "940.0"
+station_position_benefits_020: 
+  created_at: 2009-10-16 08:23:05
+  updated_at: 2009-10-16 08:23:05
+  id: "20"
+  position_be: "550.0"
+  user_id: "115"
+  station_be: "1800.0"
+station_position_benefits_079: 
+  created_at: 2009-10-19 08:18:53
+  updated_at: 2009-10-19 08:18:53
+  id: "79"
+  position_be: "460.0"
+  user_id: "103"
+  station_be: "1800.0"
+station_position_benefits_106: 
+  created_at: 2009-10-19 08:27:50
+  updated_at: 2009-10-19 08:27:50
+  id: "106"
+  position_be: "270.0"
+  user_id: "500"
+  station_be: "960.0"
+station_position_benefits_191: 
+  created_at: 2009-10-19 09:16:27
+  updated_at: 2009-10-19 09:16:27
+  id: "192"
+  position_be: "280.0"
+  user_id: "581"
+  station_be: "940.0"
+station_position_benefits_163: 
+  created_at: 2009-10-19 09:00:32
+  updated_at: 2009-10-19 09:00:32
+  id: "164"
+  position_be: "280.0"
+  user_id: "566"
+  station_be: "0.0"
+station_position_benefits_135: 
+  created_at: 2009-10-19 08:43:14
+  updated_at: 2009-10-19 08:43:14
+  id: "135"
+  position_be: "280.0"
+  user_id: "744"
+  station_be: "940.0"
+station_position_benefits_021: 
+  created_at: 2009-10-16 08:23:23
+  updated_at: 2009-10-16 08:23:23
+  id: "21"
+  position_be: "420.0"
+  user_id: "507"
+  station_be: "1290.0"
+station_position_benefits_192: 
+  created_at: 2009-10-19 09:16:50
+  updated_at: 2009-10-19 09:16:50
+  id: "193"
+  position_be: "420.0"
+  user_id: "65"
+  station_be: "1290.0"
+station_position_benefits_164: 
+  created_at: 2009-10-19 09:00:53
+  updated_at: 2009-10-19 09:00:53
+  id: "165"
+  position_be: "280.0"
+  user_id: "678"
+  station_be: "0.0"
+station_position_benefits_136: 
+  created_at: 2009-10-19 08:43:34
+  updated_at: 2009-10-19 08:43:34
+  id: "136"
+  position_be: "280.0"
+  user_id: "582"
+  station_be: "940.0"
+station_position_benefits_107: 
+  created_at: 2009-10-19 08:28:03
+  updated_at: 2009-10-19 08:28:03
+  id: "107"
+  position_be: "280.0"
+  user_id: "697"
+  station_be: "940.0"
+station_position_benefits_050: 
+  created_at: 2009-10-19 07:53:21
+  updated_at: 2009-10-19 07:53:21
+  id: "50"
+  position_be: "280.0"
+  user_id: "560"
+  station_be: "940.0"
+station_position_benefits_022: 
+  created_at: 2009-10-16 08:24:30
+  updated_at: 2009-10-16 08:24:30
+  id: "22"
+  position_be: "420.0"
+  user_id: "504"
+  station_be: "1290.0"
+station_position_benefits_193: 
+  created_at: 2009-10-19 09:17:09
+  updated_at: 2009-10-19 09:17:09
+  id: "194"
+  position_be: "420.0"
+  user_id: "164"
+  station_be: "0.0"
+station_position_benefits_165: 
+  created_at: 2009-10-19 09:01:11
+  updated_at: 2009-10-19 09:01:11
+  id: "166"
+  position_be: "280.0"
+  user_id: "588"
+  station_be: "0.0"
+station_position_benefits_137: 
+  created_at: 2009-10-19 08:43:50
+  updated_at: 2009-10-19 08:43:50
+  id: "137"
+  position_be: "280.0"
+  user_id: "651"
+  station_be: "940.0"
+station_position_benefits_108: 
+  created_at: 2009-10-19 08:28:23
+  updated_at: 2009-10-19 08:28:23
+  id: "108"
+  position_be: "280.0"
+  user_id: "97"
+  station_be: "940.0"
+station_position_benefits_051: 
+  created_at: 2009-10-19 07:57:24
+  updated_at: 2009-10-19 07:57:24
+  id: "51"
+  position_be: "280.0"
+  user_id: "73"
+  station_be: "9400.0"
+station_position_benefits_023: 
+  created_at: 2009-10-16 08:25:00
+  updated_at: 2009-10-16 08:25:00
+  id: "23"
+  position_be: "460.0"
+  user_id: "14"
+  station_be: "1800.0"
+station_position_benefits_194: 
+  created_at: 2009-10-19 09:17:25
+  updated_at: 2009-10-19 09:17:25
+  id: "195"
+  position_be: "420.0"
+  user_id: "170"
+  station_be: "0.0"
+station_position_benefits_166: 
+  created_at: 2009-10-19 09:01:33
+  updated_at: 2009-10-19 09:01:33
+  id: "167"
+  position_be: "280.0"
+  user_id: "622"
+  station_be: "0.0"
+station_position_benefits_138: 
+  created_at: 2009-10-19 08:44:10
+  updated_at: 2009-10-19 08:44:10
+  id: "138"
+  position_be: "280.0"
+  user_id: "688"
+  station_be: "940.0"
+station_position_benefits_080: 
+  created_at: 2009-10-19 08:19:10
+  updated_at: 2009-10-19 08:19:10
+  id: "80"
+  position_be: "310.0"
+  user_id: "381"
+  station_be: "1130.0"
+station_position_benefits_109: 
+  created_at: 2009-10-19 08:28:52
+  updated_at: 2009-10-19 08:28:52
+  id: "109"
+  position_be: "460.0"
+  user_id: "101"
+  station_be: "1800.0"
+station_position_benefits_052: 
+  created_at: 2009-10-19 07:57:39
+  updated_at: 2009-10-19 07:57:39
+  id: "52"
+  position_be: "460.0"
+  user_id: "102"
+  station_be: "1800.0"
+station_position_benefits_024: 
+  created_at: 2009-10-16 08:25:14
+  updated_at: 2009-10-16 08:25:14
+  id: "24"
+  position_be: "420.0"
+  user_id: "371"
+  station_be: "1290.0"
+station_position_benefits_195: 
+  created_at: 2009-10-19 09:17:54
+  updated_at: 2009-10-19 09:17:54
+  id: "196"
+  position_be: "280.0"
+  user_id: "294"
+  station_be: "0.0"
+station_position_benefits_167: 
+  created_at: 2009-10-19 09:02:15
+  updated_at: 2009-10-19 09:02:15
+  id: "168"
+  position_be: "280.0"
+  user_id: "647"
+  station_be: "940.0"
+station_position_benefits_139: 
+  created_at: 2009-10-19 08:47:52
+  updated_at: 2009-10-19 08:47:52
+  id: "140"
+  position_be: "280.0"
+  user_id: "37"
+  station_be: "0.0"
+station_position_benefits_081: 
+  created_at: 2009-10-19 08:19:27
+  updated_at: 2009-10-19 08:19:27
+  id: "81"
+  position_be: "280.0"
+  user_id: "372"
+  station_be: "940.0"
+station_position_benefits_053: 
+  created_at: 2009-10-19 07:57:55
+  updated_at: 2009-10-19 07:57:55
+  id: "53"
+  position_be: "310.0"
+  user_id: "431"
+  station_be: "1130.0"
+station_position_benefits_025: 
+  created_at: 2009-10-16 08:25:34
+  updated_at: 2009-10-16 08:25:34
+  id: "25"
+  position_be: "280.0"
+  user_id: "528"
+  station_be: "940.0"
+station_position_benefits_196: 
+  created_at: 2009-10-19 09:18:22
+  updated_at: 2009-10-19 09:18:22
+  id: "197"
+  position_be: "280.0"
+  user_id: "432"
+  station_be: "0.0"
+station_position_benefits_168: 
+  created_at: 2009-10-19 09:02:39
+  updated_at: 2009-10-19 09:02:39
+  id: "169"
+  position_be: "280.0"
+  user_id: "542"
+  station_be: "0.0"
+station_position_benefits_082: 
+  created_at: 2009-10-19 08:19:46
+  updated_at: 2009-10-19 08:19:46
+  id: "82"
+  position_be: "280.0"
+  user_id: "665"
+  station_be: "940.0"
+station_position_benefits_054: 
+  created_at: 2009-10-19 07:58:12
+  updated_at: 2009-10-19 07:58:12
+  id: "54"
+  position_be: "280.0"
+  user_id: "525"
+  station_be: "940.0"
+station_position_benefits_026: 
+  created_at: 2009-10-16 08:26:04
+  updated_at: 2009-10-16 08:26:04
+  id: "26"
+  position_be: "460.0"
+  user_id: "424"
+  station_be: "1800.0"
+station_position_benefits_197: 
+  created_at: 2009-10-19 09:18:44
+  updated_at: 2009-10-19 09:22:54
+  id: "198"
+  position_be: "420.0"
+  user_id: "605"
+  station_be: "160.0"
+station_position_benefits_169: 
+  created_at: 2009-10-19 09:03:06
+  updated_at: 2009-10-19 09:03:06
+  id: "170"
+  position_be: "280.0"
+  user_id: "652"
+  station_be: "0.0"
+station_position_benefits_083: 
+  created_at: 2009-10-19 08:20:00
+  updated_at: 2009-10-19 08:20:00
+  id: "83"
+  position_be: "280.0"
+  user_id: "716"
+  station_be: "940.0"
+station_position_benefits_055: 
+  created_at: 2009-10-19 07:58:42
+  updated_at: 2009-10-19 07:58:42
+  id: "55"
+  position_be: "280.0"
+  user_id: "656"
+  station_be: "940.0"
+station_position_benefits_110: 
+  created_at: 2009-10-19 08:29:04
+  updated_at: 2009-10-19 08:29:04
+  id: "110"
+  position_be: "380.0"
+  user_id: "363"
+  station_be: "1500.0"
+station_position_benefits_027: 
+  created_at: 2009-10-16 08:26:18
+  updated_at: 2009-10-16 08:26:18
+  id: "27"
+  position_be: "280.0"
+  user_id: "705"
+  station_be: "940.0"
